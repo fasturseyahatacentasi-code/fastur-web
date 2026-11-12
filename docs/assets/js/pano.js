@@ -33,9 +33,8 @@
 
   /* gündüz / gece modu: İstanbul saatine göre otomatik (06–18 gündüz); elle değiştirme localStorage'da saklanır */
   var modBtn = document.querySelector('.hud-mod'), kok = document.documentElement;
-  /* 12.11.2026 Hilal Hanım: gündüz modu PASİF (tur programı gündüzde okunmuyordu). Site hep gece; düğme gizli.
-     Yeniden açmak: GUNDUZ_ACIK = true yap + tasarim/uret_turlar.py kabuğundaki <head> betiğini eski hâline getir, iki üreticiyi çalıştır. */
-  var GUNDUZ_ACIK = false;
+  /* Gündüz modu anahtarı: false yapılırsa site hep gece olur ve düğme gizlenir (ayrıca uret_turlar.py <head> betiği 'gece'ye sabitlenmeli). 12.11.2026: Hilal Hanım AÇIK istedi. */
+  var GUNDUZ_ACIK = true;
   if (!GUNDUZ_ACIK) { kok.setAttribute('data-mod', 'gece'); if (modBtn) modBtn.parentNode.removeChild(modBtn); try { localStorage.removeItem('ft_mod'); } catch (e) { } }
   else {
   function otoMod() { try { var h = +new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Istanbul' }).format(new Date()); return (h >= 6 && h < 18) ? 'gunduz' : 'gece'; } catch (e) { return 'gece'; } }

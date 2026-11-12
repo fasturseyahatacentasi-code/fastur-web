@@ -19,7 +19,7 @@
 
 - 12.11.2026 · Hilal Hanım: ana sayfadaki rehber karakterin adı **Okay**. Ekip kendi aramızda "Okay" der. Sitede (veri.js rehber.ad) gösterilmesi Hilal Hanım/firma onayına bağlı; şu an "[?]" (sitede "Yol arkadaşınız").
 
-- 12.11.2026 · Hilal Hanım: gündüz modu PASİF, site hep gece (koyu). Yeniden açmak için pano.js GUNDUZ_ACIK + uret_turlar.py kabuk <head> betiği.
+- 12.11.2026 · Hilal Hanım: gündüz/gece modu KALIR. Gündüz modunda tur detay sayfasında yazılar siyah. (Kapatma anahtarı: pano.js GUNDUZ_ACIK + uret_turlar.py <head> betiği.)
 
 ## Günlük (kronolojik, tek satır)
 `GG.AA.YYYY · araç · ne yapıldı · dosya`
@@ -29,3 +29,4 @@
 12.11.2026 · Claude · Okay'a dosyasız canlılık hareketi: yandan süzülerek giriş + 6 sn nefes/ağırlık aktarma + gölge; hareketi azalt'ta durur; sw SURUM fastur-v6 · site.css, sw.js
 12.11.2026 · Claude · Yeni tur: Fas'ın Renkleri (id 91, aktif, her hafta perşembe) — kaynak Pazarlama-AI-Ekibi/knowledge/urunler-teklifler.md (Hilal, 28.10.2026); görsel tur 44'ün firma görseli; vize alanı boş (bilgi yok). Tur şemasına isteğe bağlı `tekrar` alanı (düzenli kalkış) eklendi · veri.js, uret_turlar.py, site.js, pano.js, sw.js (fastur-v7) · Hilal Hanım onayladı: fiyatlar güncel, vize "Vizesiz"
 12.11.2026 · Claude · Gündüz/gece modu pasif: site hep gece, ☀/☾ düğmesi (HUD + mobil pano) kaldırıldı; tur programı okunur; sw fastur-v8 · pano.js, uret_turlar.py, tüm üretilen sayfalar
+12.11.2026 · Claude · Gündüz modu geri açıldı (Hilal Hanım vazgeçti); gündüzde tur detayı: Tur programı başlığı + akordeon siyah yazı/açık kart, Benzer turlar başlığı siyah; sw fastur-v9 · site.css, pano.js, uret_turlar.py, üretilen sayfalar

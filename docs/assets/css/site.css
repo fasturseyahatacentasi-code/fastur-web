@@ -594,3 +594,15 @@ html[data-mod="gunduz"] .dp-on .kenar{stroke:#b45309}
 .kahraman .sahne-kisi img{transform-origin:50% 100%;will-change:transform;animation:okay-nefes 6s ease-in-out 1.2s infinite}
 .kahraman .sahne-kisi .golge{animation:okay-golge 6s ease-in-out 1.2s infinite}
 @media (prefers-reduced-motion:reduce){.kahraman .sahne-kisi,.kahraman .sahne-kisi img,.kahraman .sahne-kisi .golge{animation:none!important;opacity:1}}
+/* ============================================================
+   GÜNDÜZ MODU — tur detay sayfası okunurluk (12.11.2026, Hilal Hanım: gündüzde yazı siyah)
+   Açık zemin üstünde kalan başlık ve program akordeonu siyah yazı + açık kart zemin alır.
+   Koyu kutular (Tur bilgileri, Fiyatlar, Dahil/Hariç) zaten koyu zeminli; dokunulmadı.
+   ============================================================ */
+html[data-mod="gunduz"] body[data-sayfa="tur"] .bolum-ic:not(.kutu) > h2,html[data-mod="gunduz"] body[data-sayfa="tur"] .bolum > .wrap > h2{color:#111}
+html[data-mod="gunduz"] .program details{background:rgba(255,255,255,.88);border-color:rgba(13,43,74,.22)}
+html[data-mod="gunduz"] .program summary{color:#111}
+html[data-mod="gunduz"] .program details[open] summary{background:rgba(255,154,46,.16)}
+html[data-mod="gunduz"] .program .gun-ic,html[data-mod="gunduz"] .program .gun-ic p{color:#111}
+html[data-mod="gunduz"] .program .harita-not{color:#27415e}
+html[data-mod="gunduz"] .program summary::after{color:#b45309}
