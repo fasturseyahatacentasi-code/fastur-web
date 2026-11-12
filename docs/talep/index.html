@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilgi / Rezervasyon Talebi | Fas Tur</title>
+<meta name="description" content="Fas Tur bilgi ve rezervasyon talep formu: tur, kişi sayısı ve tarih tercihinizi bırakın, size dönüş yapalım.">
+<link rel="canonical" href="https://www.fastur.com.tr/talep/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Fas Tur">
+<meta property="og:title" content="Bilgi / Rezervasyon Talebi | Fas Tur">
+<meta property="og:description" content="Fas Tur bilgi ve rezervasyon talep formu: tur, kişi sayısı ve tarih tercihinizi bırakın, size dönüş yapalım.">
+<meta property="og:image" content="https://www.fastur.com.tr/assets/img/genel/slider1.jpg">
+<meta name="theme-color" content="#12385a">
+<script>(function(){try{var m=localStorage.getItem('ft_mod');var q=/[?&]mod=(gunduz|gece)/.exec(location.search);if(q)m=q[1];if(m!=='gunduz'&&m!=='gece'){var h=+new Intl.DateTimeFormat('en-GB',{hour:'numeric',hour12:false,timeZone:'Europe/Istanbul'}).format(new Date());m=(h>=6&&h<18)?'gunduz':'gece'}document.documentElement.setAttribute('data-mod',m)}catch(e){document.documentElement.setAttribute('data-mod','gece')}})();</script>
+<link rel="icon" href="../assets/img/genel/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/img/pwa/apple-touch-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+
+</head>
+<body data-kok="../" data-sayfa="talep">
+<a class="atla" href="#icerik">İçeriğe geç</a>
+<div id="ust"></div>
+<noscript><p class="wrap" style="padding:12px 0"><a href="../">Ana sayfa</a> · <a href="../turlar/">Turlar</a> · <a href="../hakkimizda/">Hakkımızda</a> · <a href="../haberler/">Haberler</a> · <a href="../iletisim/">İletişim</a> · <a href="../tur-bul/">Bana uygun turu bul</a> · <a href="../umre-rehberi/">Umre rehberi</a> · <a href="../talep/">Bilgi / Rezervasyon Talebi</a></p></noscript>
+<main id="icerik">
+<section class="sayfa-ust"><div class="wrap">
+<nav class="kirinti" aria-label="Sayfa yolu"><a href="../">Ana sayfa</a><span>/</span>Talep formu</nav>
+<h1 data-i18n="talep.baslik">Bilgi / rezervasyon talebi</h1>
+<p data-i18n="talep.ozet">Tur, kişi sayısı ve tarih tercihinizi bırakın; size dönüş yapalım.</p>
+</div></section><div class="wrap form-duzen">
+<form class="kutu" data-talep novalidate>
+<h2 data-i18n="talep.baslik">Bilgi / rezervasyon talebi</h2>
+<p style="color:var(--soluk)" data-i18n="talep.aciklama">Talebiniz ekibimize ulaşır; size telefon, WhatsApp veya e-posta ile dönüş yapılır. Bu form ödeme almaz; rezervasyon, bilgi verildikten sonra netleşir.</p>
+<div class="alan"><label for="t-tur" data-i18n="talep.tur">İlgilendiğiniz tur</label><select id="t-tur" name="tur"><option value="" data-i18n="talep.tur0">Henüz karar vermedim / genel bilgi</option></select></div>
+<div class="iki"><div class="alan"><label for="t-ad" data-i18n="talep.ad">Ad soyad *</label><input id="t-ad" name="ad" required autocomplete="name"></div>
+<div class="alan"><label for="t-tel" data-i18n="talep.tel">Telefon *</label><input id="t-tel" name="telefon" type="tel" required autocomplete="tel" placeholder="05xx xxx xx xx"></div></div>
+<div class="alan"><label for="t-eposta" data-i18n="talep.eposta">E-posta</label><input id="t-eposta" name="eposta" type="email" autocomplete="email"></div>
+<div class="iki"><div class="alan"><label for="t-yet" data-i18n="talep.yetiskin">Yetişkin sayısı</label><input id="t-yet" name="yetiskin" type="number" min="0" max="50" value="1"></div>
+<div class="alan"><label for="t-coc" data-i18n="talep.cocuk">Çocuk sayısı</label><input id="t-coc" name="cocuk" type="number" min="0" max="50" value="0"></div></div>
+<div class="alan"><label for="t-tarih" data-i18n="talep.tarih">Tercih ettiğiniz tarih / dönem</label><input id="t-tarih" name="tarih" placeholder="Örn. Mart 2027 ya da fark etmez"></div>
+<div class="alan"><label for="t-not" data-i18n="talep.not">Notunuz</label><textarea id="t-not" name="not" placeholder="Sorularınızı yazabilirsiniz. Lütfen sağlık durumu, din/mezhep gibi özel nitelikli kişisel bilgi yazmayın."></textarea></div>
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+<div class="alan onay"><input id="t-kvkk" name="kvkk" type="checkbox" required><label for="t-kvkk" style="margin:0;font-weight:400">Kişisel verilerimin talebime dönüş yapılması amacıyla işlenmesine ilişkin <a href="../kisisel-verilerin-korunmasi/" target="_blank" rel="noopener">Kişisel Verilerin Korunması Politikası</a>&#039;nı okudum, açık rıza veriyorum. *</label></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><button class="btn btn-ana" type="submit" data-gonder data-i18n="talep.gonder">Talebi gönder</button><button class="btn btn-wa" type="button" data-wa-gonder>WhatsApp ile gönder</button></div>
+<div class="durum gizli" role="status" aria-live="polite" data-durum></div>
+</form>
+<aside class="yan"><div class="kutu"><h3>Doğrudan ulaşın</h3>
+<div class="iletisim-satir"><div>📞</div><div><b>Telefon</b><a href="tel:+905317659969">+90 531 765 99 69</a></div></div><div class="iletisim-satir"><div>💬</div><div><b>WhatsApp</b><a data-wa href="https://wa.me/905317659969" target="_blank" rel="noopener">+90 531 765 99 69</a></div></div><div class="iletisim-satir"><div>🕘</div><div><b>Çalışma saatleri</b>Hafta içi 09:30 – 19:30</div></div></div>
+<div class="kutu" style="font-size:14px;color:var(--soluk)">Formda yalnız ad, telefon, e-posta, tur, kişi sayısı, tarih ve notunuz istenir. Verileriniz yalnız talebinize dönüş yapmak için kullanılır.</div></aside></div>
+<!-- Form yöntemi: Formsubmit (ajax) -> veri.js site.formEposta; ilk gönderimde Formsubmit bu adrese bir ONAY e-postası yollar, firma onaylamalı. Yedek: WhatsApp düğmesi (sunucu gerektirmez). -->
+</main>
+<div id="alt"></div>
+<script src="../assets/js/ozet.js"></script>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/zemin.js"></script>
+<script src="../assets/js/pano.js"></script>
+<script src="../assets/js/muzik.js"></script>
+<script src="../assets/js/katman.js"></script>
+<script src="../assets/js/dil.js"></script>
+<script src="../assets/js/pwa.js"></script>
+</body>
+</html>

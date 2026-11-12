@@ -1,0 +1,30 @@
+# Kurulum notlari ve ic kararlar GitHub'a gitmez (depo herkese aciktir)
+kurulum/
+
+# Ekibin ortak hafizasi ve gorsel is emirleri (yerel calisma notu)
+hafiza/
+
+# Kontrol ciktilari (ekran goruntuleri) depoya girmez; tasarim/ icindeki
+# uret_turlar.py, kirik_link_kontrol.py ve ESKI-SITE-ENVANTERI.md DEPOYA GIRER
+# (ikinci bilgisayar ve Codex ayni uretici ile calissin diye).
+tasarim/_kontrol/
+
+# Gizli bilgi
+.env
+.env.*
+!.env.example
+
+# Isletim sistemi / arac artiklari
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+
+# Karakter kaynak fotograflari (orijinal, filigranli) herkese acik depoya gitmez; sitede yalniz docs/assets/img/karakter/ kullanilir
+tasarim/referans/
+
+# Video araci test ciktilari depoya gitmez
+tasarim/_test/
+
+# Eski/ara tasarim dosyalari depoya gitmez
+tasarim/_eski/

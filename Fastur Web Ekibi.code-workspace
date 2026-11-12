@@ -1,0 +1,28 @@
+{
+  "folders": [
+    { "path": ".", "name": "Fastur Web Ekibi" }
+  ],
+  "settings": {
+    "window.title": "FASTUR WEB EKİBİ — ${activeEditorShort}",
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#c2410c",
+      "titleBar.activeForeground": "#ffffff",
+      "titleBar.inactiveBackground": "#7c2d12",
+      "titleBar.inactiveForeground": "#fed7aa",
+      "activityBar.background": "#9a3412",
+      "statusBar.background": "#c2410c",
+      "statusBar.foreground": "#ffffff"
+    },
+    "files.autoSave": "afterDelay",
+    "files.eol": "\n",
+    "editor.wordWrap": "on",
+    "liveServer.settings.root": "/docs"
+  },
+  "extensions": {
+    "recommendations": [
+      "anthropic.claude-code",
+      "openai.chatgpt",
+      "ms-vscode.live-server"
+    ]
+  }
+}

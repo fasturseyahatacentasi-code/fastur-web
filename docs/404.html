@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sayfa bulunamadı | Fas Tur</title><meta name="robots" content="noindex">
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fffaf3;color:#1f2a37;font:400 17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;padding:24px}
+h1{font:600 clamp(34px,7vw,64px)/1.1 Georgia,serif;color:#12385a;margin:12px 0}
+p{color:#5b6776;max-width:480px;margin:0 auto 24px}
+a{display:inline-block;padding:13px 24px;border-radius:999px;background:#f08a1c;color:#fff;text-decoration:none;font-weight:700;margin:4px}
+a.g{background:none;border:2px solid #12385a;color:#12385a}
+.logo{width:150px;height:auto}
+</style></head>
+<body><div>
+<img class="logo" id="lg" alt="Fas Tur" src="">
+<h1>Bu sayfa taşınmış olabilir</h1>
+<p id="msj">Aradığınız sayfa yeni sitemizde bulunamadı ya da adresi değişti. Ana sayfadan veya turlar listesinden devam edebilirsiniz.</p>
+<a id="ev" href="/">Ana sayfa</a><a id="tr" class="g" href="/turlar/">Turlar</a><a id="tl" class="g" href="/talep/">Talep formu</a>
+</div>
+<script>
+/* Eski .php adreslerini yeni adrese yönlendirir. GitHub test adresinde (…github.io/fastur-web/) kök klasör farklıdır, alan adında '/' dir. */
+(function(){
+  var p=location.pathname, base=location.hostname.slice(-10)==='github.io' ? '/'+p.split('/')[1]+'/' : '/';
+  document.getElementById('ev').href=base; document.getElementById('tr').href=base+'turlar/'; document.getElementById('tl').href=base+'talep/';
+  document.getElementById('lg').src=base+'assets/img/genel/fastur-logo.png';
+  var rel=p.slice(base.length), q=new URLSearchParams(location.search);
+  var s=document.createElement('script'); s.src=base+'assets/js/eski-adresler.js';
+  s.onload=function(){
+    var E=window.ESKI||{}, hedef=null;
+    if(rel==='tur_detay.php') hedef=E.tur[q.get('id')];
+    else if(rel==='turlar.php') hedef=q.get('kategori_id') ? E.kategori[q.get('kategori_id')] : 'turlar/';
+    else if(rel==='haber_detay.php') hedef=E.haber[q.get('id')] || 'haberler/';
+    else if(E.sayfa && rel in E.sayfa) hedef=E.sayfa[rel];
+    if(hedef!==null && hedef!==undefined) location.replace(base+hedef);
+  };
+  document.head.appendChild(s);
+})();
+</script></body></html>

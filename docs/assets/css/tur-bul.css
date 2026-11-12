@@ -1,0 +1,25 @@
+/* Sihirbaz stili: yalnız site.css değişkenlerini kullanır */
+.tb-kap{padding:10px 0 60px}
+.tb-kutu{padding:clamp(18px,3vw,32px)}
+.tb-ilerleme{display:flex;gap:6px;margin:0 0 18px}
+.tb-ilerleme i{flex:1;height:5px;border-radius:9px;background:var(--cam-2)}
+.tb-ilerleme i.on{background:var(--grad)}
+.tb-soru{font-family:var(--baslik);font-size:clamp(22px,3.4vw,30px);color:#fff;margin:0 0 14px}
+.tb-sec{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 18px}
+.tb-sec button{font:700 15px var(--govde);color:var(--yazi);background:var(--cam);border:1px solid var(--kenar);border-radius:14px;padding:14px 12px;cursor:pointer;transition:.2s;text-align:center}
+.tb-sec button:hover,.tb-sec button[aria-pressed=true]{border-color:var(--altin);background:var(--cam-2);color:var(--altin)}
+.tb-para{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.tb-para button{font:800 14px var(--govde);border-radius:999px;padding:8px 16px;border:1px solid var(--kenar);background:var(--cam);color:var(--yazi);cursor:pointer}
+.tb-para button[aria-pressed=true]{background:linear-gradient(110deg,#ffd98a,#ff9a2e);color:#2a1500;border-color:transparent}
+.tb-gezin{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tb-mesaj{color:#c4d4e4;margin:0 0 16px}
+.tb-sonuc{display:grid;gap:12px;margin:0 0 18px}
+.tb-tur{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:12px;border-radius:16px;border:1px solid var(--kenar);background:var(--cam)}
+.tb-tur img{width:96px;height:80px;object-fit:cover;border-radius:12px}
+.tb-tur h3{font-size:18px;margin:0 0 4px}
+.tb-tur small{color:var(--soluk);display:block}
+.tb-etiket{display:inline-block;font:800 12px var(--govde);padding:2px 10px;border-radius:99px;background:rgba(53,224,208,.15);color:var(--turkuaz);margin:4px 6px 0 0}
+.tb-etiket.eski{background:rgba(255,154,46,.15);color:var(--turuncu)}
+.tb-act{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tb-not{color:var(--soluk);font-size:14px;margin-top:14px}
+@media(max-width:520px){.tb-tur{grid-template-columns:1fr}.tb-tur img{width:100%;height:140px}}

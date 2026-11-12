@@ -1,0 +1,16 @@
+{
+  "name": "Fas Tur",
+  "short_name": "Fas Tur",
+  "description": "Fas Tur: umre, Fas, Mısır, Avrupa ve Asya turları.",
+  "lang": "tr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070b24",
+  "theme_color": "#12385a",
+  "icons": [
+    { "src": "assets/img/pwa/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/pwa/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/pwa/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
