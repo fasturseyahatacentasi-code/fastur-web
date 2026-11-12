@@ -26,7 +26,7 @@
     var toplam = Math.max(1, document.documentElement.scrollHeight - innerHeight), p = Math.min(1, Math.max(0, scrollY / toplam)), k = 0;
     yz.forEach(function (y, i) { if (y <= p + 0.015) k = i; });
     dur.forEach(function (x, i) { x.classList.toggle('gecti', yz[i] <= p + 0.015); x.classList.toggle('simdi', i === k); });
-    if (bar()) { dolu.style.width = (p * 100) + '%'; dolu.style.height = ''; ucak.style.left = (p * 100) + '%'; ucak.style.top = ''; }
+    if (bar()) { dolu.style.width = (p * 100) + '%'; dolu.style.height = ''; ucak.style.left = 'calc(' + (p * 100).toFixed(2) + '% - ' + (p * 34).toFixed(1) + 'px)'; ucak.style.top = ''; }   /* 34 = uçak genişliği: başta ve sonda ekran içinde kalır */
     else { dolu.style.height = (p * 100) + '%'; dolu.style.width = ''; ucak.style.top = (p * 100) + '%'; ucak.style.left = ''; }
     et.textContent = DURAKLAR[k].ad; et.style[bar() ? 'left' : 'top'] = (p * 100) + '%';
   }

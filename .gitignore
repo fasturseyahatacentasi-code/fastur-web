@@ -28,3 +28,7 @@ tasarim/_test/
 
 # Eski/ara tasarim dosyalari depoya gitmez
 tasarim/_eski/
+
+# Python ara dosyalari (uretici calisinca olusur)
+__pycache__/
+*.pyc

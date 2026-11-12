@@ -15,7 +15,9 @@
 ## Kalıcı kararlar
 - Koordinatör adı: `[?]` (öğrenci verirse CLAUDE.md'deki satır değişir)
 - Online ödeme ve üye girişi yok; talep formu + WhatsApp + telefon.
+- 12.11.2026 · Hilal Hanım: commit + push'u araç (Claude) otomatik yapar; istenen değişiklik onay sayılır. İstisna: fiyat/tarih/TÜRSAB/hukuki/firma onaylı içerikte göndermeden önce sorulur. `--force` asla. Commit mesajı "Claude: ..." / "Codex: ..." biçiminde.
 
 ## Günlük (kronolojik, tek satır)
 `GG.AA.YYYY · araç · ne yapıldı · dosya`
 12.11.2026 · Claude · Ana sayfa scrollytelling: 7 hikâye durağı, derinlik katmanları (arka görsel/katman videosu, orta ışık, ön kemer), telefonda hafif, hareketi azalt'ta durağan; sw SURUM fastur-v3; üretici Windows'ta LF yazar · derinlik.js, site.css, build_static.py, uret_turlar.py
+12.11.2026 · Claude · Mobil ilerleme çubuğundaki uçak büyütüldü (34px, yuvarlak zemin, başlık altında kalmıyor, kenarda taşmıyor); sw SURUM fastur-v4 · site.css, ucus.js, sw.js
