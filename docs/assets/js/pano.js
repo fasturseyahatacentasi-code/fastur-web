@@ -16,8 +16,8 @@
   var BUGUN = new Date().toISOString().slice(0, 10), AY = ['OCAK', 'ŞUBAT', 'MART', 'NİSAN', 'MAYIS', 'HAZİRAN', 'TEMMUZ', 'AĞUSTOS', 'EYLÜL', 'EKİM', 'KASIM', 'ARALIK'];
 
   /* ---- kayan şerit metni ---- */
-  var sonraki = (FT.turlar || []).filter(function (t) { return t.aktif && (t.bitis || '9999') >= BUGUN; }).sort(function (a, b) { return a.baslangic < b.baslangic ? -1 : 1; })[0];
-  var kayanParca = '<b data-i18n="hud.siradaki">SIRADAKİ KALKIŞ</b> · ' + (sonraki ? esc(Number(sonraki.baslangic.slice(8)) + ' ' + AY[Number(sonraki.baslangic.slice(5, 7)) - 1] + ' · ' + BUYUK(sonraki.ad)) : '<b data-i18n="hud.yakinda">YAKINDA</b>');
+  var sonraki = (FT.turlar || []).filter(function (t) { return t.aktif && (t.bitis || '9999') >= BUGUN; }).sort(function (a, b) { var x = a.baslangic || '9999', y = b.baslangic || '9999'; return x < y ? -1 : 1; })[0];   /* tarihli tur önce; tarihsiz (tekrar) sonra */
+  var kayanParca = '<b data-i18n="hud.siradaki">SIRADAKİ KALKIŞ</b> · ' + (sonraki ? esc((sonraki.baslangic ? Number(sonraki.baslangic.slice(8)) + ' ' + AY[Number(sonraki.baslangic.slice(5, 7)) - 1] : BUYUK(sonraki.tekrar || '')) + ' · ' + BUYUK(sonraki.ad)) : '<b data-i18n="hud.yakinda">YAKINDA</b>');
   var kayanHtml = '<span>' + kayanParca + '</span><span>' + kayanParca + '</span>';
 
   ust.outerHTML =
@@ -33,11 +33,17 @@
 
   /* gündüz / gece modu: İstanbul saatine göre otomatik (06–18 gündüz); elle değiştirme localStorage'da saklanır */
   var modBtn = document.querySelector('.hud-mod'), kok = document.documentElement;
+  /* 12.11.2026 Hilal Hanım: gündüz modu PASİF (tur programı gündüzde okunmuyordu). Site hep gece; düğme gizli.
+     Yeniden açmak: GUNDUZ_ACIK = true yap + tasarim/uret_turlar.py kabuğundaki <head> betiğini eski hâline getir, iki üreticiyi çalıştır. */
+  var GUNDUZ_ACIK = false;
+  if (!GUNDUZ_ACIK) { kok.setAttribute('data-mod', 'gece'); if (modBtn) modBtn.parentNode.removeChild(modBtn); try { localStorage.removeItem('ft_mod'); } catch (e) { } }
+  else {
   function otoMod() { try { var h = +new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Istanbul' }).format(new Date()); return (h >= 6 && h < 18) ? 'gunduz' : 'gece'; } catch (e) { return 'gece'; } }
   function modUygula(m) { kok.setAttribute('data-mod', m); var g = m === 'gunduz'; modBtn.setAttribute('aria-pressed', g); modBtn.firstChild.textContent = g ? '☾' : '☀'; modBtn.setAttribute('aria-label', g ? 'Gece moduna geç' : 'Gündüz moduna geç'); }
   modUygula(kok.getAttribute('data-mod') || otoMod());
   modBtn.addEventListener('click', function () { var m = kok.getAttribute('data-mod') === 'gunduz' ? 'gece' : 'gunduz'; modUygula(m); try { localStorage.setItem('ft_mod', m); } catch (e) { } });
   modBtn.addEventListener('dblclick', function () { try { localStorage.removeItem('ft_mod'); } catch (e) { } modUygula(otoMod()); });
+  }
 
   var saat = document.getElementById('hud-saat');
   function saatYaz() { try { saat.textContent = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Istanbul' }).format(new Date()); } catch (e) { } }
@@ -73,7 +79,8 @@
   function dilDegis(v) { if (window.FT_DIL) window.FT_DIL.sec(v); dilHud.value = v; dilPano.value = v; if (!pano.hidden) setTimeout(hepsiniYaz, 150); }
   dilHud.addEventListener('change', function () { dilDegis(dilHud.value); }); dilPano.addEventListener('change', function () { dilDegis(dilPano.value); });
   function dilEsitle() { var d = window.FT_DIL ? window.FT_DIL.dil() : 'tr'; dilHud.value = d; dilPano.value = d; }
-  modPano.firstChild.textContent = modBtn.firstChild.textContent; modPano.addEventListener('click', function () { modBtn.click(); modPano.firstChild.textContent = modBtn.firstChild.textContent; });
+  if (!GUNDUZ_ACIK) { if (modPano) modPano.parentNode.removeChild(modPano); }
+  else { modPano.firstChild.textContent = modBtn.firstChild.textContent; modPano.addEventListener('click', function () { modBtn.click(); modPano.firstChild.textContent = modBtn.firstChild.textContent; }); }
   window.addEventListener('load', dilEsitle);
 
   /* ---- harf çevirme ---- */

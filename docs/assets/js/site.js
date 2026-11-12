@@ -70,7 +70,7 @@
   /* ---------- tur kartı (yaklaşan turlar için) ---------- */
   function kart(t) {
     var a = aktif(t), kat = KAT[t.kategori] ? KAT[t.kategori].ad : '';
-    var tarih = t.baslangic ? tarihTr(t.baslangic) + (t.bitis ? ' – ' + tarihTr(t.bitis) : '') : '';
+    var tarih = t.baslangic ? tarihTr(t.baslangic) + (t.bitis ? ' – ' + tarihTr(t.bitis) : '') : (t.tekrar || '');
     var fiyat = (a && t.fiyat) ? '<div class="fiyat"><small>kişi başı</small>' + esc(t.fiyat) + '\'dan</div>' : '<div class="fiyat"><small>Güncel tarih ve fiyat</small>için arayın</div>';
     return '<article class="kart"><div class="gorsel"><img src="' + K + esc(t.gorsel) + '" alt="' + esc(t.ad) + '" loading="lazy" width="440" height="275"><span class="serit-etiket">' + esc(kat) + '</span><span class="arsiv canli">Güncel</span></div>' +
       '<div class="ic"><h3><a href="' + K + 'tur/' + esc(t.slug) + '/">' + esc(t.ad) + '</a></h3><div class="meta">' + (tarih ? '<span>' + tarih + '</span>' : '') + (t.gun ? '<span>' + t.gun + ' gün</span>' : '') + (t.vize ? '<span>' + esc(t.vize) + '</span>' : '') + '</div>' +
@@ -81,8 +81,9 @@
     var liste = (FT.turlar || []).filter(aktif).sort(function (a, b) { return (a.baslangic || '') < (b.baslangic || '') ? -1 : 1; }).slice(0, 8);
     var AY = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
     if (liste.length) yk.innerHTML = liste.map(function (t) {
-      var d = t.baslangic.split('-');
-      return '<div class="takvim-satir"><div class="takvim-tarih">' + Number(d[2]) + '<small>' + AY[Number(d[1]) - 1] + ' ' + d[0] + '</small></div>' +
+      var d = (t.baslangic || '').split('-');
+      var ttar = t.baslangic ? Number(d[2]) + '<small>' + AY[Number(d[1]) - 1] + ' ' + d[0] + '</small>' : '<span aria-hidden="true">↻</span><small>' + esc(t.tekrar || 'Tarih için sorun') + '</small>';   /* tekrar: düzenli kalkış */
+      return '<div class="takvim-satir"><div class="takvim-tarih">' + ttar + '</div>' +
         '<a class="takvim-ad" href="' + K + 'tur/' + esc(t.slug) + '/">' + esc(t.ad) + '<small>' + (t.gun ? t.gun + ' gün · ' : '') + esc(t.guzergah || '') + '</small></a>' +
         '<a class="btn btn-ana btn-kucuk" href="' + K + 'talep/?tur=' + esc(t.slug) + '">Talep</a></div>';
     }).join('');

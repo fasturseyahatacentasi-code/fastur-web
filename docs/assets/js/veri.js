@@ -2061,6 +2061,29 @@ window.FT = {
       "aktif": false,
       "teyit": "firma teyidi bekliyor",
       "eskiAdres": "tur_detay.php?id=90"
+    },
+    {
+      "id": 91,
+      "slug": "fasin-renkleri-91",
+      "ad": "Fas'ın Renkleri",
+      "kategori": "fas",
+      "baslangic": "",
+      "bitis": "",
+      "tekrar": "Her hafta perşembe",
+      "gun": 5,
+      "vize": "Vizesiz",
+      "guzergah": "Kazablanka, Rabat, Meknes, Fes, Marakeş",
+      "otel": "3 veya 4 Yıldız",
+      "ulasim": ["Uçak"],
+      "havayolu": ["Air Arabia"],
+      "fiyatlar": {"yetiskin": [{"etiket": "İki Kişilik Odada Kişi Başı", "tutar": 899.0, "para": "EUR"}, {"etiket": "Tek Kişilik Odada Kişi Başı", "tutar": 1059.0, "para": "EUR"}], "cocuk": [{"etiket": "0 - 2 Yaş", "tutar": 599.0, "para": "EUR"}, {"etiket": "3 - 11 Yaş", "tutar": 749.0, "para": "EUR"}], "notlar": ["* Fiyatlar kişi başı, KDV dahildir.", "* Tur fiyatlarımız anlık olarak değişebilmektedir. Rezervasyon sırasında geçerli olan fiyat esas alınır."]},
+      "program": [{"t": "h", "x": "1. Gün: İstanbul – Kazablanka – Rabat – Meknes – Fes"}, {"t": "p", "x": "Çarşamba gecesi Sabiha Gökçen Havalimanı Dış Hatlar'da buluşma. Air Arabia ile çarşambayı perşembeye bağlayan gece saat 00:20'de Kazablanka'ya hareket (uçuş saatleri havayoluna bağlı olarak değişebilir)."}, {"t": "p", "x": "Rabat: Hasan Kulesi ve V. Muhammed Türbesi. Meknes: Bab Mansour (UNESCO Dünya Mirası). Fes'e varış; akşam yemeği ve geceleme Fes'te."}, {"t": "h", "x": "2. Gün: Fes – Marakeş"}, {"t": "p", "x": "Fes panoramik şehir turu: Kraliyet Sarayı kapıları, Mellah, Bab Bou Jeloud. Panoramik tur araç içinden, rehber anlatımıyla yapılır; mekânlara giriş yapılmaz, dışarıdan görülür. Karaouine, Attarine, Nejjarin ve tabakhane ekstra Fes Medina turundadır."}, {"t": "p", "x": "Marakeş'e geçiş; akşam yemeği ve geceleme Marakeş'te."}, {"t": "h", "x": "3. Gün: Marakeş"}, {"t": "p", "x": "Serbest gün veya ekstra tur. Kahvaltı ve akşam yemeği otelde."}, {"t": "h", "x": "4. Gün: Marakeş"}, {"t": "p", "x": "Serbest gün veya isteğe bağlı Essaouira turu. Kahvaltı ve akşam yemeği otelde."}, {"t": "h", "x": "5. Gün: Kazablanka – İstanbul"}, {"t": "p", "x": "Kazablanka şehir turu: Hassan II Camii, Anfa, Ain Diab. Ardından İstanbul'a dönüş."}],
+      "dahil": ["Air Arabia ile İstanbul (SAW) – Kazablanka gidiş-dönüş ekonomi sınıfı uçak bileti ve vergileri, havalimanı vergileri", "Havalimanı – otel – havalimanı transferleri", "1 gece Fes ve 3 gece Marakeş'te 3 veya 4 yıldızlı otelde konaklama, kahvaltı ve akşam yemeği", "Rabat, Meknes, Fes (panoramik) ve Kazablanka şehir turları", "Türkçe rehberlik ve yerel rehberlik", "Seyahat sağlık sigortası"],
+      "haric": ["Diğer şehirlerden İstanbul'a iç hat bağlantısı", "Yurt dışı çıkış harcı", "Öğle yemekleri ve yemeklerdeki içecekler, mola içecekleri", "Otel ekstraları, turist şehir vergileri", "Müze ve ören yeri girişleri (Hassan II Camii girişi dahil)", "Şoför bahşişi: kişi başı günlük 1 €", "Ekstra turlar: Fes Medina turu 30 €; Majorelle Bahçesi, Bahia Sarayı ve Marakeş Medinası 85 €; Essaouira, Argan Bahçeleri ve Atlas Okyanusu 80 €; Chez Ali Fantasia Show 75 €"],
+      "gorsel": "assets/img/turlar/tur_69368d72d7a21.jpg",
+      "aktif": true,
+      "teyit": "firma teyitli (28.10.2026)",
+      "eskiAdres": ""
     }
   ]
 };

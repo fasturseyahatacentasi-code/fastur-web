@@ -102,7 +102,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <meta property="og:description" content="{e(aciklama)}">
 <meta property="og:image" content="{e(og)}">
 <meta name="theme-color" content="#12385a">
-<script>(function(){{try{{var m=localStorage.getItem('ft_mod');var q=/[?&]mod=(gunduz|gece)/.exec(location.search);if(q)m=q[1];if(m!=='gunduz'&&m!=='gece'){{var h=+new Intl.DateTimeFormat('en-GB',{{hour:'numeric',hour12:false,timeZone:'Europe/Istanbul'}}).format(new Date());m=(h>=6&&h<18)?'gunduz':'gece'}}document.documentElement.setAttribute('data-mod',m)}}catch(e){{document.documentElement.setAttribute('data-mod','gece')}}}})();</script>
+<script>document.documentElement.setAttribute('data-mod','gece');</script><!-- gündüz modu pasif (12.11.2026); eski otomatik mod betiği: git geçmişi -->
 <link rel="icon" href="{kok}assets/img/genel/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="{kok}manifest.webmanifest">
 <link rel="apple-touch-icon" href="{kok}assets/img/pwa/apple-touch-180.png">
@@ -151,6 +151,8 @@ def tur_karti(t, kat_ad, kok):
     tarih = ''
     if t.get('baslangic'):
         tarih = tarih_tr(t['baslangic']) + (' – ' + tarih_tr(t['bitis']) if t.get('bitis') else '')
+    elif t.get('tekrar'):                      # düzenli kalkış (örn. "Her hafta perşembe"): sabit tarih yok
+        tarih = t['tekrar']
     rozet = '<span class="arsiv canli">Güncel</span>' if aktif else '<span class="arsiv">Önceki dönem</span>'
     if aktif and f:
         fiyat = f'<div class="fiyat"><small>kişi başı</small>{e(f)}&#039;dan</div>'
@@ -254,9 +256,11 @@ def detay_sayfasi(V, t, kats, kok):
     tarih = ''
     if t.get('baslangic'):
         tarih = tarih_tr(t['baslangic']) + (' – ' + tarih_tr(t['bitis']) if t.get('bitis') else '')
+    elif t.get('tekrar'):                      # düzenli kalkış (örn. "Her hafta perşembe"): sabit tarih yok
+        tarih = t['tekrar']
     rozetler = ''.join(f'<span class="rozet">{e(x)}</span>' for x in [kat_ad, f'{t["gun"]} gün' if t.get('gun') else '', t.get('vize') or '', 'Güncel' if aktif else 'Önceki dönem programı'] if x)
     ozet = []
-    for et, de in [('Son program tarihi' if not aktif else 'Tarih', tarih), ('Süre', f'{t["gun"]} gün' if t.get('gun') else ''), ('Güzergâh', t.get('guzergah')),
+    for et, de in [('Son program tarihi' if not aktif else ('Kalkış' if t.get('tekrar') and not t.get('baslangic') else 'Tarih'), tarih), ('Süre', f'{t["gun"]} gün' if t.get('gun') else ''), ('Güzergâh', t.get('guzergah')),
                    ('Otel', t.get('otel')), ('Vize', t.get('vize')), ('Ulaşım', ', '.join(t.get('ulasim') or [])), ('Havayolu', ', '.join(t.get('havayolu') or []))]:
         if de:
             ozet.append(f'<div><dt>{e(et)}</dt><dd>{e(de)}</dd></div>')
@@ -373,7 +377,7 @@ def main():
         sayac[t['kategori']] = sayac.get(t['kategori'], 0) + 1
     ozet_t = []
     for t in V['turlar']:
-        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': en_dusuk_fiyat(t)})
+        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': en_dusuk_fiyat(t)})
     ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in V['kategoriler']], 'turlar': ozet_t,
             'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', [])}
     yaz('assets/js/ozet.js', '/* OTOMATİK ÜRETİLDİ (tasarim/uret_turlar.py). Elle değiştirmeyin; veri.js\'i değiştirip üreticiyi çalıştırın. */\nwindow.FT = '
