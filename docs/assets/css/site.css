@@ -580,3 +580,17 @@ html[data-mod="gunduz"] .dp-on .kenar{stroke:#b45309}
 .derinlik-durgun .dp-on{display:none}
 .derinlik-durgun .dp-isik{opacity:.6}
 @media (prefers-reduced-motion:reduce){.dp-on{display:none}.dp,.kahraman[data-durak] .rehber-hero{transform:none!important;will-change:auto}}
+/* ============================================================
+   OKAY (ana sayfa rehber karakter) — canlılık hareketi, dosyasız
+   .sahne-kisi: sayfa açılınca yandan süzülerek gelir (bir kez)
+   img: nefes + hafif ağırlık aktarma (sonsuz, yavaş); gölge uyumlu nefes alır
+   derinlik.js .rehber-hero'yu hareket ettirir; bunlar iç öğelerde, çakışmaz.
+   "Hareketi azalt"ta hepsi durur (site geneli kural + aşağıdaki blok).
+   ============================================================ */
+@keyframes okay-gelis{from{opacity:0;transform:translate3d(60px,0,0)}to{opacity:1;transform:none}}
+@keyframes okay-nefes{0%,100%{transform:translate3d(0,0,0) rotate(0) scale(1,1)}25%{transform:translate3d(-1px,-2px,0) rotate(-.5deg) scale(1,1.006)}50%{transform:translate3d(0,-4px,0) rotate(0) scale(1,1.011)}75%{transform:translate3d(1px,-2px,0) rotate(.5deg) scale(1,1.006)}}
+@keyframes okay-golge{0%,100%{opacity:1;transform:translateX(-50%) scale(1)}50%{opacity:.8;transform:translateX(-50%) scale(.94)}}
+.kahraman .sahne-kisi{animation:okay-gelis .9s cubic-bezier(.2,.7,.2,1) .25s both}
+.kahraman .sahne-kisi img{transform-origin:50% 100%;will-change:transform;animation:okay-nefes 6s ease-in-out 1.2s infinite}
+.kahraman .sahne-kisi .golge{animation:okay-golge 6s ease-in-out 1.2s infinite}
+@media (prefers-reduced-motion:reduce){.kahraman .sahne-kisi,.kahraman .sahne-kisi img,.kahraman .sahne-kisi .golge{animation:none!important;opacity:1}}
