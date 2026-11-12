@@ -440,7 +440,7 @@ a.sehir:hover b,a.sehir:focus-visible b{background:var(--turuncu);color:#1a0d00;
    v4 — karakter doğrudan sahnede (şeffaf PNG), kemer yok
    ============================================================ */
 .rehber-hero{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;justify-self:end;margin:10px -14px 44px 0}
-.sahne-kisi{position:relative;flex:none;height:min(50vh,450px);aspect-ratio:560/1632;z-index:2}
+.sahne-kisi{position:relative;flex:none;height:min(62vh,560px);aspect-ratio:560/1632;z-index:2}
 .sahne-kisi img{height:100%;width:auto;display:block;position:relative;z-index:1;filter:drop-shadow(-5px 0 9px rgba(255,170,90,.32)) drop-shadow(0 0 16px rgba(255,150,70,.22)) drop-shadow(0 6px 10px rgba(0,0,0,.35))}
 .sahne-kisi .golge{position:absolute;left:50%;bottom:-10px;width:170%;height:30px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(0,0,0,.62) 0,rgba(0,0,0,.25) 45%,transparent 72%);filter:blur(4px);z-index:0}
 .sahne-kisi::after{content:"";position:absolute;left:50%;bottom:-6px;width:150%;height:90px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 100%,rgba(255,150,70,.35),transparent 70%);z-index:0;pointer-events:none}
@@ -452,9 +452,9 @@ a.sehir:hover b,a.sehir:focus-visible b{background:var(--turuncu);color:#1a0d00;
 .sahne-kisi.video-var .kt-v,.sahne-kisi.video-var .kt-key{object-fit:contain}
 .sahne-kisi.seffaf img{visibility:hidden}
 @media(max-width:900px){
-  .kahraman .wrap{padding-bottom:490px}
+  .kahraman .wrap{padding-bottom:550px}
   .rehber-hero{position:absolute;right:14px;bottom:26px;margin:0;flex-direction:row;align-items:flex-end}
-  .sahne-kisi{height:250px}
+  .sahne-kisi{height:310px}
   .rehber-hero .balon.ust{order:-1;align-self:flex-end;margin:0 0 70px;width:min(205px,54vw)}
   .rehber-hero .balon.ust::before{left:auto;bottom:auto;top:34px;margin:0;right:-9px;border:9px solid transparent;border-left-color:rgba(8,20,36,.7);border-right:0}
   .rehber-hero .balon.ust p{font-size:12.5px}

@@ -17,7 +17,10 @@
 - Online ödeme ve üye girişi yok; talep formu + WhatsApp + telefon.
 - 12.11.2026 · Hilal Hanım: commit + push'u araç (Claude) otomatik yapar; istenen değişiklik onay sayılır. İstisna: fiyat/tarih/TÜRSAB/hukuki/firma onaylı içerikte göndermeden önce sorulur. `--force` asla. Commit mesajı "Claude: ..." / "Codex: ..." biçiminde.
 
+- 12.11.2026 · Hilal Hanım: ana sayfadaki rehber karakterin adı **Okay**. Ekip kendi aramızda "Okay" der. Sitede (veri.js rehber.ad) gösterilmesi Hilal Hanım/firma onayına bağlı; şu an "[?]" (sitede "Yol arkadaşınız").
+
 ## Günlük (kronolojik, tek satır)
 `GG.AA.YYYY · araç · ne yapıldı · dosya`
 12.11.2026 · Claude · Ana sayfa scrollytelling: 7 hikâye durağı, derinlik katmanları (arka görsel/katman videosu, orta ışık, ön kemer), telefonda hafif, hareketi azalt'ta durağan; sw SURUM fastur-v3; üretici Windows'ta LF yazar · derinlik.js, site.css, build_static.py, uret_turlar.py
 12.11.2026 · Claude · Mobil ilerleme çubuğundaki uçak büyütüldü (34px, yuvarlak zemin, başlık altında kalmıyor, kenarda taşmıyor); sw SURUM fastur-v4 · site.css, ucus.js, sw.js
+12.11.2026 · Claude · Okay (ana sayfa karakteri) büyütüldü: masaüstü min(62vh,560px), mobil 310px; sw SURUM fastur-v5 · site.css, sw.js
