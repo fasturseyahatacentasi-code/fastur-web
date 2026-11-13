@@ -76,9 +76,7 @@
     '<div class="pano-arac"><button class="hud-mod pano-mod" type="button" aria-label="Gündüz / gece modu"><span aria-hidden="true"></span></button><select class="hud-dil pano-dil" aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select></div>' +
     '<button class="pano-kapat" type="button" aria-label="Menüyü kapat">Kapat <span aria-hidden="true">✕</span></button></div>' +
     '<div class="mm-hizli">' + hizliHtml + '</div>' +
-    '<nav class="mm-gruplar" aria-label="Rotalar">' + gruplarHtml + '</nav>' +
-    '<div class="mm-alt"><nav class="mm-kurumsal" aria-label="Kurumsal">' + kurumsalHtml + '</nav>' +
-    '<p class="mm-tel">Telefon: <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.whatsapp2 ? ' · WhatsApp: <a href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">' + esc(S.telefon2Goster) + '</a>' : '') + '</p></div>' +
+    /* 13.11.2026 Hilal Hanım: menüde yalnız bu tek sıra. Ülke grupları (gruplarHtml) ve kurumsal satır (kurumsalHtml) hazır duruyor; geri istenirse buraya eklenir. Kurumsal bağlantılar sitenin alt bilgisinde var. */
     '</div>';
   document.body.appendChild(pano);
 
