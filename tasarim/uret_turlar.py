@@ -154,7 +154,7 @@ def tur_karti(t, kat_ad, kok):
     elif t.get('tekrar'):                      # düzenli kalkış (örn. "Her hafta perşembe"): sabit tarih yok
         tarih = t['tekrar']
     rozet = '<span class="arsiv canli">Güncel</span>' if aktif else '<span class="arsiv">Önceki dönem</span>'
-    if aktif and f:
+    if aktif and f and not t.get('fiyatOnceki'):   # fiyatOnceki: tur güncel ama fiyat eski dönemden; kartta gösterilmez
         fiyat = f'<div class="fiyat"><small>kişi başı</small>{e(f)}&#039;dan</div>'
     else:
         fiyat = '<div class="fiyat"><small>Güncel tarih ve fiyat</small>için arayın</div>'
@@ -265,12 +265,13 @@ def detay_sayfasi(V, t, kats, kok):
         if de:
             ozet.append(f'<div><dt>{e(et)}</dt><dd>{e(de)}</dd></div>')
     f = t.get('fiyatlar') or {}
-    fiyat_baslik = 'Yetişkin fiyatları' if aktif else 'Yetişkin fiyatları (önceki dönem, güncel değildir)'
+    fiyat_guncel = aktif and not t.get('fiyatOnceki')
+    fiyat_baslik = 'Yetişkin fiyatları' if fiyat_guncel else 'Yetişkin fiyatları (önceki dönem, güncel değildir)'
     fiyat_notlar = ''.join(f'<p style="font-size:14px;color:var(--soluk);margin:.3em 0">{e(n)}</p>' for n in (f.get('notlar') or []))
     fiyatlar = ''
     if f.get('yetiskin') or f.get('cocuk'):
         fiyatlar = ('<section class="kutu bolum-ic"><h2>Fiyatlar</h2>'
-                    + ('<p style="font-size:15px;color:var(--soluk)">Aşağıdaki fiyatlar önceki dönem içindir. Güncel fiyat, tarih ve kontenjan için bizi arayın.</p>' if not aktif else '')
+                    + ('<p style="font-size:15px;color:var(--soluk)">Aşağıdaki fiyatlar önceki dönem içindir. Güncel fiyat, tarih ve kontenjan için bizi arayın.</p>' if not fiyat_guncel else '')
                     + '<div class="izgara g2">' + fiyat_tablosu(fiyat_baslik, f.get('yetiskin')) + fiyat_tablosu('Çocuk fiyatları', f.get('cocuk')) + '</div>' + fiyat_notlar + '</section>')
     dahil = ''.join(f'<li>{e(x)}</li>' for x in t.get('dahil') or [])
     haric = ''.join(f'<li>{e(x)}</li>' for x in t.get('haric') or [])
@@ -377,7 +378,7 @@ def main():
         sayac[t['kategori']] = sayac.get(t['kategori'], 0) + 1
     ozet_t = []
     for t in V['turlar']:
-        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': en_dusuk_fiyat(t)})
+        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t)})
     ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in V['kategoriler']], 'turlar': ozet_t,
             'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', [])}
     yaz('assets/js/ozet.js', '/* OTOMATİK ÜRETİLDİ (tasarim/uret_turlar.py). Elle değiştirmeyin; veri.js\'i değiştirip üreticiyi çalıştırın. */\nwindow.FT = '

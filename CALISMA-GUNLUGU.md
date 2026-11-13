@@ -21,6 +21,8 @@
 
 - 12.11.2026 · Hilal Hanım: gündüz/gece modu KALIR. Gündüz modunda tur detay sayfasında yazılar siyah. (Kapatma anahtarı: pano.js GUNDUZ_ACIK + uret_turlar.py <head> betiği.)
 
+- 13.11.2026 · Hilal Hanım: eski 89 tur 2027'ye taşındı (haftanın günü korunarak), "Güncel" gösterilir ama eski fiyat gizli (veri.js tur alanı `fiyatOnceki: true` → kartta "arayın", detayda "önceki dönem" notu). Firma 2027 fiyatını verince o turda `fiyatOnceki` silinir, fiyat güncellenir.
+
 ## Günlük (kronolojik, tek satır)
 `GG.AA.YYYY · araç · ne yapıldı · dosya`
 12.11.2026 · Claude · Ana sayfa scrollytelling: 7 hikâye durağı, derinlik katmanları (arka görsel/katman videosu, orta ışık, ön kemer), telefonda hafif, hareketi azalt'ta durağan; sw SURUM fastur-v3; üretici Windows'ta LF yazar · derinlik.js, site.css, build_static.py, uret_turlar.py
@@ -30,3 +32,4 @@
 12.11.2026 · Claude · Yeni tur: Fas'ın Renkleri (id 91, aktif, her hafta perşembe) — kaynak Pazarlama-AI-Ekibi/knowledge/urunler-teklifler.md (Hilal, 28.10.2026); görsel tur 44'ün firma görseli; vize alanı boş (bilgi yok). Tur şemasına isteğe bağlı `tekrar` alanı (düzenli kalkış) eklendi · veri.js, uret_turlar.py, site.js, pano.js, sw.js (fastur-v7) · Hilal Hanım onayladı: fiyatlar güncel, vize "Vizesiz"
 12.11.2026 · Claude · Gündüz/gece modu pasif: site hep gece, ☀/☾ düğmesi (HUD + mobil pano) kaldırıldı; tur programı okunur; sw fastur-v8 · pano.js, uret_turlar.py, tüm üretilen sayfalar
 12.11.2026 · Claude · Gündüz modu geri açıldı (Hilal Hanım vazgeçti); gündüzde tur detayı: Tur programı başlığı + akordeon siyah yazı/açık kart, Benzer turlar başlığı siyah; sw fastur-v9 · site.css, pano.js, uret_turlar.py, üretilen sayfalar
+13.11.2026 · Claude · 89 tur 2027'ye taşındı (haftanın günü korundu, süre aynı), aktif:true + fiyatOnceki:true; 8 turun program içi tarihleri aynı kaydırmayla güncellendi (45,49,64,67,69,71,74,85), tur 69 buluşma yılı yazım hatası düzeltildi (21 Mart 2027 Pazar); üreticiye fiyatOnceki desteği; sw fastur-v10 · veri.js, uret_turlar.py, üretilen sayfalar · NOT: aynı ad+tarihe düşen 3 çift (Tunus 14.10.2027, Büyük Mısır Nil 21.04.2027, Umre Ekonomik Yakın Servisli 27.01.2027) firmaya sorulacak
