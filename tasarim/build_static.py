@@ -86,7 +86,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="wrap"><div>
 <span class="etiket" data-bolum="yola-cikis">Bölüm 1 · Yola çıkış</span>
 <h1>Dünyayı keşfetmenin<em>butik yolu</em></h1>
-<p class="alt" data-i18n="ana.alt">{"Umre • " if UMRE else ""}Fas • Mısır • Avrupa • Asya</p>
+<p class="alt" data-i18n="ana.alt">{"Umre • " if UMRE else ""}Fas • Mısır • Balkanlar • Asya</p>
 <p class="ic-p" data-i18n="ana.ic">Herkese uygun tatil seçenekleri. Yol arkadaşınız sizi rotaya götürsün.</p>
 <form class="arama" action="turlar/" method="get" role="search">
 <input type="search" name="q" placeholder="Nereye gitmek istersin?" data-i18n-attr="placeholder:ana.arama" aria-label="Tur veya şehir ara">

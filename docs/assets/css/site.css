@@ -758,4 +758,8 @@ img, video, .slayt, .kt, .dp-gorsel { -webkit-user-drag: none; user-select: none
   .takvim-bolum .tk-tablo tr.tk-satir{border-bottom:1px solid #e3e9ef;background:#fff}
   .takvim-bolum .tk-tablo tr.tk-satir td::before{color:#7d8b98}
   .takvim-bolum .tk-ay th{border-radius:0}
-}
+}/* 13.11.2026 Hilal Hanım: üst çubukta logo ve Rotalar yazısı daha büyük (mobilde de) */
+.hud .marka{padding:4px 12px;border-radius:10px}.hud .marka img{height:44px}
+.hud-rota{font-size:15px;padding:11px 18px;letter-spacing:.14em}.hud-rota .kare{width:14px;height:14px}
+@media(max-width:560px){.hud .marka{padding:3px 8px}.hud .marka img{height:36px}.hud-rota{font-size:14px;padding:10px 12px;letter-spacing:.1em}}
+@media(max-width:360px){.hud .marka img{height:32px}.hud-rota{font-size:13px;padding:9px 10px}}

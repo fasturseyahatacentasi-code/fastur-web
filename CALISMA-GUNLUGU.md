@@ -61,3 +61,5 @@
 13.11.2026 · Claude · Rotalar menüsünde yalnız tek sıra: Tur takvimi, Tüm turlar, Bana uygun turu bul, Talep bırak (Hilal Hanım). Ülke grupları ve kurumsal satır kodda hazır, gösterilmiyor; sw fastur-v21 · pano.js
 
 - 13.11.2026 · Claude · Rotalar menüsü tek sıra ortada, büyük punto. Paneldeki durumlar siteye aktarıldı: yeni alan takvimTarihDurum (tarihe özel durum, takvim.js + ozet.js). Fas'ın Renkleri 19.11.2026 kalkışı panelde 22 kişi / 20 kontenjan, 'kapali'. sw fastur-v22.
+
+- 13.11.2026 · Claude · Slogan Fas • Mısır • Balkanlar • Asya. Üst çubukta logo ve Rotalar büyüdü. Fas’ın Renkleri tüm haftalar Müsait (19.11 kapanışı denemeydi, kaldırıldı). Panele 26 site turu eklendi (turlar koleksiyonu, siteId/siteSlug alanı); panel Fas fiyatı 899 EUR. Eşleme: panel satista=Müsait, son=Sorunuz, kapali=Satışa kapandı. sw fastur-v23.
