@@ -91,6 +91,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noai, noimageai, noimageindex"><!-- 🔒 görsel/Okay koruması (Hilal Hanım 13.11.2026); yalnız onun açık talimatıyla kaldırılır -->
 <title>{e(tam_baslik)}</title>
 <meta name="description" content="{e(aciklama)}">
 <link rel="canonical" href="{e(can)}">
@@ -249,10 +250,11 @@ def fiyat_tablosu(baslik, satirlar):
     return f'<table class="fiyat-tablo"><caption>{e(baslik)}</caption>{r}</table>'
 
 
-def tel2_dugme(S):   # ikinci numara (Hilal Hanım 13.11.2026: iki numara her yerde birlikte)
-    if not S.get('telefon2'):
+def tel2_dugme(S, metin=''):   # ikinci numara (Hilal Hanım 13.11.2026: iki numara her yerde birlikte)
+    from urllib.parse import quote
+    if not S.get('whatsapp2'):   # ikinci numara yalnız WhatsApp (arama yok) — Hilal Hanım 13.11.2026
         return ''
-    return '<a class="btn btn-hat btn-blok" style="margin-top:8px" href="tel:' + e(S['telefon2']) + '">' + e(S['telefon2Goster']) + '</a>'
+    return '<a class="btn btn-wa btn-blok" style="margin-top:8px" target="_blank" rel="noopener" href="https://wa.me/' + e(S['whatsapp2']) + ('?text=' + quote(metin) if metin else '') + '">WhatsApp: ' + e(S['telefon2Goster']) + '</a>'
 
 
 def detay_sayfasi(V, t, kats, kok):
@@ -306,7 +308,7 @@ def detay_sayfasi(V, t, kats, kok):
 <div style="height:10px"></div>
 <a class="btn btn-wa btn-blok" href="{wa}" target="_blank" rel="noopener">WhatsApp ile yazın</a>
 <div style="height:10px"></div>
-<a class="btn btn-hat btn-blok" href="tel:{e(S['telefon'])}">{e(S['telefonGoster'])}</a>{tel2_dugme(S)}</div>
+<a class="btn btn-hat btn-blok" href="tel:{e(S['telefon'])}">{e(S['telefonGoster'])}</a>{tel2_dugme(S, wa_metin)}</div>
 <div class="kutu" style="font-size:14px;color:var(--soluk)">Tarih, fiyat ve kontenjan değişebilir. Güncel bilgi için lütfen bizimle iletişime geçin.</div>
 </aside>'''
     desc_parca = [t['ad']]

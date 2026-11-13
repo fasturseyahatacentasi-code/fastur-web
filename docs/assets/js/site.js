@@ -36,7 +36,7 @@
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/fastur-logo.png" alt="Fas Tur" width="92" height="44"></span>' +
       '<p>' + esc(S.unvanTam) + '</p><p>' + esc(S.adres) + '</p></div>' +
-      '<div><h4>Yardıma mı ihtiyacınız var?</h4><a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.telefon2 ? '<a href="tel:' + esc(S.telefon2) + '">' + esc(S.telefon2Goster) + '</a>' : '') +
+      '<div><h4>Yardıma mı ihtiyacınız var?</h4><a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.whatsapp2 ? '<a href="https://wa.me/' + esc(S.whatsapp2) + '" target="_blank" rel="noopener">WhatsApp: ' + esc(S.telefon2Goster) + '</a>' : '') +
       '<a href="' + wa('') + '" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:' + esc(S.eposta) + '">' + esc(S.eposta) + '</a>' +
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
       '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / rezervasyon talebi</a></div>' +
@@ -177,7 +177,7 @@
           else throw new Error('gonderilemedi');
         })
         .catch(function () {
-          goster('hata', 'Talebiniz şu an gönderilemedi. Lütfen <strong>WhatsApp ile gönder</strong> düğmesini kullanın ya da <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a> numarasını arayın' + (S.telefon2 ? ' (ya da <a href="tel:' + esc(S.telefon2) + '">' + esc(S.telefon2Goster) + '</a>)' : '') + '.');
+          goster('hata', 'Talebiniz şu an gönderilemedi. Lütfen <strong>WhatsApp ile gönder</strong> düğmesini kullanın ya da <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a> numarasını arayın' + (S.whatsapp2 ? ' (ya da WhatsApp: <a href="https://wa.me/' + esc(S.whatsapp2) + '" target="_blank" rel="noopener">' + esc(S.telefon2Goster) + '</a>)' : '') + '.');
         })
         .then(function () { btn.disabled = false; btn.textContent = window.FT_DIL ? window.FT_DIL.t('talep.gonder', 'Talebi gönder') : 'Talebi gönder'; });
     });
@@ -192,4 +192,27 @@
     bel.forEach(function (e) { e.classList.add('belir'); io.observe(e); });
     setTimeout(function () { bel.forEach(function (e) { e.classList.add('gor'); }); }, 4000);
   }
+})();
+
+/* ============================================================
+   🔒 GÖRSEL KORUMA (Hilal Hanım 13.11.2026) — yalnız onun açık talimatıyla gevşetilir
+   Görsel ve video üzerinde sağ tık / sürükleme / uzun basma kapalı; alt bilgide telif notu.
+   (Ekran görüntüsünü hiçbir site engelleyemez; bu katman kolay kopyalamayı durdurur.)
+   ============================================================ */
+(function () {
+  'use strict';
+  var SEC = 'img, video, picture, canvas, .slayt, .kt, .dp-gorsel, .sahne-kisi, .foto, .portre, .bolge, .gorsel, .tur-kapak';
+  function gorselMi(el) { return el && el.closest && el.closest(SEC); }
+  document.addEventListener('contextmenu', function (e) { if (gorselMi(e.target)) e.preventDefault(); }, true);
+  document.addEventListener('dragstart', function (e) { if (gorselMi(e.target)) e.preventDefault(); }, true);
+  function isaretle() { document.querySelectorAll('img').forEach(function (i) { i.setAttribute('draggable', 'false'); }); }
+  function telif() {
+    var alt = document.getElementById('alt'); if (!alt || alt.querySelector('.telif-notu')) return;
+    var p = document.createElement('p'); p.className = 'telif-notu';
+    p.style.cssText = 'font-size:12px;opacity:.75;text-align:center;margin:10px auto 0;max-width:60em;padding:0 16px';
+    p.textContent = 'Sitedeki tüm görseller, videolar ve "Okay" karakteri Okyay Turizmcilik Ltd. Şti.\'ye aittir; izinsiz kopyalanamaz, çoğaltılamaz, paylaşılamaz ve yapay zekâ eğitiminde kullanılamaz.';
+    alt.appendChild(p);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { isaretle(); telif(); }); else { isaretle(); telif(); }
+  addEventListener('load', function () { isaretle(); telif(); });
 })();

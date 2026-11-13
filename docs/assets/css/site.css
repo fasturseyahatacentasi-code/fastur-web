@@ -606,3 +606,11 @@ html[data-mod="gunduz"] .program details[open] summary{background:rgba(255,154,4
 html[data-mod="gunduz"] .program .gun-ic,html[data-mod="gunduz"] .program .gun-ic p{color:#111}
 html[data-mod="gunduz"] .program .harita-not{color:#27415e}
 html[data-mod="gunduz"] .program summary::after{color:#b45309}
+
+/* ============================================================
+   🔒 GÖRSEL KORUMA (Hilal Hanım 13.11.2026) — yalnız onun açık talimatıyla gevşetilir
+   Okay gerçek bir kişinin izniyle üretilmiş dijital ikizdir. Görseller sürüklenemez,
+   seçilemez, telefonda basılı tutunca "kaydet" menüsü çıkmaz (sağ tık site.js'te kapalı).
+   ============================================================ */
+img, video, .slayt, .kt, .dp-gorsel { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.sahne-kisi img, .rehber-konus .foto img, .merkez.portre img, .asistan img { pointer-events: none; }
