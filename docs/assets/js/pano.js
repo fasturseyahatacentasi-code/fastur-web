@@ -59,11 +59,10 @@
   function tt(k, d) { return k && window.FT_DIL ? window.FT_DIL.t(k, d) : d; }
 
   var gruplar = [], gi = {};
-  kats.forEach(function (k) { var g = k.grup || 'Diğer'; if (!(g in gi)) { gi[g] = gruplar.length; gruplar.push({ ad: g, k: [] }); } gruplar[gi[g]].k.push(k); });
+  kats.filter(function (k) { return k.sayi > 0; }).forEach(function (k) { var g = k.grup || 'Diğer';   /* yalnız turu olan ülkeler (Hilal Hanım 13.11.2026) */ if (!(g in gi)) { gi[g] = gruplar.length; gruplar.push({ ad: g, k: [] }); } gruplar[gi[g]].k.push(k); });
   var gruplarHtml = gruplar.map(function (g) {
-    var toplam = g.k.reduce(function (n, k) { return n + (k.sayi || 0); }, 0);
-    return '<section class="mm-grup"><h3>' + esc(g.ad) + (toplam ? '<span class="mm-gs">' + toplam + ' tur</span>' : '') + '</h3><ul>' +
-      g.k.map(function (k) { return '<li><a href="' + K + 'turlar/' + esc(k.slug) + '/"' + (k.sayi ? '' : ' class="mm-bos"') + '><span>' + esc(k.ad) + '</span>' + (k.sayi ? '<b class="mm-say">' + k.sayi + '</b>' : '') + '</a></li>'; }).join('') + '</ul></section>';
+    return '<section class="mm-grup"><h3>' + esc(g.ad) + '</h3><ul>' +
+      g.k.map(function (k) { return '<li><a href="' + K + 'turlar/' + esc(k.slug) + '/"' + (k.sayi ? '' : ' class="mm-bos"') + '><span>' + esc(k.ad) + '</span></a></li>'; }).join('') + '</ul></section>';
   }).join('');
   var hizli = [['Tur takvimi', 'tur-takvimi/', '', 'mm-h-takvim'], ['Tüm turlar', 'turlar/', 'pano.tum', ''], ['Bana uygun turu bul', 'tur-bul/', 'nav.turbul', ''], ['Talep bırak', 'talep/', 'hud.talep', 'mm-h-talep']];
   var hizliHtml = hizli.map(function (h) { return '<a class="mm-hizli-a ' + h[3] + '" href="' + K + h[1] + '">' + esc(tt(h[2], h[0])) + '</a>'; }).join('');

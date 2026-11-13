@@ -57,3 +57,4 @@
 13.11.2026 · Claude · Rotalar menüsü yeniden: açık renkli mega menü (Burak Tur menüsü referans; gruplar büyük başlık, ülkeler + tur sayısı, hızlı bağlantılar, kurumsal alt satır); Codex görselleri Ürdün (urdun-turu-kapak.jpg) ve Uzak Doğu (vietnam-kambocya-laos-tayland-kapak.jpg) turlarına bağlandı, geçici SVG'ler silindi; Malezya vize notu; sw fastur-v17 · pano.js, site.css, veri.js
 13.11.2026 · Claude · Tur Takvimi açık tablo (Burak Tur takvimi referans: beyaz tablo, siyah ay bandı, renkli durum, 'Tur detayı' sütunu); sw fastur-v18 · site.css, uret_turlar.py
 13.11.2026 · Claude · Bosna Hersek Turu yayına alındı (Hilal Hanım: 'bosnayı gönder'; 10 kalkış, EUR, Vizesiz); sw fastur-v19 · veri.js
+13.11.2026 · Claude · Rotalar menüsü sadeleşti: yalnız turu olan ülkeler, tur sayıları kaldırıldı, boş gruplar gizli (Hilal Hanım); sw fastur-v20 · pano.js
