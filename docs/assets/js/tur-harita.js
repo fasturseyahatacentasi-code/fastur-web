@@ -54,7 +54,7 @@
     var kutular = [], cw = sahne.clientWidth, ch = sahne.clientHeight, mob = cw < 480;
     var adaylar = [[0, 0], [1, 0], [0, -34], [1, -34], [0, 34], [1, 34], [0, -68], [1, 68], [0, 68], [1, -68]];
     YER = pts.map(function (p, i) {
-      var q = proje(p.la, p.lo), x = q[0] / DPR, y = q[1] / DPR, w = 40 + (p.ad.length + (p.gun > -1 ? 9 : 0)) * 7.4, h = 30, sec = null;
+      var q = proje(p.la, p.lo), x = q[0] / DPR, y = q[1] / DPR, w = 40 + p.ad.length * 7.4, h = 30, sec = null;
       for (var a = 0; a < adaylar.length && !sec; a++) {
         var sol = adaylar[a][0] === 1, dy = adaylar[a][1], bx = sol ? x - w + 13 : x - 13, by = y + dy - h / 2;
         if (bx < 2 || bx + w > cw - 2 || by < 2 || by + h > ch - 2) continue;
@@ -70,7 +70,7 @@
   /* etiketler: gerçek düğmeler */
   var ET = pts.map(function (p, i) {
     var e = document.createElement(p.gun > -1 ? 'button' : 'span'); e.className = 'sehir'; if (p.gun > -1) { e.type = 'button'; e.setAttribute('aria-label', p.ad + ' — ' + (p.gun + 1) + '. gün programını aç'); }
-    e.innerHTML = '<i></i><b>' + p.ad + (p.gun > -1 ? ' · ' + (p.gun + 1) + '. gün' : '') + '</b>';
+    e.innerHTML = '<i></i><b>' + p.ad + '</b>';   /* gün sayısı etikette yazmaz (Hilal Hanım 13.11.2026); tıklayınca o gün açılır */
     if (p.gun > -1) e.addEventListener('click', function () { var d = gunler[p.gun]; if (d) { gunler.forEach(function (x) { if (x !== d) x.open = false; }); d.open = true; d.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); var s = d.querySelector('summary'); if (s) s.focus({ preventScroll: true }); } });
     lab.appendChild(e); return e;
   });

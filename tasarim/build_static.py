@@ -97,6 +97,10 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="seritler" aria-label="Destinasyonlar">{seritler}</div></div>
 <div>{konus('yorunge','karakter-ifade-2.png','50% 18%')}<p class="soluk-p">Gezegenlere dokunun; her biri o bölgenin tur listesini açar.</p><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div></div>
 </div></section>
+<section class="bolum takvim-bant-bolum"><div class="wrap"><a class="takvim-bant" href="tur-takvimi/">
+<span class="tb-kolaj" aria-hidden="true"><i style="background-image:url(assets/img/genel/hero-fas.jpg)"></i><i style="background-image:url(assets/img/genel/bolge-afrika.jpg)"></i><i style="background-image:url(assets/img/genel/bolge-umre.jpg)"></i><i style="background-image:url(assets/img/genel/hero-asya.jpg)"></i><i style="background-image:url(assets/img/genel/hero-avrupa.jpg)"></i><i style="background-image:url(assets/img/genel/hero-rusya.jpg)"></i></span>
+<span class="tb-ic"><span class="tb-etiket">KALKIŞLAR · TARİHLER · FİYATLAR</span><b class="tb-baslik">TUR TAKVİMİ</b><span class="tb-dugme">Tüm turlar için tıklayın <span aria-hidden="true">→</span></span></span>
+</a></div></section>
 <section class="bolum kum"><div class="wrap">
 <div class="bolum-baslik"><div><span class="etiket">Yaklaşan tarihler</span><h2>Yaklaşan <em>turlar</em></h2><p>Yerinizi şimdiden ayırtmak için talebinizi bırakın.</p></div><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div>
 <div class="takvim gizli" data-yaklasan></div>
@@ -149,7 +153,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 </div></section>
 <section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 7 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a></div></div></div></section>'''
-yaz('index.html',ut.kabuk(V,'Fas Tur | Umre, Fas, Mısır, Avrupa ve Asya Turları','Fas Tur: Umre, Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. Programları inceleyin, bilgi ve rezervasyon talebi gönderin.','./','',home,sayfa='ana',ek_script='<script src="assets/img/harita/harita-veri.js"></script>\n<script defer src="assets/js/harita.js"></script>\n<script defer src="assets/js/ucus.js"></script>\n<script defer src="assets/js/derinlik.js"></script>\n',ek_head=f'<script type="application/ld+json">{ld}</script>'))
+yaz('index.html',ut.kabuk(V,'Fas Tur | Umre, Fas, Mısır, Avrupa ve Asya Turları','Fas Tur: Umre, Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. Programları inceleyin, bilgi ve rezervasyon talebi gönderin.','./','',home,sayfa='ana',ek_script='<script src="assets/img/harita/harita-veri.js"></script>\n<script defer src="assets/js/harita.js"></script>\n<script defer src="assets/js/ucus.js"></script>\n',ek_head=f'<script type="application/ld+json">{ld}</script>'))
 
 # ---------------- hakkımızda
 hk=P['sayfalar']['hakkimizda']
@@ -157,7 +161,7 @@ hk=hk.split('<h2>Kurumsal Bilgiler</h2>')[0]
 hk=hk.replace('<h2>Değerlerimiz</h2>','<h2>Değerlerimiz</h2><ul><li><strong>Müşteri odaklılık:</strong> Her adımda misafir memnuniyetini ön planda tutarız.</li><li><strong>Şeffaflık:</strong> Rezervasyon ve ücretlendirmede tam şeffaflık sağlarız.</li><li><strong>Kalite:</strong> Seçtiğimiz ortaklar ve hizmetlerle yüksek kaliteyi gözetiriz.</li><li><strong>Güven:</strong> Veri güvenliği ve seyahat emniyeti önceliğimizdir.</li><li><strong>Yenilikçilik:</strong> Sürekli gelişimle sektöre değer katan çözümler üretiriz.</li></ul>')
 hk=hk.replace('<h3>Güvenilir ve İnovatif Ortak</h3>','<h2>Vizyonumuz</h2><h3>Güvenilir ve İnovatif Ortak</h3>').replace('<h3>Kişiye Özel Deneyimler</h3>','<h2>Misyonumuz</h2><h3>Kişiye Özel Deneyimler</h3>')
 kurumsal=f'''<h2>Kurumsal bilgiler</h2>
-<ul><li><strong>Şirket unvanı:</strong> {site['unvanTam']}</li><li><strong>Adres:</strong> {site['adres']}</li><li><strong>Telefon:</strong> <a href="tel:{site['telefon']}">{site['telefonGoster']}</a>{(' · <a href="https://wa.me/'+site['whatsapp2']+'" target="_blank" rel="noopener">WhatsApp: '+site['telefon2Goster']+'</a>') if site.get('whatsapp2') else ''}</li><li><strong>E-posta:</strong> <a href="mailto:{site['eposta']}">{site['eposta']}</a></li><li><strong>Vergi dairesi / no:</strong> Güngören Vergi Dairesi · 6400301337</li><li data-tursab><strong>TÜRSAB belge no:</strong> <span data-tursab-no>[?]</span></li></ul>
+<ul><li><strong>Şirket unvanı:</strong> {site['unvanTam']}</li><li><strong>Adres:</strong> {site['adres']}</li><li><strong>Telefon:</strong> <a href="tel:{site['telefon']}">{site['telefonGoster']}</a>{(' · <a href="https://wa.me/'+site['whatsapp2']+'?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp: '+site['telefon2Goster']+'</a>') if site.get('whatsapp2') else ''}</li><li><strong>E-posta:</strong> <a href="mailto:{site['eposta']}">{site['eposta']}</a></li><li><strong>Vergi dairesi / no:</strong> Güngören Vergi Dairesi · 6400301337</li><li data-tursab><strong>TÜRSAB belge no:</strong> <span data-tursab-no>[?]</span></li></ul>
 <!-- TÜRSAB belge no: firmadan alınacak, veri.js > site.tursab alanına yazılacak; "[?]" iken sitede gizli kalır (site.js). -->
 <p><a class="btn btn-ana" href="../talep/">Bilgi / rezervasyon talebi</a></p>'''
 yaz('hakkimizda/index.html',ut.kabuk(V,'Hakkımızda','Fas Tur, 2016\'dan beri butik hizmet anlayışıyla tur düzenliyor. Vizyonumuz, misyonumuz ve değerlerimiz.','../','hakkimizda/',
@@ -193,7 +197,7 @@ def satir(ic,b,x): return f'<div class="iletisim-satir"><div>{ic}</div><div><b>{
 ilet=f'''<div class="wrap form-duzen" style="grid-template-columns:1fr 1fr">
 <div class="kutu"><h2>Fas Tur</h2><p style="color:var(--soluk)">{S['unvanTam']}</p>
 {satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>')}
-{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>'+(f'<br><a href="https://wa.me/{S["whatsapp2"]}" target="_blank" rel="noopener">{S["telefon2Goster"]}</a>' if S.get('whatsapp2') else ''))}
+{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>'+(f'<br><a href="https://wa.me/{S["whatsapp2"]}?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">{S["telefon2Goster"]}</a>' if S.get('whatsapp2') else ''))}
 {satir('✉️','E-posta',f'<a href="mailto:{S["eposta"]}">{S["eposta"]}</a>')}
 {satir('📍','Adres',S['adres'])}
 {satir('🕘','Çalışma saatleri',S['calisma']+' arasında yanıtlıyoruz')}
@@ -224,7 +228,7 @@ talep=f'''<div class="wrap form-duzen">
 <div class="durum gizli" role="status" aria-live="polite" data-durum></div>
 </form>
 <aside class="yan"><div class="kutu"><h3>Doğrudan ulaşın</h3>
-{satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>')}{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>'+(f'<br><a href="https://wa.me/{S["whatsapp2"]}" target="_blank" rel="noopener">{S["telefon2Goster"]}</a>' if S.get('whatsapp2') else ''))}{satir('🕘','Çalışma saatleri',S['calisma'])}</div>
+{satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>')}{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>'+(f'<br><a href="https://wa.me/{S["whatsapp2"]}?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">{S["telefon2Goster"]}</a>' if S.get('whatsapp2') else ''))}{satir('🕘','Çalışma saatleri',S['calisma'])}</div>
 <div class="kutu" style="font-size:14px;color:var(--soluk)">Formda yalnız ad, telefon, e-posta, tur, kişi sayısı, tarih ve notunuz istenir. Verileriniz yalnız talebinize dönüş yapmak için kullanılır.</div></aside></div>
 <!-- Form yöntemi: Formsubmit (ajax) -> veri.js site.formEposta; ilk gönderimde Formsubmit bu adrese bir ONAY e-postası yollar, firma onaylamalı. Yedek: WhatsApp düğmesi (sunucu gerektirmez). -->'''
 yaz('talep/index.html',ut.kabuk(V,'Bilgi / Rezervasyon Talebi','Fas Tur bilgi ve rezervasyon talep formu: tur, kişi sayısı ve tarih tercihinizi bırakın, size dönüş yapalım.','../','talep/',

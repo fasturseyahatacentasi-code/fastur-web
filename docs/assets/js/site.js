@@ -36,7 +36,7 @@
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/fastur-logo.png" alt="Fas Tur" width="92" height="44"></span>' +
       '<p>' + esc(S.unvanTam) + '</p><p>' + esc(S.adres) + '</p></div>' +
-      '<div><h4>Yardıma mı ihtiyacınız var?</h4><a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.whatsapp2 ? '<a href="https://wa.me/' + esc(S.whatsapp2) + '" target="_blank" rel="noopener">WhatsApp: ' + esc(S.telefon2Goster) + '</a>' : '') +
+      '<div><h4>Yardıma mı ihtiyacınız var?</h4><a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.whatsapp2 ? '<a href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp: ' + esc(S.telefon2Goster) + '</a>' : '') +
       '<a href="' + wa('') + '" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:' + esc(S.eposta) + '">' + esc(S.eposta) + '</a>' +
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
       '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / rezervasyon talebi</a></div>' +
@@ -48,6 +48,7 @@
   document.querySelectorAll('[data-hikaye]').forEach(function (e) { var h = HK[e.getAttribute('data-hikaye')]; if (h && h.cumle) e.textContent = h.cumle; });
   document.querySelectorAll('[data-bolum]').forEach(function (e) { var h = HK[e.getAttribute('data-bolum')]; if (h && h.bolum) e.textContent = h.bolum; });
   document.querySelectorAll('a[data-wa]').forEach(function (a) { a.href = wa('Merhaba, bilgi almak istiyorum.'); });
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (a) { if (a.href.indexOf('?text=') < 0) a.href += '?text=' + encodeURIComponent('Merhaba, bilgi almak istiyorum.'); });   /* hazır mesajsız WhatsApp bağlantısı kalmasın */
   if (S.tursab && S.tursab !== '[?]') {
     document.querySelectorAll('[data-tursab-no]').forEach(function (e) { e.textContent = S.tursab; });
   } else {
@@ -177,7 +178,7 @@
           else throw new Error('gonderilemedi');
         })
         .catch(function () {
-          goster('hata', 'Talebiniz şu an gönderilemedi. Lütfen <strong>WhatsApp ile gönder</strong> düğmesini kullanın ya da <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a> numarasını arayın' + (S.whatsapp2 ? ' (ya da WhatsApp: <a href="https://wa.me/' + esc(S.whatsapp2) + '" target="_blank" rel="noopener">' + esc(S.telefon2Goster) + '</a>)' : '') + '.');
+          goster('hata', 'Talebiniz şu an gönderilemedi. Lütfen <strong>WhatsApp ile gönder</strong> düğmesini kullanın ya da <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a> numarasını arayın' + (S.whatsapp2 ? ' (ya da WhatsApp: <a href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">' + esc(S.telefon2Goster) + '</a>)' : '') + '.');
         })
         .then(function () { btn.disabled = false; btn.textContent = window.FT_DIL ? window.FT_DIL.t('talep.gonder', 'Talebi gönder') : 'Talebi gönder'; });
     });

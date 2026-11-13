@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noai, noimageai, noimageindex"><!-- 🔒 görsel/Okay koruması (Hilal Hanım 13.11.2026); yalnız onun açık talimatıyla kaldırılır -->
+<meta name="color-scheme" content="dark light"><style>html{background:#070b24}html[data-mod="gunduz"]{background:#b6dcf6}</style><!-- Samsung/Android açılış titremesi: zorla karanlık mod ve beyaz ilk kare olmasın (13.11.2026) -->
 <title>Turlar | Fas Tur</title>
 <meta name="description" content="Fas Tur tur kataloğu: Umre, Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. 1 tur programı.">
 <link rel="canonical" href="https://www.fastur.com.tr/turlar/">
@@ -30,7 +31,7 @@
 <div id="ust"></div>
 <noscript><p class="wrap" style="padding:12px 0"><a href="../">Ana sayfa</a> · <a href="../turlar/">Turlar</a> · <a href="../hakkimizda/">Hakkımızda</a> · <a href="../haberler/">Haberler</a> · <a href="../iletisim/">İletişim</a> · <a href="../tur-bul/">Bana uygun turu bul</a> · <a href="../umre-rehberi/">Umre rehberi</a> · <a href="../talep/">Bilgi / Rezervasyon Talebi</a></p></noscript>
 <main id="icerik">
-<section class="sayfa-ust"><div class="wrap">
+<section class="sayfa-ust" data-durak data-giris><div class="wrap">
 <nav class="kirinti" aria-label="Sayfa yolu"><a href="../">Ana sayfa</a><span>/</span>Turlar</nav>
 <h1>Turlar</h1>
 <p>Umre, Fas, Mısır, Avrupa, Asya ve daha fazlası. Tur kartına tıklayın, programı inceleyin, talebinizi bırakın.</p>
@@ -41,7 +42,7 @@
 <h2>Turları filtrele</h2>
 <form data-filtre onsubmit="return false">
 <div class="alan"><label for="f-q">Ara</label><input id="f-q" name="q" type="search" placeholder="Tur adı veya şehir"></div>
-<div class="alan"><label for="f-k">Kategori</label><select id="f-k" name="k"><option value="">Hepsi</option><option value="rusya">Rusya</option><option value="misir">Mısır</option><option value="ekonomik-umre-turlari">Ekonomik Umre Turları</option><option value="yurume-mesafeli-umre-turlari">Yürüme Mesafeli Umre Turları</option><option value="5-yildizli-umre-turlari">5 Yıldızlı Umre Turları</option><option value="fas">Fas</option><option value="yurtici-turlar">Yurtiçi Turlar</option><option value="cruise">Cruise</option><option value="afrika">Afrika</option><option value="avrupa">Avrupa</option><option value="amerika">Amerika</option><option value="orta-dogu">Orta Doğu</option><option value="orta-avrupa">Orta Avrupa</option><option value="orta-ve-uzak-asya">Orta ve Uzak Asya</option><option value="hac">Hac</option></select></div>
+<div class="alan"><label for="f-k">Kategori</label><select id="f-k" name="k"><option value="">Hepsi</option><option value="fas">Fas</option><option value="misir">Mısır</option><option value="amerika">Amerika</option><option value="dubai">Dubai</option><option value="rusya">Rusya</option><option value="norvec">Norveç</option><option value="turkmenistan">Türkmenistan</option><option value="urdun">Ürdün</option><option value="afrika">Afrika</option><option value="orta-dogu">Orta Doğu</option><option value="avrupa">Avrupa</option><option value="balkan">Balkan</option><option value="baltik">Baltık</option><option value="benelux">Benelüks</option><option value="ingiltere">İngiltere (Birleşik Krallık)</option><option value="bosna-hersek">Bosna Hersek</option><option value="hollanda">Hollanda</option><option value="iskandinavya">İskandinavya</option><option value="ispanya">İspanya</option><option value="paris">Paris</option><option value="orta-avrupa">Orta Avrupa</option><option value="orta-ve-uzak-asya">Orta ve Uzak Asya</option><option value="vietnam">Vietnam</option><option value="kambocya">Kamboçya</option><option value="laos">Laos</option><option value="tayland">Tayland</option><option value="bali">Bali</option><option value="guney-kore">Güney Kore</option><option value="hindistan">Hindistan</option><option value="japonya">Japonya</option><option value="kazakistan">Kazakistan</option><option value="malezya">Malezya</option><option value="ozbekistan">Özbekistan</option><option value="hac">Hac</option><option value="5-yildizli-umre-turlari">5 Yıldızlı Umre Turları</option><option value="ekonomik-umre-turlari">Ekonomik Umre Turları</option><option value="yurume-mesafeli-umre-turlari">Yürüme Mesafeli Umre Turları</option><option value="cruise">Cruise</option><option value="aroya-cruise">AROYA Cruise Turları</option><option value="avrupa-cruise">Avrupa Cruise Turları</option><option value="yurtici-turlar">Yurtiçi Turlar</option></select></div>
 <div class="alan"><label for="f-v">Vize</label><select id="f-v" name="v"><option value="">Fark etmez</option><option value="vizeli">Vizeli</option><option value="vizesiz">Vizesiz</option></select></div>
 <div class="alan"><label for="f-g">Süre</label><select id="f-g" name="g"><option value="">Fark etmez</option><option value="1-5">5 güne kadar</option><option value="6-9">6 – 9 gün</option><option value="10-15">10 – 15 gün</option><option value="16-99">16 gün ve üzeri</option></select></div>
 <div class="alan onay"><input id="f-a" name="a" type="checkbox"><label for="f-a" style="margin:0;font-weight:600">Yalnız güncel turlar</label></div>
@@ -75,6 +76,7 @@
 <script src="../assets/js/pano.js"></script>
 <script src="../assets/js/muzik.js"></script>
 <script src="../assets/js/katman.js"></script>
+<script defer src="../assets/js/derinlik.js"></script>
 <script src="../assets/js/dil.js"></script>
 <script src="../assets/js/pwa.js"></script>
 </body>

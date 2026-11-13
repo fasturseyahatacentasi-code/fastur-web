@@ -16,6 +16,9 @@
 (function () {
   'use strict';
   if (/[?&]derinlik=0/.test(location.search)) return;
+  /* Tüm site katmanlı (Hilal Hanım 13.11.2026): işaretsiz ana bölümler de durak olur */
+  [].slice.call(document.querySelectorAll('main > section.bolum:not([data-durak])')).forEach(function (s) { s.setAttribute('data-durak', ''); });
+  [].slice.call(document.querySelectorAll('main > section.sayfa-ust:not([data-durak])')).forEach(function (s) { s.setAttribute('data-durak', ''); s.setAttribute('data-giris', ''); });
   var duraklar = [].slice.call(document.querySelectorAll('[data-durak]'));
   if (!duraklar.length) return;
   var K = document.body.getAttribute('data-kok') || './';
@@ -35,12 +38,27 @@
   function clamp(x, a, b) { return x < a ? a : x > b ? b : x; }
 
   var sahneler = duraklar.map(function (sec) {
-    var hero = sec.classList.contains('kahraman');
+    var hero = sec.classList.contains('kahraman') || sec.hasAttribute('data-giris');
     var s = { sec: sec, hero: hero };
-    if (hero) {
+    if (sec.classList.contains('kahraman')) {
       s.arka = [sec.querySelector('.slaytlar'), sec.querySelector(':scope > .katmanlar')].filter(Boolean);
       s.on = sec.querySelector('.rehber-hero');
       s.yazi = sec.querySelector('.wrap > div:first-child');
+      return s;
+    }
+    if (hero) {                                                     /* diğer sayfaların giriş sahnesi: kategori başlığı, tur kapağı */
+      var kapak = sec.querySelector(':scope > img');
+      if (kapak) s.arka = [kapak];
+      else {
+        var dg = el('derinlik-sahne giris'); dg.setAttribute('aria-hidden', 'true');
+        var ga = el('dp dp-arka'), go = el('dp dp-orta dp-isik');
+        var gg = (hafif && sec.getAttribute('data-arka-mobil')) || sec.getAttribute('data-arka');
+        if (gg) { var gi2 = el('dp-gorsel'); gi2.style.backgroundImage = 'url("' + K + gg + '")'; ga.appendChild(gi2); } else ga.classList.add('bos');
+        dg.appendChild(ga); if (!hafif) dg.appendChild(go);
+        sec.insertBefore(dg, sec.firstChild);
+        s.arka = [ga]; s.orta = hafif ? null : go;
+      }
+      s.yazi = sec.querySelector('.wrap');
       return s;
     }
     var d = el('derinlik-sahne'); d.setAttribute('aria-hidden', 'true');
@@ -77,6 +95,7 @@
       if (s.hero) {
         var x = clamp(-r.top / Math.max(r.height, 1), 0, 1);         /* 0 = en üstte, 1 = hero tamamen geçti */
         s.arka.forEach(function (e) { e.style.transform = tf(0, x * 60, 1 + x * R.a * 2); });
+        if (s.orta) { s.orta.style.transform = tf(0, x * 30, 1 + x * R.o); s.orta.style.opacity = (1 - x).toFixed(3); }
         if (s.on) { s.on.style.transform = tf(0, -x * R.r * 4, 1 + x * (hafif ? .15 : .45)); s.on.style.opacity = (1 - x * 1.6).toFixed(3); }
         if (s.yazi) { s.yazi.style.transform = tf(0, -x * R.r * 3, 1); s.yazi.style.opacity = (1 - x * 1.3).toFixed(3); }
         continue;

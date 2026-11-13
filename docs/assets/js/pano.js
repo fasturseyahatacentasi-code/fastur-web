@@ -51,8 +51,8 @@
   /* ---- pano satırları ---- */
   var kats = FT.kategoriler || [];
   var KAPI = 'ABCD', satirlar = [], g = 0;
-  kats.forEach(function (k, i) { satirlar.push({ ad: k.ad, kapi: KAPI[Math.floor(i / 4) % 4] + (i % 4 + 1), durum: k.sayi ? k.sayi + ' TUR' : 'YAKINDA', href: K + 'turlar/' + k.slug + '/' }); });
-  var kurumsal = [['Tüm turlar', 'turlar/', 'LİSTE', 'pano.tum', 'pano.liste'], ['Bana uygun turu bul', 'tur-bul/', 'ARAÇ', 'nav.turbul', ''], ['Umre hazırlık rehberi', 'umre-rehberi/', 'REHBER', 'nav.umre', 'pano.rehber'], ['Hakkımızda', 'hakkimizda/', 'KURUMSAL', 'nav.hakkimizda', 'pano.kurumsal'], ['Seyahat ipuçları', 'seyahat-ipuclari/', 'REHBER', '', 'pano.rehber'], ['Haberler', 'haberler/', 'YAZILAR', 'nav.haberler', 'pano.yazilar'], ['İletişim', 'iletisim/', 'ULAŞIN', 'nav.iletisim', 'pano.ulasin'], ['Bilgi / rezervasyon talebi', 'talep/', 'FORM', 'nav.talep', 'pano.form'],
+  kats.forEach(function (k, i) { satirlar.push({ ad: k.ad, grup: k.grup || '', kapi: KAPI[Math.floor(i / 4) % 4] + (i % 4 + 1), durum: k.sayi ? k.sayi + ' TUR' : 'YAKINDA', href: K + 'turlar/' + k.slug + '/' }); });
+  var kurumsal = [['Tur takvimi', 'tur-takvimi/', 'TAKVİM', '', ''], ['Tüm turlar', 'turlar/', 'LİSTE', 'pano.tum', 'pano.liste'], ['Bana uygun turu bul', 'tur-bul/', 'ARAÇ', 'nav.turbul', ''], ['Umre hazırlık rehberi', 'umre-rehberi/', 'REHBER', 'nav.umre', 'pano.rehber'], ['Hakkımızda', 'hakkimizda/', 'KURUMSAL', 'nav.hakkimizda', 'pano.kurumsal'], ['Seyahat ipuçları', 'seyahat-ipuclari/', 'REHBER', '', 'pano.rehber'], ['Haberler', 'haberler/', 'YAZILAR', 'nav.haberler', 'pano.yazilar'], ['İletişim', 'iletisim/', 'ULAŞIN', 'nav.iletisim', 'pano.ulasin'], ['Bilgi / rezervasyon talebi', 'talep/', 'FORM', 'nav.talep', 'pano.form'],
     ['Kişisel verilerin korunması', 'kisisel-verilerin-korunmasi/', 'KVKK', '', 'pano.kvkk'], ['Gizlilik sözleşmesi', 'gizlilik-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Kullanıcı sözleşmesi', 'kullanici-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Tur ve otel satış sözleşmesi', 'tur-ve-otel-satis-sozlesmesi/', 'METİN', '', 'pano.metin']];
   var HARF = 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ0123456789 ';
 
@@ -61,7 +61,8 @@
     function kutu(t, cls, k) { return '<span class="fk ' + cls + '" aria-hidden="true" data-t="' + esc(t) + '"' + (k ? ' data-k="' + esc(k) + '"' : '') + '></span>'; }
     return '<li class="pano-li"><a class="satir" href="' + esc(r.href) + '" aria-label="' + esc(tum) + '">' + kutu(ad, 'ad', r.kAd) + kutu(r.kapi, 'kapi') + kutu(r.durum, 'durum', r.kDurum) + '<span class="ok" aria-hidden="true">→</span></a></li>';
   }
-  var govde = '<li class="grup" role="presentation">ROTALAR · DESTINATIONS</li>' + satirlar.map(satirHtml).join('') +
+  var sonGrup = null;
+  var govde = '<li class="grup" role="presentation">ROTALAR · DESTINATIONS</li>' + satirlar.map(function (r, i) { var b = ''; if (r.grup && r.grup !== sonGrup) { sonGrup = r.grup; b = '<li class="grup alt-grup" role="presentation">' + esc(BUYUK(r.grup)) + '</li>'; } return b + satirHtml(r, i); }).join('') +
     '<li class="grup" role="presentation">SİTE · KURUMSAL</li>' + kurumsal.map(function (k, i) { return satirHtml({ ad: k[0], kapi: 'Z' + (i + 1), durum: k[2], href: K + k[1], kAd: k[3], kDurum: k[4] }); }).join('');
 
   var pano = document.createElement('div');
@@ -70,7 +71,7 @@
     '<div class="pano-arac"><button class="hud-mod pano-mod" type="button" aria-label="Gündüz / gece modu"><span aria-hidden="true"></span></button><select class="hud-dil pano-dil" aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select></div>' +
     '<div class="pano-baslik" aria-hidden="true"><span>ROTA</span><span>KAPI</span><span>DURUM</span><span></span></div>' +
     '<nav aria-label="Ana menü"><ul class="pano-liste">' + govde + '</ul></nav>' +
-    '<p class="pano-alt">Bir satıra dokunun; o rotanın turları açılsın. Telefon: <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.whatsapp2 ? ' · WhatsApp: <a href="https://wa.me/' + esc(S.whatsapp2) + '" target="_blank" rel="noopener">' + esc(S.telefon2Goster) + '</a>' : '') + '</p></div>';
+    '<p class="pano-alt">Bir satıra dokunun; o rotanın turları açılsın. Telefon: <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.whatsapp2 ? ' · WhatsApp: <a href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">' + esc(S.telefon2Goster) + '</a>' : '') + '</p></div>';
   document.body.appendChild(pano);
 
   /* ---- dil seçici (HUD + mobil pano kopyası) ---- */

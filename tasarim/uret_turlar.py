@@ -92,6 +92,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noai, noimageai, noimageindex"><!-- 🔒 görsel/Okay koruması (Hilal Hanım 13.11.2026); yalnız onun açık talimatıyla kaldırılır -->
+<meta name="color-scheme" content="dark light"><style>html{{background:#070b24}}html[data-mod="gunduz"]{{background:#b6dcf6}}</style><!-- Samsung/Android açılış titremesi: zorla karanlık mod ve beyaz ilk kare olmasın (13.11.2026) -->
 <title>{e(tam_baslik)}</title>
 <meta name="description" content="{e(aciklama)}">
 <link rel="canonical" href="{e(can)}">
@@ -127,6 +128,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <script src="{kok}assets/js/pano.js"></script>
 <script src="{kok}assets/js/muzik.js"></script>
 <script src="{kok}assets/js/katman.js"></script>
+<script defer src="{kok}assets/js/derinlik.js"></script>
 <script src="{kok}assets/js/dil.js"></script>
 <script src="{kok}assets/js/pwa.js"></script>
 </body>
@@ -134,11 +136,32 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 '''
 
 
-def sayfa_ust(baslik, ozet, kirintilar, kok):
+# Kategori başlığının arka sahne görseli (derinlik.js; yalnız sitede zaten olan firma görselleri)
+KAT_ARKA = {'fas': 'hero-fas.jpg', 'avrupa': 'hero-avrupa.jpg', 'orta-avrupa': 'hero-avrupa.jpg', 'orta-ve-uzak-asya': 'hero-asya.jpg', 'rusya': 'hero-rusya.jpg',
+            'ekonomik-umre-turlari': 'bolge-umre.jpg', 'yurume-mesafeli-umre-turlari': 'bolge-umre.jpg', '5-yildizli-umre-turlari': 'bolge-umre.jpg', 'hac': 'bolge-umre.jpg',
+            'yurtici-turlar': 'bolge-yurtici.jpg', 'afrika': 'bolge-afrika.jpg'}
+
+
+TAKVIM_HTML = '''<section class="bolum takvim-bolum"><div class="wrap" data-takvim>
+<form class="tk-filtre kutu" onsubmit="return false" aria-label="Takvim filtreleri">
+<label for="tk-tur">Tur adı<select id="tk-tur"><option value="">Tüm turlar</option></select></label>
+<label for="tk-sure">Süre<select id="tk-sure"><option value="">Tüm süreler</option></select></label>
+<label for="tk-durum">Durum<select id="tk-durum"><option value="">Tüm durumlar</option></select></label>
+<button type="button" class="btn btn-hat" data-takvim-temizle>Filtreleri temizle</button>
+</form>
+<div class="tk-ust"><span data-takvim-say></span><span class="tk-not">Fiyatlar kişi başı başlangıç fiyatıdır; tarih, fiyat ve yer durumu değişebilir. Yer durumu için bize ulaşın.</span></div>
+<div class="tk-tablo-kap"><table class="tk-tablo"><thead><tr><th scope="col">Gidiş</th><th scope="col">Dönüş</th><th scope="col">Tur adı</th><th scope="col">Süre</th><th scope="col">Fiyat</th><th scope="col">Durum</th><th scope="col"><span class="sr">Tur detayı</span></th></tr></thead>
+<tbody data-takvim-govde><tr><td colspan="7" class="tk-bos">Takvim yükleniyor…</td></tr></tbody></table></div>
+<noscript><p>Takvimi görmek için tarayıcınızda JavaScript açık olmalı. <a href="../turlar/">Tüm turlar</a></p></noscript>
+</div></section>'''
+
+
+def sayfa_ust(baslik, ozet, kirintilar, kok, arka=''):
     k = f'<a href="{kok}">Ana sayfa</a>'
     for ad, href in kirintilar:
         k += f'<span>/</span>' + (f'<a href="{href}">{e(ad)}</a>' if href else e(ad))
-    return f'''<section class="sayfa-ust"><div class="wrap">
+    da = f' data-arka="assets/img/genel/{e(arka)}"' if arka else ''
+    return f'''<section class="sayfa-ust" data-durak data-giris{da}><div class="wrap">
 <nav class="kirinti" aria-label="Sayfa yolu">{k}</nav>
 <h1>{e(baslik)}</h1>
 {f'<p>{e(ozet)}</p>' if ozet else ''}
@@ -254,7 +277,11 @@ def tel2_dugme(S, metin=''):   # ikinci numara (Hilal Hanım 13.11.2026: iki num
     from urllib.parse import quote
     if not S.get('whatsapp2'):   # ikinci numara yalnız WhatsApp (arama yok) — Hilal Hanım 13.11.2026
         return ''
-    return '<a class="btn btn-wa btn-blok" style="margin-top:8px" target="_blank" rel="noopener" href="https://wa.me/' + e(S['whatsapp2']) + ('?text=' + quote(metin) if metin else '') + '">WhatsApp: ' + e(S['telefon2Goster']) + '</a>'
+    return '<a class="btn btn-wa btn-blok" target="_blank" rel="noopener" href="https://wa.me/' + e(S['whatsapp2']) + '?text=' + quote(metin or 'Merhaba, bilgi almak istiyorum.') + '">WhatsApp · ' + e(yerel_tel(S['telefon2Goster'])) + '</a>'
+
+
+def yerel_tel(g):   # "+90 531 765 99 69" -> "0531 765 99 69"
+    return '0' + g[4:] if g.startswith('+90 ') else g
 
 
 def detay_sayfasi(V, t, kats, kok):
@@ -304,11 +331,9 @@ def detay_sayfasi(V, t, kats, kok):
     yan = f'''<aside class="yan">
 <div class="kutu"><h3>Bu tur için bilgi alın</h3>
 <p style="font-size:15px;color:var(--soluk)">Güncel tarih, fiyat ve kontenjan için bize ulaşın. Online ödeme yoktur; talebinize size dönüş yapılır.</p>
-<a class="btn btn-ana btn-blok" href="{talep}">Bilgi / rezervasyon talebi</a>
-<div style="height:10px"></div>
-<a class="btn btn-wa btn-blok" href="{wa}" target="_blank" rel="noopener">WhatsApp ile yazın</a>
-<div style="height:10px"></div>
-<a class="btn btn-hat btn-blok" href="tel:{e(S['telefon'])}">{e(S['telefonGoster'])}</a>{tel2_dugme(S, wa_metin)}</div>
+<div class="iletisim-dugmeler"><a class="btn btn-ana btn-blok" href="{talep}">Bilgi / rezervasyon talebi</a>
+<a class="btn btn-wa btn-blok" href="{wa}" target="_blank" rel="noopener">WhatsApp · {e(yerel_tel(S['telefonGoster']))}</a>{tel2_dugme(S, wa_metin)}
+<a class="btn btn-hat btn-blok" href="tel:{e(S['telefon'])}">Ara · {e(yerel_tel(S['telefonGoster']))}</a></div></div>
 <div class="kutu" style="font-size:14px;color:var(--soluk)">Tarih, fiyat ve kontenjan değişebilir. Güncel bilgi için lütfen bizimle iletişime geçin.</div>
 </aside>'''
     desc_parca = [t['ad']]
@@ -318,7 +343,7 @@ def detay_sayfasi(V, t, kats, kok):
         desc_parca.append(t['guzergah'])
     aciklama = (' · '.join(desc_parca) + '. Programı inceleyin, güncel tarih ve fiyat için Fas Tur\'a bilgi / rezervasyon talebi gönderin.')[:300]
     govde = f'''<!-- tur id: {t['id']} · eski adres: {e(t.get('eskiAdres', ''))} · teyit: {e(t.get('teyit', ''))} -->
-<section class="tur-kapak"><img src="{kok}{e(t['gorsel'])}" alt="" width="1100" height="620"><div class="wrap">
+<section class="tur-kapak" data-durak data-giris><img src="{kok}{e(t['gorsel'])}" alt="" width="1100" height="620"><div class="wrap">
 <nav class="kirinti" aria-label="Sayfa yolu"><a href="{kok}">Ana sayfa</a><span>/</span><a href="{kok}turlar/">Turlar</a><span>/</span><a href="{kok}turlar/{e(t['kategori'])}/">{e(kat_ad)}</a></nav>
 <h1>{e(t['ad'])}</h1><div class="rozetler">{rozetler}</div></div></section>
 <div class="wrap tur-duzen"><div>
@@ -374,7 +399,7 @@ def main():
                  f'Yeni programlar için bizi arayın ya da <a href="../../talep/">talep formunu</a> doldurun.<br><br><a class="btn btn-hat" href="../">Tüm turlara dön</a></div></div>')
         yaz(f'turlar/{k["slug"]}/index.html', kabuk(
             V, f'{k["ad"]} Turları', f'{k["ad"]} turları: programlar, güzergâhlar ve bilgi / rezervasyon talebi. Fas Tur.', '../../', f'turlar/{k["slug"]}/',
-            sayfa_ust(f'{k["ad"]}', k.get('aciklama') or f'{k["ad"]} kategorisindeki turlar.', [('Turlar', '../'), (k['ad'], None)], '../../') + g, sayfa='turlar'))
+            sayfa_ust(f'{k["ad"]}', k.get('aciklama') or f'{k["ad"]} kategorisindeki turlar.', [('Turlar', '../'), (k['ad'], None)], '../../', KAT_ARKA.get(k['slug'], '')) + g, sayfa='turlar'))
 
     # tur detayları
     for t in V['turlar']:
@@ -386,7 +411,7 @@ def main():
         sayac[t['kategori']] = sayac.get(t['kategori'], 0) + 1
     ozet_t = []
     for t in V['turlar']:
-        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t)})
+        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'takvimDurum', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t)})
     ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in V['kategoriler']], 'turlar': ozet_t,
             'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', [])}
     yaz('assets/js/ozet.js', '/* OTOMATİK ÜRETİLDİ (tasarim/uret_turlar.py). Elle değiştirmeyin; veri.js\'i değiştirip üreticiyi çalıştırın. */\nwindow.FT = '
@@ -402,7 +427,11 @@ def main():
 
     # sitemap
     alan = S['alanAdi'].rstrip('/') + '/'
-    adresler = ['', 'turlar/', 'tur-bul/', 'umre-rehberi/'] + [f'turlar/{k["slug"]}/' for k in V['kategoriler']] + [f'tur/{t["slug"]}/' for t in V['turlar']] \
+    # Tur takvimi (Hilal Hanım 13.11.2026): tablo takvim.js ile ozet.js'ten çizilir
+    yaz('tur-takvimi/index.html', kabuk(V, 'Tur Takvimi', 'Fas Tur tur takvimi: tüm kalkışlar tarih sırasıyla; gidiş, dönüş, süre, fiyat ve durum.', '../', 'tur-takvimi/',
+        sayfa_ust('Tur Takvimi', 'Tüm kalkışlar tarih sırasıyla. Bir tura tıklayın, programı inceleyin; yer durumu için bize ulaşın.', [('Tur takvimi', None)], '../', 'hero-fas.jpg') + TAKVIM_HTML,
+        sayfa='takvim', ek_script='<script defer src="../assets/js/takvim.js"></script>\n'))
+    adresler = ['', 'turlar/', 'tur-takvimi/', 'tur-bul/', 'umre-rehberi/'] + [f'turlar/{k["slug"]}/' for k in V['kategoriler']] + [f'tur/{t["slug"]}/' for t in V['turlar']] \
         + V.get('sabitSayfalar', []) + [f'haberler/{h["slug"]}/' for h in V.get('haberler', [])]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' \
         + ''.join(f'  <url><loc>{e(alan + a)}</loc></url>\n' for a in adresler) + '</urlset>\n'
