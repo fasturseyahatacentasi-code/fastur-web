@@ -38,14 +38,14 @@
 
   var fTur = kok.querySelector('#tk-tur'), fSure = kok.querySelector('#tk-sure'), fDurum = kok.querySelector('#tk-durum'), govde = kok.querySelector('[data-takvim-govde]'), say = kok.querySelector('[data-takvim-say]');
   function secenek(sel, liste) { liste.forEach(function (v) { var o = document.createElement('option'); o.value = v[0]; o.textContent = v[1]; sel.appendChild(o); }); }
-  var adlar = {}, sureler = {}; satirlar.forEach(function (r) { adlar[r.t.slug] = r.t.ad; sureler[r.t.gun || 0] = 1; });
+  var adlar = {}, sureler = {}; satirlar.forEach(function (r) { adlar[r.t.ad] = r.t.ad; sureler[r.t.gun || 0] = 1; });   /* aynı adlı kalkışlar tek seçenek */
   secenek(fTur, Object.keys(adlar).sort(function (a, b) { return adlar[a].localeCompare(adlar[b], 'tr'); }).map(function (k) { return [k, adlar[k]]; }));
   secenek(fSure, Object.keys(sureler).map(Number).sort(function (a, b) { return a - b; }).map(function (g) { return [String(g), sure(g)]; }));
   secenek(fDurum, Object.keys(DURUM).map(function (k) { return [k, DURUM[k][0]]; }));
-  try { var q = /[?&]tur=([^&]+)/.exec(location.search); if (q) fTur.value = decodeURIComponent(q[1]); } catch (e) { }
+  try { var q = /[?&]tur=([^&]+)/.exec(location.search); if (q) { var qs = decodeURIComponent(q[1]); satirlar.some(function (r) { if (r.t.slug === qs) { fTur.value = r.t.ad; return true; } }); } } catch (e) { }
 
   function ciz() {
-    var l = satirlar.filter(function (r) { return (!fTur.value || r.t.slug === fTur.value) && (!fSure.value || String(r.t.gun || 0) === fSure.value) && (!fDurum.value || r.durum === fDurum.value); });
+    var l = satirlar.filter(function (r) { return (!fTur.value || r.t.ad === fTur.value || r.t.slug === fTur.value) && (!fSure.value || String(r.t.gun || 0) === fSure.value) && (!fDurum.value || r.durum === fDurum.value); });
     say.textContent = l.length + ' kalkış';
     if (!l.length) {
       govde.innerHTML = '<tr><td colspan="7" class="tk-bos">' + (satirlar.length ? 'Bu filtreye uyan kalkış yok. Filtreleri temizleyin.' : 'Yeni dönem tarihleri yakında. Güncel kalkışlar için bize WhatsApp\'tan ya da telefonla ulaşın.') + '</td></tr>';
