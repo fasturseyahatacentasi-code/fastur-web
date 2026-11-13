@@ -32,3 +32,6 @@ tasarim/_eski/
 # Python ara dosyalari (uretici calisinca olusur)
 __pycache__/
 *.pyc
+
+# Yönetim paneli claude.ai'de yayınlanır (rezervasyon/misafir verisi orada, gizli); kaynak dosya depoya girmez
+panel/

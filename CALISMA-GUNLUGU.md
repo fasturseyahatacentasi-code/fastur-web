@@ -23,6 +23,9 @@
 
 - 13.11.2026 · Hilal Hanım: eski 89 tur 2027'ye taşındı (haftanın günü korunarak), "Güncel" gösterilir ama eski fiyat gizli (veri.js tur alanı `fiyatOnceki: true` → kartta "arayın", detayda "önceki dönem" notu). Firma 2027 fiyatını verince o turda `fiyatOnceki` silinir, fiyat güncellenir.
 
+- 13.11.2026 · Yönetim paneli (rezervasyon/misafir/tur takibi) claude.ai'de özel sayfa: https://claude.ai/artifact/NQQPXRtXngepKUkdwEttL2 · kayıtlar panelin kendi veritabanında, yalnız sahip + Editör okur/yazar; kaynak panel/fastur-panel.html (depoya girmez). Müşteri verisi GitHub'a ASLA girmez.
+- 13.11.2026 · Burak Tur turları: Hilal Hanım yazılı izin olduğunu söyledi; buraktur.com robots.txt yapay zekâ ile toplu içerik almayı sınırlıyor (ClaudeBot engelli, use=reference) → otomatik kopyalama yapılmadı. Veri Burak Tur'dan dosya/XML olarak ya da Hilal Hanım'ın ilettiği metinle girilecek.
+
 ## Günlük (kronolojik, tek satır)
 `GG.AA.YYYY · araç · ne yapıldı · dosya`
 12.11.2026 · Claude · Ana sayfa scrollytelling: 7 hikâye durağı, derinlik katmanları (arka görsel/katman videosu, orta ışık, ön kemer), telefonda hafif, hareketi azalt'ta durağan; sw SURUM fastur-v3; üretici Windows'ta LF yazar · derinlik.js, site.css, build_static.py, uret_turlar.py
@@ -35,3 +38,4 @@
 13.11.2026 · Claude · 89 tur 2027'ye taşındı (haftanın günü korundu, süre aynı), aktif:true + fiyatOnceki:true; 8 turun program içi tarihleri aynı kaydırmayla güncellendi (45,49,64,67,69,71,74,85), tur 69 buluşma yılı yazım hatası düzeltildi (21 Mart 2027 Pazar); üreticiye fiyatOnceki desteği; sw fastur-v10 · veri.js, uret_turlar.py, üretilen sayfalar · NOT: aynı ad+tarihe düşen 3 çift (Tunus 14.10.2027, Büyük Mısır Nil 21.04.2027, Umre Ekonomik Yakın Servisli 27.01.2027) firmaya sorulacak
 13.11.2026 · Claude · İkinci telefon/WhatsApp (0532 356 69 59) eklendi: veri.js site.telefon2/telefon2Goster/whatsapp2; iletişim, talep, hakkımızda, tur yan kutusu, alt bilgi, pano, JSON-LD · veri.js, uret_turlar.py, build_static.py, site.js, pano.js
 13.11.2026 · Claude · Hilal Hanım isteği: Fas'ın Renkleri (91) dışındaki 89 tur veri.js'ten ve docs/tur/'dan silindi (tur görselleri assets/img/turlar'da duruyor; geri almak için git geçmişi 441245f); sw fastur-v11 · veri.js, docs/tur/*, üretilen listeler
+13.11.2026 · Claude · Yönetim paneli yayınlandı (taslak FASTUR-Panel-Taslak.html görünümüyle; Panel/Rezervasyonlar/Turlar/Misafirler/Raporlar, CSV indirme); Fas'ın Renkleri panel tur listesine eklendi · panel/ (gitignore)
