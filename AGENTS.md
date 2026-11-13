@@ -42,6 +42,7 @@ Yeni sayfalar/dosyalar: `docs/tur-bul/`, `docs/umre-rehberi/`, `assets/js/tur-bu
 
 ## Görsel kuralları
 - Gerçek kişi yüzü/ünlü, başka firma logosu, telifli görsel yok. Dini mekân sahnelerinde saygılı, gerçekçi, abartısız. Görsele fiyat/tarih/telefon yazma. Metin gerekiyorsa iş emrindeki gibi birebir.
+- **Karakter (Okay / Aşçı Oğuz):** `tasarim/KARAKTER-GORSEL-KURALLARI.md` zorunludur. Okay için yazılı izin var (yalnız Okay). Yapay zekâ notu, ✦/"Veo" işareti yok, logo çizdirilmez, yalnız Genç Okay görünümü, boyut sınırları.
 
 ## Kayıt yolu kuralı (ZORUNLU)
 Her görsel iş emri **eksiksiz** içerir; biri yoksa işi yapma, sor:

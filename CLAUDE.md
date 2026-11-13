@@ -67,6 +67,7 @@ Ana sayfa koyu fütüristik tasarımdır ve bir **karakter rehberle** hikâye an
 - `hikaye: [{id, bolum, cumle}]` — `id`'ler SABİT (yola-cikis, yorunge, umre, fas, dunya, sira-sizde, asistan); id ekleme/silme/değiştirme. Yalnız `bolum` ve `cumle` değişir; sonra üretici çalıştırılır. Cümlede fiyat/tarih/vaat yok.
 - Ana sayfa blokları (hero, yörünge, bölümler) elle yazılı `docs/index.html`'dedir; **yeni kategori yörüngeye elle eklenir.**
 - Karakter görselleri `docs/assets/img/karakter/`; kaynak dosyalar `tasarim/referans/karakter/` (depoya girer). Karakter görselinde aynı kıyafet/gözlük/yüz: kimlik tutarlılığı bozulmaz.
+- 🔴 **Karakter kural kitabı:** `tasarim/KARAKTER-GORSEL-KURALLARI.md` (yapay zekâ notu, ✦/"Veo" işareti, logo, Genç Okay kimliği, kıyafet, ülke geçişi, boyut, yayın öncesi kontrol). Okay/Aşçı Oğuz içeren her iş bu dosyaya uyar; briefler buna bağlanır.
 
 ### Site v3: harita, kalkış panosu, müzik, katmanlı video
 - **JS dosyaları** (`docs/assets/js/`): `zemin.js` (arka plan), `pano.js` (HUD + split-flap kalkış panosu menü), `harita.js` (giriş haritası; Natural Earth kamu malı, `docs/assets/img/harita/`), `muzik.js` (Web Audio ile üretilen ambient, dosyasız), `katman.js` (katmanlı video).

@@ -15,6 +15,8 @@ Her iş emri şu başlıkları **eksiksiz** içerir; biri eksikse yazmayı bıra
 
 İş emrini `kurulum/` dışında, `hafiza/gorsel-isemirleri/` altına `NN-konu.md` olarak yaz (bu klasör depoya girmez) ve koordinatöre kısa kopyalanabilir metin olarak dön. Örnek veri uydurma; gerçek müşteri görseli isteme.
 
+**Karakter kural kitabı:** Okay ya da Aşçı Oğuz içeren her iş emrinden önce `tasarim/KARAKTER-GORSEL-KURALLARI.md`'yi oku ve iş emrine şu satırları koy: yapay zekâ notu, ✦/"Veo" işareti yok, logo çizdirilmez, Genç Okay kimliği + kıyafet (bölüm 4–5), boyut hedefi (bölüm 8). Çelişkide o dosya geçerlidir.
+
 **Karakter görselleri:** kayıt `docs/assets/img/karakter/` (kaynak `tasarim/referans/karakter/`), şeffaf PNG; yeşil ekran setinde 8 poz, zemin #00B140. **Kimlik tutarlılığı:** her emirde aynı yüz, aynı kıyafet, aynı gözlük tarifi ve mevcut onaylı referans dosyasının yolu. Karakterin adı/unvanı uydurulmaz; gerçek kişi benzerliği için firma izni gerekir. Mevcut emirler: `Web-Siteleri/01-Fastur/04-Tasarim-Notu.md` sonu.
 
 **Higgsfield katman videoları:** `tasarim/VIDEO-SARTNAMESI.md`'ye göre iş emri yaz (katman: arka/orta/ön, alfa: yok|webm|yesil, süre, oran, mobil). Kredi harcayan **her üretim turu öğrencinin o tur için onayıyla** başlar; abonelik öğrencidedir. Ham çıktı `tasarim/` dışında yerelde kalır (büyük dosya depoya girmez); sonraki adım `tasarim/video_hazirla.py` -> veri.js `katmanlar` (`/video-ekle`). Kimlik tutarlılığı (aynı kıyafet/gözlük) ve kayıt yolu/dosya adı/boyut zorunlu.

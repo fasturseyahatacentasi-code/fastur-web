@@ -13,6 +13,7 @@ Site her bölümde 3 katmanlı video gösterebilir: **arka** (döngü arka plan)
 Bölümler: `yola-cikis` (hero) · `yorunge` · `umre` · `fas` · `dunya` · `sira-sizde`.
 
 ## 2. Zorunlu kurallar
+- **Karakter (Okay / Aşçı Oğuz) içeren her video ayrıca `tasarim/KARAKTER-GORSEL-KURALLARI.md`'ye uyar** (yapay zekâ notu, ✦/"Veo" işareti, kimlik, kıyafet, boyut). Çelişkide o dosya geçerlidir.
 - **Dikişsiz döngü:** ilk ve son kare aynı (ya da Higgsfield'de "loop" seçeneği); videoda belirgin başlangıç/bitiş hareketi olmasın.
 - **Karakter tutarlılığı:** aynı yüz, güneş gözlüğü, krem keten gömlek veya lacivert keten ceket + krem gömlek + bej pantolon; saç/sakal aynı. Referans: `tasarim/referans/karakter/` içindeki görseller.
 - **Yeşil ekran:** düz #00B140, gölge/kırışık yok, karakter yeşile yakın renk giymez, saç uçlarında yeşil yansıma olmasın, ışık yumuşak.

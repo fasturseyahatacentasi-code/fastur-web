@@ -1,6 +1,7 @@
 # Konuşan rehber video — brief (Hilal Sevindik için)
 
 > Taslak · 12.11.2026 · **Bu belge üretim DEĞİLDİR.** Hiçbir video üretilmedi; Higgsfield'de kredi harcayan her tur **sizin o tur için onayınızla** başlar. Abonelik sizdedir.
+> **Kurallar:** `tasarim/KARAKTER-GORSEL-KURALLARI.md` bu brief'ten önce gelir (yapay zekâ notu, ✦/"Veo" işareti, Genç Okay kimliği, kıyafet, boyut). Çelişkide o dosya geçerlidir.
 > Amaç: sitedeki karakter rehber, bölüm başlarında kısa (en çok 8 sn) bir cümle söylesin. Replikler `veri.js` içindeki `hikaye` cümleleridir; metni değiştirmek isterseniz önce `hikaye`'yi değiştirin, klip onunla çekilsin.
 
 ## 0. Başlamadan önce karar verilecekler (firmadan / sizden)
