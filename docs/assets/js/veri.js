@@ -138,6 +138,7 @@ window.FT = {
       "baslangic": "",
       "bitis": "",
       "tekrar": "Her hafta perşembe",
+      "takvimTarihDurum": {"2026-11-19": "kapali"},
       "gun": 5,
       "vize": "Vizesiz",
       "guzergah": "Kazablanka, Rabat, Meknes, Fes, Marakeş",

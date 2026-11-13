@@ -24,7 +24,8 @@
   var satirlar = [];
   (FT.turlar || []).filter(function (t) { return t.aktif; }).forEach(function (t) {
     var d = DURUM[t.takvimDurum] ? t.takvimDurum : 'sorunuz', f = t.fiyat || '';
-    function ekle(g, b) { satirlar.push({ t: t, gidis: g, donus: b, durum: d, fiyat: f }); }
+    var td = t.takvimTarihDurum || {};   /* tarihe özel durum (panelden aktarılır), örn. {"2026-11-19":"kapali"} */
+    function ekle(g, b) { satirlar.push({ t: t, gidis: g, donus: b, durum: DURUM[td[g]] ? td[g] : d, fiyat: f }); }
     if (t.baslangic) { if ((t.bitis || t.baslangic) >= BUGUN) ekle(t.baslangic, t.bitis || ''); return; }
     if (t.tekrar && /hafta/i.test(t.tekrar)) {
       var m = null, low = t.tekrar.toLocaleLowerCase('tr');

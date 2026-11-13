@@ -724,6 +724,12 @@ img, video, .slayt, .kt, .dp-gorsel { -webkit-user-drag: none; user-select: none
 .mm-kurumsal a{color:var(--mm-ink2);font-size:13.5px}.mm-kurumsal a:hover{color:var(--mm-or)}
 .mm-tel{margin:0;font-size:13.5px;color:var(--mm-ink2)}.mm-tel a{color:var(--mm-navy);font-weight:700}
 @media(max-width:700px){.mm{padding:18px 16px 16px;border-radius:18px;margin-top:calc(64px + env(safe-area-inset-top,0px))}.mm-gruplar{grid-template-columns:1fr 1fr;gap:18px 16px}.mm-grup li a{font-size:14.5px;padding:6px 6px}.mm-hizli-a{padding:9px 14px;font-size:14px}}
+/* 13.11.2026 Hilal Hanım: tek sıra sayfanın ortasında, geniş alana yayılmış, büyük punto */
+.mm-hizli{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:34px 0 18px}
+.mm-hizli-a{justify-content:center;text-align:center;min-height:76px;padding:18px 22px;font-size:clamp(17px,1.6vw,21px);border-radius:18px}
+@media(min-height:640px){.pano.pano-yeni .mm{margin-top:max(calc(70px + env(safe-area-inset-top,0px)),calc(50vh - 190px))}}
+@media(max-width:820px){.mm-hizli{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;padding:22px 0 10px}.mm-hizli-a{min-height:64px;font-size:17px;padding:14px 12px}}
+@media(max-width:380px){.mm-hizli{grid-template-columns:1fr}}
 @media(max-width:420px){.mm-gruplar{grid-template-columns:1fr}}
 /* ============================================================
    TUR TAKVİMİ — açık tablo (13.11.2026, Hilal Hanım: Burak Tur tur takvimi referans). Önceki koyu takvim stilinin üstüne yazar.

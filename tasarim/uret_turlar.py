@@ -424,7 +424,7 @@ def main():
         sayac[t['kategori']] = sayac.get(t['kategori'], 0) + 1
     ozet_t = []
     for t in V['turlar']:
-        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'takvimDurum', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t)})
+        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'takvimDurum', 'takvimTarihDurum', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t)})
     ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in gorunur_kat(V)], 'turlar': ozet_t,
             'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', [])}
     yaz('assets/js/ozet.js', '/* OTOMATİK ÜRETİLDİ (tasarim/uret_turlar.py). Elle değiştirmeyin; veri.js\'i değiştirip üreticiyi çalıştırın. */\nwindow.FT = '
