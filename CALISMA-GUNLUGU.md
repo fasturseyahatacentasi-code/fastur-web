@@ -9,6 +9,7 @@
 | Tarih saat | Araç (Claude/Codex) | Durum | Dosyalar | Not |
 |---|---|---|---|---|
 | 12.11 · Claude | BİTTİ | tasarim/build_static.py, tasarim/uret_turlar.py, docs/index.html, docs/assets/js/derinlik.js (yeni), docs/assets/js/katman.js, docs/assets/css/site.css, docs/sw.js | ana sayfa zoom-through parallax · yayın onayı bekliyor |
+| 13.11 · Codex | BİTTİ | docs/assets/img/turlar/urdun-turu-kapak.jpg, docs/assets/img/turlar/vietnam-kambocya-laos-tayland-kapak.jpg | İki tur kapağı üretildi; 1600×900 JPEG |
 
 Örnek: `13.11 14:05 · Codex · ÇALIŞIYOR · docs/assets/css/site.css · tur kartı düzeni` → bitince `BİTTİ · site.css, docs/index.html`
 
@@ -51,3 +52,6 @@
 13.11.2026 · Claude · Burak Tur PDF'inden Japonya & Güney Kore Turu eklendi (id 92–95, 4 kalkış, USD, takvimDurum müsait); Hilal Hanım: 29.03 ve 20.04 dönüşleri +1 gün, dahil listesi esas (7 akşam yemeği), vize 'Vizesiz' (MFA: Kore 90 gün muaf + K-ETA notu); görsel eski Fas Tur Japonya görseli; takvim filtresi aynı adlı kalkışları birleştirir; sw fastur-v15 · veri.js, takvim.js
 13.11.2026 · Claude · Burak Tur PDF'lerinden hazırlandı (Hilal Hanım onayladı 13.11.2026): Büyük Mısır (96–100), Hindistan (101–102), Ürdün (103–104, geçici SVG kapak), Vietnam-Kamboçya-Laos-Tayland (105, geçici SVG kapak). Hindistan'da Burak Tur'a ait 'hiçbir misafirimizin başvurusu reddolmamıştır' vaadi çıkarıldı. Malezya-Singapur-Bali: fiyat/tarih PDF'i yok, eklenmedi · veri.js, assets/img/turlar/yer-tutucu-*.svg
 13.11.2026 · Claude · Singapur, Malezya ve Bali Turu eklendi (106–107, fiyat PDF'i geldi); Ürdün vize 'Vizesiz' (Hilal Hanım); Codex görsel iş emri: hafiza/gorsel-is-emri-2026-11-13-urdun-uzakdogu.md (Ürdün + Uzak Doğu kapakları, docs/assets/img/turlar/, 1600×900); 5 tur yayına alındı; sw fastur-v16 · veri.js
+13.11.2026 · Codex · Ürdün (Petra) ve Vietnam-Kamboçya-Laos-Tayland (Ha Long Bay) tur kapakları üretildi; 1600×900 JPEG, sırasıyla 359 KB ve 318 KB · docs/assets/img/turlar/urdun-turu-kapak.jpg, docs/assets/img/turlar/vietnam-kambocya-laos-tayland-kapak.jpg
+13.11.2026 · Claude · Singapur-Malezya-Bali vize: 'Singapur ve Malezya vizesiz; Endonezya (Bali) varışta vize' + teyit notu (Hilal Hanım 'olur'). Bosna Hersek Turu hazırlandı (10 kalkış, EUR, vize Vizesiz, eski Fas Tur Bosna görseli) — YAYIN ONAYI BEKLİYOR; onaya kadar veri.js'ten çıkarıldı, tanım: scratchpad tur-bosna.json (tur_ekle_genel.py ile eklenir). 'Büyük Mısır 2027' PDF'i yayındaki Mısır turuyla aynı tarih/fiyat → eklenmedi (çift kayıt) · veri.js
+13.11.2026 · Claude · Rotalar menüsü yeniden: açık renkli mega menü (Burak Tur menüsü referans; gruplar büyük başlık, ülkeler + tur sayısı, hızlı bağlantılar, kurumsal alt satır); Codex görselleri Ürdün (urdun-turu-kapak.jpg) ve Uzak Doğu (vietnam-kambocya-laos-tayland-kapak.jpg) turlarına bağlandı, geçici SVG'ler silindi; Malezya vize notu; sw fastur-v17 · pano.js, site.css, veri.js
