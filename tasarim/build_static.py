@@ -46,8 +46,10 @@ def parcala(h):
 def yaz(p,icerik): ut.yaz(p,icerik)
 
 # ---------------- ana sayfa
-ust_kat=''.join(f'<a href="turlar/{s}/">{a}</a>' for s,a in [('5-yildizli-umre-turlari','Umre'),('fas','Fas'),('misir','Mısır'),('avrupa','Avrupa'),('orta-ve-uzak-asya','Asya'),('cruise','Cruise'),('yurtici-turlar','Yurtiçi')])
-kopt=''.join(f'<option value="{s}">{a}</option>' for s,a,_ in CAT)
+UMRE=site.get('umreGoster',True)   # Umre şimdilik gizli (Hilal Hanım 13.11.2026); kayıtlar duruyor
+GIZLI_KAT=ut.gizli_kat(V)
+ust_kat=''.join(f'<a href="turlar/{s}/">{a}</a>' for s,a in ([('5-yildizli-umre-turlari','Umre')] if UMRE else [])+[('fas','Fas'),('misir','Mısır'),('avrupa','Avrupa'),('orta-ve-uzak-asya','Asya'),('cruise','Cruise'),('yurtici-turlar','Yurtiçi')])
+kopt=''.join(f'<option value="{s}">{a}</option>' for s,a,_ in CAT if s not in GIZLI_KAT)
 bolge=[('5-yildizli-umre-turlari','Umre','umre'),('fas','Fas','fas'),('avrupa','Avrupa','avrupa'),('orta-ve-uzak-asya','Orta ve Uzak Asya','asya'),('yurtici-turlar','Yurtiçi Turlar','yurtici'),('afrika','Afrika','afrika')]
 bolge_html=''.join(f'<a class="bolge" href="turlar/{s}/"><img src="assets/img/genel/bolge-{g}.jpg" alt="" loading="lazy" width="480" height="360"><div class="ic"><h3>{a}</h3><span data-sayi-kat="{s}">Turları gör →</span></div></a>' for s,a,g in bolge)
 def haber_kart(h,kk):
@@ -55,8 +57,8 @@ def haber_kart(h,kk):
 son_h=sorted(haberler,key=lambda h:h['tarih'],reverse=True)[:3]
 yor_html=''.join(f'<figure class="yorum" style="margin:0"><div class="yildiz" aria-label="5 yıldız">★★★★★</div><h3>{html.escape(y["baslik"])}</h3><p>{html.escape(y["metin"])}</p><div class="kim">{html.escape(y["ad"])} · {html.escape(y["tur"])}</div></figure>' for y in yorumlar)
 ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/okyayturizm/"]},ensure_ascii=False)
-ORB=[('5-yildizli-umre-turlari','Umre','🕋'),('fas','Fas','🕌'),('misir','Mısır','🏺'),('avrupa','Avrupa','🏰'),('orta-ve-uzak-asya','Asya','🗻'),('cruise','Cruise','🚢'),('afrika','Afrika','🦁'),('yurtici-turlar','Yurtiçi','🏞️')]
-uydu=''.join(f'<div class="kol" style="--a:{i*45}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px"><i>{ic_}</i>{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
+ORB=([('5-yildizli-umre-turlari','Umre','🕋')] if UMRE else [])+[('fas','Fas','🕌'),('misir','Mısır','🏺'),('avrupa','Avrupa','🏰'),('orta-ve-uzak-asya','Asya','🗻'),('cruise','Cruise','🚢'),('afrika','Afrika','🦁'),('yurtici-turlar','Yurtiçi','🏞️')]
+uydu=''.join(f'<div class="kol" style="--a:{round(i*360/len(ORB),2)}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px"><i>{ic_}</i>{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
 uydu=uydu.replace('<div class="uydu"><a','<div class="uydu"><a')
 seritler=''.join(f'<a href="turlar/{s_}/"><span class="ik">{ic_}</span>{ad_}</a>' for s_,ad_,ic_ in ORB)
 IMG='assets/img/karakter/'
@@ -73,13 +75,18 @@ def durak(arka='',mobil=''):
     if mobil: s+=f' data-arka-mobil="{mobil}"'
     return s
 G='assets/img/genel/'
+umre_bolum=(f'''<section class="bolum" id="umre" data-tema="altin"{durak(G+'bolge-umre.jpg')}><div class="wrap">
+<div class="bolum-baslik"><div><span class="etiket" data-bolum="umre">Bölüm 3 · Umre ve manevi yolculuk</span><h2>Umre ve <em>manevi yolculuk</em></h2></div></div>
+{konus('umre','karakter-ifade-3.png','50% 18%')}
+<div class="izgara g3" style="margin-top:26px">{umre_k}</div>
+</div></section>''' if UMRE else '')   # Umre bölümü (gizliyken boş)
 home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" data-harita aria-label="Fas turu rotası haritası"><canvas aria-hidden="true"></canvas><div class="etiketler"></div></div><div class="slaytlar" aria-hidden="true">
 <!-- İLERİDE VİDEO: karakter konuşan Flow/Codex videosu gelince .rehber-hero içindeki görselin yerine bir video etiketi konur (dosya: assets/video/rehber-hero.mp4, sessiz başlar, poster = karakter-tam-boy.png). Arka plan videosu için: assets/video/hero.mp4. -->
 <div class="slayt" style="background-image:url(assets/img/genel/hero-fas.jpg)"></div><div class="slayt" style="background-image:url(assets/img/genel/hero-asya.jpg)"></div><div class="slayt" style="background-image:url(assets/img/genel/hero-avrupa.jpg)"></div><div class="slayt" style="background-image:url(assets/img/genel/hero-rusya.jpg)"></div></div>
 <div class="wrap"><div>
 <span class="etiket" data-bolum="yola-cikis">Bölüm 1 · Yola çıkış</span>
 <h1>Dünyayı keşfetmenin<em>butik yolu</em></h1>
-<p class="alt" data-i18n="ana.alt">Umre • Fas • Mısır • Avrupa • Asya</p>
+<p class="alt" data-i18n="ana.alt">{"Umre • " if UMRE else ""}Fas • Mısır • Avrupa • Asya</p>
 <p class="ic-p" data-i18n="ana.ic">Herkese uygun tatil seçenekleri. Yol arkadaşınız sizi rotaya götürsün.</p>
 <form class="arama" action="turlar/" method="get" role="search">
 <input type="search" name="q" placeholder="Nereye gitmek istersin?" data-i18n-attr="placeholder:ana.arama" aria-label="Tur veya şehir ara">
@@ -98,7 +105,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div>{konus('yorunge','karakter-ifade-2.png','50% 18%')}<p class="soluk-p">Gezegenlere dokunun; her biri o bölgenin tur listesini açar.</p><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div></div>
 </div></section>
 <section class="bolum takvim-bant-bolum"><div class="wrap"><a class="takvim-bant" href="tur-takvimi/">
-<span class="tb-kolaj" aria-hidden="true"><i style="background-image:url(assets/img/genel/hero-fas.jpg)"></i><i style="background-image:url(assets/img/genel/bolge-afrika.jpg)"></i><i style="background-image:url(assets/img/genel/bolge-umre.jpg)"></i><i style="background-image:url(assets/img/genel/hero-asya.jpg)"></i><i style="background-image:url(assets/img/genel/hero-avrupa.jpg)"></i><i style="background-image:url(assets/img/genel/hero-rusya.jpg)"></i></span>
+<span class="tb-kolaj" aria-hidden="true"><i style="background-image:url(assets/img/genel/hero-fas.jpg)"></i><i style="background-image:url(assets/img/genel/bolge-afrika.jpg)"></i><i style="background-image:url(assets/img/genel/{"bolge-umre" if UMRE else "bolge-yurtici"}.jpg)"></i><i style="background-image:url(assets/img/genel/hero-asya.jpg)"></i><i style="background-image:url(assets/img/genel/hero-avrupa.jpg)"></i><i style="background-image:url(assets/img/genel/hero-rusya.jpg)"></i></span>
 <span class="tb-ic"><span class="tb-etiket">KALKIŞLAR · TARİHLER · FİYATLAR</span><b class="tb-baslik">TUR TAKVİMİ</b><span class="tb-dugme">Tüm turlar için tıklayın <span aria-hidden="true">→</span></span></span>
 </a></div></section>
 <section class="bolum kum"><div class="wrap">
@@ -107,11 +114,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="yakinda" data-yakinda><span class="etiket">Yeni dönem</span><h3>Yeni dönem tarihleri <em>yakında</em></h3><p>Güncel tarih, fiyat ve kontenjan bilgisi için ekibimize ulaşın; ilgilendiğiniz rotayı yazın, size dönüş yapalım. Önceki dönem programlarını incelemek için Turlar sayfasına göz atabilirsiniz.</p>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="turlar/">Önceki dönem programları</a></div></div>
 </div></section>
-<section class="bolum" id="umre" data-tema="altin"{durak(G+'bolge-umre.jpg')}><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="umre">Bölüm 3 · Umre ve manevi yolculuk</span><h2>Umre ve <em>manevi yolculuk</em></h2></div></div>
-{konus('umre','karakter-ifade-3.png','50% 18%')}
-<div class="izgara g3" style="margin-top:26px">{umre_k}</div>
-</div></section>
+{umre_bolum}
 <section class="bolum kum" id="fas" data-tema="kizil"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap">
 <div class="bolum-baslik"><div><span class="etiket" data-bolum="fas">Bölüm 4 · Fas ve Kuzey Afrika</span><h2>Fas ve <em>Kuzey Afrika</em></h2></div></div>
 {konus('fas','karakter-ifade-4.png','50% 18%')}
@@ -153,7 +156,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 </div></section>
 <section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 7 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a></div></div></div></section>'''
-yaz('index.html',ut.kabuk(V,'Fas Tur | Umre, Fas, Mısır, Avrupa ve Asya Turları','Fas Tur: Umre, Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. Programları inceleyin, bilgi ve rezervasyon talebi gönderin.','./','',home,sayfa='ana',ek_script='<script src="assets/img/harita/harita-veri.js"></script>\n<script defer src="assets/js/harita.js"></script>\n<script defer src="assets/js/ucus.js"></script>\n',ek_head=f'<script type="application/ld+json">{ld}</script>'))
+yaz('index.html',ut.kabuk(V,'Fas Tur | '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa ve Asya Turları','Fas Tur: '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. Programları inceleyin, bilgi ve rezervasyon talebi gönderin.','./','',home,sayfa='ana',ek_script='<script src="assets/img/harita/harita-veri.js"></script>\n<script defer src="assets/js/harita.js"></script>\n<script defer src="assets/js/ucus.js"></script>\n',ek_head=f'<script type="application/ld+json">{ld}</script>'))
 
 # ---------------- hakkımızda
 hk=P['sayfalar']['hakkimizda']

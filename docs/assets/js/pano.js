@@ -54,6 +54,7 @@
   kats.forEach(function (k, i) { satirlar.push({ ad: k.ad, grup: k.grup || '', kapi: KAPI[Math.floor(i / 4) % 4] + (i % 4 + 1), durum: k.sayi ? k.sayi + ' TUR' : 'YAKINDA', href: K + 'turlar/' + k.slug + '/' }); });
   var kurumsal = [['Tur takvimi', 'tur-takvimi/', 'TAKVİM', '', ''], ['Tüm turlar', 'turlar/', 'LİSTE', 'pano.tum', 'pano.liste'], ['Bana uygun turu bul', 'tur-bul/', 'ARAÇ', 'nav.turbul', ''], ['Umre hazırlık rehberi', 'umre-rehberi/', 'REHBER', 'nav.umre', 'pano.rehber'], ['Hakkımızda', 'hakkimizda/', 'KURUMSAL', 'nav.hakkimizda', 'pano.kurumsal'], ['Seyahat ipuçları', 'seyahat-ipuclari/', 'REHBER', '', 'pano.rehber'], ['Haberler', 'haberler/', 'YAZILAR', 'nav.haberler', 'pano.yazilar'], ['İletişim', 'iletisim/', 'ULAŞIN', 'nav.iletisim', 'pano.ulasin'], ['Bilgi / rezervasyon talebi', 'talep/', 'FORM', 'nav.talep', 'pano.form'],
     ['Kişisel verilerin korunması', 'kisisel-verilerin-korunmasi/', 'KVKK', '', 'pano.kvkk'], ['Gizlilik sözleşmesi', 'gizlilik-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Kullanıcı sözleşmesi', 'kullanici-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Tur ve otel satış sözleşmesi', 'tur-ve-otel-satis-sozlesmesi/', 'METİN', '', 'pano.metin']];
+  if (S.umreGoster === false) kurumsal = kurumsal.filter(function (k) { return k[1] !== 'umre-rehberi/'; });   /* Umre şimdilik gizli */
   var HARF = 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ0123456789 ';
 
   function satirHtml(r, i) {

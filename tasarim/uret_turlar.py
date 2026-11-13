@@ -117,7 +117,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <body data-kok="{kok}" data-sayfa="{e(sayfa)}">
 <a class="atla" href="#icerik">İçeriğe geç</a>
 <div id="ust"></div>
-<noscript><p class="wrap" style="padding:12px 0"><a href="{kok}">Ana sayfa</a> · <a href="{kok}turlar/">Turlar</a> · <a href="{kok}hakkimizda/">Hakkımızda</a> · <a href="{kok}haberler/">Haberler</a> · <a href="{kok}iletisim/">İletişim</a> · <a href="{kok}tur-bul/">Bana uygun turu bul</a> · <a href="{kok}umre-rehberi/">Umre rehberi</a> · <a href="{kok}talep/">Bilgi / Rezervasyon Talebi</a></p></noscript>
+<noscript><p class="wrap" style="padding:12px 0"><a href="{kok}">Ana sayfa</a> · <a href="{kok}turlar/">Turlar</a> · <a href="{kok}hakkimizda/">Hakkımızda</a> · <a href="{kok}haberler/">Haberler</a> · <a href="{kok}iletisim/">İletişim</a> · <a href="{kok}tur-bul/">Bana uygun turu bul</a>{'' if gizli_kat(V) else ' · <a href="' + kok + 'umre-rehberi/">Umre rehberi</a>'} · <a href="{kok}talep/">Bilgi / Rezervasyon Talebi</a></p></noscript>
 <main id="icerik">
 {govde}
 </main>
@@ -154,6 +154,19 @@ TAKVIM_HTML = '''<section class="bolum takvim-bolum"><div class="wrap" data-takv
 <tbody data-takvim-govde><tr><td colspan="7" class="tk-bos">Takvim yükleniyor…</td></tr></tbody></table></div>
 <noscript><p>Takvimi görmek için tarayıcınızda JavaScript açık olmalı. <a href="../turlar/">Tüm turlar</a></p></noscript>
 </div></section>'''
+
+
+def gizli_kat(V):
+    """Umre şimdilik yapılmıyor (Hilal Hanım 13.11.2026): veri.js site.umreGoster false iken 'Hac ve Umre' grubu gizlenir.
+    Sayfalar silinmez (noindex), menü/arama/sitemap'te görünmez. Geri açmak: umreGoster true + iki üretici."""
+    if V['site'].get('umreGoster', True):
+        return set()
+    return {k['slug'] for k in V['kategoriler'] if k.get('grup') == 'Hac ve Umre'}
+
+
+def gorunur_kat(V):
+    g = gizli_kat(V)
+    return [k for k in V['kategoriler'] if k['slug'] not in g]
 
 
 def sayfa_ust(baslik, ozet, kirintilar, kok, arka=''):
@@ -200,7 +213,7 @@ def liste_govde(V, turlar, kok, kategori=None):
     kats = {k['slug']: k['ad'] for k in V['kategoriler']}
     sirali = sorted(turlar, key=lambda t: t.get('baslangic') or '', reverse=True)
     kartlar = '\n'.join(tur_karti(t, kats.get(t['kategori'], ''), kok) for t in sirali)
-    secenek = ''.join(f'<option value="{e(k["slug"])}"{" selected" if kategori == k["slug"] else ""}>{e(k["ad"])}</option>' for k in V['kategoriler'])
+    secenek = ''.join(f'<option value="{e(k["slug"])}"{" selected" if kategori == k["slug"] else ""}>{e(k["ad"])}</option>' for k in gorunur_kat(V))
     aktif_say = sum(1 for t in turlar if aktif_mi(t))
     if aktif_say == 0:
         bilgi = ('<div class="not-kutu"><strong>Yeni dönem tarihleri için bizi arayın.</strong> '
@@ -385,9 +398,9 @@ def main():
 
     # tüm turlar
     toplam = len(V['turlar'])
-    govde = sayfa_ust('Turlar', 'Umre, Fas, Mısır, Avrupa, Asya ve daha fazlası. Tur kartına tıklayın, programı inceleyin, talebinizi bırakın.', [('Turlar', None)], '../') \
+    govde = sayfa_ust('Turlar', ('Umre, ' if not gizli_kat(V) else '') + 'Fas, Mısır, Avrupa, Asya ve daha fazlası. Tur kartına tıklayın, programı inceleyin, talebinizi bırakın.', [('Turlar', None)], '../') \
         + liste_govde(V, V['turlar'], '../')
-    yaz('turlar/index.html', kabuk(V, 'Turlar', f'Fas Tur tur kataloğu: Umre, Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. {toplam} tur programı.', '../', 'turlar/', govde, sayfa='turlar'))
+    yaz('turlar/index.html', kabuk(V, 'Turlar', f'Fas Tur tur kataloğu: {"Umre, " if not gizli_kat(V) else ""}Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. {toplam} tur programı.', '../', 'turlar/', govde, sayfa='turlar'))
 
     # kategoriler
     for k in V['kategoriler']:
@@ -399,7 +412,7 @@ def main():
                  f'Yeni programlar için bizi arayın ya da <a href="../../talep/">talep formunu</a> doldurun.<br><br><a class="btn btn-hat" href="../">Tüm turlara dön</a></div></div>')
         yaz(f'turlar/{k["slug"]}/index.html', kabuk(
             V, f'{k["ad"]} Turları', f'{k["ad"]} turları: programlar, güzergâhlar ve bilgi / rezervasyon talebi. Fas Tur.', '../../', f'turlar/{k["slug"]}/',
-            sayfa_ust(f'{k["ad"]}', k.get('aciklama') or f'{k["ad"]} kategorisindeki turlar.', [('Turlar', '../'), (k['ad'], None)], '../../', KAT_ARKA.get(k['slug'], '')) + g, sayfa='turlar'))
+            sayfa_ust(f'{k["ad"]}', k.get('aciklama') or f'{k["ad"]} kategorisindeki turlar.', [('Turlar', '../'), (k['ad'], None)], '../../', KAT_ARKA.get(k['slug'], '')) + g, sayfa='turlar', noindex=k['slug'] in gizli_kat(V)))
 
     # tur detayları
     for t in V['turlar']:
@@ -412,7 +425,7 @@ def main():
     ozet_t = []
     for t in V['turlar']:
         ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'takvimDurum', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t)})
-    ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in V['kategoriler']], 'turlar': ozet_t,
+    ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in gorunur_kat(V)], 'turlar': ozet_t,
             'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', [])}
     yaz('assets/js/ozet.js', '/* OTOMATİK ÜRETİLDİ (tasarim/uret_turlar.py). Elle değiştirmeyin; veri.js\'i değiştirip üreticiyi çalıştırın. */\nwindow.FT = '
         + json.dumps(ozet, ensure_ascii=False, separators=(',', ':')) + ';\n')
@@ -431,7 +444,7 @@ def main():
     yaz('tur-takvimi/index.html', kabuk(V, 'Tur Takvimi', 'Fas Tur tur takvimi: tüm kalkışlar tarih sırasıyla; gidiş, dönüş, süre, fiyat ve durum.', '../', 'tur-takvimi/',
         sayfa_ust('Tur Takvimi', 'Tüm kalkışlar tarih sırasıyla. Bir tura tıklayın, programı inceleyin; yer durumu için bize ulaşın.', [('Tur takvimi', None)], '../', 'hero-fas.jpg') + TAKVIM_HTML,
         sayfa='takvim', ek_script='<script defer src="../assets/js/takvim.js"></script>\n'))
-    adresler = ['', 'turlar/', 'tur-takvimi/', 'tur-bul/', 'umre-rehberi/'] + [f'turlar/{k["slug"]}/' for k in V['kategoriler']] + [f'tur/{t["slug"]}/' for t in V['turlar']] \
+    adresler = ['', 'turlar/', 'tur-takvimi/', 'tur-bul/'] + (['umre-rehberi/'] if not gizli_kat(V) else []) + [f'turlar/{k["slug"]}/' for k in gorunur_kat(V)] + [f'tur/{t["slug"]}/' for t in V['turlar']] \
         + V.get('sabitSayfalar', []) + [f'haberler/{h["slug"]}/' for h in V.get('haberler', [])]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' \
         + ''.join(f'  <url><loc>{e(alan + a)}</loc></url>\n' for a in adresler) + '</urlset>\n'

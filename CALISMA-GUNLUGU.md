@@ -28,6 +28,8 @@
 
 - 13.11.2026 · Hilal Hanım: Okay/Aşçı Oğuz görsel ve videoları `tasarim/KARAKTER-GORSEL-KURALLARI.md`'ye uyar (yapay zekâ notu zorunlu, ✦/"Veo" işareti yok, logo çizdirilmez, yalnız Genç Okay görünümü).
 
+- 13.11.2026 · Hilal Hanım: Umre/Hac şimdilik YAPILMIYOR → sitede gizli (veri.js site.umreGoster:false). Silinmedi; sayfalar noindex, menü/arama/sitemap dışı. Geri açmak: umreGoster:true + iki üretici + tr/en.json ana.alt, hak.ozet. Hilal Hanım açmadıkça Umre/Hac içeriği eklenmez.
+
 ## Günlük (kronolojik, tek satır)
 `GG.AA.YYYY · araç · ne yapıldı · dosya`
 12.11.2026 · Claude · Ana sayfa scrollytelling: 7 hikâye durağı, derinlik katmanları (arka görsel/katman videosu, orta ışık, ön kemer), telefonda hafif, hareketi azalt'ta durağan; sw SURUM fastur-v3; üretici Windows'ta LF yazar · derinlik.js, site.css, build_static.py, uret_turlar.py
@@ -45,3 +47,4 @@
 13.11.2026 · Claude · İkinci numara (0532 356 69 59) yalnız WhatsApp bağlantısı (arama yok); 🔒 görsel/Okay koruması: robots.txt (AI + görsel botları engelli), tüm sayfalarda noai/noimageai/noimageindex, sağ tık/sürükleme/uzun basma kapalı, telif notu; CLAUDE.md/AGENTS.md madde 11 (DEĞİŞMEZ KURAL); sw fastur-v12 · build_static.py, uret_turlar.py, site.css, site.js, pano.js, tur-bul/, umre-rehberi/, CLAUDE.md, AGENTS.md
 13.11.2026 · Claude · Panel v2: kontenjan kontrolü (formda canlı kalan yer, aşımda kayıt engellenir, bilinçli onay kutusuyla geçilir; panelde kırmızı aşım uyarısı), tahsilat (Tahsil edilen / Bekleyen tahsilat kartları, Kalan sütunu, aylık tahsilat), rezervasyonda e-posta ve kalkış tarihi zorunlu · panel/fastur-panel.html (claude.ai)
 13.11.2026 · Claude · Tur Takvimi sayfası (docs/tur-takvimi, takvim.js; haftalık kalkışlar 12 hafta ileri hesaplanır, durum takvimDurum ya da Sorunuz) + ana sayfa Tur Takvimi bandı (firma görselleri kolajı) + pano grupları; kategoriler 15→41, 6 grup (Burak Tur menü yapısı referans; mevcut slug'lar korundu); derinlik.js tüm sayfalarda (giriş sahnesi + bölümler); tur yan kutusu: 2 WhatsApp + arama tek satır; tüm WhatsApp bağlantılarında 'Merhaba, bilgi almak istiyorum.'; müzik oynatıcı dikey; rota haritasında gün yazısı yok; Samsung titremesi için color-scheme + ilk zemin rengi; sw fastur-v13 · veri.js, uret_turlar.py, build_static.py, site.css, site.js, pano.js, derinlik.js, takvim.js, tur-harita.js, tur-bul/, umre-rehberi/
+13.11.2026 · Claude · Umre/Hac gizlendi (umreGoster false): ana sayfa Umre bölümü, yörünge, hızlı bağlantı, alt başlık, başlık/açıklama, menü grubu, Umre rehberi bağlantısı, arama kategorileri, sitemap; sayfalar noindex; sw fastur-v14 · veri.js, uret_turlar.py, build_static.py, pano.js, tr.json, en.json, umre-rehberi/
