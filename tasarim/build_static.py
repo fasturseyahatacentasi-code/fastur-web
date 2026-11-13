@@ -54,7 +54,7 @@ def haber_kart(h,kk):
     return f'<article class="kart"><div class="gorsel"><img src="{kk}{h["gorsel"]}" alt="{html.escape(h["baslik"])}" loading="lazy" width="440" height="275"></div><div class="ic"><div class="meta"><span>{ut.tarih_tr(h["tarih"])}</span></div><h3><a href="{kk}haberler/{h["slug"]}/">{html.escape(h["baslik"])}</a></h3><p style="font-size:15px;color:var(--soluk);margin:0">{html.escape(h["ozet"])}</p><div class="alt"><span class="git">Devamını oku →</span></div></div></article>'
 son_h=sorted(haberler,key=lambda h:h['tarih'],reverse=True)[:3]
 yor_html=''.join(f'<figure class="yorum" style="margin:0"><div class="yildiz" aria-label="5 yıldız">★★★★★</div><h3>{html.escape(y["baslik"])}</h3><p>{html.escape(y["metin"])}</p><div class="kim">{html.escape(y["ad"])} · {html.escape(y["tur"])}</div></figure>' for y in yorumlar)
-ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":site['telefonGoster'],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/okyayturizm/"]},ensure_ascii=False)
+ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/okyayturizm/"]},ensure_ascii=False)
 ORB=[('5-yildizli-umre-turlari','Umre','🕋'),('fas','Fas','🕌'),('misir','Mısır','🏺'),('avrupa','Avrupa','🏰'),('orta-ve-uzak-asya','Asya','🗻'),('cruise','Cruise','🚢'),('afrika','Afrika','🦁'),('yurtici-turlar','Yurtiçi','🏞️')]
 uydu=''.join(f'<div class="kol" style="--a:{i*45}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px"><i>{ic_}</i>{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
 uydu=uydu.replace('<div class="uydu"><a','<div class="uydu"><a')
@@ -157,7 +157,7 @@ hk=hk.split('<h2>Kurumsal Bilgiler</h2>')[0]
 hk=hk.replace('<h2>Değerlerimiz</h2>','<h2>Değerlerimiz</h2><ul><li><strong>Müşteri odaklılık:</strong> Her adımda misafir memnuniyetini ön planda tutarız.</li><li><strong>Şeffaflık:</strong> Rezervasyon ve ücretlendirmede tam şeffaflık sağlarız.</li><li><strong>Kalite:</strong> Seçtiğimiz ortaklar ve hizmetlerle yüksek kaliteyi gözetiriz.</li><li><strong>Güven:</strong> Veri güvenliği ve seyahat emniyeti önceliğimizdir.</li><li><strong>Yenilikçilik:</strong> Sürekli gelişimle sektöre değer katan çözümler üretiriz.</li></ul>')
 hk=hk.replace('<h3>Güvenilir ve İnovatif Ortak</h3>','<h2>Vizyonumuz</h2><h3>Güvenilir ve İnovatif Ortak</h3>').replace('<h3>Kişiye Özel Deneyimler</h3>','<h2>Misyonumuz</h2><h3>Kişiye Özel Deneyimler</h3>')
 kurumsal=f'''<h2>Kurumsal bilgiler</h2>
-<ul><li><strong>Şirket unvanı:</strong> {site['unvanTam']}</li><li><strong>Adres:</strong> {site['adres']}</li><li><strong>Telefon:</strong> <a href="tel:{site['telefon']}">{site['telefonGoster']}</a></li><li><strong>E-posta:</strong> <a href="mailto:{site['eposta']}">{site['eposta']}</a></li><li><strong>Vergi dairesi / no:</strong> Güngören Vergi Dairesi · 6400301337</li><li data-tursab><strong>TÜRSAB belge no:</strong> <span data-tursab-no>[?]</span></li></ul>
+<ul><li><strong>Şirket unvanı:</strong> {site['unvanTam']}</li><li><strong>Adres:</strong> {site['adres']}</li><li><strong>Telefon:</strong> <a href="tel:{site['telefon']}">{site['telefonGoster']}</a>{(' · <a href="tel:'+site['telefon2']+'">'+site['telefon2Goster']+'</a>') if site.get('telefon2') else ''}</li><li><strong>E-posta:</strong> <a href="mailto:{site['eposta']}">{site['eposta']}</a></li><li><strong>Vergi dairesi / no:</strong> Güngören Vergi Dairesi · 6400301337</li><li data-tursab><strong>TÜRSAB belge no:</strong> <span data-tursab-no>[?]</span></li></ul>
 <!-- TÜRSAB belge no: firmadan alınacak, veri.js > site.tursab alanına yazılacak; "[?]" iken sitede gizli kalır (site.js). -->
 <p><a class="btn btn-ana" href="../talep/">Bilgi / rezervasyon talebi</a></p>'''
 yaz('hakkimizda/index.html',ut.kabuk(V,'Hakkımızda','Fas Tur, 2016\'dan beri butik hizmet anlayışıyla tur düzenliyor. Vizyonumuz, misyonumuz ve değerlerimiz.','../','hakkimizda/',
@@ -192,8 +192,8 @@ S=site
 def satir(ic,b,x): return f'<div class="iletisim-satir"><div>{ic}</div><div><b>{b}</b>{x}</div></div>'
 ilet=f'''<div class="wrap form-duzen" style="grid-template-columns:1fr 1fr">
 <div class="kutu"><h2>Fas Tur</h2><p style="color:var(--soluk)">{S['unvanTam']}</p>
-{satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>')}
-{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>')}
+{satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>'+(f'<br><a href="tel:{S["telefon2"]}">{S["telefon2Goster"]}</a>' if S.get('telefon2') else ''))}
+{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>'+(f'<br><a href="https://wa.me/{S["whatsapp2"]}" target="_blank" rel="noopener">{S["telefon2Goster"]}</a>' if S.get('whatsapp2') else ''))}
 {satir('✉️','E-posta',f'<a href="mailto:{S["eposta"]}">{S["eposta"]}</a>')}
 {satir('📍','Adres',S['adres'])}
 {satir('🕘','Çalışma saatleri',S['calisma']+' arasında yanıtlıyoruz')}
@@ -224,7 +224,7 @@ talep=f'''<div class="wrap form-duzen">
 <div class="durum gizli" role="status" aria-live="polite" data-durum></div>
 </form>
 <aside class="yan"><div class="kutu"><h3>Doğrudan ulaşın</h3>
-{satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>')}{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>')}{satir('🕘','Çalışma saatleri',S['calisma'])}</div>
+{satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>'+(f'<br><a href="tel:{S["telefon2"]}">{S["telefon2Goster"]}</a>' if S.get('telefon2') else ''))}{satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>'+(f'<br><a href="https://wa.me/{S["whatsapp2"]}" target="_blank" rel="noopener">{S["telefon2Goster"]}</a>' if S.get('whatsapp2') else ''))}{satir('🕘','Çalışma saatleri',S['calisma'])}</div>
 <div class="kutu" style="font-size:14px;color:var(--soluk)">Formda yalnız ad, telefon, e-posta, tur, kişi sayısı, tarih ve notunuz istenir. Verileriniz yalnız talebinize dönüş yapmak için kullanılır.</div></aside></div>
 <!-- Form yöntemi: Formsubmit (ajax) -> veri.js site.formEposta; ilk gönderimde Formsubmit bu adrese bir ONAY e-postası yollar, firma onaylamalı. Yedek: WhatsApp düğmesi (sunucu gerektirmez). -->'''
 yaz('talep/index.html',ut.kabuk(V,'Bilgi / Rezervasyon Talebi','Fas Tur bilgi ve rezervasyon talep formu: tur, kişi sayısı ve tarih tercihinizi bırakın, size dönüş yapalım.','../','talep/',

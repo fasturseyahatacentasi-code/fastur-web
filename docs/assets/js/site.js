@@ -36,7 +36,7 @@
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/fastur-logo.png" alt="Fas Tur" width="92" height="44"></span>' +
       '<p>' + esc(S.unvanTam) + '</p><p>' + esc(S.adres) + '</p></div>' +
-      '<div><h4>Yardıma mı ihtiyacınız var?</h4><a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' +
+      '<div><h4>Yardıma mı ihtiyacınız var?</h4><a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.telefon2 ? '<a href="tel:' + esc(S.telefon2) + '">' + esc(S.telefon2Goster) + '</a>' : '') +
       '<a href="' + wa('') + '" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:' + esc(S.eposta) + '">' + esc(S.eposta) + '</a>' +
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
       '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / rezervasyon talebi</a></div>' +
@@ -177,7 +177,7 @@
           else throw new Error('gonderilemedi');
         })
         .catch(function () {
-          goster('hata', 'Talebiniz şu an gönderilemedi. Lütfen <strong>WhatsApp ile gönder</strong> düğmesini kullanın ya da <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a> numarasını arayın.');
+          goster('hata', 'Talebiniz şu an gönderilemedi. Lütfen <strong>WhatsApp ile gönder</strong> düğmesini kullanın ya da <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a> numarasını arayın' + (S.telefon2 ? ' (ya da <a href="tel:' + esc(S.telefon2) + '">' + esc(S.telefon2Goster) + '</a>)' : '') + '.');
         })
         .then(function () { btn.disabled = false; btn.textContent = window.FT_DIL ? window.FT_DIL.t('talep.gonder', 'Talebi gönder') : 'Talebi gönder'; });
     });

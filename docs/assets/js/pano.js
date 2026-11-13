@@ -70,7 +70,7 @@
     '<div class="pano-arac"><button class="hud-mod pano-mod" type="button" aria-label="Gündüz / gece modu"><span aria-hidden="true"></span></button><select class="hud-dil pano-dil" aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select></div>' +
     '<div class="pano-baslik" aria-hidden="true"><span>ROTA</span><span>KAPI</span><span>DURUM</span><span></span></div>' +
     '<nav aria-label="Ana menü"><ul class="pano-liste">' + govde + '</ul></nav>' +
-    '<p class="pano-alt">Bir satıra dokunun; o rotanın turları açılsın. Telefon: <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a></p></div>';
+    '<p class="pano-alt">Bir satıra dokunun; o rotanın turları açılsın. Telefon: <a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.telefon2 ? ' · <a href="tel:' + esc(S.telefon2) + '">' + esc(S.telefon2Goster) + '</a>' : '') + '</p></div>';
   document.body.appendChild(pano);
 
   /* ---- dil seçici (HUD + mobil pano kopyası) ---- */

@@ -249,6 +249,12 @@ def fiyat_tablosu(baslik, satirlar):
     return f'<table class="fiyat-tablo"><caption>{e(baslik)}</caption>{r}</table>'
 
 
+def tel2_dugme(S):   # ikinci numara (Hilal Hanım 13.11.2026: iki numara her yerde birlikte)
+    if not S.get('telefon2'):
+        return ''
+    return '<a class="btn btn-hat btn-blok" style="margin-top:8px" href="tel:' + e(S['telefon2']) + '">' + e(S['telefon2Goster']) + '</a>'
+
+
 def detay_sayfasi(V, t, kats, kok):
     S = V['site']
     aktif = aktif_mi(t)
@@ -300,7 +306,7 @@ def detay_sayfasi(V, t, kats, kok):
 <div style="height:10px"></div>
 <a class="btn btn-wa btn-blok" href="{wa}" target="_blank" rel="noopener">WhatsApp ile yazın</a>
 <div style="height:10px"></div>
-<a class="btn btn-hat btn-blok" href="tel:{e(S['telefon'])}">{e(S['telefonGoster'])}</a></div>
+<a class="btn btn-hat btn-blok" href="tel:{e(S['telefon'])}">{e(S['telefonGoster'])}</a>{tel2_dugme(S)}</div>
 <div class="kutu" style="font-size:14px;color:var(--soluk)">Tarih, fiyat ve kontenjan değişebilir. Güncel bilgi için lütfen bizimle iletişime geçin.</div>
 </aside>'''
     desc_parca = [t['ad']]

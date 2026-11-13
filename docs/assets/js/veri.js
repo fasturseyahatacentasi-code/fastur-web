@@ -38,7 +38,7 @@
    (id: mevcut en büyük id + 1; slug: ad-ascii-id), görseli docs/assets/img/turlar/ içine koyun, üreticiyi çalıştırın.
    ============================================================ */
 window.FT = {
-  "site": {"ad": "Fas Tur", "unvan": "Okyay Turizmcilik Ltd. Şti.", "unvanTam": "OKYAY TURİZMCİLİK LİMİTED ŞİRKETİ", "alanAdi": "https://www.fastur.com.tr/", "telefon": "+905317659969", "telefonGoster": "+90 531 765 99 69", "whatsapp": "905317659969", "eposta": "info@fastur.com.tr", "formEposta": "info@fastur.com.tr", "adres": "Güven Mahallesi İnönü Caddesi No:38/106 Güngören / İstanbul / Türkiye", "calisma": "Hafta içi 09:30 – 19:30", "instagram": "okyayturizm", "tursab": "[?]", "kurulus": "2016"},
+  "site": {"ad": "Fas Tur", "unvan": "Okyay Turizmcilik Ltd. Şti.", "unvanTam": "OKYAY TURİZMCİLİK LİMİTED ŞİRKETİ", "alanAdi": "https://www.fastur.com.tr/", "telefon": "+905317659969", "telefonGoster": "+90 531 765 99 69", "whatsapp": "905317659969", "telefon2": "+905323566959", "telefon2Goster": "+90 532 356 69 59", "whatsapp2": "905323566959", "eposta": "info@fastur.com.tr", "formEposta": "info@fastur.com.tr", "adres": "Güven Mahallesi İnönü Caddesi No:38/106 Güngören / İstanbul / Türkiye", "calisma": "Hafta içi 09:30 – 19:30", "instagram": "okyayturizm", "tursab": "[?]", "kurulus": "2016"},
   "kategoriler": [
     {"slug": "rusya", "ad": "Rusya", "eskiId": 14, "aciklama": "Moskova ve St. Petersburg rotaları."},
     {"slug": "misir", "ad": "Mısır", "eskiId": 15, "aciklama": "Mısır turları ve Nil gemisi programları."},
