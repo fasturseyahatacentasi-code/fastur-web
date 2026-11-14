@@ -794,3 +794,13 @@ html[data-mod="gunduz"] .koyu-bolum .etiket{color:var(--turkuaz)}
 html[data-mod="gunduz"] .koyu-bolum .soluk-p{color:#b9cbe0}
 html[data-mod="gunduz"] .koyu-bolum .uydu a{color:#fff}
 html[data-mod="gunduz"] #yorunge .etiket{color:var(--turkuaz)}
+/* Gezi notları: sık sorulan sorular (14.11.2026) */
+.makale details.sss{border:1px solid var(--kenar);border-radius:14px;background:rgba(255,255,255,.05);margin:0 0 10px;overflow:hidden}
+.makale details.sss summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;display:flex;justify-content:space-between;gap:12px}
+.makale details.sss summary::-webkit-details-marker{display:none}
+.makale details.sss summary::after{content:"+";color:var(--turuncu);font-weight:800}
+.makale details.sss[open] summary::after{content:"–"}
+.makale details.sss p{padding:0 18px 14px;margin:0}
+.makale h2{margin-top:1.6em}
+.makale ul{padding-left:1.2em}.makale li{margin:.35em 0;line-height:1.7}
+html[data-mod="gunduz"] .bolum.kum > .wrap > h2{color:#0d2b4a}

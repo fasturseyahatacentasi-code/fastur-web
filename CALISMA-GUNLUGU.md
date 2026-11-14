@@ -77,3 +77,5 @@
 - 14.11.2026 · Claude · Ana sayfa: bilgisayarda Okay büyük ve sağ kenarda (belden yukarısı, referans uphbacademy.com.tr düzeni), fareyle derinlik hareketi (derinlik.js --mx/--my, CSS translate). Harita odağı .47. Dünya rotaları Bölüm 2nin arkasına taşındı; hikâye numaraları: dunya 3, fas 4, muzik 5, sira-sizde 6 (umre gizli, Bölüm 3 metni duruyor; Umre açılırsa numaralar yeniden düzenlenmeli). sw fastur-v31.
 
 - 14.11.2026 · Claude · Bölüm 2 (yorunge) arka planı koyu noktalı dünya haritası + İstanbul çıkışlı altın yaylar (harita.js [data-harita-zemin], .koyu-bolum; gündüz modunda da koyu). sw fastur-v32. Büyük Fas Turu tanımı hazır (2 kalkış), Hilal Hanım onayı bekliyor; veri.jse eklenmedi.
+
+- 14.11.2026 · Claude · Gezi notları: 5 yeni SEO rehber yazısı (Saraybosna-Mostar, Petra-Wadi Rum, Nil cruise, Hindistan Altın Üçgen, Hindiçin). Gövdeler tasarim/kaynak/yazilar/<slug>.html, veri.js haberler govdeDosya alanı; her yazıda BlogPosting + FAQPage JSON-LD. Fiyat/tarih/vize yok, tur sayfasına ve Tur Takvimine bağlantı. Derinlik: ataletli yavaş geçiş (YUMUSAK .06 masaüstü / .12 telefon), kemer aralığı uzatıldı. sw fastur-v33.

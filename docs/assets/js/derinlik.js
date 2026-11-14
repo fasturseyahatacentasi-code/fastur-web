@@ -86,14 +86,24 @@
   var R = hafif ? { a: .05, o: 0, n: 1.4, r: 10 } : { a: .14, o: .55, n: 2.6, r: 26 };
   function tf(x, y, sc) { return 'translate3d(' + x + 'px,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(4) + ')'; }
 
+  /* Yavaş, ataletli geçiş (Hilal Hanım 14.11.2026, referans uphbacademy.com.tr): katmanlar kaydırmayı anında değil,
+     yumuşak bir gecikmeyle izler. YUMUSAK küçüldükçe geçiş ağırlaşır (0.05 çok yavaş · 0.15 hızlı). */
+  var YUMUSAK = hafif ? .12 : .06, anlik = false;
+  function izle(s, hedef) {
+    if (s.c == null || anlik) { s.c = hedef; return hedef; }
+    s.c += (hedef - s.c) * YUMUSAK;
+    if (Math.abs(hedef - s.c) > .0008) devam = true; else s.c = hedef;
+    return s.c;
+  }
+  var devam = false;
   function guncelle() {
-    bekliyor = false;
+    bekliyor = false; devam = false;
     var vh = innerHeight;
     for (var i = 0; i < sahneler.length; i++) {
       var s = sahneler[i], r = s.sec.getBoundingClientRect();
-      if (r.bottom < -40 || r.top > vh + 40) continue;               /* ekranda değil: dokunma */
+      if (r.bottom < -40 || r.top > vh + 40) { s.c = null; continue; }   /* ekranda değil: dokunma */
       if (s.hero) {
-        var x = clamp(-r.top / Math.max(r.height, 1), 0, 1);         /* 0 = en üstte, 1 = hero tamamen geçti */
+        var x = izle(s, clamp(-r.top / Math.max(r.height, 1), 0, 1));   /* 0 = en üstte, 1 = hero tamamen geçti */
         s.arka.forEach(function (e) { e.style.transform = tf(0, x * 60, 1 + x * R.a * 2); });
         if (s.orta) { s.orta.style.transform = tf(0, x * 30, 1 + x * R.o); s.orta.style.opacity = (1 - x).toFixed(3); }
         /* telefonda Okay hero'nun altında durur: kaydırınca görünmeli, soldurulmaz (Hilal Hanım 14.11.2026) */
@@ -102,22 +112,24 @@
         if (s.yazi) { s.yazi.style.transform = tf(0, -x * R.r * 3, 1); s.yazi.style.opacity = (1 - x * 1.3).toFixed(3); }
         continue;
       }
-      var t = clamp((vh - r.top) / (vh + r.height), 0, 1);           /* 0 giriş · .5 ortada · 1 çıkış */
+      var t = izle(s, clamp((vh - r.top) / (vh + r.height), 0, 1));   /* 0 giriş · .5 ortada · 1 çıkış */
       s.arka[0].style.transform = tf(0, (t - .5) * -R.r * 2, 1.04 + t * R.a);
       if (s.orta) { s.orta.style.transform = tf(0, (t - .5) * -R.r * 4, .9 + t * R.o); s.orta.style.opacity = Math.sin(t * Math.PI).toFixed(3); }
-      var k = clamp((t - .08) / .34, 0, 1);                          /* kemer: girişte kapıdan geçiş */
+      var k = clamp((t - .05) / .5, 0, 1);                           /* kemer: girişte kapıdan geçiş (daha uzun aralık = daha yavaş) */
       s.kemer.style.transform = tf(0, 0, 1 + k * k * R.n);
       s.kemer.style.opacity = (1 - k).toFixed(3);
       s.kemer.style.visibility = k >= 1 ? 'hidden' : '';
       for (var j = 0; j < s.rehber.length; j++) s.rehber[j].style.transform = tf(0, (t - .5) * -R.r * 1.6, 1);
     }
+    if (devam) iste();                                                /* hedefe varana kadar yumuşakça sürer */
   }
   var bekliyor = false;
   function iste() { if (!bekliyor) { bekliyor = true; requestAnimationFrame(guncelle); } }
   addEventListener('scroll', iste, { passive: true });
   addEventListener('resize', iste);
-  guncelle();
-  window.FT_DERINLIK = { duraklar: sahneler.length, hafif: hafif, guncelle: guncelle };
+  anlik = true; guncelle(); anlik = false;
+  /* test aracı için: anında son konuma getir */
+  window.FT_DERINLIK = { duraklar: sahneler.length, hafif: hafif, guncelle: function () { anlik = true; guncelle(); anlik = false; } };
 
   /* Fareyle derinlik (Hilal Hanım 14.11.2026): yalnız fareli bilgisayarda, ana sayfa girişinde.
      --mx / --my (-1..1) yumuşakça izlenir; CSS bunları Okay, balon ve arka plana ters yönlerde uygular (translate özelliği,

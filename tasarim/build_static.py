@@ -198,15 +198,27 @@ liste=''.join(haber_kart(h,'../') for h in sorted(haberler,key=lambda h:h['tarih
 yaz('haberler/index.html',ut.kabuk(V,'Haberler ve Gezi Rehberleri','Fas, Rusya, Japonya ve daha fazlası: Fas Tur\'dan gezi rehberleri, rota notları ve sık sorulan sorular.','../','haberler/',
  sp('Haberler','Gezi rehberleri, rota notları ve sık sorulan sorular.',[('Haberler',None)],'../')+f'<div class="wrap" style="padding:36px 0 64px"><div class="izgara g3">{liste}</div></div>',sayfa='haberler'))
 orig={h['id']:h for h in P['haberler']}
+def yazi_ld(h, govde):
+    # Gezi notları SEO (14.11.2026): makale + sık sorulan sorular yapısal verisi (Google zengin sonuç)
+    alan=site['alanAdi'].rstrip('/')+'/'
+    d=[{"@context":"https://schema.org","@type":"BlogPosting","headline":h['baslik'],"description":h.get('ozet',''),"datePublished":h['tarih'],"dateModified":h.get('guncelleme',h['tarih']),
+        "image":alan+h['gorsel'],"author":{"@type":"Organization","name":h.get('yazar','Fas Tur')},"publisher":{"@type":"Organization","name":"Fas Tur","logo":{"@type":"ImageObject","url":alan+"assets/img/genel/fastur-logo.png"}},
+        "mainEntityOfPage":alan+'haberler/'+h['slug']+'/',"inLanguage":"tr-TR"}]
+    sss=re.findall(r'<details class="sss"><summary>(.*?)</summary><p>(.*?)</p></details>',govde,re.S)
+    if sss: d.append({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":re.sub('<[^>]+>','',q),"acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for q,a in sss]})
+    return ''.join('<script type="application/ld+json">'+json.dumps(x,ensure_ascii=False)+'</script>\n' for x in d)
 for h in haberler:
-    govde=parcala(orig[h['eskiId']]['govde'])
+    if h.get('govdeDosya'):   # yeni yazılar: tasarim/kaynak/yazilar/<slug>.html (elle yazılır)
+        govde=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'kaynak','yazilar',h['govdeDosya']),encoding='utf-8').read()
+    else:
+        govde=parcala(orig[h['eskiId']]['govde'])
     diger=[x for x in sorted(haberler,key=lambda x:x['tarih'],reverse=True) if x['slug']!=h['slug']][:3]
     body=f'''{sp(h['baslik'],'',[('Haberler','../'),(h['baslik'],None)],'../../')}
 <div class="dar"><div class="haber-kapak"><img src="../../{h['gorsel']}" alt="{html.escape(h['baslik'])}" width="1100" height="550"></div>
 <div class="metin makale"><div class="meta-satir">{ut.tarih_tr(h['tarih'])} · {html.escape(h['yazar'])}</div>{govde}
 <p style="margin-top:2em"><a class="btn btn-ana" href="../../talep/">Bu rota için bilgi alın</a></p></div></div>
 <section class="bolum kum"><div class="wrap"><h2>Diğer yazılar</h2><div class="izgara g3">{''.join(haber_kart(x,'../../') for x in diger)}</div></div></section>'''
-    yaz(f'haberler/{h["slug"]}/index.html',ut.kabuk(V,h['baslik'],h['ozet'] or h['baslik'],'../../',f'haberler/{h["slug"]}/',body,sayfa='haberler',og_gorsel=h['gorsel']))
+    yaz(f'haberler/{h["slug"]}/index.html',ut.kabuk(V,h['baslik'],h['ozet'] or h['baslik'],'../../',f'haberler/{h["slug"]}/',body,sayfa='haberler',og_gorsel=h['gorsel'],ek_head=yazi_ld(h,govde)))
 
 # ---------------- iletişim
 S=site
