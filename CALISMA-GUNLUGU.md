@@ -63,3 +63,5 @@
 - 13.11.2026 · Claude · Rotalar menüsü tek sıra ortada, büyük punto. Paneldeki durumlar siteye aktarıldı: yeni alan takvimTarihDurum (tarihe özel durum, takvim.js + ozet.js). Fas'ın Renkleri 19.11.2026 kalkışı panelde 22 kişi / 20 kontenjan, 'kapali'. sw fastur-v22.
 
 - 13.11.2026 · Claude · Slogan Fas • Mısır • Balkanlar • Asya. Üst çubukta logo ve Rotalar büyüdü. Fas’ın Renkleri tüm haftalar Müsait (19.11 kapanışı denemeydi, kaldırıldı). Panele 26 site turu eklendi (turlar koleksiyonu, siteId/siteSlug alanı); panel Fas fiyatı 899 EUR. Eşleme: panel satista=Müsait, son=Sorunuz, kapali=Satışa kapandı. sw fastur-v23.
+
+- 14.11.2026 · Claude · HATA DÜZELTME: derinlik.js boş arka katmana bos sınıfı veriyordu; site.css .bos (boş liste kutusu) gündüz modunda koyu lacivert boyadığı için telefonda bölümler koyu, yazılar okunmaz oluyordu. Sınıf dp-bos yapıldı. Telefonda Okay kaydırınca soldurulmuyor. Panel: siteye aktarım hatırlatıcısı (ayarlar/aktarim imzası), aktarım betiği panel/aktar.py (depoya girmez). sw fastur-v24.

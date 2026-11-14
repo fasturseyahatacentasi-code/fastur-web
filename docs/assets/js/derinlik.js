@@ -53,7 +53,7 @@
         var dg = el('derinlik-sahne giris'); dg.setAttribute('aria-hidden', 'true');
         var ga = el('dp dp-arka'), go = el('dp dp-orta dp-isik');
         var gg = (hafif && sec.getAttribute('data-arka-mobil')) || sec.getAttribute('data-arka');
-        if (gg) { var gi2 = el('dp-gorsel'); gi2.style.backgroundImage = 'url("' + K + gg + '")'; ga.appendChild(gi2); } else ga.classList.add('bos');
+        if (gg) { var gi2 = el('dp-gorsel'); gi2.style.backgroundImage = 'url("' + K + gg + '")'; ga.appendChild(gi2); } else ga.classList.add('dp-bos');
         dg.appendChild(ga); if (!hafif) dg.appendChild(go);
         sec.insertBefore(dg, sec.firstChild);
         s.arka = [ga]; s.orta = hafif ? null : go;
@@ -70,7 +70,7 @@
     else {
       var g = (hafif && sec.getAttribute('data-arka-mobil')) || sec.getAttribute('data-arka');
       if (g) { var gi = el('dp-gorsel'); gi.style.backgroundImage = 'url("' + K + g + '")'; a.appendChild(gi); }
-      else a.classList.add('bos');
+      else a.classList.add('dp-bos');
     }
     if (ktO) o.appendChild(ktO); else o.classList.add('dp-isik');
     if (kt && !kt.children.length) kt.parentNode.removeChild(kt);
@@ -96,7 +96,9 @@
         var x = clamp(-r.top / Math.max(r.height, 1), 0, 1);         /* 0 = en üstte, 1 = hero tamamen geçti */
         s.arka.forEach(function (e) { e.style.transform = tf(0, x * 60, 1 + x * R.a * 2); });
         if (s.orta) { s.orta.style.transform = tf(0, x * 30, 1 + x * R.o); s.orta.style.opacity = (1 - x).toFixed(3); }
-        if (s.on) { s.on.style.transform = tf(0, -x * R.r * 4, 1 + x * (hafif ? .15 : .45)); s.on.style.opacity = (1 - x * 1.6).toFixed(3); }
+        /* telefonda Okay hero'nun altında durur: kaydırınca görünmeli, soldurulmaz (Hilal Hanım 14.11.2026) */
+        if (s.on && hafif) { s.on.style.transform = ''; s.on.style.opacity = ''; }
+        else if (s.on) { s.on.style.transform = tf(0, -x * R.r * 4, 1 + x * (hafif ? .15 : .45)); s.on.style.opacity = (1 - x * 1.6).toFixed(3); }
         if (s.yazi) { s.yazi.style.transform = tf(0, -x * R.r * 3, 1); s.yazi.style.opacity = (1 - x * 1.3).toFixed(3); }
         continue;
       }
