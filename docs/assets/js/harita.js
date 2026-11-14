@@ -53,7 +53,7 @@
   function camAt(p) {
     var hedef = mobil ? c1.genislikDerece * 0.42 : c1.genislikDerece;
     var span = Math.exp(Math.log(c0.genislikDerece) * (1 - p) + Math.log(hedef) * p) * (1 + Math.sin(p * Math.PI) * yay);
-    var ax = mobil ? .5 : (gecis ? .5 : .5 + .08 * p), ay = mobil ? (gecis ? .42 : .5 - .08 * p) : (gecis ? .55 : .52 + .03 * p);
+    var ax = mobil ? .5 : (innerWidth > 900 ? .47 : (gecis ? .5 : .5 + .08 * p)), ay = mobil ? (gecis ? .42 : .5 - .08 * p) : (gecis ? .55 : .52 + .03 * p);
     return { lon: c0.boylam + (c1.boylam - c0.boylam) * p, lat: c0.enlem + (c1.enlem - c0.enlem) * p, span: span, ax: ax, ay: ay };
   }
   function P(lat, lon) { return [W * cam.ax + (lon - cam.lon) * rad * S, H * cam.ay - (merc(lat) - merc(cam.lat)) * S]; }

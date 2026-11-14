@@ -771,3 +771,18 @@ img, video, .slayt, .kt, .dp-gorsel { -webkit-user-drag: none; user-select: none
 .rota-sec button:hover{background:rgba(53,224,208,.22)}
 .rota-sec button[aria-pressed="true"]{background:linear-gradient(110deg,#ffd98a,#ff9a2e);color:#2a1500;border-color:transparent}
 @media(max-width:759px){.rehber-hero .balon.ust{width:min(230px,60vw)}.rota-sec{gap:4px}.rota-sec button{font-size:11px;padding:4px 8px}}
+/* 14.11.2026 Hilal Hanım (referans: büyük, kenarda, belden yukarısı görünen karakter + fareyle hareket)
+   Bilgisayarda Okay sağ kenarda, büyük; alt kısmı hero'nun altından taşar ve kesilir. Telefon (<=900px) değişmez. */
+@media(min-width:901px){
+  .kahraman .wrap>.rehber-hero{position:absolute;right:calc((100% - 100vw) / 2 + 1.5vw);bottom:calc(-1 * min(76vh, 690px));margin:0;display:block;
+    translate:calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -8px)}
+  .kahraman .sahne-kisi{height:min(150vh,1360px)}
+  .kahraman .sahne-kisi .golge,.kahraman .sahne-kisi::after{display:none}
+  .kahraman .rehber-hero .balon.ust{position:absolute;right:76%;top:3vh;width:290px;margin:0;translate:calc(var(--mx, 0) * -6px) calc(var(--my, 0) * -4px)}
+  .kahraman .rehber-hero .balon.ust::before{left:auto;bottom:auto;top:30px;margin:0;right:-9px;border:9px solid transparent;border-left-color:rgba(8,20,36,.7);border-right:0}
+  .kahraman .wrap>div:first-child{position:relative;z-index:4}
+  .kahraman.harita-modu .slaytlar,.kahraman [data-harita]{translate:calc(var(--mx, 0) * 10px) calc(var(--my, 0) * 6px)}
+}
+@media(min-width:901px){.kahraman .wrap>.rehber-hero{pointer-events:none}.kahraman .rehber-hero .balon.ust{pointer-events:auto}}
+@media(min-width:901px){.kahraman .rehber-hero .balon.ust{right:auto;left:-62%;top:-11vh;width:280px}}
+@media(min-width:901px){.kahraman .rehber-hero .balon.ust{top:max(-11vh,-110px)}}

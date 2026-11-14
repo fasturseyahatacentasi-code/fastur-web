@@ -118,6 +118,11 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="seritler" aria-label="Destinasyonlar">{seritler}</div></div>
 <div>{konus('yorunge','karakter-ifade-2.png','50% 18%')}<p class="soluk-p">Gezegenlere dokunun; her biri o bölgenin tur listesini açar.</p><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div></div>
 </div></section>
+<section class="bolum" id="dunya" data-tema="turkuaz"{durak(G+'hero-avrupa.jpg',G+'bolge-avrupa.jpg')}><div class="wrap">
+<div class="bolum-baslik"><div><span class="etiket" data-bolum="dunya">Bölüm 3 · Dünya rotaları</span><h2>Dünya <em>rotaları</em></h2></div></div>
+{konus('dunya','karakter-portre-4.png','50% 14%')}
+<div class="izgara g3" style="margin-top:26px">{DUNYA_KART}</div>
+</div></section>
 <section class="bolum takvim-bant-bolum"><div class="wrap"><a class="takvim-bant" href="tur-takvimi/">
 <span class="tb-kolaj" aria-hidden="true"><i style="background-image:url(assets/img/genel/hero-fas.jpg)"></i><i style="background-image:url(assets/img/genel/bolge-afrika.jpg)"></i><i style="background-image:url(assets/img/genel/{"bolge-umre" if UMRE else "bolge-yurtici"}.jpg)"></i><i style="background-image:url(assets/img/genel/hero-asya.jpg)"></i><i style="background-image:url(assets/img/genel/hero-avrupa.jpg)"></i><i style="background-image:url(assets/img/genel/hero-rusya.jpg)"></i></span>
 <span class="tb-ic"><span class="tb-etiket">KALKIŞLAR · TARİHLER · FİYATLAR</span><b class="tb-baslik">TUR TAKVİMİ</b><span class="tb-dugme">Tüm turlar için tıklayın <span aria-hidden="true">→</span></span></span>
@@ -134,13 +139,8 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 {konus('fas','karakter-ifade-4.png','50% 18%')}
 <div class="izgara g2" style="margin-top:26px">{KATLINK('fas','Fas','fas')}{TURKART('misir')}</div>
 </div></section>
-<section class="bolum" id="dunya" data-tema="turkuaz"{durak(G+'hero-avrupa.jpg',G+'bolge-avrupa.jpg')}><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="dunya">Bölüm 5 · Dünya rotaları</span><h2>Dünya <em>rotaları</em></h2></div></div>
-{konus('dunya','karakter-portre-4.png','50% 14%')}
-<div class="izgara g3" style="margin-top:26px">{DUNYA_KART}</div>
-</div></section>
 <section class="bolum kum" id="rota-sesleri" data-tema="mor"{durak(G+'hero-asya.jpg',G+'bolge-asya.jpg')}><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="muzik">Bölüm 6 · Rota sesleri</span><h2>Yolculuk <em>müzikleri</em></h2><p>Her rotanın bir ruh hâli var. Dinlemek için bir parçaya dokunun; ses yalnız siz başlatınca çalar.</p></div></div>
+<div class="bolum-baslik"><div><span class="etiket" data-bolum="muzik">Bölüm 5 · Rota sesleri</span><h2>Yolculuk <em>müzikleri</em></h2><p>Her rotanın bir ruh hâli var. Dinlemek için bir parçaya dokunun; ses yalnız siz başlatınca çalar.</p></div></div>
 {konus('muzik','karakter-ifade-2.png','50% 18%')}
 <div class="muzik-izgara" data-muzik-kartlar></div>
 </div></section>
@@ -168,7 +168,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="yakinda ani-cagri" data-ani-cagri><span class="etiket">Anılarınızı bekliyoruz</span><h3>Fas Tur ile yolculuk ettiniz mi? <em>Anınızı paylaşın</em></h3><p>Fotoğraflı anılar ve yorumlar, misafirimizin izniyle burada yer alacak. Anınızı bize WhatsApp&#039;tan ya da talep formundan iletebilirsiniz; ayrıca Instagram hesabımızda da yolculuk karelerimizi bulabilirsiniz.</p>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Anımı paylaşmak istiyorum</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="https://www.instagram.com/okyayturizm/" target="_blank" rel="noopener">Instagram profilimiz</a></div></div>
 </div></section>
-<section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 7 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
+<section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 6 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a></div></div></div></section>'''
 yaz('index.html',ut.kabuk(V,'Fas Tur | '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa ve Asya Turları','Fas Tur: '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. Programları inceleyin, bilgi ve rezervasyon talebi gönderin.','./','',home,sayfa='ana',ek_script='<script src="assets/img/harita/harita-veri.js"></script>\n<script defer src="assets/js/harita.js"></script>\n<script defer src="assets/js/ucus.js"></script>\n',ek_head=f'<script type="application/ld+json">{ld}</script>'))
 

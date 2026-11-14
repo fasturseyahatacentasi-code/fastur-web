@@ -73,3 +73,5 @@
 - 14.11.2026 · Claude · Müzik: Umre sükûneti ve Cruise ufku parçaları veri.js muzik listesinden çıkarıldı (Hilal Hanım). Kalan: Fas gecesi, Akdeniz esintisi, Asya pazarı. sw fastur-v27.
 
 - 14.11.2026 · Claude · Ana sayfa haritası çok rotalı: balonda ülke düğmeleri (turu olan rotalar), seçilince kamera uçar; Asya için harita-dunya.js sonradan yüklenir. Yeni haritaRotalari: bosna, urdun, hindistan, japonya, vietnam, malezya (eski avrupa satırı kalktı). sehirler.js: Amman, Ceraş, Petra, Wadi Rum, Akabe, Hanoi, Ha Long, Ho Chi Minh, Siem Reap, Luang Prabang, Bangkok, Bali (Wikipedia/GeoNames). Bölüm 4: Afrika yerine Mısır; Bölüm 5: turu olan ülkeler (tur kapaklarıyla). hikaye dunya cümlesi güncellendi. sw fastur-v29.
+
+- 14.11.2026 · Claude · Ana sayfa: bilgisayarda Okay büyük ve sağ kenarda (belden yukarısı, referans uphbacademy.com.tr düzeni), fareyle derinlik hareketi (derinlik.js --mx/--my, CSS translate). Harita odağı .47. Dünya rotaları Bölüm 2nin arkasına taşındı; hikâye numaraları: dunya 3, fas 4, muzik 5, sira-sizde 6 (umre gizli, Bölüm 3 metni duruyor; Umre açılırsa numaralar yeniden düzenlenmeli). sw fastur-v31.

@@ -118,4 +118,23 @@
   addEventListener('resize', iste);
   guncelle();
   window.FT_DERINLIK = { duraklar: sahneler.length, hafif: hafif, guncelle: guncelle };
+
+  /* Fareyle derinlik (Hilal Hanım 14.11.2026): yalnız fareli bilgisayarda, ana sayfa girişinde.
+     --mx / --my (-1..1) yumuşakça izlenir; CSS bunları Okay, balon ve arka plana ters yönlerde uygular (translate özelliği,
+     transform animasyonlarıyla çakışmaz). */
+  var kah = document.querySelector('.kahraman');
+  if (kah && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var hx = 0, hy = 0, mx = 0, my = 0, akis = 0;
+    function adim() {
+      mx += (hx - mx) * .08; my += (hy - my) * .08;
+      kah.style.setProperty('--mx', mx.toFixed(3)); kah.style.setProperty('--my', my.toFixed(3));
+      akis = (Math.abs(hx - mx) > .002 || Math.abs(hy - my) > .002) ? requestAnimationFrame(adim) : 0;
+    }
+    kah.addEventListener('mousemove', function (e) {
+      var r = kah.getBoundingClientRect();
+      hx = ((e.clientX - r.left) / r.width) * 2 - 1; hy = ((e.clientY - r.top) / r.height) * 2 - 1;
+      if (!akis) akis = requestAnimationFrame(adim);
+    });
+    kah.addEventListener('mouseleave', function () { hx = 0; hy = 0; if (!akis) akis = requestAnimationFrame(adim); });
+  }
 })();

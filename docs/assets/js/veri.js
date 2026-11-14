@@ -99,9 +99,9 @@ window.FT = {
     {"id": "yorunge", "bolum": "Bölüm 2 · Rotanı seç", "cumle": "Bir destinasyona dokunun, o rotanın turları açılsın."},
     {"id": "umre", "bolum": "Bölüm 3 · Umre ve manevi yolculuk", "cumle": "Ekonomik, yürüme mesafeli ve 5 yıldızlı umre programlarına birlikte bakalım."},
     {"id": "fas", "bolum": "Bölüm 4 · Fas ve Kuzey Afrika", "cumle": "Fas turlarıyla yola çıktık: Kazablanka, Marakeş, Fes ve daha fazlası."},
-    {"id": "dunya", "bolum": "Bölüm 5 · Dünya rotaları", "cumle": "Balkanlar'dan Uzak Doğu'ya, Ürdün'den Japonya'ya farklı rotalar sizi bekliyor."},
-    {"id": "muzik", "bolum": "Bölüm 6 · Rota sesleri", "cumle": "Yola çıkmadan önce rotanın havasını dinleyin."},
-    {"id": "sira-sizde", "bolum": "Bölüm 7 · Sıra sizde", "cumle": "Formu doldurun ya da WhatsApp'tan yazın; ekibimiz size dönüş yapsın."},
+    {"id": "dunya", "bolum": "Bölüm 3 · Dünya rotaları", "cumle": "Balkanlar'dan Uzak Doğu'ya, Ürdün'den Japonya'ya farklı rotalar sizi bekliyor."},
+    {"id": "muzik", "bolum": "Bölüm 5 · Rota sesleri", "cumle": "Yola çıkmadan önce rotanın havasını dinleyin."},
+    {"id": "sira-sizde", "bolum": "Bölüm 6 · Sıra sizde", "cumle": "Formu doldurun ya da WhatsApp'tan yazın; ekibimiz size dönüş yapsın."},
     {"id": "asistan", "bolum": "Asistan rozeti", "cumle": "Sorunuz mu var? Yazın."}
   ],
   "heroMod": "harita",
