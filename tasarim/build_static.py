@@ -54,7 +54,7 @@ _SAY={}
 for _t in V['turlar']:
     if _t.get('aktif'): _SAY[_t['kategori']]=_SAY.get(_t['kategori'],0)+1
 DOLU=[(k['slug'],k['ad']) for k in kats if _SAY.get(k['slug']) and k['slug'] not in ut.gizli_kat(V)]
-IKON={'fas':'🕌','misir':'🏺','urdun':'🏜️','bosna-hersek':'🌉','vietnam':'🛶','hindistan':'🛕','japonya':'🗻','malezya':'🌴','guney-kore':'🏯','dubai':'🏙️','yurtici-turlar':'🏞️','cruise':'🚢'}
+IKON={'fas':'🕌','misir':'🏺','urdun':'🏜️','bosna-hersek':'🌉','vietnam':'🛶','hindistan':'🛕','japonya':'🗻','malezya':'🌴','guney-kore':'🏯','dubai':'🏙️','yurtici-turlar':'🏞️','cruise':'🚢','rusya':'❄️','ozbekistan':'🏛️'}
 ust_kat=''.join(f'<a href="turlar/{s}/">{a}</a>' for s,a in DOLU)
 kopt=''.join(f'<option value="{s}">{a}</option>' for s,a in DOLU)   # yalnız turu olan kategoriler
 bolge=[('5-yildizli-umre-turlari','Umre','umre'),('fas','Fas','fas'),('avrupa','Avrupa','avrupa'),('orta-ve-uzak-asya','Orta ve Uzak Asya','asya'),('yurtici-turlar','Yurtiçi Turlar','yurtici'),('afrika','Afrika','afrika')]
@@ -114,7 +114,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="bolum-baslik"><div><span class="etiket" data-bolum="yorunge">Bölüm 2 · Rotanı seç</span><h2>Hangi <em>rotaya</em> çıkıyoruz?</h2></div></div>
 <div class="yorunge-duzen"><div><div class="sistem" aria-label="Destinasyonlar">
 <div class="halka"></div><div class="halka ic"></div><div class="yorunge">{uydu}</div>
-<a class="merkez portre" href="turlar/" aria-label="Tüm turlar"><img src="{IMG}karakter-portre-1.png" alt="" width="320" height="370"></a></div>
+<a class="merkez portre" href="turlar/" aria-label="Tüm turlar"><img src="{IMG}karakter-portre-2.png" alt="" width="320" height="370"></a></div>
 <div class="seritler" aria-label="Destinasyonlar">{seritler}</div></div>
 <div>{konus('yorunge','karakter-ifade-2.png','50% 18%')}<p class="soluk-p">Gezegenlere dokunun; her biri o bölgenin tur listesini açar.</p><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div></div>
 </div></section>

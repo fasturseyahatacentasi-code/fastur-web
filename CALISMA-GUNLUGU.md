@@ -81,3 +81,5 @@
 - 14.11.2026 · Claude · Gezi notları: 5 yeni SEO rehber yazısı (Saraybosna-Mostar, Petra-Wadi Rum, Nil cruise, Hindistan Altın Üçgen, Hindiçin). Gövdeler tasarim/kaynak/yazilar/<slug>.html, veri.js haberler govdeDosya alanı; her yazıda BlogPosting + FAQPage JSON-LD. Fiyat/tarih/vize yok, tur sayfasına ve Tur Takvimine bağlantı. Derinlik: ataletli yavaş geçiş (YUMUSAK .06 masaüstü / .12 telefon), kemer aralığı uzatıldı. sw fastur-v33.
 
 - 14.11.2026 · Claude · Mısır turları (96-100) kapağı AROYA deniz gemisi yerine piramitli Kahire görseli (assets/img/genel/bolge-afrika.jpg), Hilal Hanım onayı. sw fastur-v34.
+
+- 14.11.2026 · Claude · 5 Burak Tur programı eklendi (Hilal Hanım onayı): Büyük Fas (118-119), Dubai ve Abu Dabi (120, 4 gün PDF gibi), Rusya Lapland (121-123, 6 gün PDF gibi), Büyük Özbekistan (124-149, vizesiz), Fas ve İspanya Endülüs (150-151, kategori fas). Oryantal dans ve tasvip ifadeleri çıkarıldı; Burak Tur kalitesiyle ibaresi yok. Haritaya dubai/rusya/ozbekistan rotaları. Bölüm 2 merkez portre karakter-portre-2 (gözleri açık). sw fastur-v35.
