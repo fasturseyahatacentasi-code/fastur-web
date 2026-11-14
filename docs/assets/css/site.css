@@ -804,3 +804,9 @@ html[data-mod="gunduz"] #yorunge .etiket{color:var(--turkuaz)}
 .makale h2{margin-top:1.6em}
 .makale ul{padding-left:1.2em}.makale li{margin:.35em 0;line-height:1.7}
 html[data-mod="gunduz"] .bolum.kum > .wrap > h2{color:#0d2b4a}
+/* Tur fotoğraf galerisi (14.11.2026) */
+.tur-galeri .galeri-izgara{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tur-galeri figure{margin:0;border-radius:14px;overflow:hidden;position:relative;background:rgba(255,255,255,.04)}
+.tur-galeri img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+.tur-galeri figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 8px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+@media(max-width:560px){.tur-galeri .galeri-izgara{grid-template-columns:1fr}}

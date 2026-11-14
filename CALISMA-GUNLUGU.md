@@ -83,3 +83,5 @@
 - 14.11.2026 · Claude · Mısır turları (96-100) kapağı AROYA deniz gemisi yerine piramitli Kahire görseli (assets/img/genel/bolge-afrika.jpg), Hilal Hanım onayı. sw fastur-v34.
 
 - 14.11.2026 · Claude · 5 Burak Tur programı eklendi (Hilal Hanım onayı): Büyük Fas (118-119), Dubai ve Abu Dabi (120, 4 gün PDF gibi), Rusya Lapland (121-123, 6 gün PDF gibi), Büyük Özbekistan (124-149, vizesiz), Fas ve İspanya Endülüs (150-151, kategori fas). Oryantal dans ve tasvip ifadeleri çıkarıldı; Burak Tur kalitesiyle ibaresi yok. Haritaya dubai/rusya/ozbekistan rotaları. Bölüm 2 merkez portre karakter-portre-2 (gözleri açık). sw fastur-v35.
+
+- 14.11.2026 · Claude · Fas'ın Renkleri (91) tur sayfasına fotoğraf galerisi: 4 görsel firmanın kendi sitesi fasturizm.com (Egzotik Fas sayfası) kaynaklı, Hilal Hanım izniyle; Fas Turizm logosu kırpıldı, fiyat/vaat yazılı kapak ve düşük çözünürlüklü görsel alınmadı. Dosyalar assets/img/turlar/fas-renkleri-*.jpg. Yeni isteğe bağlı tur alanı galeri[{src,alt}] (uret_turlar.galeri_html). Turun diğer bilgileri değişmedi. sw fastur-v36.

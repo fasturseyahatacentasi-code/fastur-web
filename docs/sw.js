@@ -1,7 +1,7 @@
 /* Fas Tur service worker. Çevrimdışı: ana sayfa, turlar listesi, umre rehberi, sihirbaz ve ziyaret edilen sayfalar.
    Video ve ses ÖNBELLEĞE ALINMAZ. Sürüm değişince eski önbellekler silinir (SURUM'u artırın).
    Yollar scope'a göredir: github.io alt klasöründe ve kendi alan adında aynı çalışır. */
-var SURUM = 'fastur-v35';
+var SURUM = 'fastur-v36';
 var KOK = self.registration.scope;               // örn. https://x.github.io/fastur-web/  ya da  https://www.fastur.com.tr/
 var CEKIRDEK = ['', 'turlar/', 'umre-rehberi/', 'tur-bul/', 'talep/', 'assets/css/site.css', 'assets/css/tur-bul.css',
   'assets/js/ozet.js', 'assets/js/site.js', 'assets/js/dil.js', 'assets/js/tur-bul.js', 'assets/js/umre-rehberi.js', 'assets/js/pwa.js', 'assets/js/pano.js', 'assets/js/zemin.js', 'assets/js/harita.js', 'assets/js/katman.js', 'assets/js/derinlik.js', 'assets/js/takvim.js', 'assets/js/muzik.js', 'assets/js/ucus.js', 'assets/js/sehirler.js', 'assets/js/tur-harita.js', 'assets/img/harita/harita-veri.js',

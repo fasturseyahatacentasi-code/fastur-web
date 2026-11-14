@@ -298,6 +298,15 @@ def yerel_tel(g):   # "+90 531 765 99 69" -> "0531 765 99 69"
     return '0' + g[4:] if g.startswith('+90 ') else g
 
 
+def galeri_html(t, kok):
+    # İsteğe bağlı fotoğraf galerisi (14.11.2026): veri.js tur kaydında "galeri": [{"src": "assets/img/...", "alt": "..."}]
+    g = t.get('galeri') or []
+    if not g:
+        return ''
+    ogeler = ''.join(f'<figure><img src="{kok}{e(x["src"])}" alt="{e(x.get("alt", ""))}" loading="lazy" width="800" height="500"><figcaption>{e(x.get("alt", ""))}</figcaption></figure>' for x in g)
+    return f'<section class="kutu bolum-ic tur-galeri"><h2>Fotoğraflar</h2><div class="galeri-izgara">{ogeler}</div></section>'
+
+
 def detay_sayfasi(V, t, kats, kok):
     S = V['site']
     aktif = aktif_mi(t)
@@ -365,6 +374,7 @@ def detay_sayfasi(V, t, kats, kok):
 <section class="kutu bolum-ic harita-kutu" data-tur-harita data-guzergah="{e(t.get('guzergah') or '')}" hidden><h2>Rota haritası</h2><p class="harita-not">Şehir etiketine dokunun; programın o günü açılsın.</p><div class="harita-sahne"><canvas aria-hidden="true"></canvas><div class="etiketler"></div></div></section>
 {fiyatlar}
 <section class="bolum-ic program"><h2>Tur programı</h2><p data-program-notu hidden class="harita-not"></p>{program_html(t.get('program'))}</section>
+{galeri_html(t, kok)}
 {dh}
 </div>{yan}</div>
 {benzer_html}'''

@@ -161,6 +161,7 @@ window.FT = {
       "dahil": ["Air Arabia ile İstanbul (SAW) – Kazablanka gidiş-dönüş ekonomi sınıfı uçak bileti ve vergileri, havalimanı vergileri", "Havalimanı – otel – havalimanı transferleri", "1 gece Fes ve 3 gece Marakeş'te 3 veya 4 yıldızlı otelde konaklama, kahvaltı ve akşam yemeği", "Rabat, Meknes, Fes (panoramik) ve Kazablanka şehir turları", "Türkçe rehberlik ve yerel rehberlik", "Seyahat sağlık sigortası"],
       "haric": ["Diğer şehirlerden İstanbul'a iç hat bağlantısı", "Yurt dışı çıkış harcı", "Öğle yemekleri ve yemeklerdeki içecekler, mola içecekleri", "Otel ekstraları, turist şehir vergileri", "Müze ve ören yeri girişleri (Hassan II Camii girişi dahil)", "Şoför bahşişi: kişi başı günlük 1 €", "Ekstra turlar: Fes Medina turu 30 €; Majorelle Bahçesi, Bahia Sarayı ve Marakeş Medinası 85 €; Essaouira, Argan Bahçeleri ve Atlas Okyanusu 80 €; Chez Ali Fantasia Show 75 €"],
       "gorsel": "assets/img/turlar/tur_69368d72d7a21.jpg",
+      "galeri": [{"src": "assets/img/turlar/fas-renkleri-kazablanka.jpg", "alt": "Kazablanka · 2. Hasan Camii"}, {"src": "assets/img/turlar/fas-renkleri-rabat.jpg", "alt": "Rabat · Udaya Kalesi"}, {"src": "assets/img/turlar/fas-renkleri-meknes.jpg", "alt": "Meknes · Bab Mansour"}, {"src": "assets/img/turlar/fas-renkleri-fes.jpg", "alt": "Fes · Medina ve Karaviyyin"}],
       "aktif": true,
       "teyit": "firma teyitli (28.10.2026)",
       "eskiAdres": ""
