@@ -48,8 +48,15 @@ def yaz(p,icerik): ut.yaz(p,icerik)
 # ---------------- ana sayfa
 UMRE=site.get('umreGoster',True)   # Umre şimdilik gizli (Hilal Hanım 13.11.2026); kayıtlar duruyor
 GIZLI_KAT=ut.gizli_kat(V)
-ust_kat=''.join(f'<a href="turlar/{s}/">{a}</a>' for s,a in ([('5-yildizli-umre-turlari','Umre')] if UMRE else [])+[('fas','Fas'),('misir','Mısır'),('avrupa','Avrupa'),('orta-ve-uzak-asya','Asya'),('cruise','Cruise'),('yurtici-turlar','Yurtiçi')])
-kopt=''.join(f'<option value="{s}">{a}</option>' for s,a,_ in CAT if s not in GIZLI_KAT)
+# Hilal Hanım 14.11.2026: yalnız turu olan kategoriler görünür (Avrupa/Asya/Cruise/Yurtiçi gibi boş başlıklar yok); veri.js'ten otomatik.
+# Yeni kategoride tur eklenince build_static.py + uret_turlar.py çalıştırılınca kendiliğinden gelir.
+_SAY={}
+for _t in V['turlar']:
+    if _t.get('aktif'): _SAY[_t['kategori']]=_SAY.get(_t['kategori'],0)+1
+DOLU=[(k['slug'],k['ad']) for k in kats if _SAY.get(k['slug']) and k['slug'] not in ut.gizli_kat(V)]
+IKON={'fas':'🕌','misir':'🏺','urdun':'🏜️','bosna-hersek':'🌉','vietnam':'🛶','hindistan':'🛕','japonya':'🗻','malezya':'🌴','guney-kore':'🏯','dubai':'🏙️','yurtici-turlar':'🏞️','cruise':'🚢'}
+ust_kat=''.join(f'<a href="turlar/{s}/">{a}</a>' for s,a in DOLU)
+kopt=''.join(f'<option value="{s}">{a}</option>' for s,a in DOLU)   # yalnız turu olan kategoriler
 bolge=[('5-yildizli-umre-turlari','Umre','umre'),('fas','Fas','fas'),('avrupa','Avrupa','avrupa'),('orta-ve-uzak-asya','Orta ve Uzak Asya','asya'),('yurtici-turlar','Yurtiçi Turlar','yurtici'),('afrika','Afrika','afrika')]
 bolge_html=''.join(f'<a class="bolge" href="turlar/{s}/"><img src="assets/img/genel/bolge-{g}.jpg" alt="" loading="lazy" width="480" height="360"><div class="ic"><h3>{a}</h3><span data-sayi-kat="{s}">Turları gör →</span></div></a>' for s,a,g in bolge)
 def haber_kart(h,kk):
@@ -57,7 +64,7 @@ def haber_kart(h,kk):
 son_h=sorted(haberler,key=lambda h:h['tarih'],reverse=True)[:3]
 yor_html=''.join(f'<figure class="yorum" style="margin:0"><div class="yildiz" aria-label="5 yıldız">★★★★★</div><h3>{html.escape(y["baslik"])}</h3><p>{html.escape(y["metin"])}</p><div class="kim">{html.escape(y["ad"])} · {html.escape(y["tur"])}</div></figure>' for y in yorumlar)
 ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/okyayturizm/"]},ensure_ascii=False)
-ORB=([('5-yildizli-umre-turlari','Umre','🕋')] if UMRE else [])+[('fas','Fas','🕌'),('misir','Mısır','🏺'),('avrupa','Avrupa','🏰'),('orta-ve-uzak-asya','Asya','🗻'),('cruise','Cruise','🚢'),('afrika','Afrika','🦁'),('yurtici-turlar','Yurtiçi','🏞️')]
+ORB=[(s,a,IKON.get(s,'✈️')) for s,a in DOLU]
 uydu=''.join(f'<div class="kol" style="--a:{round(i*360/len(ORB),2)}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px"><i>{ic_}</i>{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
 uydu=uydu.replace('<div class="uydu"><a','<div class="uydu"><a')
 seritler=''.join(f'<a href="turlar/{s_}/"><span class="ik">{ic_}</span>{ad_}</a>' for s_,ad_,ic_ in ORB)

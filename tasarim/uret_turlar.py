@@ -213,7 +213,8 @@ def liste_govde(V, turlar, kok, kategori=None):
     kats = {k['slug']: k['ad'] for k in V['kategoriler']}
     sirali = sorted(turlar, key=lambda t: t.get('baslangic') or '', reverse=True)
     kartlar = '\n'.join(tur_karti(t, kats.get(t['kategori'], ''), kok) for t in sirali)
-    secenek = ''.join(f'<option value="{e(k["slug"])}"{" selected" if kategori == k["slug"] else ""}>{e(k["ad"])}</option>' for k in gorunur_kat(V))
+    secenek = ''.join(f'<option value="{e(k["slug"])}"{" selected" if kategori == k["slug"] else ""}>{e(k["ad"])}</option>' for k in gorunur_kat(V)
+                      if any(t['kategori'] == k['slug'] for t in V['turlar']) or kategori == k['slug'])   # turu olmayan başlık listelenmez (14.11.2026)
     aktif_say = sum(1 for t in turlar if aktif_mi(t))
     if aktif_say == 0:
         bilgi = ('<div class="not-kutu"><strong>Yeni dönem tarihleri için bizi arayın.</strong> '

@@ -67,3 +67,5 @@
 - 14.11.2026 · Claude · HATA DÜZELTME: derinlik.js boş arka katmana bos sınıfı veriyordu; site.css .bos (boş liste kutusu) gündüz modunda koyu lacivert boyadığı için telefonda bölümler koyu, yazılar okunmaz oluyordu. Sınıf dp-bos yapıldı. Telefonda Okay kaydırınca soldurulmuyor. Panel: siteye aktarım hatırlatıcısı (ayarlar/aktarim imzası), aktarım betiği panel/aktar.py (depoya girmez). sw fastur-v24.
 
 - 14.11.2026 · Claude · Telefonda eski stil dosyası + yeni sayfa karışması: sw.js stil/kod için önce ağ; tüm HTML css/js adreslerine ?v=<içerik özeti> (uret_turlar.surum_damgala, build_static sonunda da çağrılır). sw fastur-v25.
+
+- 14.11.2026 · Claude · Ana sayfa Bölüm 2 gezegenleri, hero hızlı düğmeleri ve kategori seçicileri yalnız turu olan kategorilerden otomatik (build_static DOLU). Avrupa/Asya/Cruise/Yurtiçi/Afrika başlıkları kalktı. HATA: .kol kolları üst üste binip yalnız son gezegeni tıklanır bırakıyordu; pointer-events düzeltildi. Kategori/tur değişince build_static.py + uret_turlar.py ikisi de çalıştırılmalı. sw fastur-v26.
