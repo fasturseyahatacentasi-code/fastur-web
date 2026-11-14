@@ -811,3 +811,7 @@ html[data-mod="gunduz"] .bolum.kum > .wrap > h2{color:#0d2b4a}
 .tur-galeri figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 8px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
 @media(max-width:560px){.tur-galeri .galeri-izgara{grid-template-columns:1fr}}
 .alt-bilgi a.ab-satir{display:grid;grid-template-columns:86px 1fr;gap:8px;align-items:baseline}.alt-bilgi a.ab-satir b{font-weight:700;opacity:.75;font-size:.92em}.alt-bilgi a.ab-satir span{white-space:nowrap}
+/* 14.11.2026 Hilal Hanım: gündüz modunda Bölüm 2 (koyu harita) -> açık bölüm arasındaki keskin çizgi yerine şafak geçişi */
+html[data-mod="gunduz"] .koyu-bolum{padding-bottom:calc(var(--bolum-alt, 0px) + 140px)}
+html[data-mod="gunduz"] .koyu-bolum::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:min(380px,45%);z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,11,36,0) 0%,rgba(16,32,68,.75) 22%,#2b4c80 45%,#7d9fc8 64%,#e9c9a6 78%,#cfe3f3 90%,#b6dcf6 100%)}
