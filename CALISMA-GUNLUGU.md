@@ -69,3 +69,5 @@
 - 14.11.2026 · Claude · Telefonda eski stil dosyası + yeni sayfa karışması: sw.js stil/kod için önce ağ; tüm HTML css/js adreslerine ?v=<içerik özeti> (uret_turlar.surum_damgala, build_static sonunda da çağrılır). sw fastur-v25.
 
 - 14.11.2026 · Claude · Ana sayfa Bölüm 2 gezegenleri, hero hızlı düğmeleri ve kategori seçicileri yalnız turu olan kategorilerden otomatik (build_static DOLU). Avrupa/Asya/Cruise/Yurtiçi/Afrika başlıkları kalktı. HATA: .kol kolları üst üste binip yalnız son gezegeni tıklanır bırakıyordu; pointer-events düzeltildi. Kategori/tur değişince build_static.py + uret_turlar.py ikisi de çalıştırılmalı. sw fastur-v26.
+
+- 14.11.2026 · Claude · Müzik: Umre sükûneti ve Cruise ufku parçaları veri.js muzik listesinden çıkarıldı (Hilal Hanım). Kalan: Fas gecesi, Akdeniz esintisi, Asya pazarı. sw fastur-v27.
