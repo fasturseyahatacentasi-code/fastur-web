@@ -87,3 +87,5 @@
 - 14.11.2026 · Claude · Fas'ın Renkleri (91) tur sayfasına fotoğraf galerisi: 4 görsel firmanın kendi sitesi fasturizm.com (Egzotik Fas sayfası) kaynaklı, Hilal Hanım izniyle; Fas Turizm logosu kırpıldı, fiyat/vaat yazılı kapak ve düşük çözünürlüklü görsel alınmadı. Dosyalar assets/img/turlar/fas-renkleri-*.jpg. Yeni isteğe bağlı tur alanı galeri[{src,alt}] (uret_turlar.galeri_html). Turun diğer bilgileri değişmedi. sw fastur-v36.
 
 - 14.11.2026 · Claude · Alt bilgi iletişim: her satır etiketli (Telefon 0531 · WhatsApp 0531 · WhatsApp 0532 · E-posta); etiketsiz WhatsApp bağlantısı kaldırıldı (site.js). sw fastur-v37.
+
+- 14.11.2026 · Claude · KARAR: fasturizm.com Fasin Renkleri Turu - Tanca ve Safsavan Dahil siteye EKLENMEYECEK (Hilal Hanim).
