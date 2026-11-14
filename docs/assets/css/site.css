@@ -786,3 +786,11 @@ img, video, .slayt, .kt, .dp-gorsel { -webkit-user-drag: none; user-select: none
 @media(min-width:901px){.kahraman .wrap>.rehber-hero{pointer-events:none}.kahraman .rehber-hero .balon.ust{pointer-events:auto}}
 @media(min-width:901px){.kahraman .rehber-hero .balon.ust{right:auto;left:-62%;top:-11vh;width:280px}}
 @media(min-width:901px){.kahraman .rehber-hero .balon.ust{top:max(-11vh,-110px)}}
+/* 14.11.2026 Hilal Hanım: Bölüm 2 arka planı hero'daki koyu, damarlı dünya haritası (harita.js [data-harita-zemin]); gündüz modunda da koyu */
+.koyu-bolum{position:relative;isolation:isolate}
+.harita-zemin{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block}
+html[data-mod="gunduz"] .koyu-bolum .bolum-baslik h2{color:#fff}
+html[data-mod="gunduz"] .koyu-bolum .etiket{color:var(--turkuaz)}
+html[data-mod="gunduz"] .koyu-bolum .soluk-p{color:#b9cbe0}
+html[data-mod="gunduz"] .koyu-bolum .uydu a{color:#fff}
+html[data-mod="gunduz"] #yorunge .etiket{color:var(--turkuaz)}

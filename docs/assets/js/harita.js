@@ -9,6 +9,51 @@
    Şehir etiketleri GERÇEK bağlantıdır (o şehrin geçtiği turlar). prefers-reduced-motion: animasyonsuz son kare.
    Harici kütüphane / tile / API YOK.
    ============================================================ */
+/* Bölüm 2 koyu harita zemini (Hilal Hanım 14.11.2026): hero'daki noktalı dünya + kıyı "damarları",
+   İstanbul'dan turu olan rotalara altın uçuş yayları. Durağan çizim (animasyon yok), boyut değişince yeniden çizilir. */
+(function () {
+  'use strict';
+  var cv = document.querySelector('[data-harita-zemin]'), HM = window.FT_HARITA, FT = window.FT || {};
+  if (!cv || !HM) return;
+  var cx = cv.getContext('2d'), rad = Math.PI / 180;
+  function merc(lat) { return Math.log(Math.tan(Math.PI / 4 + lat * rad / 2)); }
+  var turlu = {}; (FT.turlar || []).forEach(function (t) { turlu[t.kategori] = 1; });
+  var RT = (FT.haritaRotalari || []).filter(function (r) { return turlu[r.kategori]; });
+  function yay(a, b, n) {
+    var la1 = a.enlem * rad, lo1 = a.boylam * rad, la2 = b.enlem * rad, lo2 = b.boylam * rad, out = [];
+    var d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((la2 - la1) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin((lo2 - lo1) / 2), 2)));
+    for (var i = 0; i <= n; i++) { var f = i / n, A = Math.sin((1 - f) * d) / Math.sin(d), B = Math.sin(f * d) / Math.sin(d);
+      var x = A * Math.cos(la1) * Math.cos(lo1) + B * Math.cos(la2) * Math.cos(lo2), y = A * Math.cos(la1) * Math.sin(lo1) + B * Math.cos(la2) * Math.sin(lo2), z = A * Math.sin(la1) + B * Math.sin(la2);
+      out.push([Math.atan2(z, Math.sqrt(x * x + y * y)) / rad, Math.atan2(y, x) / rad]); }
+    return out;
+  }
+  function ciz() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5), w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return;
+    var W = cv.width = Math.round(w * dpr), H = cv.height = Math.round(h * dpr);
+    var mobil = w < 760, lon0 = mobil ? 26 : 22, lat0 = mobil ? 34 : 33, span = mobil ? 44 : 78, S = W / (span * rad);
+    function P(lat, lon) { return [W * .5 + (lon - lon0) * rad * S, H * .5 - (merc(lat) - merc(lat0)) * S]; }
+    var g = cx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#070b24'); g.addColorStop(.5, '#0a1430'); g.addColorStop(1, '#070b24');
+    cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+    cx.strokeStyle = 'rgba(120,200,255,.32)'; cx.lineWidth = dpr * .9;
+    HM.coast.forEach(function (c) { cx.beginPath(); for (var i = 0; i < c.length; i++) { var q = P(c[i][1], c[i][0]); i ? cx.lineTo(q[0], q[1]) : cx.moveTo(q[0], q[1]); } cx.stroke(); });
+    var px = Math.max(1.1 * dpr, Math.min(2.2 * dpr, .6 * rad * S * .3));
+    cx.fillStyle = 'rgba(140,205,255,.38)';
+    HM.coarse.forEach(function (p) { var q = P(p[1], p[0]); if (q[0] > -4 && q[0] < W + 4 && q[1] > -4 && q[1] < H + 4) cx.fillRect(q[0] - px / 2, q[1] - px / 2, px, px); });
+    var ist = { enlem: 41.01, boylam: 28.98 }, io = P(ist.enlem, ist.boylam);
+    RT.forEach(function (r) {
+      var v = r.ucus && r.ucus.varis; if (!v) return; var A = yay(ist, v, 60);
+      [[6, .1], [1.6, .75]].forEach(function (s) { cx.strokeStyle = 'rgba(255,190,100,' + s[1] + ')'; cx.lineWidth = s[0] * dpr; cx.lineCap = 'round'; cx.beginPath();
+        A.forEach(function (a, i) { var q = P(a[0], a[1]); i ? cx.lineTo(q[0], q[1]) : cx.moveTo(q[0], q[1]); }); cx.stroke(); });
+      var e = P(v.enlem, v.boylam); cx.fillStyle = 'rgba(255,230,170,.9)'; cx.beginPath(); cx.arc(e[0], e[1], 3.2 * dpr, 0, 6.283); cx.fill();
+    });
+    var gr = cx.createRadialGradient(io[0], io[1], 0, io[0], io[1], 26 * dpr); gr.addColorStop(0, 'rgba(255,230,170,.95)'); gr.addColorStop(1, 'rgba(255,170,60,0)');
+    cx.fillStyle = gr; cx.beginPath(); cx.arc(io[0], io[1], 26 * dpr, 0, 6.283); cx.fill();
+    var k = cx.createLinearGradient(0, 0, 0, H); k.addColorStop(0, 'rgba(7,11,36,.85)'); k.addColorStop(.18, 'rgba(7,11,36,0)'); k.addColorStop(.82, 'rgba(7,11,36,0)'); k.addColorStop(1, 'rgba(7,11,36,.85)');
+    cx.fillStyle = k; cx.fillRect(0, 0, W, H);
+  }
+  ciz(); var zz; addEventListener('resize', function () { clearTimeout(zz); zz = setTimeout(ciz, 150); });
+})();
+
 (function () {
   'use strict';
   var FT = window.FT || {}, HM = window.FT_HARITA, host = document.querySelector('[data-harita]');

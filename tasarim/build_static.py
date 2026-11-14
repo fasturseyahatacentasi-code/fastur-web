@@ -110,7 +110,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="rehber-hero"><div class="balon ust"><small data-rehber-ad>Yol arkadaşınız</small><p data-hikaye="harita">{html.escape(hikaye[1]['cumle'])}</p><div class="rota-sec" data-rota-sec role="group" aria-label="Haritada rota seçin" hidden></div></div>
 <div class="sahne-kisi"><img src="{IMG}karakter-tam-boy.png" alt="Fas Tur yol arkadaşı" width="560" height="1632" fetchpriority="high"><i class="golge" aria-hidden="true"></i></div></div></div>
 <span class="kaydir">Kaydır · yola çık</span></section>
-<section class="bolum" id="yorunge"{durak()}><div class="wrap">
+<section class="bolum koyu-bolum" id="yorunge"{durak()}><canvas class="harita-zemin" data-harita-zemin aria-hidden="true"></canvas><div class="wrap">
 <div class="bolum-baslik"><div><span class="etiket" data-bolum="yorunge">Bölüm 2 · Rotanı seç</span><h2>Hangi <em>rotaya</em> çıkıyoruz?</h2></div></div>
 <div class="yorunge-duzen"><div><div class="sistem" aria-label="Destinasyonlar">
 <div class="halka"></div><div class="halka ic"></div><div class="yorunge">{uydu}</div>
