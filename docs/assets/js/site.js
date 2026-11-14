@@ -10,13 +10,14 @@
   var S = FT.site || {};
   var B = document.body;
   var K = B.getAttribute('data-kok') || './';
-  var BUGUN = new Date().toISOString().slice(0, 10);
+  var _b = new Date(), BUGUN = _b.getFullYear() + '-' + String(_b.getMonth() + 1).padStart(2, '0') + '-' + String(_b.getDate()).padStart(2, '0');   /* yerel tarih (Türkiye) */
   var KAT = {};
   (FT.kategoriler || []).forEach(function (k) { KAT[k.slug] = k; });
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function tarihTr(i) { if (!i) return ''; var p = i.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; }
   function wa(metin) { return 'https://wa.me/' + (S.whatsapp || '') + (metin ? '?text=' + encodeURIComponent(metin) : ''); }
-  function aktif(t) { return !!t.aktif && (t.bitis || '9999') >= BUGUN; }
+  /* Hilal Hanım 14.11.2026: tarihli tur KALKIŞ GÜNÜ geçince listelerden çıkar (kalkış günü dahil görünür); haftalık (tekrar) turlar bitişe bakar */
+  function aktif(t) { return !!t.aktif && (t.baslangic ? t.baslangic >= BUGUN : (t.bitis || '9999') >= BUGUN); }
 
   var WA_SVG = '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.38c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.58-1.5-1.85-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.46-.84-2-.22-.52-.44-.45-.61-.45-.16 0-.34-.02-.52-.02s-.48.07-.73.34c-.25.27-.96.94-.96 2.29 0 1.35.98 2.65 1.12 2.83.14.18 1.93 2.94 4.68 4.12.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.6-.65 1.83-1.27.23-.62.23-1.15.16-1.27-.07-.12-.25-.18-.52-.32z"/><path d="M26.7 5.3C23.9 2.5 20.1 1 16 1 8.3 1 2 7.3 2 15c0 2.4.6 4.7 1.8 6.8L2 31l9.4-1.7c2 .9 4.2 1.4 6.6 1.4 7.7 0 14-6.3 14-14 0-4.1-1.6-7.9-4.3-10.7zM16 28c-2.2 0-4.3-.6-6.1-1.6l-.4-.2-5.5 1 1-5.4-.2-.4C3.6 19.6 3 17.4 3 15 3 8.4 8.4 3 15 3c3.2 0 6.2 1.3 8.5 3.5S27 10.8 27 14c0 6.6-5.4 12-11 12z"/></svg>';
 
@@ -98,6 +99,20 @@
   document.querySelectorAll('[data-sayi-kat]').forEach(function (e) {
     var k = KAT[e.getAttribute('data-sayi-kat')]; if (k && k.sayi) e.textContent = k.sayi + ' tur programı →';
   });
+
+  /* ---------- kalkışı geçmiş turlar (14.11.2026) ----------
+     Sayfalar üretildiği gün "Güncel" yazar; kalkış günü geçince ziyaretçinin tarayıcısında rozet kendiliğinden düzelir. */
+  [].forEach.call(document.querySelectorAll('.kart[data-tarih][data-aktif="1"]'), function (c) {
+    if (c.dataset.tarih && c.dataset.tarih < BUGUN) {
+      c.dataset.aktif = '0';
+      var r = c.querySelector('.arsiv.canli'); if (r) { r.classList.remove('canli'); r.textContent = 'Kalkış gerçekleşti'; }
+      var fy = c.querySelector('.fiyat'); if (fy) fy.innerHTML = '<small>Yeni tarihler için</small>bize ulaşın';
+    }
+  });
+  var kapakK = document.querySelector('.tur-kapak[data-kalkis]');
+  if (kapakK && kapakK.getAttribute('data-kalkis') && kapakK.getAttribute('data-kalkis') < BUGUN) {
+    [].forEach.call(kapakK.querySelectorAll('.rozet'), function (r) { if (r.textContent === 'Güncel') r.textContent = 'Kalkış gerçekleşti'; });
+  }
 
   /* ---------- tur filtresi ---------- */
   var kap = document.querySelector('[data-liste]');

@@ -13,10 +13,10 @@
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function BUYUK(s) { return String(s).toLocaleUpperCase('tr'); }
-  var BUGUN = new Date().toISOString().slice(0, 10), AY = ['OCAK', 'ŞUBAT', 'MART', 'NİSAN', 'MAYIS', 'HAZİRAN', 'TEMMUZ', 'AĞUSTOS', 'EYLÜL', 'EKİM', 'KASIM', 'ARALIK'];
+  var _b = new Date(), BUGUN = _b.getFullYear() + '-' + String(_b.getMonth() + 1).padStart(2, '0') + '-' + String(_b.getDate()).padStart(2, '0'), AY = ['OCAK', 'ŞUBAT', 'MART', 'NİSAN', 'MAYIS', 'HAZİRAN', 'TEMMUZ', 'AĞUSTOS', 'EYLÜL', 'EKİM', 'KASIM', 'ARALIK'];
 
   /* ---- kayan şerit metni ---- */
-  var sonraki = (FT.turlar || []).filter(function (t) { return t.aktif && (t.bitis || '9999') >= BUGUN; }).sort(function (a, b) { var x = a.baslangic || '9999', y = b.baslangic || '9999'; return x < y ? -1 : 1; })[0];   /* tarihli tur önce; tarihsiz (tekrar) sonra */
+  var sonraki = (FT.turlar || []).filter(function (t) { return t.aktif && (t.baslangic ? t.baslangic >= BUGUN : (t.bitis || '9999') >= BUGUN); }).sort(function (a, b) { var x = a.baslangic || '9999', y = b.baslangic || '9999'; return x < y ? -1 : 1; })[0];   /* tarihli tur önce; tarihsiz (tekrar) sonra */
   var kayanParca = '<b data-i18n="hud.siradaki">SIRADAKİ KALKIŞ</b> · ' + (sonraki ? esc((sonraki.baslangic ? Number(sonraki.baslangic.slice(8)) + ' ' + AY[Number(sonraki.baslangic.slice(5, 7)) - 1] : BUYUK(sonraki.tekrar || '')) + ' · ' + BUYUK(sonraki.ad)) : '<b data-i18n="hud.yakinda">YAKINDA</b>');
   var kayanHtml = '<span>' + kayanParca + '</span><span>' + kayanParca + '</span>';
 

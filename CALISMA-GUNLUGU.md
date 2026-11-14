@@ -89,3 +89,5 @@
 - 14.11.2026 · Claude · Alt bilgi iletişim: her satır etiketli (Telefon 0531 · WhatsApp 0531 · WhatsApp 0532 · E-posta); etiketsiz WhatsApp bağlantısı kaldırıldı (site.js). sw fastur-v37.
 
 - 14.11.2026 · Claude · KARAR: fasturizm.com Fasin Renkleri Turu - Tanca ve Safsavan Dahil siteye EKLENMEYECEK (Hilal Hanim).
+
+- 14.11.2026 · Claude · KURAL (Hilal Hanım): tarihli tur kalkış günü geçince listelerden çıkar (kalkış günü dahil görünür). Uygulama: takvim.js, pano.js (sıradaki kalkış), site.js (yaklaşan turlar, kart rozeti -> Kalkış gerçekleşti, tur sayfası rozeti, data-kalkis), tur-bul.js, uret_turlar.aktif_mi. Haftalık (tekrar) turlar bitişe bakar. Tarayıcı tarihleri yerel saatle. sw fastur-v38.

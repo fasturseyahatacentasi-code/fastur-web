@@ -26,7 +26,7 @@
     var d = DURUM[t.takvimDurum] ? t.takvimDurum : 'sorunuz', f = t.fiyat || '';
     var td = t.takvimTarihDurum || {};   /* tarihe özel durum (panelden aktarılır), örn. {"2026-11-19":"kapali"} */
     function ekle(g, b) { satirlar.push({ t: t, gidis: g, donus: b, durum: DURUM[td[g]] ? td[g] : d, fiyat: f }); }
-    if (t.baslangic) { if ((t.bitis || t.baslangic) >= BUGUN) ekle(t.baslangic, t.bitis || ''); return; }
+    if (t.baslangic) { if (t.baslangic >= BUGUN) ekle(t.baslangic, t.bitis || ''); return; }   /* kalkış günü geçince takvimden çıkar (14.11.2026) */
     if (t.tekrar && /hafta/i.test(t.tekrar)) {
       var m = null, low = t.tekrar.toLocaleLowerCase('tr');
       for (var i = 0; i < GUN.length; i++) if (low.indexOf(GUN[i][0]) > -1) { m = GUN[i][1]; break; }

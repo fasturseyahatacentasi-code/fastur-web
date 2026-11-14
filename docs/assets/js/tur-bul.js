@@ -6,7 +6,7 @@
   var kap = document.getElementById('tur-bul'); if (!kap) return;
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function tr(k, v) { var d = window.FT_DIL; return (d && d.t) ? d.t(k, v) : v; }   // dil.js varsa çeviri, yoksa Türkçe metin
-  var BUGUN = new Date().toISOString().slice(0, 10);
+  var _b = new Date(), BUGUN = _b.getFullYear() + '-' + String(_b.getMonth() + 1).padStart(2, '0') + '-' + String(_b.getDate()).padStart(2, '0');   /* yerel tarih */
   var KAT = {}; (FT.kategoriler || []).forEach(function (k) { KAT[k.slug] = k.ad; });
 
   /* "$1.942,50" -> {tutar:1942.5, para:'USD'} ; biçim bilinmiyorsa null */
@@ -46,7 +46,7 @@
   function puanla() {
     var gunAr = GUN.filter(function (g) { return g[0] === cv.gun; })[0] || GUN[3];
     return (FT.turlar || []).map(function (t) {
-      var p = 0, ok = true, f = fiyatCoz(t.fiyat), guncel = t.aktif && (t.bitis || '') >= BUGUN;
+      var p = 0, ok = true, f = fiyatCoz(t.fiyat), guncel = t.aktif && (t.baslangic ? t.baslangic >= BUGUN : (t.bitis || '9999') >= BUGUN);   /* kalkış günü geçince güncel değil */
       if (cv.gun && cv.gun !== 'fark') { if (t.gun >= gunAr[2] && t.gun <= gunAr[3]) p += 3; else if (Math.abs(t.gun - (t.gun < gunAr[2] ? gunAr[2] : gunAr[3])) <= 2) p += 1; else ok = false; }
       if (cv.butce !== null && cv.butce !== 'x') {
         if (f && f.para === cv.para) { var a = ARALIK[cv.para][+cv.butce]; if (f.tutar >= a[0] && f.tutar < a[1]) p += 3; else ok = false; } else ok = false;   // farklı para birimi karşılaştırılmaz (kur uydurma yok)

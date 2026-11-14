@@ -64,6 +64,9 @@ def para_tr(t, para):
 
 
 def aktif_mi(t):
+    # Hilal Hanım 14.11.2026: tarihli tur kalkış günü geçince güncel sayılmaz (kalkış günü dahil güncel); haftalık turlar bitişe bakar
+    if t.get('baslangic'):
+        return bool(t.get('aktif')) and t['baslangic'] >= BUGUN
     return bool(t.get('aktif')) and (t.get('bitis') or '9999') >= BUGUN
 
 
@@ -366,7 +369,7 @@ def detay_sayfasi(V, t, kats, kok):
         desc_parca.append(t['guzergah'])
     aciklama = (' · '.join(desc_parca) + '. Programı inceleyin, güncel tarih ve fiyat için Fas Tur\'a bilgi / rezervasyon talebi gönderin.')[:300]
     govde = f'''<!-- tur id: {t['id']} · eski adres: {e(t.get('eskiAdres', ''))} · teyit: {e(t.get('teyit', ''))} -->
-<section class="tur-kapak" data-durak data-giris><img src="{kok}{e(t['gorsel'])}" alt="" width="1100" height="620"><div class="wrap">
+<section class="tur-kapak" data-durak data-giris data-kalkis="{e(t.get('baslangic') or '')}"><img src="{kok}{e(t['gorsel'])}" alt="" width="1100" height="620"><div class="wrap">
 <nav class="kirinti" aria-label="Sayfa yolu"><a href="{kok}">Ana sayfa</a><span>/</span><a href="{kok}turlar/">Turlar</a><span>/</span><a href="{kok}turlar/{e(t['kategori'])}/">{e(kat_ad)}</a></nav>
 <h1>{e(t['ad'])}</h1><div class="rozetler">{rozetler}</div></div></section>
 <div class="wrap tur-duzen"><div>
