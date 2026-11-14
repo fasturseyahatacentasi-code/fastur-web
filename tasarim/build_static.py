@@ -73,6 +73,13 @@ def konus(i,img,pos='50% 12%',kapat=''):
     h=[x for x in hikaye if x['id']==i][0]
     return f'<div class="rehber-konus"><span class="foto" style="--p:{pos}"><img src="{IMG}{img}" alt="" loading="lazy" width="120" height="120"></span><div class="balon"><small data-rehber-ad>Yol arkadaşınız</small><p data-hikaye="{i}">{html.escape(h["cumle"])}</p></div></div>'
 KATLINK=lambda s_,a_,k: f'<a class="bolge" href="turlar/{s_}/"><img src="assets/img/genel/bolge-{k}.jpg" alt="" loading="lazy" width="480" height="360"><div class="ic"><h3>{a_}</h3><span data-sayi-kat="{s_}">Turları gör →</span></div></a>'
+# Hilal Hanım 14.11.2026: karşılığı (turu) olmayan başlık yok. Kart görseli o kategorinin ilk turunun kapağı.
+def TURKART(s_):
+    ad_=dict(DOLU).get(s_)
+    if not ad_: return ''
+    g_={'misir':'assets/img/genel/bolge-afrika.jpg'}.get(s_) or next((t['gorsel'] for t in V['turlar'] if t['kategori']==s_ and t.get('aktif')),'')   # Mısır: piramitli Kahire (tur kapağı deniz gemisi)
+    return f'<a class="bolge" href="turlar/{s_}/"><img src="{g_}" alt="" loading="lazy" width="480" height="360"><div class="ic"><h3>{ad_}</h3><span data-sayi-kat="{s_}">Turları gör →</span></div></a>'
+DUNYA_KART=''.join(TURKART(s_) for s_,_ in DOLU if s_ not in ('fas','misir'))
 umre_k=''.join(f'<a class="mini-kat" href="turlar/{s_}/"><b>{a_}</b><span data-sayi-kat="{s_}">Turları gör →</span></a>' for s_,a_ in [('ekonomik-umre-turlari','Ekonomik umre'),('yurume-mesafeli-umre-turlari','Yürüme mesafeli umre'),('5-yildizli-umre-turlari','5 yıldızlı umre')])
 # Hikâye durakları (zoom-through parallax, assets/js/derinlik.js): data-durak olan bölüm 3 derinlik katmanı alır.
 # data-arka = arka sahne görseli (veri.js > katmanlar.bolumler.<id>.arka doluysa o kullanılır); data-arka-mobil = telefonda daha hafif sürüm.
@@ -100,7 +107,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <select name="k" aria-label="Kategori"><option value="" data-i18n="ana.tumkat">Tüm kategoriler</option>{kopt}</select>
 <button class="btn btn-ana" type="submit" data-i18n="ana.ara">Tur ara</button></form>
 <div class="hizli">{ust_kat}</div></div>
-<div class="rehber-hero"><div class="balon ust"><small data-rehber-ad>Yol arkadaşınız</small><p data-hikaye="harita">{html.escape(hikaye[1]['cumle'])}</p></div>
+<div class="rehber-hero"><div class="balon ust"><small data-rehber-ad>Yol arkadaşınız</small><p data-hikaye="harita">{html.escape(hikaye[1]['cumle'])}</p><div class="rota-sec" data-rota-sec role="group" aria-label="Haritada rota seçin" hidden></div></div>
 <div class="sahne-kisi"><img src="{IMG}karakter-tam-boy.png" alt="Fas Tur yol arkadaşı" width="560" height="1632" fetchpriority="high"><i class="golge" aria-hidden="true"></i></div></div></div>
 <span class="kaydir">Kaydır · yola çık</span></section>
 <section class="bolum" id="yorunge"{durak()}><div class="wrap">
@@ -125,12 +132,12 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <section class="bolum kum" id="fas" data-tema="kizil"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap">
 <div class="bolum-baslik"><div><span class="etiket" data-bolum="fas">Bölüm 4 · Fas ve Kuzey Afrika</span><h2>Fas ve <em>Kuzey Afrika</em></h2></div></div>
 {konus('fas','karakter-ifade-4.png','50% 18%')}
-<div class="izgara g2" style="margin-top:26px">{KATLINK('fas','Fas','fas')}{KATLINK('afrika','Afrika','afrika')}</div>
+<div class="izgara g2" style="margin-top:26px">{KATLINK('fas','Fas','fas')}{TURKART('misir')}</div>
 </div></section>
 <section class="bolum" id="dunya" data-tema="turkuaz"{durak(G+'hero-avrupa.jpg',G+'bolge-avrupa.jpg')}><div class="wrap">
 <div class="bolum-baslik"><div><span class="etiket" data-bolum="dunya">Bölüm 5 · Dünya rotaları</span><h2>Dünya <em>rotaları</em></h2></div></div>
 {konus('dunya','karakter-portre-4.png','50% 14%')}
-<div class="izgara g3" style="margin-top:26px">{KATLINK('avrupa','Avrupa','avrupa')}{KATLINK('orta-ve-uzak-asya','Orta ve Uzak Asya','asya')}{KATLINK('yurtici-turlar','Yurtiçi Turlar','yurtici')}</div>
+<div class="izgara g3" style="margin-top:26px">{DUNYA_KART}</div>
 </div></section>
 <section class="bolum kum" id="rota-sesleri" data-tema="mor"{durak(G+'hero-asya.jpg',G+'bolge-asya.jpg')}><div class="wrap">
 <div class="bolum-baslik"><div><span class="etiket" data-bolum="muzik">Bölüm 6 · Rota sesleri</span><h2>Yolculuk <em>müzikleri</em></h2><p>Her rotanın bir ruh hâli var. Dinlemek için bir parçaya dokunun; ses yalnız siz başlatınca çalar.</p></div></div>

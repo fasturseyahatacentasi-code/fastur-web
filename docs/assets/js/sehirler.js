@@ -16,6 +16,10 @@ window.FT_SEHIRLER = {
     "singapur": [1.35, 103.82], "kuala lumpur": [3.14, 101.69], "penang": [5.41, 100.34], "melaka": [2.19, 102.25], "langkawi": [6.35, 99.80], "johor bahru": [1.49, 103.74],
     "moskova": [55.76, 37.62], "st petersburg": [59.93, 30.34], "murmansk": [68.97, 33.09],
     "saraybosna": [43.86, 18.41], "mostar": [43.34, 17.81], "travnik": [44.23, 17.67],
+    /* 14.11.2026 eklendi — şehir merkezi koordinatları, Wikipedia/GeoNames (2 ondalık) */
+    "amman": [31.95, 35.93], "ceras": [32.28, 35.90], "petra": [30.33, 35.44], "wadi rum": [29.58, 35.42], "akabe": [29.53, 35.01],
+    "hanoi": [21.03, 105.85], "ha long bay": [20.95, 107.08], "ho chi minh": [10.82, 106.63], "siem reap": [13.36, 103.86], "luang prabang": [19.89, 102.13], "bangkok": [13.76, 100.50],
+    "bali": [-8.65, 115.22],
     "atina": [37.98, 23.73], "rodos": [36.43, 28.22], "mikonos": [37.45, 25.33], "bodrum": [37.04, 27.43], "marmaris": [36.85, 28.27], "kas": [36.20, 29.64], "kusadasi": [37.86, 27.26],
     "buhara": [39.77, 64.42], "semerkand": [39.65, 66.96], "taskent": [41.30, 69.24], "hive": [41.38, 60.36], "dusanbe": [38.56, 68.79], "tirmiz": [37.22, 67.28], "denau": [38.27, 67.90], "kitob": [39.12, 66.82], "turkistan": [43.30, 68.27], "cimkent": [42.32, 69.59], "otrar": [42.85, 68.30],
     "tunus": [36.81, 10.18], "hammamet": [36.40, 10.62], "kayrevan": [35.68, 10.10], "susa": [35.83, 10.64], "el cem": [35.30, 10.71], "mehdiye": [35.50, 11.06], "kartaca": [36.85, 10.33], "manastir": [35.78, 10.83], "nabil": [36.45, 10.74],
