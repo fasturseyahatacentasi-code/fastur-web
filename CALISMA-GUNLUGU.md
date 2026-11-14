@@ -79,3 +79,5 @@
 - 14.11.2026 · Claude · Bölüm 2 (yorunge) arka planı koyu noktalı dünya haritası + İstanbul çıkışlı altın yaylar (harita.js [data-harita-zemin], .koyu-bolum; gündüz modunda da koyu). sw fastur-v32. Büyük Fas Turu tanımı hazır (2 kalkış), Hilal Hanım onayı bekliyor; veri.jse eklenmedi.
 
 - 14.11.2026 · Claude · Gezi notları: 5 yeni SEO rehber yazısı (Saraybosna-Mostar, Petra-Wadi Rum, Nil cruise, Hindistan Altın Üçgen, Hindiçin). Gövdeler tasarim/kaynak/yazilar/<slug>.html, veri.js haberler govdeDosya alanı; her yazıda BlogPosting + FAQPage JSON-LD. Fiyat/tarih/vize yok, tur sayfasına ve Tur Takvimine bağlantı. Derinlik: ataletli yavaş geçiş (YUMUSAK .06 masaüstü / .12 telefon), kemer aralığı uzatıldı. sw fastur-v33.
+
+- 14.11.2026 · Claude · Mısır turları (96-100) kapağı AROYA deniz gemisi yerine piramitli Kahire görseli (assets/img/genel/bolge-afrika.jpg), Hilal Hanım onayı. sw fastur-v34.
