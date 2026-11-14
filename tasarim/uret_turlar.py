@@ -379,6 +379,25 @@ def yaz(yol_rel, icerik):
         f.write(icerik)
 
 
+def surum_damgala():
+    """Tüm HTML'lerde assets/css|js bağlantılarına ?v=<içerik özeti> ekler (14.11.2026).
+    Telefon eski stil/kod dosyasını saklayıp yeni sayfayla karıştırmasın: dosya değişince adresi de değişir.
+    Elle yazılan sayfalarda yalnız bu ?v= parçası değişir. En sonda çalışır (ozet.js yazıldıktan sonra)."""
+    import hashlib, glob as _g
+    ozetler = {}
+    def ozet(rel):
+        if rel not in ozetler:
+            p = os.path.join(KOK, rel)
+            ozetler[rel] = hashlib.md5(open(p, 'rb').read()).hexdigest()[:8] if os.path.exists(p) else ''
+        return ozetler[rel]
+    desen = re.compile(r'((?:\.\./|\./)*)(assets/(?:css|js|img/harita)/[\w.-]+\.(?:css|js))(?:\?v=[0-9a-f]*)?(["\'])')
+    for p in _g.glob(os.path.join(KOK, '**', '*.html'), recursive=True):
+        s = open(p, encoding='utf-8', newline='').read()
+        y = desen.sub(lambda m: m.group(1) + m.group(2) + ('?v=' + ozet(m.group(2)) if ozet(m.group(2)) else '') + m.group(3), s)
+        if y != s:
+            open(p, 'w', encoding='utf-8', newline='').write(y)
+
+
 def main():
     V = veri_oku()
     S = V['site']
@@ -449,6 +468,7 @@ def main():
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' \
         + ''.join(f'  <url><loc>{e(alan + a)}</loc></url>\n' for a in adresler) + '</urlset>\n'
     yaz('sitemap.xml', xml)
+    surum_damgala()
 
     print(f'Tamam: {len(V["turlar"])} tur sayfası, {len(V["kategoriler"])} kategori sayfası, turlar/ listesi, sitemap.xml ({len(adresler)} adres).')
     for u in uyarilar:

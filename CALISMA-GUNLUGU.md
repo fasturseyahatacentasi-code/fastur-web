@@ -65,3 +65,5 @@
 - 13.11.2026 · Claude · Slogan Fas • Mısır • Balkanlar • Asya. Üst çubukta logo ve Rotalar büyüdü. Fas’ın Renkleri tüm haftalar Müsait (19.11 kapanışı denemeydi, kaldırıldı). Panele 26 site turu eklendi (turlar koleksiyonu, siteId/siteSlug alanı); panel Fas fiyatı 899 EUR. Eşleme: panel satista=Müsait, son=Sorunuz, kapali=Satışa kapandı. sw fastur-v23.
 
 - 14.11.2026 · Claude · HATA DÜZELTME: derinlik.js boş arka katmana bos sınıfı veriyordu; site.css .bos (boş liste kutusu) gündüz modunda koyu lacivert boyadığı için telefonda bölümler koyu, yazılar okunmaz oluyordu. Sınıf dp-bos yapıldı. Telefonda Okay kaydırınca soldurulmuyor. Panel: siteye aktarım hatırlatıcısı (ayarlar/aktarim imzası), aktarım betiği panel/aktar.py (depoya girmez). sw fastur-v24.
+
+- 14.11.2026 · Claude · Telefonda eski stil dosyası + yeni sayfa karışması: sw.js stil/kod için önce ağ; tüm HTML css/js adreslerine ?v=<içerik özeti> (uret_turlar.surum_damgala, build_static sonunda da çağrılır). sw fastur-v25.

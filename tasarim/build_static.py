@@ -292,4 +292,5 @@ yaz('404.html',k404)
 yaz('robots.txt',ROBOTS_METNI)   # 🔒 görsel/Okay koruması — Hilal Hanım 13.11.2026; yalnız onun açık talimatıyla gevşetilir
 yaz('.nojekyll','')
 yaz('assets/img/genel/favicon.svg','<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#12385a"/><circle cx="32" cy="32" r="22" fill="none" stroke="#f08a1c" stroke-width="4"/><path d="M32 8l5 20 20 4-20 4-5 20-5-20-20-4 20-4z" fill="#fff"/></svg>')
+ut.surum_damgala()   # css/js adreslerine ?v= (telefon eski dosyayi karistirmasin)
 print('statik sayfalar yazıldı')

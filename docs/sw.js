@@ -1,7 +1,7 @@
 /* Fas Tur service worker. Çevrimdışı: ana sayfa, turlar listesi, umre rehberi, sihirbaz ve ziyaret edilen sayfalar.
    Video ve ses ÖNBELLEĞE ALINMAZ. Sürüm değişince eski önbellekler silinir (SURUM'u artırın).
    Yollar scope'a göredir: github.io alt klasöründe ve kendi alan adında aynı çalışır. */
-var SURUM = 'fastur-v24';
+var SURUM = 'fastur-v25';
 var KOK = self.registration.scope;               // örn. https://x.github.io/fastur-web/  ya da  https://www.fastur.com.tr/
 var CEKIRDEK = ['', 'turlar/', 'umre-rehberi/', 'tur-bul/', 'talep/', 'assets/css/site.css', 'assets/css/tur-bul.css',
   'assets/js/ozet.js', 'assets/js/site.js', 'assets/js/dil.js', 'assets/js/tur-bul.js', 'assets/js/umre-rehberi.js', 'assets/js/pwa.js', 'assets/js/pano.js', 'assets/js/zemin.js', 'assets/js/harita.js', 'assets/js/katman.js', 'assets/js/derinlik.js', 'assets/js/takvim.js', 'assets/js/muzik.js', 'assets/js/ucus.js', 'assets/js/sehirler.js', 'assets/js/tur-harita.js', 'assets/img/harita/harita-veri.js',
@@ -25,7 +25,12 @@ self.addEventListener('fetch', function (e) {
       .catch(function () { return caches.match(r).then(function (m) { return m || caches.match(KOK) || Response.error(); }); }));
     return;
   }
-  e.respondWith(caches.match(r).then(function (m) {                                 // dosya: önbellekten ver, arkada tazele
+  if (r.destination === 'style' || r.destination === 'script' || /\.(css|js)$/i.test(u.pathname)) {   // stil/kod: önce ağ (14.11.2026: eski stil + yeni sayfa karışıp düzen bozuluyordu)
+    e.respondWith(fetch(r).then(function (res) { if (res && res.ok) { var k = res.clone(); caches.open(SURUM).then(function (c) { c.put(r, k); }); } return res; })
+      .catch(function () { return caches.match(r, { ignoreSearch: true }).then(function (m) { return m || Response.error(); }); }));
+    return;
+  }
+  e.respondWith(caches.match(r).then(function (m) {                                 // görsel vb.: önbellekten ver, arkada tazele
     var ag = fetch(r).then(function (res) { if (res && res.ok) { var k = res.clone(); caches.open(SURUM).then(function (c) { c.put(r, k); }); } return res; }).catch(function () { return m; });
     return m || ag;
   }));
