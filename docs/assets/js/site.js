@@ -36,8 +36,12 @@
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/fastur-logo.png" alt="Fas Tur" width="92" height="44"></span>' +
       '<p>' + esc(S.unvanTam) + '</p><p>' + esc(S.adres) + '</p></div>' +
-      '<div><h4>Yardıma mı ihtiyacınız var?</h4><a href="tel:' + esc(S.telefon) + '">' + esc(S.telefonGoster) + '</a>' + (S.whatsapp2 ? '<a href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp: ' + esc(S.telefon2Goster) + '</a>' : '') +
-      '<a href="' + wa('') + '" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:' + esc(S.eposta) + '">' + esc(S.eposta) + '</a>' +
+      /* 14.11.2026 Hilal Hanım: her satır etiketli ve tek numaralı (telefon ile WhatsApp karışmasın) */
+      '<div><h4>Yardıma mı ihtiyacınız var?</h4>' +
+      '<a class="ab-satir" href="tel:' + esc(S.telefon) + '"><b>Telefon</b><span>' + esc(S.telefonGoster) + '</span></a>' +
+      '<a class="ab-satir" href="' + wa('') + '" target="_blank" rel="noopener"><b>WhatsApp</b><span>' + esc(S.telefonGoster) + '</span></a>' +
+      (S.whatsapp2 ? '<a class="ab-satir" href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener"><b>WhatsApp</b><span>' + esc(S.telefon2Goster) + '</span></a>' : '') +
+      '<a class="ab-satir" href="mailto:' + esc(S.eposta) + '"><b>E-posta</b><span>' + esc(S.eposta) + '</span></a>' +
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
       '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / rezervasyon talebi</a></div>' +
       '<div><h4>Sözleşmeler ve KVKK</h4><a href="' + K + 'kisisel-verilerin-korunmasi/">Kişisel verilerin korunması</a><a href="' + K + 'gizlilik-sozlesmesi/">Gizlilik sözleşmesi</a><a href="' + K + 'kullanici-sozlesmesi/">Kullanıcı sözleşmesi</a><a href="' + K + 'tur-ve-otel-satis-sozlesmesi/">Tur ve otel satış sözleşmesi</a></div>' +
