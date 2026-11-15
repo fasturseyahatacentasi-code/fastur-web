@@ -258,7 +258,7 @@ def liste_govde(V, turlar, kok, kategori=None):
 # ---------------------------------------------------------------- Fas sahnesi (Hilal Hanım 15.11.2026)
 # Fas sayfasında turlar solda alt alta, cellabalı Okay sağda; zemin Hilal Hanım'ın avlu görseli (R11/R12).
 # Görsel /assets/img/karakter/ altında (robots.txt kapalı, GÖRSEL KORUMA geçerli).
-def fas_sahne(V, turlar, kok):
+def fas_sahne(V, turlar, kok, kat):
     sirali = sorted(turlar, key=lambda t: t.get('baslangic') or '')
     satirlar = []
     for t in sirali:
@@ -277,17 +277,20 @@ def fas_sahne(V, turlar, kok):
         satirlar.append(f'<a class="fs-tur" href="{kok}tur/{e(t["slug"])}/"><img src="{kok}{e(t["gorsel"])}" alt="" loading="lazy" width="70" height="52">'
                         f'<span class="fs-ic"><b>{e(t["ad"])}</b><small>{bilgi}</small>{rota}</span></a>')
     g = f'{kok}assets/img/karakter/okay-fas-avlu'
-    return f'''<div class="wrap"><section class="fas-sahne" aria-label="Fas turları">
+    kirinti = f'<a href="{kok}">Ana sayfa</a><span>/</span><a href="{kok}turlar/">Turlar</a><span>/</span>{e(kat["ad"])}'
+    return f'''<section class="fas-sahne" aria-label="{e(kat["ad"])} turları">
 <picture><source media="(max-width:760px)" type="image/webp" srcset="{g}-telefon-720.webp"><source media="(max-width:760px)" srcset="{g}-telefon-720.jpg">
-<source type="image/webp" srcset="{g}-1280.webp 1280w, {g}-1920.webp 1920w" sizes="(max-width:1240px) 100vw, 1180px">
+<source type="image/webp" srcset="{g}-1280.webp 1280w, {g}-1920.webp 1920w" sizes="100vw">
 <img src="{g}-1280.jpg" alt="" width="1280" height="720" fetchpriority="high"></picture>
 <div class="fs-liste">
+<nav class="kirinti" aria-label="Sayfa yolu">{kirinti}</nav>
+<h1>{e(kat["ad"])}</h1>
+<p class="fs-ozet">{e(kat.get("aciklama") or "")}</p>
 <span class="fs-balon">Hangisiyle yola çıkalım?</span>
 {chr(10).join(satirlar)}
 <a class="fs-tumu" href="{kok}talep/">Bilgi ve talep →</a>
 </div>
-</section></div>
-<div style="height:48px"></div>'''
+</section>'''
 
 
 # ---------------------------------------------------------------- tur detay
@@ -474,7 +477,7 @@ def main():
     for k in V['kategoriler']:
         ts = [t for t in V['turlar'] if t['kategori'] == k['slug']]
         if ts and k['slug'] == 'fas':
-            g = fas_sahne(V, ts, '../../')
+            g = None
         elif ts:
             g = liste_govde(V, ts, '../../', kategori=k['slug'])
         else:
@@ -482,7 +485,7 @@ def main():
                  f'Yeni programlar için bizi arayın ya da <a href="../../talep/">talep formunu</a> doldurun.<br><br><a class="btn btn-hat" href="../">Tüm turlara dön</a></div></div>')
         yaz(f'turlar/{k["slug"]}/index.html', kabuk(
             V, f'{k["ad"]} Turları', f'{k["ad"]} turları: programlar, güzergâhlar ve bilgi / rezervasyon talebi. Fas Tur.', '../../', f'turlar/{k["slug"]}/',
-            sayfa_ust(f'{k["ad"]}', k.get('aciklama') or f'{k["ad"]} kategorisindeki turlar.', [('Turlar', '../'), (k['ad'], None)], '../../', '' if k['slug'] == 'fas' else KAT_ARKA.get(k['slug'], '')) + g, sayfa='turlar', noindex=k['slug'] in gizli_kat(V)))
+            (fas_sahne(V, ts, '../../', k) if g is None else sayfa_ust(f'{k["ad"]}', k.get('aciklama') or f'{k["ad"]} kategorisindeki turlar.', [('Turlar', '../'), (k['ad'], None)], '../../', KAT_ARKA.get(k['slug'], '')) + g), sayfa='turlar', noindex=k['slug'] in gizli_kat(V)))
 
     # tur detayları
     for t in V['turlar']:

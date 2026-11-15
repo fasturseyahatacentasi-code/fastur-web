@@ -97,3 +97,4 @@
 
 - 15.11.2026 · Claude · KARAR (Hilal Hanım: site sürekli bozuluyor): önbellek görevlisi (service worker) KAPATILDI. sw.js kapatma sürümü (önbellekleri siler, kendini kaldırır, sayfayı taze yükler; fetch dinleyicisi yok). pwa.js artık kayıt yapmaz, eskisini kaldırır + tek seferlik yenileme. CLAUDE.md PWA maddeleri güncellendi; SURUM artırma kuralı kalktı. Güncel dosya garantisi ?v= içerik damgası.
 - 15.11.2026 · Claude: Fas kategori sayfası yeni düzen (Hilal Hanım): zemin Hilal Hanım'ın avlu görseli (R11 masaüstü / R12 telefon, `assets/img/karakter/okay-fas-avlu-*`), cellabalı Okay sağda, turlar solda alt alta; filtre kutusu Fas sayfasında yok. Kaynak `uret_turlar.py > fas_sahne`. Altın sis geçiş videosu kullanılmadı (Hilal Hanım: işi bozuyor).
+- 15.11.2026 · Claude: Fas sayfasında görsel tüm sayfayı kaplar (kenar boşluğu yok, açık modda da aynı); başlık ve sayfa yolu görselin üstünde (Hilal Hanım).
