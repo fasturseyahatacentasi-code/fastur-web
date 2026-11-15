@@ -10,6 +10,7 @@
 |---|---|---|---|---|
 | 12.11 · Claude | BİTTİ | tasarim/build_static.py, tasarim/uret_turlar.py, docs/index.html, docs/assets/js/derinlik.js (yeni), docs/assets/js/katman.js, docs/assets/css/site.css, docs/sw.js | ana sayfa zoom-through parallax · yayın onayı bekliyor |
 | 13.11 · Codex | BİTTİ | docs/assets/img/turlar/urdun-turu-kapak.jpg, docs/assets/img/turlar/vietnam-kambocya-laos-tayland-kapak.jpg | İki tur kapağı üretildi; 1600×900 JPEG |
+| 15.11 · Claude | BİTTİ | tasarim/uret_turlar.py, docs/assets/css/site.css, docs/turlar/fas/, docs/assets/img/karakter/okay-fas-avlu-* (+ üretici damgaları) | Fas sayfası: turlar solda, cellabalı Okay sağda (Hilal Hanım) |
 
 Örnek: `13.11 14:05 · Codex · ÇALIŞIYOR · docs/assets/css/site.css · tur kartı düzeni` → bitince `BİTTİ · site.css, docs/index.html`
 
@@ -95,3 +96,4 @@
 - 14.11.2026 · Claude · Gündüz modunda Bölüm 2 (koyu harita) ile Bölüm 3 arası keskin çizgi yerine şafak geçişi (.koyu-bolum::after gradyan; gece modunda değişiklik yok). sw fastur-v39.
 
 - 15.11.2026 · Claude · KARAR (Hilal Hanım: site sürekli bozuluyor): önbellek görevlisi (service worker) KAPATILDI. sw.js kapatma sürümü (önbellekleri siler, kendini kaldırır, sayfayı taze yükler; fetch dinleyicisi yok). pwa.js artık kayıt yapmaz, eskisini kaldırır + tek seferlik yenileme. CLAUDE.md PWA maddeleri güncellendi; SURUM artırma kuralı kalktı. Güncel dosya garantisi ?v= içerik damgası.
+- 15.11.2026 · Claude: Fas kategori sayfası yeni düzen (Hilal Hanım): zemin Hilal Hanım'ın avlu görseli (R11 masaüstü / R12 telefon, `assets/img/karakter/okay-fas-avlu-*`), cellabalı Okay sağda, turlar solda alt alta; filtre kutusu Fas sayfasında yok. Kaynak `uret_turlar.py > fas_sahne`. Altın sis geçiş videosu kullanılmadı (Hilal Hanım: işi bozuyor).

@@ -815,3 +815,22 @@ html[data-mod="gunduz"] .bolum.kum > .wrap > h2{color:#0d2b4a}
 html[data-mod="gunduz"] .koyu-bolum{padding-bottom:calc(var(--bolum-alt, 0px) + 140px)}
 html[data-mod="gunduz"] .koyu-bolum::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:min(380px,45%);z-index:-1;pointer-events:none;
   background:linear-gradient(180deg,rgba(7,11,36,0) 0%,rgba(16,32,68,.75) 22%,#2b4c80 45%,#7d9fc8 64%,#e9c9a6 78%,#cfe3f3 90%,#b6dcf6 100%)}
+/* 15.11.2026 Hilal Hanım: Fas sayfası — turlar solda alt alta, cellabalı Okay sağda (zemin: avlu görseli) */
+.fas-sahne{position:relative;isolation:isolate;display:flex;aspect-ratio:16/9;min-height:520px;border-radius:24px;overflow:hidden;background:#1a1006;margin-top:8px}
+.fas-sahne picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 40%;z-index:-2;pointer-events:none}
+.fas-sahne::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,6,0,.9) 0%,rgba(12,6,0,.72) 34%,rgba(12,6,0,.15) 52%,transparent 62%)}
+.fs-liste{width:min(48%,560px);min-width:0;padding:clamp(16px,2.4vw,28px);display:flex;flex-direction:column;gap:8px;color:#f6ead0;overflow-y:auto;scrollbar-width:thin}
+.fs-balon{align-self:flex-start;background:rgba(240,195,106,.14);border:1px solid rgba(240,195,106,.35);border-radius:14px 14px 14px 4px;padding:7px 12px;font-size:14px;margin-bottom:4px}
+.fs-tur{display:grid;grid-template-columns:70px minmax(0,1fr);gap:12px;align-items:center;flex:none;padding:7px 10px 7px 7px;border-radius:16px;background:rgba(255,248,235,.08);border:1px solid rgba(240,195,106,.22);color:#f6ead0;text-decoration:none;backdrop-filter:blur(6px);transition:background .2s,transform .2s}
+.fs-tur:hover,.fs-tur:focus-visible{background:rgba(255,248,235,.17);transform:translateX(3px)}
+.fs-tur img{width:70px;height:52px;object-fit:cover;border-radius:9px}
+.fs-ic{min-width:0}.fs-ic b{display:block;font-weight:700;font-size:15px;line-height:1.25}
+.fs-ic small{display:block;color:#d9c7a2;font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fs-ic .f{color:#f0c36a;font-weight:800}
+.fs-tumu{color:#f0c36a;font-weight:700;margin-top:4px;align-self:flex-start}
+@media(max-width:760px){
+ .fas-sahne{display:block;aspect-ratio:auto;min-height:0;padding-top:118%}
+ .fas-sahne picture img{height:auto;aspect-ratio:9/16;bottom:auto;object-position:50% 0}
+ .fas-sahne::before{background:linear-gradient(180deg,transparent 0%,transparent 34%,rgba(12,6,0,.85) 50%,rgba(12,6,0,.96) 100%)}
+ .fs-liste{width:auto;padding:16px}
+}
