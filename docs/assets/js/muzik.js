@@ -1,6 +1,8 @@
 /* ============================================================
-   FAS TUR — "Rota sesleri": tarayıcıda ÜRETİLEN ambient müzik (Web Audio) + mini oynatıcı
-   - Hiçbir hazır şarkı/kayıt yok; dosya yok, telif sorunu yok. Parçalar kodla (ölçek, pad, çalgı vuruşları, ritim) üretilir.
+   FAS TUR — "Rota sesleri": müzik kartları + mini oynatıcı
+   - 15.11.2026 (Hilal Hanım): parçalar dosyadan çalar (assets/audio/*.mp3), hepsi Wikimedia Commons'tan KAMU MALI / CC0 kayıtlar;
+     kaynak ve lisans her kartın altında (muzik[].not) ve CALISMA-GUNLUGU.md'de. Lisansı belgesiz parça konmaz.
+   - dosya alanı boş bir parça olursa eski usul tarayıcıda üretilen ambient (Web Audio) çalar.
    - Öğrenci kendi lisanslı parçasını koyarsa: veri.js > muzik[i].dosya = "assets/audio/xxx.mp3" -> o parça dosyadan çalar.
    - Otomatik çalma YOK. Mini oynatıcı son seçilen parçayı ve ses düzeyini sayfalar arası hatırlar (localStorage),
      ama çalmaya yalnız kullanıcı basınca başlar.

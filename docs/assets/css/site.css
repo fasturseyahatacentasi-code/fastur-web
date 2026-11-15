@@ -872,3 +872,4 @@ html[data-zemin="tek"][data-mod="gunduz"] .kaydir{color:#5a4325}
 html[data-zemin="tek"] .harita-zemin.sabit{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1}
 html[data-zemin="tek"]{background:#070b24}html[data-zemin="tek"] body{background:transparent}
 html[data-zemin="tek"] #zemin{z-index:-2}
+/* 15.11.2026: 6 müzik kartı bilgisayarda 3+3, tablette 2, telefonda 1 sütun */ .muzik-izgara{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:980px){.muzik-izgara{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.muzik-izgara{grid-template-columns:minmax(0,1fr)}}
