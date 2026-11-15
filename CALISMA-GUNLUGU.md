@@ -100,3 +100,12 @@
 - 15.11.2026 · Claude: Fas kategori sayfası yeni düzen (Hilal Hanım): zemin Hilal Hanım'ın avlu görseli (R11 masaüstü / R12 telefon, `assets/img/karakter/okay-fas-avlu-*`), cellabalı Okay sağda, turlar solda alt alta; filtre kutusu Fas sayfasında yok. Kaynak `uret_turlar.py > fas_sahne`. Altın sis geçiş videosu kullanılmadı (Hilal Hanım: işi bozuyor).
 - 15.11.2026 · Claude: Fas sayfasında görsel tüm sayfayı kaplar (kenar boşluğu yok, açık modda da aynı); başlık ve sayfa yolu görselin üstünde (Hilal Hanım).
 - 15.11.2026 · Hilal Hanım (kalıcı karar): **gece/gündüz modu kaldırıldı** ("kafa karıştırıyor"), site hep gece. **Tek zemin:** Bölüm 2'deki koyu dünya haritası (harita.js) her sayfada sabit arka plan; bölüm renkleri ve bölüm resimleri değişmez. Açık renk (mavi/kum) zemin istenmiyor. Eski görünüm yalnız test için `?zemin=eski`. Geri açma: pano.js GUNDUZ_ACIK + uret_turlar.py kabuk <head> betiği.
+
+- 15.11.2026 · Claude · MÜZİK (Hilal Hanım: eski 3 üretilen parça kalktı, seçimi Claude yaptı). Hepsi Wikimedia Commons; lisans Commons API ile doğrulandı; en fazla 6 dk, 96k mp3, docs/assets/audio/. (Dosyalar 3fd1e88 commit'iyle yayına çıktı; o commit'in mesajı yanlışlıkla "önbellek görevlisi kapatıldı" yazıyor.)
+  · sehrazat.mp3 — Rimsky-Korsakov, Şehrazat III (Genç Prens ve Prenses) · CC0 · Commons: Rimsky-Korsakov. Scheherazade, Symphonic Suite, Op. 35 - 03 The Young Prince And Princess.ogg
+  · clair-de-lune.mp3 — Debussy, Clair de Lune · ABD Hava Kuvvetleri Bandosu (Band of Flight) · Kamu malı · Commons: Clair de Lune - Wright Brass - United States Air Force Band of Flight.mp3
+  · mavi-tuna.mp3 — J. Strauss II, Mavi Tuna · ABD Deniz Piyadeleri Bandosu · Kamu malı · Commons: "An der schönen, blauen Donau" performed by the U.S. Marine Band.flac
+  · vivaldi-kis.mp3 — Vivaldi, Dört Mevsim: Kış · ABD Hava Kuvvetleri Bandosu · Kamu malı · Commons: Vivaldi - Four Seasons 4 Winter Air Force Strings - United States Air Force Band.mp3
+  · gymnopedie.mp3 — Satie, Gymnopédie No.1 · Michael Laucke · Kamu malı · Commons: Satie Gymnopedie No 1 performed by Michael Laucke.flac
+  · brahms-3.mp3 — Brahms, 3. Senfoni III (Poco allegretto) · Musopen Senfoni Orkestrası · CC0 · Commons: Brahms, Symphony No. 3 in F Major, Op. 90 - III. Poco allegretto.ogg
+  Dosyalar uphbacademy.com.tr sunucusundan DEĞİL, Commons asıl kaynağından alındı. Kaynak ve lisans her kartta (muzik[].not).
