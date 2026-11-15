@@ -16,14 +16,14 @@
 <meta property="og:description" content="Türkmenistan turları: programlar, güzergâhlar ve bilgi / rezervasyon talebi. Fas Tur.">
 <meta property="og:image" content="https://www.fastur.com.tr/assets/img/genel/slider1.jpg">
 <meta name="theme-color" content="#12385a">
-<script>(function(){try{var m=localStorage.getItem('ft_mod');var q=/[?&]mod=(gunduz|gece)/.exec(location.search);if(q)m=q[1];if(m!=='gunduz'&&m!=='gece'){var h=+new Intl.DateTimeFormat('en-GB',{hour:'numeric',hour12:false,timeZone:'Europe/Istanbul'}).format(new Date());m=(h>=6&&h<18)?'gunduz':'gece'}document.documentElement.setAttribute('data-mod',m)}catch(e){document.documentElement.setAttribute('data-mod','gece')}})();</script>
+<script>/* tek zemin, hep gece (Hilal Hanım 15.11.2026: gece/gündüz kafa karıştırıyor) */document.documentElement.setAttribute('data-mod','gece');if(!/[?&]zemin=eski/.test(location.search))document.documentElement.setAttribute('data-zemin','tek');try{localStorage.removeItem('ft_mod');localStorage.removeItem('ft_zemin')}catch(e){}</script>
 <link rel="icon" href="../../assets/img/genel/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="../../manifest.webmanifest">
 <link rel="apple-touch-icon" href="../../assets/img/pwa/apple-touch-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/css/site.css?v=8623caab">
+<link rel="stylesheet" href="../../assets/css/site.css?v=176696ea">
 
 </head>
 <body data-kok="../../" data-sayfa="turlar">
@@ -39,12 +39,14 @@
 </main>
 <div id="alt"></div>
 <script src="../../assets/js/ozet.js?v=db36b025"></script>
+<script defer src="../../assets/img/harita/harita-veri.js?v=225fc7b1"></script>
+<script defer src="../../assets/js/harita.js?v=903b67ae"></script>
 <script src="../../assets/js/site.js?v=909b6126"></script>
-<script src="../../assets/js/zemin.js?v=96b0524c"></script>
-<script src="../../assets/js/pano.js?v=3127e829"></script>
+<script src="../../assets/js/zemin.js?v=692efd7a"></script>
+<script src="../../assets/js/pano.js?v=1f53e37c"></script>
 <script src="../../assets/js/muzik.js?v=bbcc97d7"></script>
 <script src="../../assets/js/katman.js?v=f169a6ea"></script>
-<script defer src="../../assets/js/derinlik.js?v=acffddce"></script>
+<script defer src="../../assets/js/derinlik.js?v=76c9ca0d"></script>
 <script src="../../assets/js/dil.js?v=ca9337c2"></script>
 <script src="../../assets/js/pwa.js?v=fa359c9c"></script>
 </body>

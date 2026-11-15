@@ -10,6 +10,10 @@
    ============================================================ */
 (function () {
   'use strict';
+  /* TEK ZEMİN (deneme, Hilal Hanım 15.11.2026, referans uphbacademy.com.tr): sayfa boyunca tek, sabit arka plan;
+     bölüm renkleri ve bölüm resimleri değişmez, yıldız deseni yerinde durur. ?zemin=tek açar, ?zemin=eski kapatır (tarayıcı hatırlar). */
+  /* TEK ZEMİN artık varsayılan (Hilal Hanım 15.11.2026); <head> betiği html[data-zemin="tek"] koyar, ?zemin=eski eski görünümü gösterir. */
+  var TEK = document.documentElement.getAttribute('data-zemin') === 'tek';
   var B = document.body, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var kucuk = innerWidth < 700;
 
@@ -29,11 +33,12 @@
 
   /* ---- parallax (girih yavaş kayar) ---- */
   var sy = 0, tick = false;
-  function par() { tick = false; gir.style.transform = 'translate3d(0,' + (-sy * 0.12).toFixed(1) + 'px,0)'; }
+  function par() { tick = false; if (TEK) return; gir.style.transform = 'translate3d(0,' + (-sy * 0.12).toFixed(1) + 'px,0)'; }
 
   /* ---- bölüm sıcaklığı ---- */
   var temalar = [].slice.call(document.querySelectorAll('[data-tema]'));
   function tema() {
+    if (TEK) return;
     var mid = innerHeight * 0.5, t = 'gece';
     for (var i = 0; i < temalar.length; i++) { var r = temalar[i].getBoundingClientRect(); if (r.top <= mid && r.bottom >= mid) { t = temalar[i].getAttribute('data-tema'); break; } }
     if (B.getAttribute('data-tema') !== t) B.setAttribute('data-tema', t);

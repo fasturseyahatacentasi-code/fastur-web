@@ -14,7 +14,12 @@
 (function () {
   'use strict';
   var cv = document.querySelector('[data-harita-zemin]'), HM = window.FT_HARITA, FT = window.FT || {};
+  if (!cv && HM && document.documentElement.getAttribute('data-zemin') === 'tek') {   /* ana sayfa dışındaki sayfalar */
+    cv = document.createElement('canvas'); cv.className = 'harita-zemin'; cv.setAttribute('aria-hidden', 'true');
+  }
   if (!cv || !HM) return;
+  /* TEK ZEMİN (Hilal Hanım 15.11.2026): harita tüm sayfa boyunca sabit arka plan olur */
+  if (document.documentElement.getAttribute('data-zemin') === 'tek') { cv.classList.add('sabit'); document.body.insertBefore(cv, document.body.firstChild); }
   var cx = cv.getContext('2d'), rad = Math.PI / 180;
   function merc(lat) { return Math.log(Math.tan(Math.PI / 4 + lat * rad / 2)); }
   var turlu = {}; (FT.turlar || []).forEach(function (t) { turlu[t.kategori] = 1; });

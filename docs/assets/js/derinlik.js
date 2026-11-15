@@ -20,6 +20,7 @@
   [].slice.call(document.querySelectorAll('main > section.bolum:not([data-durak])')).forEach(function (s) { s.setAttribute('data-durak', ''); });
   [].slice.call(document.querySelectorAll('main > section.sayfa-ust:not([data-durak])')).forEach(function (s) { s.setAttribute('data-durak', ''); s.setAttribute('data-giris', ''); });
   var duraklar = [].slice.call(document.querySelectorAll('[data-durak]'));
+  var TEK = document.documentElement.getAttribute('data-zemin') === 'tek';   /* tek zemin: bölüm resimleri yok (zemin.js) */
   if (!duraklar.length) return;
   var K = document.body.getAttribute('data-kok') || './';
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -52,7 +53,7 @@
       else {
         var dg = el('derinlik-sahne giris'); dg.setAttribute('aria-hidden', 'true');
         var ga = el('dp dp-arka'), go = el('dp dp-orta dp-isik');
-        var gg = (hafif && sec.getAttribute('data-arka-mobil')) || sec.getAttribute('data-arka');
+        var gg = TEK ? '' : (hafif && sec.getAttribute('data-arka-mobil')) || sec.getAttribute('data-arka');
         if (gg) { var gi2 = el('dp-gorsel'); gi2.style.backgroundImage = 'url("' + K + gg + '")'; ga.appendChild(gi2); } else ga.classList.add('dp-bos');
         dg.appendChild(ga); if (!hafif) dg.appendChild(go);
         sec.insertBefore(dg, sec.firstChild);
@@ -68,7 +69,7 @@
     var ktA = kt && kt.querySelector('.kt-arka'), ktO = kt && kt.querySelector('.kt-orta');
     if (ktA) a.appendChild(ktA);
     else {
-      var g = (hafif && sec.getAttribute('data-arka-mobil')) || sec.getAttribute('data-arka');
+      var g = TEK ? '' : (hafif && sec.getAttribute('data-arka-mobil')) || sec.getAttribute('data-arka');
       if (g) { var gi = el('dp-gorsel'); gi.style.backgroundImage = 'url("' + K + g + '")'; a.appendChild(gi); }
       else a.classList.add('dp-bos');
     }

@@ -34,7 +34,7 @@
   /* gündüz / gece modu: İstanbul saatine göre otomatik (06–18 gündüz); elle değiştirme localStorage'da saklanır */
   var modBtn = document.querySelector('.hud-mod'), kok = document.documentElement;
   /* Gündüz modu anahtarı: false yapılırsa site hep gece olur ve düğme gizlenir (ayrıca uret_turlar.py <head> betiği 'gece'ye sabitlenmeli). 12.11.2026: Hilal Hanım AÇIK istedi. */
-  var GUNDUZ_ACIK = true;
+  var GUNDUZ_ACIK = false;   /* 15.11.2026 Hilal Hanım: gece/gündüz kaldırıldı, tek zemin */
   if (!GUNDUZ_ACIK) { kok.setAttribute('data-mod', 'gece'); if (modBtn) modBtn.parentNode.removeChild(modBtn); try { localStorage.removeItem('ft_mod'); } catch (e) { } }
   else {
   function otoMod() { try { var h = +new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hour12: false, timeZone: 'Europe/Istanbul' }).format(new Date()); return (h >= 6 && h < 18) ? 'gunduz' : 'gece'; } catch (e) { return 'gece'; } }

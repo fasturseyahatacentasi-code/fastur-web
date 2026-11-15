@@ -83,6 +83,11 @@ def yol(kok, p):
 
 
 # ---------------------------------------------------------------- sayfa kabuğu
+# tek zemin: koyu dünya haritası her sayfada sabit arka plan (Hilal Hanım 15.11.2026)
+HARITA_ZEMIN = ('<script defer src="{k}assets/img/harita/harita-veri.js"></script>' + chr(10) +
+                '<script defer src="{k}assets/js/harita.js"></script>' + chr(10))
+
+
 def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', noindex=False, og_gorsel=None, ek_script=''):
     S = V['site']
     alan = S['alanAdi'].rstrip('/') + '/'
@@ -107,7 +112,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <meta property="og:description" content="{e(aciklama)}">
 <meta property="og:image" content="{e(og)}">
 <meta name="theme-color" content="#12385a">
-<script>(function(){{try{{var m=localStorage.getItem('ft_mod');var q=/[?&]mod=(gunduz|gece)/.exec(location.search);if(q)m=q[1];if(m!=='gunduz'&&m!=='gece'){{var h=+new Intl.DateTimeFormat('en-GB',{{hour:'numeric',hour12:false,timeZone:'Europe/Istanbul'}}).format(new Date());m=(h>=6&&h<18)?'gunduz':'gece'}}document.documentElement.setAttribute('data-mod',m)}}catch(e){{document.documentElement.setAttribute('data-mod','gece')}}}})();</script>
+<script>/* tek zemin, hep gece (Hilal Hanım 15.11.2026: gece/gündüz kafa karıştırıyor) */document.documentElement.setAttribute('data-mod','gece');if(!/[?&]zemin=eski/.test(location.search))document.documentElement.setAttribute('data-zemin','tek');try{{localStorage.removeItem('ft_mod');localStorage.removeItem('ft_zemin')}}catch(e){{}}</script>
 <link rel="icon" href="{kok}assets/img/genel/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="{kok}manifest.webmanifest">
 <link rel="apple-touch-icon" href="{kok}assets/img/pwa/apple-touch-180.png">
@@ -126,7 +131,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 </main>
 <div id="alt"></div>
 <script src="{kok}assets/js/ozet.js"></script>
-{ek_script}<script src="{kok}assets/js/site.js"></script>
+{ek_script}{'' if 'assets/js/harita.js' in ek_script else HARITA_ZEMIN.format(k=kok)}<script src="{kok}assets/js/site.js"></script>
 <script src="{kok}assets/js/zemin.js"></script>
 <script src="{kok}assets/js/pano.js"></script>
 <script src="{kok}assets/js/muzik.js"></script>
