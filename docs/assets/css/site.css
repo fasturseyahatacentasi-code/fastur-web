@@ -894,3 +894,5 @@ html.video-zemin .tur-kapak:not(:has(>img))::before{display:none}
 html.video-zemin .sayfa-ust{background:none}
 html.video-zemin .derinlik-sahne.giris{display:none}
 html.video-zemin .kahraman .rehber-hero .balon.ust{display:none}
+/* 17.11.2026 Hilal Hanım: tur sayfalarının üst fotoğrafları ("çok kötü") ve renk bandı video varken tüm tur sayfalarında kalktı; kart görselleri duruyor */
+html.video-zemin .tur-kapak>img,html.video-zemin .tur-kapak::before{display:none}

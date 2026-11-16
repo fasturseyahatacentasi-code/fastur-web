@@ -115,3 +115,4 @@
 - 17.11.2026 · Claude · Ana sayfa giriş haritası (çizgiler) video varken gizlendi; kod duruyor, Hilal Hanım başka yerde deneyecek. Fas'ın Renkleri (id 91) tur sayfasının üst fotoğrafı kaldırıldı: yeni tur alanı `kapakFoto:false` (uret_turlar.py; kart görseli aynen duruyor).
 - 17.11.2026 · Claude · Ana sayfa balonundaki ülke düğmeleri (rota-sec) de video varken gizli (CSS; kod duruyor).
 - 17.11.2026 · Claude · Video varken sayfa başlığı bandı (tur kapağı perdesi, sayfa-ust gradyanı, derinlik giriş sahnesi) kaldırıldı: video kesintisiz; ana sayfa giriş balonu (Yol arkadaşınız + şehirler) şimdilik gizli (CSS, kod duruyor).
+- 17.11.2026 · Claude · Video varken TÜM tur sayfalarında üst fotoğraf ve perde gizli (Hilal Hanım: 118/119/150/151 fotoğrafları çok kötü, renk farkı duruyor). Kart küçük resimleri aynen.
