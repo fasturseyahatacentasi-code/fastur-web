@@ -887,3 +887,5 @@ html.video-zemin .harita-zemin.sabit{display:none}
 html.video-zemin .kahraman .slaytlar{display:none}
 /* 17.11.2026 Hilal Hanım: harita çizgileri videonun önünden kalktı (harita kodu duruyor, başka yerde denenecek) */
 html.video-zemin .kahraman .harita{display:none}
+/* 17.11.2026 Hilal Hanım: balondaki ülke düğmeleri de şimdilik gizli (harita kodu duruyor) */
+html.video-zemin .kahraman [data-rota-sec]{display:none}
