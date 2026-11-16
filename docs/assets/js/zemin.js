@@ -30,6 +30,33 @@
     '<canvas class="rota"></canvas>';
   B.insertBefore(z, B.firstChild);
   var gir = z.querySelector('.girih'), cv = z.querySelector('canvas');
+  /* ---- ARKA PLAN VİDEOSU (Hilal Hanım 16.11.2026; Higgsfield "Gece dünyası", ses yok, ileri-geri dikişsiz döngü) ----
+     veri.js > katmanlar.zemin {mp4, mobil, poster, sayfalar:"hepsi"|"ana"}. Boşsa eski zemin aynen kalır.
+     Hareketi azalt / Veri Tasarrufu: yalnız durağan poster. Sekme gizliyken video durur. */
+  var ZV = ((window.FT || {}).katmanlar || {}).zemin || {};
+  var anaSayfa = !!document.getElementById('yola-cikis');
+  if ((ZV.mp4 || ZV.poster) && (ZV.sayfalar !== 'ana' || anaSayfa)) {
+    var KOK = B.getAttribute('data-kok') || './', con = navigator.connection || {};
+    var yalnizPoster = reduce || !!con.saveData || /(^|-)2g$/.test(con.effectiveType || '') || !ZV.mp4;
+    var zk = document.createElement('div'); zk.className = 'zv';
+    if (ZV.poster) zk.style.backgroundImage = 'url("' + KOK + ZV.poster + '")';
+    if (!yalnizPoster) {
+      var zv = document.createElement('video');
+      zv.muted = true; zv.defaultMuted = true; zv.loop = true; zv.playsInline = true; zv.autoplay = true; zv.preload = 'auto';
+      ['muted', 'playsinline', 'autoplay', 'loop'].forEach(function (k) { zv.setAttribute(k, ''); });
+      zv.setAttribute('aria-hidden', 'true'); zv.tabIndex = -1; zv.disablePictureInPicture = true;
+      zv.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback'); zv.setAttribute('disableremoteplayback', '');
+      if (ZV.poster) zv.poster = KOK + ZV.poster;
+      zv.src = KOK + ((innerWidth < 760 && ZV.mobil) ? ZV.mobil : ZV.mp4);
+      zv.addEventListener('playing', function () { zk.classList.add('oynuyor'); });
+      zk.appendChild(zv);
+      var oynat = function () { var p = zv.play(); if (p && p.catch) p.catch(function () { }); };
+      oynat();
+      document.addEventListener('visibilitychange', function () { if (document.hidden) zv.pause(); else oynat(); });
+    }
+    z.insertBefore(zk, z.querySelector('.girih'));
+    z.classList.add('video-zemin'); document.documentElement.classList.add('video-zemin');
+  }
 
   /* ---- parallax (girih yavaş kayar) ---- */
   var sy = 0, tick = false;

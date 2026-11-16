@@ -873,3 +873,13 @@ html[data-zemin="tek"] .harita-zemin.sabit{position:fixed;inset:0;width:100vw;he
 html[data-zemin="tek"]{background:#070b24}html[data-zemin="tek"] body{background:transparent}
 html[data-zemin="tek"] #zemin{z-index:-2}
 /* 15.11.2026: 6 müzik kartı bilgisayarda 3+3, tablette 2, telefonda 1 sütun */ .muzik-izgara{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:980px){.muzik-izgara{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.muzik-izgara{grid-template-columns:minmax(0,1fr)}}
+
+/* ARKA PLAN VİDEOSU (Hilal Hanım 16.11.2026, zemin.js > katmanlar.zemin): sabit, sessiz, koyu perdeli; yazılar okunur kalır */
+#zemin .zv{position:absolute;inset:0;background-size:cover;background-position:center}
+#zemin .zv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;pointer-events:none}
+#zemin .zv.oynuyor video{opacity:1}
+#zemin .zv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,26,.55) 0,rgba(5,8,26,.45) 40%,rgba(5,8,26,.72) 100%)}
+#zemin.video-zemin .girih{opacity:.04}
+#zemin.video-zemin canvas.rota,#zemin.video-zemin .kumul,#zemin.video-zemin .ufuk{display:none}
+@media(max-width:700px){#zemin .zv::after{background:rgba(5,8,26,.62)}}
+html.video-zemin .harita-zemin.sabit{display:none}
