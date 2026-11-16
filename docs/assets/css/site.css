@@ -883,3 +883,5 @@ html[data-zemin="tek"] #zemin{z-index:-2}
 #zemin.video-zemin canvas.rota,#zemin.video-zemin .kumul,#zemin.video-zemin .ufuk{display:none}
 @media(max-width:700px){#zemin .zv::after{background:rgba(5,8,26,.62)}}
 html.video-zemin .harita-zemin.sabit{display:none}
+/* 17.11.2026 Hilal Hanım: ana sayfanın en üstünde de video; giriş fotoğrafları (slaytlar) video varken gizli, rota haritası çizgileri üstte kalır */
+html.video-zemin .kahraman .slaytlar{display:none}

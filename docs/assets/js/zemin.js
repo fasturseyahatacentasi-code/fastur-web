@@ -39,15 +39,16 @@
     var KOK = B.getAttribute('data-kok') || './', con = navigator.connection || {};
     var yalnizPoster = reduce || !!con.saveData || /(^|-)2g$/.test(con.effectiveType || '') || !ZV.mp4;
     var zk = document.createElement('div'); zk.className = 'zv';
-    if (ZV.poster) zk.style.backgroundImage = 'url("' + KOK + ZV.poster + '")';
+    var zMobil = innerWidth < 760, zPoster = (zMobil && ZV.posterMobil) ? ZV.posterMobil : ZV.poster;
+    if (zPoster) zk.style.backgroundImage = 'url("' + KOK + zPoster + '")';
     if (!yalnizPoster) {
       var zv = document.createElement('video');
       zv.muted = true; zv.defaultMuted = true; zv.loop = true; zv.playsInline = true; zv.autoplay = true; zv.preload = 'auto';
       ['muted', 'playsinline', 'autoplay', 'loop'].forEach(function (k) { zv.setAttribute(k, ''); });
       zv.setAttribute('aria-hidden', 'true'); zv.tabIndex = -1; zv.disablePictureInPicture = true;
       zv.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback'); zv.setAttribute('disableremoteplayback', '');
-      if (ZV.poster) zv.poster = KOK + ZV.poster;
-      zv.src = KOK + ((innerWidth < 760 && ZV.mobil) ? ZV.mobil : ZV.mp4);
+      if (zPoster) zv.poster = KOK + zPoster;
+      zv.src = KOK + ((zMobil && ZV.mobil) ? ZV.mobil : ZV.mp4);
       zv.addEventListener('playing', function () { zk.classList.add('oynuyor'); });
       zk.appendChild(zv);
       var oynat = function () { var p = zv.play(); if (p && p.catch) p.catch(function () { }); };
