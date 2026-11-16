@@ -412,7 +412,7 @@ def detay_sayfasi(V, t, kats, kok):
         desc_parca.append(t['guzergah'])
     aciklama = (' · '.join(desc_parca) + '. Programı inceleyin, güncel tarih ve fiyat için Fas Tur\'a bilgi / rezervasyon talebi gönderin.')[:300]
     govde = f'''<!-- tur id: {t['id']} · eski adres: {e(t.get('eskiAdres', ''))} · teyit: {e(t.get('teyit', ''))} -->
-<section class="tur-kapak" data-durak data-giris data-kalkis="{e(t.get('baslangic') or '')}"><img src="{kok}{e(t['gorsel'])}" alt="" width="1100" height="620"><div class="wrap">
+<section class="tur-kapak" data-durak data-giris data-kalkis="{e(t.get('baslangic') or '')}">{'' if t.get('kapakFoto') is False else f'<img src="{kok}{e(t["gorsel"])}" alt="" width="1100" height="620">'}<div class="wrap">
 <nav class="kirinti" aria-label="Sayfa yolu"><a href="{kok}">Ana sayfa</a><span>/</span><a href="{kok}turlar/">Turlar</a><span>/</span><a href="{kok}turlar/{e(t['kategori'])}/">{e(kat_ad)}</a></nav>
 <h1>{e(t['ad'])}</h1><div class="rozetler">{rozetler}</div></div></section>
 <div class="wrap tur-duzen"><div>

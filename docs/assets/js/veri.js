@@ -147,6 +147,7 @@ window.FT = {
     {
       "id": 91,
       "slug": "fasin-renkleri-91",
+      "kapakFoto": false,
       "ad": "Fas'ın Renkleri",
       "kategori": "fas",
       "baslangic": "",
