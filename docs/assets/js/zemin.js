@@ -33,7 +33,14 @@
   /* ---- ARKA PLAN VİDEOSU (Hilal Hanım 16.11.2026; Higgsfield "Gece dünyası", ses yok, ileri-geri dikişsiz döngü) ----
      veri.js > katmanlar.zemin {mp4, mobil, poster, sayfalar:"hepsi"|"ana"}. Boşsa eski zemin aynen kalır.
      Hareketi azalt / Veri Tasarrufu: yalnız durağan poster. Sekme gizliyken video durur. */
-  var ZV = ((window.FT || {}).katmanlar || {}).zemin || {};
+  var KTZ = (window.FT || {}).katmanlar || {}, ZV = KTZ.zemin || {};
+  /* kategoriye özel arka plan (17.11.2026: Fas sayfaları = Marakeş mavi saat). Kategori: adres turlar/<kat>/ ya da sayfadaki kırıntı bağlantısı */
+  (function () {
+    var ZK = KTZ.zeminKategori || {};
+    Object.keys(ZK).forEach(function (k) {
+      if (new RegExp('/turlar/' + k + '/').test(location.pathname) || document.querySelector('.kirinti a[href$="turlar/' + k + '/"]')) ZV = ZK[k];
+    });
+  })();
   var anaSayfa = !!document.getElementById('yola-cikis');
   if ((ZV.mp4 || ZV.poster) && (ZV.sayfalar !== 'ana' || anaSayfa)) {
     var KOK = B.getAttribute('data-kok') || './', con = navigator.connection || {};
