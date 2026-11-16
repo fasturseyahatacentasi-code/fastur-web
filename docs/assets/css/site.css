@@ -889,3 +889,8 @@ html.video-zemin .kahraman .slaytlar{display:none}
 html.video-zemin .kahraman .harita{display:none}
 /* 17.11.2026 Hilal Hanım: balondaki ülke düğmeleri de şimdilik gizli (harita kodu duruyor) */
 html.video-zemin .kahraman [data-rota-sec]{display:none}
+/* 17.11.2026 Hilal Hanım: "bu renk farkı olmak zorunda mı" - video varken sayfa başlığı bandı ayrı renk olmasın; giriş balonu (Yol arkadaşınız + şehirler) şimdilik gizli */
+html.video-zemin .tur-kapak:not(:has(>img))::before{display:none}
+html.video-zemin .sayfa-ust{background:none}
+html.video-zemin .derinlik-sahne.giris{display:none}
+html.video-zemin .kahraman .rehber-hero .balon.ust{display:none}
