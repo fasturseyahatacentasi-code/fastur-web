@@ -77,7 +77,7 @@ KATLINK=lambda s_,a_,k: f'<a class="bolge" href="turlar/{s_}/"><img src="assets/
 def TURKART(s_):
     ad_=dict(DOLU).get(s_)
     if not ad_: return ''
-    g_={'misir':'assets/img/genel/bolge-afrika.jpg'}.get(s_) or next((t['gorsel'] for t in V['turlar'] if t['kategori']==s_ and t.get('aktif')),'')   # Mısır: piramitli Kahire (tur kapağı deniz gemisi)
+    g_=next((t['gorsel'] for t in V['turlar'] if t['kategori']==s_ and t.get('aktif')),'')   # Mısır: piramitli Kahire (tur kapağı deniz gemisi)
     return f'<a class="bolge" href="turlar/{s_}/"><img src="{g_}" alt="" loading="lazy" width="480" height="360"><div class="ic"><h3>{ad_}</h3><span data-sayi-kat="{s_}">Turları gör →</span></div></a>'
 DUNYA_KART=''.join(TURKART(s_) for s_,_ in DOLU if s_ not in ('fas','misir'))
 umre_k=''.join(f'<a class="mini-kat" href="turlar/{s_}/"><b>{a_}</b><span data-sayi-kat="{s_}">Turları gör →</span></a>' for s_,a_ in [('ekonomik-umre-turlari','Ekonomik umre'),('yurume-mesafeli-umre-turlari','Yürüme mesafeli umre'),('5-yildizli-umre-turlari','5 yıldızlı umre')])
