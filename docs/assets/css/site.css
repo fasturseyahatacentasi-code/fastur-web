@@ -900,3 +900,12 @@ html.video-zemin .tur-kapak>img,html.video-zemin .tur-kapak::before{display:none
 #zemin .zv.zv-acik::after{background:linear-gradient(180deg,rgba(5,8,26,.30) 0,rgba(5,8,26,.18) 45%,rgba(5,8,26,.50) 100%)}
 @media(max-width:700px){#zemin .zv.zv-acik::after{background:rgba(5,8,26,.38)}}
 html.video-zemin .kirinti,html.video-zemin .tur-kapak h1,html.video-zemin .sayfa-ust h1{text-shadow:0 1px 6px rgba(0,0,0,.75)}
+/* 17.11.2026 deneme: tur sayfasında arka plan o ülkenin fotoğrafı, çok yavaş yakınlaşır */
+#zemin .zv.zv-foto{animation:zvFoto 40s ease-in-out infinite alternate}
+@keyframes zvFoto{from{transform:scale(1)}to{transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){#zemin .zv.zv-foto{animation:none}}
+/* fotoğraflı zemin: okunurluk (perde biraz daha koyu, kutular daha dolu, rozet/kırıntı belirgin) */
+#zemin .zv.zv-foto::after{background:linear-gradient(180deg,rgba(5,8,26,.50) 0,rgba(5,8,26,.30) 40%,rgba(5,8,26,.55) 100%)}
+html.zemin-foto .kutu,html.zemin-foto .yan{background:rgba(10,16,44,.80);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+html.zemin-foto .tur-kapak .rozet{background:rgba(10,16,44,.75);color:#fff;border-color:rgba(255,255,255,.35)}
+html.zemin-foto .kirinti,html.zemin-foto .kirinti a,html.zemin-foto .kirinti span{color:#fff}

@@ -40,12 +40,17 @@
     Object.keys(ZK).forEach(function (k) {
       if (new RegExp('/turlar/' + k + '/').test(location.pathname) || document.querySelector('.kirinti a[href$="turlar/' + k + '/"]')) ZV = ZK[k];
     });
+    /* tur sayfası: arka plan tamamen o ülkenin fotoğrafı (17.11.2026 deneme; katmanlar.zeminTurGorsel {kategori:{poster,posterMobil}}) */
+    var ZT = KTZ.zeminTurGorsel || {};
+    if (document.body.getAttribute('data-sayfa') === 'tur') Object.keys(ZT).forEach(function (k) {
+      if (document.querySelector('.kirinti a[href$="turlar/' + k + '/"]')) { ZV = ZT[k]; ZV.foto = true; document.documentElement.classList.add('zemin-foto'); }
+    });
   })();
   var anaSayfa = !!document.getElementById('yola-cikis');
   if ((ZV.mp4 || ZV.poster) && (ZV.sayfalar !== 'ana' || anaSayfa)) {
     var KOK = B.getAttribute('data-kok') || './', con = navigator.connection || {};
     var yalnizPoster = reduce || !!con.saveData || /(^|-)2g$/.test(con.effectiveType || '') || !ZV.mp4;
-    var zk = document.createElement('div'); zk.className = 'zv' + (ZV.perde === 'acik' ? ' zv-acik' : '');
+    var zk = document.createElement('div'); zk.className = 'zv' + (ZV.perde === 'acik' ? ' zv-acik' : '') + (ZV.foto ? ' zv-foto' : '');
     var zMobil = innerWidth < 760, zPoster = (zMobil && ZV.posterMobil) ? ZV.posterMobil : ZV.poster;
     if (zPoster) zk.style.backgroundImage = 'url("' + KOK + zPoster + '")';
     if (!yalnizPoster) {
