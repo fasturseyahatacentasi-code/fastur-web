@@ -124,7 +124,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="izgara g3" style="margin-top:26px">{DUNYA_KART}</div>
 </div></section>
 <section class="bolum takvim-bant-bolum"><div class="wrap"><a class="takvim-bant" href="tur-takvimi/">
-<span class="tb-kolaj" aria-hidden="true"><i style="background-image:url(assets/img/genel/hero-fas.jpg)"></i><i style="background-image:url(assets/img/genel/bolge-afrika.jpg)"></i><i style="background-image:url(assets/img/genel/{"bolge-umre" if UMRE else "bolge-yurtici"}.jpg)"></i><i style="background-image:url(assets/img/genel/hero-asya.jpg)"></i><i style="background-image:url(assets/img/genel/hero-avrupa.jpg)"></i><i style="background-image:url(assets/img/genel/hero-rusya.jpg)"></i></span>
+<span class="tb-kolaj" aria-hidden="true"><i style="background-image:url(assets/img/turlar/buyuk-fas-safsavan.jpg)"></i><i style="background-image:url(assets/img/turlar/misir-nil.jpg)"></i><i style="background-image:url(assets/img/turlar/urdun-petra.jpg)"></i><i style="background-image:url(assets/img/turlar/japonya-fuji.jpg)"></i><i style="background-image:url(assets/img/turlar/bosna-mostar.jpg)"></i><i style="background-image:url(assets/img/turlar/rusya-lapland-kuzey-isiklari.jpg)"></i></span>
 <span class="tb-ic"><span class="tb-etiket">KALKIŞLAR · TARİHLER · FİYATLAR</span><b class="tb-baslik">TUR TAKVİMİ</b><span class="tb-dugme">Tüm turlar için tıklayın <span aria-hidden="true">→</span></span></span>
 </a></div></section>
 <section class="bolum kum"><div class="wrap">
