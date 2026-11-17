@@ -63,7 +63,7 @@ def haber_kart(h,kk):
     return f'<article class="kart"><div class="gorsel"><img src="{kk}{h["gorsel"]}" alt="{html.escape(h["baslik"])}" loading="lazy" width="440" height="275"></div><div class="ic"><div class="meta"><span>{ut.tarih_tr(h["tarih"])}</span></div><h3><a href="{kk}haberler/{h["slug"]}/">{html.escape(h["baslik"])}</a></h3><p style="font-size:15px;color:var(--soluk);margin:0">{html.escape(h["ozet"])}</p><div class="alt"><span class="git">Devamını oku →</span></div></div></article>'
 son_h=sorted(haberler,key=lambda h:h['tarih'],reverse=True)[:3]
 yor_html=''.join(f'<figure class="yorum" style="margin:0"><div class="yildiz" aria-label="5 yıldız">★★★★★</div><h3>{html.escape(y["baslik"])}</h3><p>{html.escape(y["metin"])}</p><div class="kim">{html.escape(y["ad"])} · {html.escape(y["tur"])}</div></figure>' for y in yorumlar)
-ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/okyayturizm/"]},ensure_ascii=False)
+ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/fasturtravel/"]},ensure_ascii=False)
 ORB=[(s,a,IKON.get(s,'✈️')) for s,a in DOLU]
 uydu=''.join(f'<div class="kol" style="--a:{round(i*360/len(ORB),2)}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px"><i>{ic_}</i>{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
 uydu=uydu.replace('<div class="uydu"><a','<div class="uydu"><a')
@@ -166,7 +166,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="bolum-baslik"><div><span class="etiket">Misafir anıları</span><h2>Yolculuk <em>anıları</em></h2></div></div>
 <div class="ani-duvar gizli" data-anilar></div>
 <div class="yakinda ani-cagri" data-ani-cagri><span class="etiket">Anılarınızı bekliyoruz</span><h3>Fas Tur ile yolculuk ettiniz mi? <em>Anınızı paylaşın</em></h3><p>Fotoğraflı anılar ve yorumlar, misafirimizin izniyle burada yer alacak. Anınızı bize WhatsApp&#039;tan ya da talep formundan iletebilirsiniz; ayrıca Instagram hesabımızda da yolculuk karelerimizi bulabilirsiniz.</p>
-<div class="dugmeler"><a class="btn btn-ana" href="talep/">Anımı paylaşmak istiyorum</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="https://www.instagram.com/okyayturizm/" target="_blank" rel="noopener">Instagram profilimiz</a></div></div>
+<div class="dugmeler"><a class="btn btn-ana" href="talep/">Anımı paylaşmak istiyorum</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="https://www.instagram.com/fasturtravel/" target="_blank" rel="noopener">Instagram profilimiz</a></div></div>
 </div></section>
 <section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 6 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a></div></div></div></section>'''
@@ -230,7 +230,7 @@ ilet=f'''<div class="wrap form-duzen" style="grid-template-columns:1fr 1fr">
 {satir('✉️','E-posta',f'<a href="mailto:{S["eposta"]}">{S["eposta"]}</a>')}
 {satir('📍','Adres',S['adres'])}
 {satir('🕘','Çalışma saatleri',S['calisma']+' arasında yanıtlıyoruz')}
-{satir('📷','Instagram','<a href="https://www.instagram.com/okyayturizm/" target="_blank" rel="noopener">@okyayturizm</a>')}
+{satir('📷','Instagram','<a href="https://www.instagram.com/fasturtravel/" target="_blank" rel="noopener">@fasturtravel</a>')}
 </div>
 <div class="kutu"><h2>Hızlı talep</h2><p style="color:var(--soluk)">Tur, tarih ve kişi sayısını yazdığınız talep formu ile bize ulaşın; ekibimiz size dönüş yapsın. Sitede online ödeme alınmaz.</p>
 <a class="btn btn-ana btn-blok" href="../talep/">Bilgi / rezervasyon talebi</a><div style="height:10px"></div>
