@@ -896,3 +896,7 @@ html.video-zemin .derinlik-sahne.giris{display:none}
 html.video-zemin .kahraman .rehber-hero .balon.ust{display:none}
 /* 17.11.2026 Hilal Hanım: tur sayfalarının üst fotoğrafları ("çok kötü") ve renk bandı video varken tüm tur sayfalarında kalktı; kart görselleri duruyor */
 html.video-zemin .tur-kapak>img,html.video-zemin .tur-kapak::before{display:none}
+/* 17.11.2026 Hilal Hanım: Marakeş videosu çok karanlık -> bu videoda perde hafif (katmanlar.zeminKategori.fas.perde:'acik') */
+#zemin .zv.zv-acik::after{background:linear-gradient(180deg,rgba(5,8,26,.30) 0,rgba(5,8,26,.18) 45%,rgba(5,8,26,.50) 100%)}
+@media(max-width:700px){#zemin .zv.zv-acik::after{background:rgba(5,8,26,.38)}}
+html.video-zemin .kirinti,html.video-zemin .tur-kapak h1,html.video-zemin .sayfa-ust h1{text-shadow:0 1px 6px rgba(0,0,0,.75)}

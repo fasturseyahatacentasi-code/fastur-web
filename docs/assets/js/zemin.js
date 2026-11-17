@@ -45,7 +45,7 @@
   if ((ZV.mp4 || ZV.poster) && (ZV.sayfalar !== 'ana' || anaSayfa)) {
     var KOK = B.getAttribute('data-kok') || './', con = navigator.connection || {};
     var yalnizPoster = reduce || !!con.saveData || /(^|-)2g$/.test(con.effectiveType || '') || !ZV.mp4;
-    var zk = document.createElement('div'); zk.className = 'zv';
+    var zk = document.createElement('div'); zk.className = 'zv' + (ZV.perde === 'acik' ? ' zv-acik' : '');
     var zMobil = innerWidth < 760, zPoster = (zMobil && ZV.posterMobil) ? ZV.posterMobil : ZV.poster;
     if (zPoster) zk.style.backgroundImage = 'url("' + KOK + zPoster + '")';
     if (!yalnizPoster) {
