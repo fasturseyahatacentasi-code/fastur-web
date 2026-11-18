@@ -217,9 +217,16 @@ def tur_karti(t, kat_ad, kok):
 
 
 # ---------------------------------------------------------------- turlar listesi / kategori
+def yakin_sira(turlar):
+    """18.11.2026 Hilal Hanım: tarihi yakın olan önce. Güncel turlar yakından uzağa, geçmiş (önceki dönem) programlar en sonda, en yeniden eskiye."""
+    ak = sorted([t for t in turlar if aktif_mi(t)], key=lambda t: t.get('baslangic') or '')
+    gc = sorted([t for t in turlar if not aktif_mi(t)], key=lambda t: t.get('baslangic') or '', reverse=True)
+    return ak + gc
+
+
 def liste_govde(V, turlar, kok, kategori=None):
     kats = {k['slug']: k['ad'] for k in V['kategoriler']}
-    sirali = sorted(turlar, key=lambda t: t.get('baslangic') or '', reverse=True)
+    sirali = yakin_sira(turlar)
     kartlar = '\n'.join(tur_karti(t, kats.get(t['kategori'], ''), kok) for t in sirali)
     secenek = ''.join(f'<option value="{e(k["slug"])}"{" selected" if kategori == k["slug"] else ""}>{e(k["ad"])}</option>' for k in gorunur_kat(V)
                       if any(t['kategori'] == k['slug'] for t in V['turlar']) or kategori == k['slug'])   # turu olmayan başlık listelenmez (14.11.2026)
@@ -243,7 +250,7 @@ def liste_govde(V, turlar, kok, kategori=None):
 <div class="alan"><label for="f-v">Vize</label><select id="f-v" name="v"><option value="">Fark etmez</option><option value="vizeli">Vizeli</option><option value="vizesiz">Vizesiz</option></select></div>
 <div class="alan"><label for="f-g">Süre</label><select id="f-g" name="g"><option value="">Fark etmez</option><option value="1-5">5 güne kadar</option><option value="6-9">6 – 9 gün</option><option value="10-15">10 – 15 gün</option><option value="16-99">16 gün ve üzeri</option></select></div>
 <div class="alan onay"><input id="f-a" name="a" type="checkbox"><label for="f-a" style="margin:0;font-weight:600">Yalnız güncel turlar</label></div>
-<div class="alan"><label for="f-s">Sırala</label><select id="f-s" name="s"><option value="yeni">Tarih: yeniden eskiye</option><option value="eski">Tarih: eskiden yeniye</option><option value="gun">Gün sayısı: çoktan aza</option><option value="ad">Ad (A-Z)</option></select></div>
+<div class="alan"><label for="f-s">Sırala</label><select id="f-s" name="s"><option value="yakin">Tarih: yakın olan önce</option><option value="yeni">Tarih: yeniden eskiye</option><option value="eski">Tarih: eskiden yeniye</option><option value="gun">Gün sayısı: çoktan aza</option><option value="ad">Ad (A-Z)</option></select></div>
 <button type="reset" class="btn btn-hat btn-kucuk btn-blok" data-temizle>Filtreleri temizle</button>
 </form>
 </aside>
@@ -264,7 +271,7 @@ def liste_govde(V, turlar, kok, kategori=None):
 # Fas sayfasında turlar solda alt alta, cellabalı Okay sağda; zemin Hilal Hanım'ın avlu görseli (R11/R12).
 # Görsel /assets/img/karakter/ altında (robots.txt kapalı, GÖRSEL KORUMA geçerli).
 def fas_sahne(V, turlar, kok, kat):
-    sirali = sorted(turlar, key=lambda t: t.get('baslangic') or '')
+    sirali = yakin_sira(turlar)
     satirlar = []
     for t in sirali:
         aktif = aktif_mi(t)
@@ -383,7 +390,7 @@ def detay_sayfasi(V, t, kats, kok):
     if dahil or haric:
         dh = '<div class="izgara g2 bolum-ic">' + (f'<section class="kutu"><h2>Fiyata dahil olanlar</h2><ul class="liste-ok">{dahil}</ul></section>' if dahil else '') + (f'<section class="kutu"><h2>Fiyata dahil olmayanlar</h2><ul class="liste-x">{haric}</ul></section>' if haric else '') + '</div>'
     benzer = [x for x in V['turlar'] if x['kategori'] == t['kategori'] and x['id'] != t['id']]
-    benzer = sorted(benzer, key=lambda x: x.get('baslangic') or '', reverse=True)
+    benzer = yakin_sira(benzer)
     gor = set(); b2 = []
     for x in benzer:
         if x['ad'] in gor or x['ad'] == t['ad']:

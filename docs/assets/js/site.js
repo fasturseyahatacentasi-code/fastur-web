@@ -138,6 +138,12 @@
         return true;
       });
       uygun.sort(function (x, y) {
+        if (!s || s === 'yakin') {   /* 18.11.2026: tarihi yakın olan önce; geçmiş programlar sonda */
+          var xa = x.dataset.aktif === '1', ya = y.dataset.aktif === '1';
+          if (xa !== ya) return xa ? -1 : 1;
+          if (x.dataset.tarih === y.dataset.tarih) return 0;
+          return xa ? (x.dataset.tarih < y.dataset.tarih ? -1 : 1) : (x.dataset.tarih < y.dataset.tarih ? 1 : -1);
+        }
         if (s === 'eski') return x.dataset.tarih < y.dataset.tarih ? -1 : 1;
         if (s === 'gun') return Number(y.dataset.gun) - Number(x.dataset.gun);
         if (s === 'ad') return x.querySelector('h3').textContent.localeCompare(y.querySelector('h3').textContent, 'tr');
