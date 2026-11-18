@@ -127,3 +127,4 @@
 - 17.11.2026 · Claude · Ana sayfa 'TUR TAKVİMİ' bandı kolajı yeni görsellerle (Şafşavan, Nil, Petra, Fuji, Mostar, Lapland) — build_static.py.
 - 18.11.2026 · Claude · Bölüm 2 rota çarkı gezegenlerinde ikon yerine bizim Higgsfield fotoğraflarımız (Fas = Şafşavan; build_static.py ORB_FOTO/orb_foto). Fotoğraflı tur sayfalarında program kutuları koyu zeminli, başlıklara gölge (Hilal Hanım: Ürdün programı okunmuyordu).
 - 18.11.2026 · Claude · Tur listeleri 'tarihi yakın olan önce' (Hilal Hanım): uret_turlar.py yakin_sira() — güncel turlar yakından uzağa, geçmiş programlar sonda; Turlar/kategori listeleri, Fas sahnesi ve tur sayfasındaki benzer turlar; filtrede yeni varsayılan 'Tarih: yakın olan önce' (site.js).
+- 18.11.2026 · Claude · Ülke sayfasında filtreden başka kategori seçilince 'tur bulunamadı' yerine o kategorinin sayfasına gidiyor; 'Hepsi' → Turlar (site.js).

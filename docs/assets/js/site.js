@@ -155,6 +155,14 @@
       bosEl.classList.toggle('gizli', uygun.length > 0);
       dahaBtn.classList.toggle('gizli', uygun.length <= gosterilen);
     }
+    /* 18.11.2026 Hilal Hanım: ülke sayfasında (yalnız o ülkenin kartları var) başka kategori seçilince "tur bulunamadı" yerine o kategorinin sayfasına git */
+    f.elements.k.addEventListener('change', function () {
+      var k2 = f.elements.k.value;
+      var varMi = !k2 || kartlar.some(function (c) { return c.dataset.kat === k2; });
+      if (varMi && (k2 || kartlar.length > 0) && !(k2 === '' && /\/turlar\/[^\/]+\/?$/.test(location.pathname))) return;
+      var kok = document.body.getAttribute('data-kok') || './';
+      location.href = kok + 'turlar/' + (k2 ? k2 + '/' : '');
+    });
     f.addEventListener('input', function () { uygula(true); });
     f.addEventListener('change', function () { uygula(true); });
     f.addEventListener('reset', function () { setTimeout(function () { uygula(true); }, 0); });
