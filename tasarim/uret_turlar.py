@@ -78,6 +78,14 @@ def en_dusuk_fiyat(t):
     return para_tr(m['tutar'], m['para'])
 
 
+def en_dusuk_ham(t):   # 19.11.2026 TL karşılığı için sayı ve para birimi
+    f = (t.get('fiyatlar') or {}).get('yetiskin') or []
+    if not f:
+        return None, ''
+    m = min(f, key=lambda r: r['tutar'])
+    return m['tutar'], m['para']
+
+
 def yol(kok, p):
     return kok + p
 
@@ -131,7 +139,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 </main>
 <div id="alt"></div>
 <script src="{kok}assets/js/ozet.js"></script>
-{ek_script}{'' if 'assets/js/harita.js' in ek_script else HARITA_ZEMIN.format(k=kok)}<script src="{kok}assets/js/site.js"></script>
+{ek_script}{'' if 'assets/js/harita.js' in ek_script else HARITA_ZEMIN.format(k=kok)}<script src="{kok}assets/js/site.js"></script><script defer src="{kok}assets/js/kur.js"></script>
 <script src="{kok}assets/js/zemin.js"></script>
 <script src="{kok}assets/js/pano.js"></script>
 <script src="{kok}assets/js/muzik.js"></script>
@@ -157,7 +165,7 @@ TAKVIM_HTML = '''<section class="bolum takvim-bolum"><div class="wrap" data-takv
 <label for="tk-durum">Durum<select id="tk-durum"><option value="">Tüm durumlar</option></select></label>
 <button type="button" class="btn btn-hat" data-takvim-temizle>Filtreleri temizle</button>
 </form>
-<div class="tk-ust"><span data-takvim-say></span><span class="tk-not">Fiyatlar kişi başı başlangıç fiyatıdır; tarih, fiyat ve yer durumu değişebilir. Yer durumu için bize ulaşın.</span></div>
+<div class="tk-ust"><span data-takvim-say></span><span class="kur-not" data-kur-not hidden></span><span class="tk-not">Fiyatlar kişi başı başlangıç fiyatıdır; tarih, fiyat ve yer durumu değişebilir. Yer durumu için bize ulaşın.</span></div>
 <div class="tk-tablo-kap"><table class="tk-tablo"><thead><tr><th scope="col" class="tk-gorsel-bas">Görsel</th><th scope="col">Gidiş</th><th scope="col">Dönüş</th><th scope="col">Tur adı</th><th scope="col">Süre</th><th scope="col">Fiyat</th><th scope="col">Durum</th><th scope="col">Tur detayı</th></tr></thead>
 <tbody data-takvim-govde><tr><td colspan="7" class="tk-bos">Takvim yükleniyor…</td></tr></tbody></table></div>
 <noscript><p>Takvimi görmek için tarayıcınızda JavaScript açık olmalı. <a href="../turlar/">Tüm turlar</a></p></noscript>
@@ -200,7 +208,8 @@ def tur_karti(t, kat_ad, kok):
         tarih = t['tekrar']
     rozet = '<span class="arsiv canli">Güncel</span>' if aktif else '<span class="arsiv">Önceki dönem</span>'
     if aktif and f and not t.get('fiyatOnceki'):   # fiyatOnceki: tur güncel ama fiyat eski dönemden; kartta gösterilmez
-        fiyat = f'<div class="fiyat"><small>kişi başı</small>{e(f)}&#039;dan</div>'
+        _tt, _tp = en_dusuk_ham(t)
+        fiyat = f'<div class="fiyat" data-tl="{_tt}|{e(_tp)}"><small>kişi başı</small>{e(f)}&#039;dan</div>'
     else:
         fiyat = '<div class="fiyat"><small>Güncel tarih ve fiyat</small>için arayın</div>'
     rota = f'<div class="rota">{e(t["guzergah"])}</div>' if t.get('guzergah') else ''
@@ -255,7 +264,7 @@ def liste_govde(V, turlar, kok, kategori=None):
 </form>
 </aside>
 <div>
-<div class="sonuc-bilgi"><strong data-sayi>{len(sirali)} tur</strong><span>Kartlara tıklayarak programı ve fiyat bilgisini görün.</span></div>
+<div class="sonuc-bilgi"><strong data-sayi>{len(sirali)} tur</strong><span>Kartlara tıklayarak programı ve fiyat bilgisini görün.</span></div><p class="kur-not" data-kur-not hidden></p>
 <div class="izgara g3" data-kartlar>
 {kartlar}
 </div>
@@ -336,7 +345,7 @@ def program_html(prog):
 def fiyat_tablosu(baslik, satirlar):
     if not satirlar:
         return ''
-    r = ''.join(f'<tr><th scope="row">{e(s["etiket"])}</th><td>{e(para_tr(s["tutar"], s["para"]))}</td></tr>' for s in satirlar)
+    r = ''.join(f'<tr><th scope="row">{e(s["etiket"])}</th><td data-tl="{s["tutar"]}|{e(s["para"])}">{e(para_tr(s["tutar"], s["para"]))}</td></tr>' for s in satirlar)
     return f'<table class="fiyat-tablo"><caption>{e(baslik)}</caption>{r}</table>'
 
 
@@ -386,7 +395,7 @@ def detay_sayfasi(V, t, kats, kok):
     elif f.get('yetiskin') or f.get('cocuk'):
         fiyatlar = ('<section class="kutu bolum-ic"><h2>Fiyatlar</h2>'
                     + ('<p style="font-size:15px;color:var(--soluk)">Aşağıdaki fiyatlar önceki dönem içindir. Güncel fiyat, tarih ve kontenjan için bizi arayın.</p>' if not fiyat_guncel else '')
-                    + '<div class="izgara g2">' + fiyat_tablosu(fiyat_baslik, f.get('yetiskin')) + fiyat_tablosu('Çocuk fiyatları', f.get('cocuk')) + '</div>' + fiyat_notlar + '</section>')
+                    + '<div class="izgara g2">' + fiyat_tablosu(fiyat_baslik, f.get('yetiskin')) + fiyat_tablosu('Çocuk fiyatları', f.get('cocuk')) + '</div>' + fiyat_notlar + '<p class="kur-not" data-kur-not hidden></p></section>')
     dahil = ''.join(f'<li>{e(x)}</li>' for x in t.get('dahil') or [])
     haric = ''.join(f'<li>{e(x)}</li>' for x in t.get('haric') or [])
     dh = ''
@@ -512,7 +521,7 @@ def main():
         sayac[t['kategori']] = sayac.get(t['kategori'], 0) + 1
     ozet_t = []
     for t in V['turlar']:
-        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'takvimDurum', 'takvimTarihDurum', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t)})
+        ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'takvimDurum', 'takvimTarihDurum', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t), 'fiyatHam': None if t.get('fiyatOnceki') else list(en_dusuk_ham(t))})
     ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in gorunur_kat(V)], 'turlar': ozet_t,
             'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', [])}
     yaz('assets/js/ozet.js', '/* OTOMATİK ÜRETİLDİ (tasarim/uret_turlar.py). Elle değiştirmeyin; veri.js\'i değiştirip üreticiyi çalıştırın. */\nwindow.FT = '

@@ -62,7 +62,7 @@
       '<div><h3>' + esc(t.ad) + '</h3><small>' + esc(KAT[t.kategori] || '') + ' · ' + esc(t.gun) + ' gün · ' + esc(t.vize || '') + (t.fiyat ? ' · başlangıç ' + esc(t.fiyat) : '') + '</small>' +
       (r.guncel ? '<span class="tb-etiket">Güncel</span>' : '<span class="tb-etiket eski">Önceki dönem programı · ' + esc(tarih) + '</span>') +
       '<div class="tb-act"><a class="btn btn-hat btn-kucuk" href="' + K + 'tur/' + esc(t.slug) + '/">Programı gör</a>' +
-      '<a class="btn btn-ana btn-kucuk" href="' + K + 'talep/?tur=' + encodeURIComponent(t.slug) + '">' + (r.guncel ? 'Talep bırak' : 'Yeni dönem için talep bırak') + '</a></div></div></article>';
+      '<a class="btn btn-ana btn-kucuk" href="' + K + 'talep/?tur=' + encodeURIComponent(t.slug) + '">' + (r.guncel ? 'Talep Bırakın' : 'Yeni dönem için talep bırakın') + '</a></div></div></article>';
   }
   function sonuc() {
     var s = puanla(), guncel = s.filter(function (r) { return r.guncel; }), liste = (guncel.length ? guncel : s).slice(0, 5), h = ilerleme().replace(/<i>/g, '<i class="on">').replace(/<i><\/i>/g, '<i class="on"></i>');

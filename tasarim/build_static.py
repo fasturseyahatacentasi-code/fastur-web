@@ -107,7 +107,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <p class="alt" data-i18n="ana.alt">{"Umre • " if UMRE else ""}Afrika • Avrupa • Asya • Amerika</p>
 <p class="ic-p" data-i18n="ana.ic">Herkese uygun tatil seçenekleri. Yol arkadaşınız sizi rotaya götürsün.</p>
 <form class="arama" action="turlar/" method="get" role="search">
-<input type="search" name="q" placeholder="Nereye gitmek istersin?" data-i18n-attr="placeholder:ana.arama" aria-label="Tur veya şehir ara">
+<input type="search" name="q" placeholder="Nereye gitmek istersiniz?" data-i18n-attr="placeholder:ana.arama" aria-label="Tur veya şehir ara">
 <select name="k" aria-label="Kategori"><option value="" data-i18n="ana.tumkat">Tüm kategoriler</option>{kopt}</select>
 <button class="btn btn-ana" type="submit" data-i18n="ana.ara">Tur ara</button></form>
 <div class="hizli">{ust_kat}</div></div>
@@ -115,7 +115,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="sahne-kisi"><img src="{IMG}karakter-tam-boy.png" alt="Fas Tur yol arkadaşı" width="560" height="1632" fetchpriority="high"><i class="golge" aria-hidden="true"></i></div></div></div>
 <span class="kaydir">Kaydır · yola çık</span></section>
 <section class="bolum koyu-bolum" id="yorunge"{durak()}><canvas class="harita-zemin" data-harita-zemin aria-hidden="true"></canvas><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="yorunge">Bölüm 2 · Rotanı seç</span><h2>Hangi <em>rotaya</em> çıkıyoruz?</h2></div></div>
+<div class="bolum-baslik"><div><span class="etiket" data-bolum="yorunge">Bölüm 2 · Rotanı seç</span><h2>Hangi <em>Rotaya</em> Gidiyoruz?</h2></div></div>
 <div class="yorunge-duzen"><div><div class="sistem" aria-label="Destinasyonlar">
 <div class="halka"></div><div class="halka ic"></div><div class="yorunge">{uydu}</div>
 <a class="merkez portre" href="turlar/" aria-label="Tüm turlar"><img src="{IMG}karakter-portre-2.png" alt="" width="320" height="370"></a></div>
@@ -132,14 +132,14 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <span class="tb-ic"><span class="tb-etiket">KALKIŞLAR · TARİHLER · FİYATLAR</span><b class="tb-baslik">TUR TAKVİMİ</b><span class="tb-dugme">Tüm turlar için tıklayın <span aria-hidden="true">→</span></span></span>
 </a></div></section>
 <section class="bolum kum"><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket">Yaklaşan tarihler</span><h2>Yaklaşan <em>turlar</em></h2><p>Yerinizi şimdiden ayırtmak için talebinizi bırakın.</p></div><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div>
+<div class="bolum-baslik"><div><span class="etiket">Yaklaşan tarihler</span><h2>Yaklaşan <em>Turlar</em></h2><p>Yerinizi şimdiden ayırtmak için talebinizi bırakın.</p></div><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div>
 <div class="takvim gizli" data-yaklasan></div>
 <div class="yakinda" data-yakinda><span class="etiket">Yeni dönem</span><h3>Yeni dönem tarihleri <em>yakında</em></h3><p>Güncel tarih, fiyat ve kontenjan bilgisi için ekibimize ulaşın; ilgilendiğiniz rotayı yazın, size dönüş yapalım. Önceki dönem programlarını incelemek için Turlar sayfasına göz atabilirsiniz.</p>
-<div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="turlar/">Önceki dönem programları</a></div></div>
+<div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep Bırakın</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="turlar/">Önceki dönem programları</a></div></div>
 </div></section>
 {umre_bolum}
 <section class="bolum kum" id="rota-sesleri" data-tema="mor"{durak(G+'hero-asya.jpg',G+'bolge-asya.jpg')}><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="muzik">Bölüm 4 · Rota sesleri</span><h2>Yolculuk <em>müzikleri</em></h2><p>Her rotanın bir ruh hâli var. Dinlemek için bir parçaya dokunun; ses yalnız siz başlatınca çalar.</p></div></div>
+<div class="bolum-baslik"><div><span class="etiket" data-bolum="muzik">Bölüm 4 · Rota sesleri</span><h2>Yolculuk <em>Müzikleri</em></h2><p>Her rotanın bir ruh hâli var. Dinlemek için bir parçaya dokunun; ses yalnız siz başlatınca çalar.</p></div></div>
 {konus('muzik','karakter-ifade-2.png','50% 18%')}
 <div class="muzik-izgara" data-muzik-kartlar></div>
 </div></section>
@@ -159,16 +159,16 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="deger"><h3>Güven</h3><p>Veri güvenliği ve seyahat emniyeti önceliğimizdir.</p></div>
 </div></div></section>
 <section class="bolum kum"><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket">Gezi notları</span><h2>Haberler ve <em>rehberler</em></h2></div><a class="btn btn-hat btn-kucuk" href="haberler/">Tüm yazılar</a></div>
+<div class="bolum-baslik"><div><span class="etiket">Gezi notları</span><h2>Haberler ve <em>Rehberler</em></h2></div><a class="btn btn-hat btn-kucuk" href="haberler/">Tüm yazılar</a></div>
 <div class="izgara g3">{''.join(haber_kart(h,'') for h in son_h)}</div></div></section>
 <section class="bolum" id="anilar"><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket">Misafir anıları</span><h2>Yolculuk <em>anıları</em></h2></div></div>
+<div class="bolum-baslik"><div><span class="etiket">Misafir anıları</span><h2>Yolculuk <em>Anıları</em></h2></div></div>
 <div class="ani-duvar gizli" data-anilar></div>
-<div class="yakinda ani-cagri" data-ani-cagri><span class="etiket">Anılarınızı bekliyoruz</span><h3>Fas Tur ile yolculuk ettiniz mi? <em>Anınızı paylaşın</em></h3><p>Fotoğraflı anılar ve yorumlar, misafirimizin izniyle burada yer alacak. Anınızı bize WhatsApp&#039;tan ya da talep formundan iletebilirsiniz; ayrıca Instagram hesabımızda da yolculuk karelerimizi bulabilirsiniz.</p>
-<div class="dugmeler"><a class="btn btn-ana" href="talep/">Anımı paylaşmak istiyorum</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="https://www.instagram.com/fasturtravel/" target="_blank" rel="noopener">Instagram profilimiz</a></div></div>
+<div class="yakinda ani-cagri" data-ani-cagri><span class="etiket">Anılarınızı bekliyoruz</span><h3>Fas Tur ile yolculuk ettiniz mi?<br><em>Anınızı paylaşın</em></h3><p>Fotoğraflı anılar ve yorumlar, misafirimizin izniyle burada yer alacak. Anınızı bize WhatsApp&#039;tan ya da talep formundan iletebilirsiniz; ayrıca Instagram hesabımızda da yolculuk karelerimizi bulabilirsiniz.</p>
+<div class="dugmeler"><a class="btn btn-ana" href="talep/">Anımı paylaşmak istiyorum</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="https://www.instagram.com/fasturtravel/" target="_blank" rel="noopener">Instagram</a></div></div>
 </div></section>
 <section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 5 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
-<div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a></div></div></div></section>'''
+<div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep Bırakın</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a></div></div></div></section>'''
 yaz('index.html',ut.kabuk(V,'Fas Tur | '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa ve Asya Turları','Fas Tur: '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. Programları inceleyin, bilgi ve rezervasyon talebi gönderin.','./','',home,sayfa='ana',ek_script='<script src="assets/img/harita/harita-veri.js"></script>\n<script defer src="assets/js/harita.js"></script>\n<script defer src="assets/js/ucus.js"></script>\n',ek_head=f'<script type="application/ld+json">{ld}</script>'))
 
 # ---------------- hakkımızda

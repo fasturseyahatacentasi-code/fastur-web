@@ -59,11 +59,11 @@
       var du = DURUM[r.durum];
       h += '<tr class="tk-satir"><td class="tk-gorsel"><a href="' + K + 'tur/' + esc(r.t.slug) + '/" tabindex="-1" aria-hidden="true"><img src="' + K + esc(r.t.gorsel || '') + '" alt="" loading="lazy" width="96" height="64"></a></td><td data-e="Gidiş">' + tr(r.gidis) + '</td><td data-e="Dönüş">' + (r.donus ? tr(r.donus) : '—') + '</td>' +
         '<td data-e="Tur" class="tk-ad"><a href="' + K + 'tur/' + esc(r.t.slug) + '/">' + esc(r.t.ad) + '</a></td><td data-e="Süre">' + sure(r.t.gun) + '</td>' +
-        '<td data-e="Fiyat" class="tk-fiyat">' + (r.fiyat ? esc(r.fiyat) + '<small>\'dan</small>' : 'Sorunuz') + '</td>' +
+        '<td data-e="Fiyat" class="tk-fiyat"' + (r.t.fiyatHam && r.t.fiyatHam[0] ? ' data-tl="' + r.t.fiyatHam[0] + '|' + esc(r.t.fiyatHam[1]) + '"' : '') + '>' + (r.fiyat ? esc(r.fiyat) + '<small>\'dan</small>' : 'Sorunuz') + '</td>' +
         '<td data-e="Durum"><span class="tk-durum ' + du[1] + '">' + du[0] + '</span></td>' +
         '<td class="tk-git"><a class="btn btn-hat btn-kucuk" href="' + K + 'tur/' + esc(r.t.slug) + '/">Tur detayı</a></td></tr>';
     });
-    govde.innerHTML = h;
+    govde.innerHTML = h; if (window.FT_KUR) window.FT_KUR.uygula(govde);
   }
   [fTur, fSure, fDurum].forEach(function (s) { s.addEventListener('change', ciz); });
   kok.querySelector('[data-takvim-temizle]').addEventListener('click', function () { fTur.value = fSure.value = fDurum.value = ''; ciz(); });

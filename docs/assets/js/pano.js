@@ -28,7 +28,7 @@
     '<div class="hud-kayan" aria-live="off"><div class="kayan-ic">' + kayanHtml + '</div></div>' +
     '<button class="hud-rota" type="button" aria-expanded="false" aria-controls="pano"><span class="kare" aria-hidden="true"></span>Rotalar</button>' +
     '<select class="hud-dil" data-dil-sec aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select>' +
-    '<a class="btn btn-ana btn-kucuk hud-talep" href="' + K + 'talep/" data-i18n="hud.talep">Talep bırak</a>' +
+    '<a class="btn btn-ana btn-kucuk hud-talep" href="' + K + 'talep/" data-i18n="hud.talep">Talep Bırakın</a>' +
     '</div></header>';
 
   /* gündüz / gece modu: İstanbul saatine göre otomatik (06–18 gündüz); elle değiştirme localStorage'da saklanır */
@@ -64,7 +64,7 @@
     return '<section class="mm-grup"><h3>' + esc(g.ad) + '</h3><ul>' +
       g.k.map(function (k) { return '<li><a href="' + K + 'turlar/' + esc(k.slug) + '/"' + (k.sayi ? '' : ' class="mm-bos"') + '><span>' + esc(k.ad) + '</span></a></li>'; }).join('') + '</ul></section>';
   }).join('');
-  var hizli = [['Tur takvimi', 'tur-takvimi/', '', 'mm-h-takvim'], ['Tüm turlar', 'turlar/', 'pano.tum', ''], ['Bana Uygun Turu Bul', 'tur-bul/', 'nav.turbul', ''], ['Talep bırak', 'talep/', 'hud.talep', 'mm-h-talep']];
+  var hizli = [['Tur takvimi', 'tur-takvimi/', '', 'mm-h-takvim'], ['Tüm turlar', 'turlar/', 'pano.tum', ''], ['Bana Uygun Turu Bul', 'tur-bul/', 'nav.turbul', ''], ['Talep Bırakın', 'talep/', 'hud.talep', 'mm-h-talep']];
   var hizliHtml = hizli.map(function (h) { return '<a class="mm-hizli-a ' + h[3] + '" href="' + K + h[1] + '">' + esc(tt(h[2], h[0])) + '</a>'; }).join('');
   var kurumsalHtml = kurumsal.filter(function (k) { return ['tur-takvimi/', 'turlar/', 'tur-bul/', 'talep/'].indexOf(k[1]) < 0; })
     .map(function (k) { return '<a href="' + K + k[1] + '">' + esc(tt(k[3], k[0])) + '</a>'; }).join('');
