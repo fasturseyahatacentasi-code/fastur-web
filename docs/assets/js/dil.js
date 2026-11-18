@@ -36,8 +36,34 @@
     var h = document.documentElement, dr = dil === 'ar' ? 'rtl' : 'ltr';
     if (h.getAttribute('lang') !== dil) h.setAttribute('lang', dil); if (h.getAttribute('dir') !== dr) h.setAttribute('dir', dr);
     var sel = document.querySelector('[data-dil-sec]'); if (sel && sel.value !== dil) sel.value = dil;
+    if (dil === 'en') metinCevir(kok === document ? document.body : kok);
   }
-  function sec(d) { if (DILLER.indexOf(d) < 0) return; yukle(d, function () { dil = d; yaz(d); uygula(); }); }
+  /* 19.11.2026 Hilal Hanım: İngilizce sayfa geneli. data-i18n olmayan sabit yazılar en-metin.json ile birebir eşleşince çevrilir;
+     tur programları (.program) ve makale gövdeleri Türkçe kalır. TR'ye dönünce sayfa yeniden yüklenir. */
+  var METIN = null, AYLAR = { 'Ocak': 'January', 'Şubat': 'February', 'Mart': 'March', 'Nisan': 'April', 'Mayıs': 'May', 'Haziran': 'June', 'Temmuz': 'July', 'Ağustos': 'August', 'Eylül': 'September', 'Ekim': 'October', 'Kasım': 'November', 'Aralık': 'December' };
+  var KURAL = [
+    [/^(\d+) gün$/, '$1 days'], [/^(\d+) tur$/, '$1 tours'], [/^(\d+) tur programı →$/, '$1 tour programmes →'], [/^(\d+) kalkış$/i, '$1 departures'],
+    [/^(\d+) Gece (\d+) Gün$/, '$1 Nights $2 Days'], [/^(\d+) Gün$/, '$1 Days'], [/^([€$£][\d.,]+)'dan$/, 'from $1'], [/^'dan$/, ''], [/^(\d) ve (\d) Yıldız$/, '$1 and $2 Star'], [/^(\d) veya (\d) Yıldız$/, '$1 or $2 Star'], [/^(\d) Yıldız$/, '$1 Star'],
+    [/^≈ TL tutarlar: Banka satış kuru \(Ziraat Katılım\), güncelleme (.*) · Bilgi amaçlıdır, kesin fiyat için bize ulaşın\.$/, '≈ TL amounts: bank selling rate (Ziraat Katılım), updated $1 · For information only; contact us for exact prices.'],
+    [/^(\d{1,2}) (Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık) (\d{4})$/, function (m, g, a, y) { return g + ' ' + AYLAR[a] + ' ' + y; }],
+    [/^(Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık) (\d{4})$/, function (m, a, y) { return AYLAR[a] + ' ' + y; }]
+  ];
+  function metinCevir(kok) {
+    if (!METIN) { fetch(K + 'assets/i18n/en-metin.json').then(function (r) { return r.json(); }).then(function (j) { METIN = j; metinCevir(document.body); }).catch(function () { METIN = {}; }); return; }
+    var w = document.createTreeWalker(kok, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+      var p = n.parentNode; if (!p || /^(SCRIPT|STYLE|TEXTAREA|NOSCRIPT)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+      if (p.closest && p.closest('[data-i18n],.program,.makale,.yazi-govde,article.yazi')) return NodeFilter.FILTER_REJECT;
+      return /\S/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; } });
+    var L = [], n; while ((n = w.nextNode())) L.push(n);
+    L.forEach(function (n) {
+      var v = n.nodeValue, t = v.trim(), y = METIN[t];
+      if (y == null) for (var i = 0; i < KURAL.length; i++) if (KURAL[i][0].test(t)) { y = t.replace(KURAL[i][0], KURAL[i][1]); break; }
+      if (y != null && y !== t) n.nodeValue = v.replace(t, y);
+    });
+    document.querySelectorAll('input[placeholder="Nereye gitmek istersiniz?"]').forEach(function (i) { i.placeholder = 'Where would you like to go?'; });
+    document.querySelectorAll('input[placeholder="Tur adı veya şehir"]').forEach(function (i) { i.placeholder = 'Tour name or city'; });
+  }
+  function sec(d) { if (DILLER.indexOf(d) < 0) return; if (d === 'tr' && dil !== 'tr') { yaz(d); location.reload(); return; } yukle(d, function () { dil = d; yaz(d); uygula(); }); }
   function dugme() {
     if (document.querySelector('[data-dil-sec]')) return;   // sayfada kendi seçici varsa onu kullan
     var s = document.createElement('select'); s.setAttribute('data-dil-sec', ''); s.setAttribute('aria-label', 'Language / Dil');
