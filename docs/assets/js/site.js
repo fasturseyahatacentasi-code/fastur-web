@@ -35,7 +35,7 @@
     var tursab = (S.tursab && S.tursab !== '[?]') ? '<div>TÜRSAB belge no: ' + esc(S.tursab) + '</div>' : '';
     alt.outerHTML =
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
-      '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/fastur-logo.png" alt="Fas Tur" width="92" height="44"></span>' +
+      '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/logo/fastur-logo-koyu.svg" alt="Fas Tur Seyahat Acentesi" width="190" height="55"></span>' +
       '<p>' + esc(S.unvanTam) + '</p><p>' + esc(S.adres) + '</p></div>' +
       /* 14.11.2026 Hilal Hanım: her satır etiketli ve tek numaralı (telefon ile WhatsApp karışmasın) */
       '<div><h4>Yardıma mı ihtiyacınız var?</h4>' +

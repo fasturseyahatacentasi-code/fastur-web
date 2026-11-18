@@ -20,7 +20,7 @@ a.g{background:none;border:2px solid #12385a;color:#12385a}
 (function(){
   var p=location.pathname, base=location.hostname.slice(-10)==='github.io' ? '/'+p.split('/')[1]+'/' : '/';
   document.getElementById('ev').href=base; document.getElementById('tr').href=base+'turlar/'; document.getElementById('tl').href=base+'talep/';
-  document.getElementById('lg').src=base+'assets/img/genel/fastur-logo.png';
+  document.getElementById('lg').src=base+'assets/img/genel/logo/fastur-logo-koyu.svg';
   var rel=p.slice(base.length), q=new URLSearchParams(location.search);
   var s=document.createElement('script'); s.src=base+'assets/js/eski-adresler.js?v=43972a4d';
   s.onload=function(){

@@ -201,7 +201,7 @@ def yazi_ld(h, govde):
     # Gezi notları SEO (14.11.2026): makale + sık sorulan sorular yapısal verisi (Google zengin sonuç)
     alan=site['alanAdi'].rstrip('/')+'/'
     d=[{"@context":"https://schema.org","@type":"BlogPosting","headline":h['baslik'],"description":h.get('ozet',''),"datePublished":h['tarih'],"dateModified":h.get('guncelleme',h['tarih']),
-        "image":alan+h['gorsel'],"author":{"@type":"Organization","name":h.get('yazar','Fas Tur')},"publisher":{"@type":"Organization","name":"Fas Tur","logo":{"@type":"ImageObject","url":alan+"assets/img/genel/fastur-logo.png"}},
+        "image":alan+h['gorsel'],"author":{"@type":"Organization","name":h.get('yazar','Fas Tur')},"publisher":{"@type":"Organization","name":"Fas Tur","logo":{"@type":"ImageObject","url":alan+"assets/img/genel/logo/fastur-logo-kare.png"}},
         "mainEntityOfPage":alan+'haberler/'+h['slug']+'/',"inLanguage":"tr-TR"}]
     sss=re.findall(r'<details class="sss"><summary>(.*?)</summary><p>(.*?)</p></details>',govde,re.S)
     if sss: d.append({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":re.sub('<[^>]+>','',q),"acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for q,a in sss]})
@@ -298,7 +298,7 @@ a.g{background:none;border:2px solid #12385a;color:#12385a}
 (function(){
   var p=location.pathname, base=location.hostname.slice(-10)==='github.io' ? '/'+p.split('/')[1]+'/' : '/';
   document.getElementById('ev').href=base; document.getElementById('tr').href=base+'turlar/'; document.getElementById('tl').href=base+'talep/';
-  document.getElementById('lg').src=base+'assets/img/genel/fastur-logo.png';
+  document.getElementById('lg').src=base+'assets/img/genel/logo/fastur-logo-koyu.svg';
   var rel=p.slice(base.length), q=new URLSearchParams(location.search);
   var s=document.createElement('script'); s.src=base+'assets/js/eski-adresler.js';
   s.onload=function(){
@@ -316,6 +316,6 @@ a.g{background:none;border:2px solid #12385a;color:#12385a}
 yaz('404.html',k404)
 yaz('robots.txt',ROBOTS_METNI)   # 🔒 görsel/Okay koruması — Hilal Hanım 13.11.2026; yalnız onun açık talimatıyla gevşetilir
 yaz('.nojekyll','')
-yaz('assets/img/genel/favicon.svg','<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#12385a"/><circle cx="32" cy="32" r="22" fill="none" stroke="#f08a1c" stroke-width="4"/><path d="M32 8l5 20 20 4-20 4-5 20-5-20-20-4 20-4z" fill="#fff"/></svg>')
+yaz('assets/img/genel/favicon.svg','<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"><rect width="512" height="512" rx="110" fill="#ffffff"/><path d="M256.0,256.0 L205.2,133.4 L256.0,42.0 L306.8,133.4 Z" fill="#13a89e" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><path d="M256.0,256.0 L306.8,133.4 L407.3,104.7 L378.6,205.2 Z" fill="#ff7a1a" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><path d="M256.0,256.0 L378.6,205.2 L470.0,256.0 L378.6,306.8 Z" fill="#f6c137" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><path d="M256.0,256.0 L378.6,306.8 L407.3,407.3 L306.8,378.6 Z" fill="#1f4fa3" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><path d="M256.0,256.0 L306.8,378.6 L256.0,470.0 L205.2,378.6 Z" fill="#e8475f" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><path d="M256.0,256.0 L205.2,378.6 L104.7,407.3 L133.4,306.8 Z" fill="#13a89e" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><path d="M256.0,256.0 L133.4,306.8 L42.0,256.0 L133.4,205.2 Z" fill="#ff7a1a" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><path d="M256.0,256.0 L133.4,205.2 L104.7,104.7 L205.2,133.4 Z" fill="#f6c137" stroke="#ffffff" stroke-width="5.35" stroke-linejoin="round"/><circle cx="256.0" cy="256.0" r="79.2" fill="#ffffff"/><g transform="translate(260.3,256.0) rotate(-35)" fill="#1f4fa3"><path d="M23,0 Q22,-2 15,-2.2 L7,-12 L3.5,-12 L8,-2.2 L-5,-2.2 L-8.5,-6.5 L-11,-6.5 L-9,0 L-11,6.5 L-8.5,6.5 L-5,2.2 L8,2.2 L3.5,12 L7,12 L15,2.2 Q22,2 23,0 Z" transform="translate(-34.0,0) scale(3.526)"/></g></svg>')   # 19.11.2026 yeni logo: Fas yıldızı
 ut.surum_damgala()   # css/js adreslerine ?v= (telefon eski dosyayi karistirmasin)
 print('statik sayfalar yazıldı')
