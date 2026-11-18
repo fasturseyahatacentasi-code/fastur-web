@@ -122,6 +122,13 @@
     var kabHost = kap.querySelector('[data-kartlar]');
     var SAYFA = 12, gosterilen = SAYFA;
     var qs = new URLSearchParams(location.search);
+    /* 18.11.2026: tarayıcı sayfa yenilenince/geri gelince eski seçimi geri yüklüyordu (ülke sayfasında başka ülke seçili kalıp "tur bulunamadı"); hep sayfanın kendi varsayılanıyla başla */
+    f.setAttribute('autocomplete', 'off');
+    Array.prototype.forEach.call(f.elements, function (el) {
+      if (el.tagName === 'SELECT') { var d = Array.prototype.filter.call(el.options, function (o) { return o.defaultSelected; })[0]; el.value = d ? d.value : (el.options[0] ? el.options[0].value : ''); }
+      else if (el.type === 'checkbox') el.checked = el.defaultChecked;
+      else if (el.type === 'text' || el.type === 'search') el.value = el.defaultValue;
+    });
     ['q', 'k', 'v', 'g', 's'].forEach(function (n) { if (qs.get(n) && f.elements[n]) f.elements[n].value = qs.get(n); });
     if (qs.get('a') === '1') f.elements.a.checked = true;
     function uygula(sifirla) {

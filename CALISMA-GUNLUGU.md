@@ -129,3 +129,4 @@
 - 18.11.2026 · Claude · Tur listeleri 'tarihi yakın olan önce' (Hilal Hanım): uret_turlar.py yakin_sira() — güncel turlar yakından uzağa, geçmiş programlar sonda; Turlar/kategori listeleri, Fas sahnesi ve tur sayfasındaki benzer turlar; filtrede yeni varsayılan 'Tarih: yakın olan önce' (site.js).
 - 18.11.2026 · Claude · Ülke sayfasında filtreden başka kategori seçilince 'tur bulunamadı' yerine o kategorinin sayfasına gidiyor; 'Hepsi' → Turlar (site.js).
 - 18.11.2026 · Claude · Ana sayfadan ayrı 'Bölüm 4 · Fas ve Kuzey Afrika' bölümü kaldırıldı (Hilal Hanım: anlamsız); Fas ve Mısır kartları Dünya rotalarının başında. Bölüm numaraları: 4 Rota sesleri, 5 Sıra sizde. hikaye 'fas' kaydı veride duruyor. Son 2 Mısır turunun görseli de misir-nil.
+- 18.11.2026 · Claude · Filtre: sayfa açılınca form her zaman sayfanın kendi varsayılanıyla başlar (tarayıcının eski seçimi geri yüklemesi ülke sayfasında 'tur bulunamadı' yaratıyordu); form autocomplete=off.
