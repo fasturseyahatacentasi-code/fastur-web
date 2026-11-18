@@ -909,3 +909,9 @@ html.video-zemin .kirinti,html.video-zemin .tur-kapak h1,html.video-zemin .sayfa
 html.zemin-foto .kutu,html.zemin-foto .yan{background:rgba(10,16,44,.80);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 html.zemin-foto .tur-kapak .rozet{background:rgba(10,16,44,.75);color:#fff;border-color:rgba(255,255,255,.35)}
 html.zemin-foto .kirinti,html.zemin-foto .kirinti a,html.zemin-foto .kirinti span{color:#fff}
+/* 18.11.2026: çark gezegenlerinde fotoğraf */
+.uydu i.foto{background-size:cover;background-position:center;border:2px solid var(--turkuaz)}
+/* 18.11.2026 Hilal Hanım: Ürdün programı okunmuyor -> fotoğraflı zeminde program kutuları ve başlıklar koyu zeminli */
+html.zemin-foto .program details{background:rgba(10,16,44,.86);border-color:rgba(255,255,255,.18)}
+html.zemin-foto .program details[open] summary{background:rgba(255,154,46,.18)}
+html.zemin-foto main h2,html.zemin-foto main h3,html.zemin-foto .bolum-ic>p{text-shadow:0 2px 8px rgba(0,0,0,.85)}

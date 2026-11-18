@@ -65,7 +65,10 @@ son_h=sorted(haberler,key=lambda h:h['tarih'],reverse=True)[:3]
 yor_html=''.join(f'<figure class="yorum" style="margin:0"><div class="yildiz" aria-label="5 yıldız">★★★★★</div><h3>{html.escape(y["baslik"])}</h3><p>{html.escape(y["metin"])}</p><div class="kim">{html.escape(y["ad"])} · {html.escape(y["tur"])}</div></figure>' for y in yorumlar)
 ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/fasturtravel/"]},ensure_ascii=False)
 ORB=[(s,a,IKON.get(s,'✈️')) for s,a in DOLU]
-uydu=''.join(f'<div class="kol" style="--a:{round(i*360/len(ORB),2)}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px"><i>{ic_}</i>{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
+# 18.11.2026 Hilal Hanım: çarkın gezegenlerinde bizim ürettiğimiz fotoğraflar (Fas = Şafşavan); fotoğraf yoksa ikon
+ORB_FOTO={'fas':'assets/img/turlar/buyuk-fas-safsavan.jpg'}
+def orb_foto(s_): return ORB_FOTO.get(s_) or next((t['gorsel'] for t in V['turlar'] if t['kategori']==s_ and t.get('aktif') and '/turlar/' in t['gorsel'] and not t['gorsel'].split('/')[-1].startswith('tur_')),'')
+uydu=''.join(f'<div class="kol" style="--a:{round(i*360/len(ORB),2)}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px">'+(f'<i class="foto" style="background-image:url({orb_foto(s_)})"></i>' if orb_foto(s_) else f'<i>{ic_}</i>')+f'{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
 uydu=uydu.replace('<div class="uydu"><a','<div class="uydu"><a')
 seritler=''.join(f'<a href="turlar/{s_}/"><span class="ik">{ic_}</span>{ad_}</a>' for s_,ad_,ic_ in ORB)
 IMG='assets/img/karakter/'
