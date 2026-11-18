@@ -157,5 +157,35 @@
     for (var i = 0; i < cs.length; i++) { var v = veri[2 + i * 2] / 255; cs[i].style.transform = 'scaleY(' + (0.12 + v * 0.95).toFixed(2) + ')'; }
   }
   requestAnimationFrame(ciz);
+  /* ---- sayfa değişince müzik kaldığı yerden sürsün (18.11.2026 Hilal Hanım) ----
+     Çok sayfalı sitede yeni sayfaya geçişte ses mecburen durur; çalan parça ve saniyesi sessionStorage'a yazılır,
+     yeni sayfada kaldığı yerden devam eder. Tarayıcı izin vermezse ilk dokunuş/tıklamada sürer. Kullanıcı durdurduysa sürmez. */
+  function surKaydet() {
+    try {
+      if (aktif && audioEl && !audioEl.paused) sessionStorage.setItem('ft_muzik_sur', JSON.stringify({ id: aktif, t: audioEl.currentTime, z: Date.now() }));
+      else sessionStorage.removeItem('ft_muzik_sur');
+    } catch (e) { }
+  }
+  addEventListener('pagehide', surKaydet);
+  setInterval(surKaydet, 2000);
+  (function () {
+    var k = null; try { k = JSON.parse(sessionStorage.getItem('ft_muzik_sur') || 'null'); } catch (e) { }
+    if (!k || !k.id || Date.now() - k.z > 10 * 60 * 1000) return;
+    var m = M.filter(function (x) { return x.id === k.id; })[0]; if (!m || !m.dosya) return;
+    if (!audioEl) { audioEl = new Audio(); audioEl.loop = true; }
+    audioEl.src = K + m.dosya; audioEl.volume = st.vol; st.id = m.id; arayuz();
+    audioEl.addEventListener('playing', function () { aktif = m.id; arayuz(); }, { once: true });
+    audioEl.addEventListener('loadedmetadata', function () { try { audioEl.currentTime = (k.t || 0) % (audioEl.duration || 1e9); } catch (e) { } }, { once: true });
+    var p = audioEl.play();
+    if (p && p.catch) p.catch(function () {
+      /* otomatik başlatma engellendi: ilk etkileşimde sür */
+      function ilk(ev) {
+        if (ev && ev.target && ev.target.closest && ev.target.closest('.mini-muzik, .mk-cal')) return;   // oynatıcıya basıldıysa onun kararı geçerli
+        ['pointerdown', 'keydown', 'touchstart'].forEach(function (n) { removeEventListener(n, ilk, true); });
+        if (!aktif && st.id === m.id && audioEl.paused && audioEl.src.indexOf(m.dosya) > -1) audioEl.play().catch(function () { });
+      }
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (n) { addEventListener(n, ilk, true); });
+    });
+  })();
   window.FT_MUZIK = { cal: cal, dur: function () { dur(false); } };
 })();
