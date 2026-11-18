@@ -22,7 +22,7 @@
 
   ust.outerHTML =
     '<header class="hud"><div class="wrap hud-bar">' +
-    '<a class="marka" href="' + K + '" aria-label="Fas Tur ana sayfa"><img src="' + K + 'assets/img/genel/logo/fastur-logo-hud.svg" alt="Fas Tur" width="130" height="38"></a>' +
+    '<a class="marka" href="' + K + '" aria-label="Fas Tur ana sayfa"><img src="' + K + 'assets/img/genel/logo/fastur-logo-hud.svg" alt="Fas Tur" width="169" height="60"></a>' +
     '<div class="hud-saat" role="timer" aria-label="İstanbul yerel saati"><i class="canli"></i><span>İSTANBUL</span><time id="hud-saat">--:--</time></div>' +
     '<button class="hud-mod" type="button" aria-pressed="false" aria-label="Gündüz / gece modu" title="Gündüz / gece (çift tıklama: otomatik)"><span aria-hidden="true"></span></button>' +
     '<div class="hud-kayan" aria-live="off"><div class="kayan-ic">' + kayanHtml + '</div></div>' +

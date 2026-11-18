@@ -916,6 +916,6 @@ html.zemin-foto .program details{background:rgba(10,16,44,.86);border-color:rgba
 html.zemin-foto .program details[open] summary{background:rgba(255,154,46,.18)}
 html.zemin-foto main h2,html.zemin-foto main h3,html.zemin-foto .bolum-ic>p{text-shadow:0 2px 8px rgba(0,0,0,.85)}
 /* 19.11.2026 yeni logo (Fas yıldızı): kutusuz, koyu zemine uygun */
-html .hud .marka{background:none;padding:0;border-radius:0}html .hud .marka img{height:46px;width:auto}
-@media(max-width:560px){html .hud .marka img{height:38px}}@media(max-width:360px){html .hud .marka img{height:32px}}
+html .hud .marka{background:none;padding:0;border-radius:0}html .hud .marka img{height:60px;width:auto;margin:-6px 0}
+@media(max-width:560px){html .hud .marka img{height:50px;margin:-4px 0}}@media(max-width:360px){html .hud .marka img{height:42px}}
 .alt-bilgi .logo-b{background:none;padding:0}.alt-bilgi .logo-b img{height:64px;width:auto}
