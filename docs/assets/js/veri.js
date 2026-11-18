@@ -1005,7 +1005,7 @@ window.FT = {
       "haric": ["Diğer şehirlerden İstanbul'a iç hat bağlantı uçuşu ücreti", "Öğle yemekleri ve tüm yemeklerde alınan kapalı su ve kapalı içecekler", "Yurt dışı çıkış harcı", "Program dışı talep edilecek turlar", "Kişisel harcamalar, otel ekstraları (oda servisleri, telefon vb.) ve bahşişler", "Programda dahil olduğu açıkça belirtilmemiş her türlü hizmet"],
       "gorsel": "assets/img/turlar/ozbekistan-registan.jpg",
       "aktif": true,
-      "takvimDurum": "musait",
+      "takvimDurum": "kapali",
       "teyit": "Burak Tur programı (PDF 13.11.2026) — Hilal Hanım onayladı 14.11.2026",
       "kaynak": "Burak Tur (yazılı izin, Hilal Hanım)",
       "eskiAdres": ""

@@ -130,3 +130,4 @@
 - 18.11.2026 · Claude · Ülke sayfasında filtreden başka kategori seçilince 'tur bulunamadı' yerine o kategorinin sayfasına gidiyor; 'Hepsi' → Turlar (site.js).
 - 18.11.2026 · Claude · Ana sayfadan ayrı 'Bölüm 4 · Fas ve Kuzey Afrika' bölümü kaldırıldı (Hilal Hanım: anlamsız); Fas ve Mısır kartları Dünya rotalarının başında. Bölüm numaraları: 4 Rota sesleri, 5 Sıra sizde. hikaye 'fas' kaydı veride duruyor. Son 2 Mısır turunun görseli de misir-nil.
 - 18.11.2026 · Claude · Filtre: sayfa açılınca form her zaman sayfanın kendi varsayılanıyla başlar (tarayıcının eski seçimi geri yüklemesi ülke sayfasında 'tur bulunamadı' yaratıyordu); form autocomplete=off.
+- 18.11.2026 · Claude · Büyük Özbekistan 1 Nisan 2027 (id 126) 'Satışa kapandı' (Hilal Hanım; Burak Tur listesinde kapalı). Panel turlar/buyuk-ozbekistan-turu-126 durum=kapali (v2), veri.js takvimDurum=kapali. Fiyat 1.400 $ değiştirilmedi (Burak'ta 1.350 $).
