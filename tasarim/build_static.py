@@ -82,7 +82,8 @@ def TURKART(s_):
     if not ad_: return ''
     g_=next((t['gorsel'] for t in V['turlar'] if t['kategori']==s_ and t.get('aktif')),'')   # Mısır: piramitli Kahire (tur kapağı deniz gemisi)
     return f'<a class="bolge" href="turlar/{s_}/"><img src="{g_}" alt="" loading="lazy" width="480" height="360"><div class="ic"><h3>{ad_}</h3><span data-sayi-kat="{s_}">Turları gör →</span></div></a>'
-DUNYA_KART=''.join(TURKART(s_) for s_,_ in DOLU if s_ not in ('fas','misir'))
+# 18.11.2026 Hilal Hanım: ayrı 'Fas ve Kuzey Afrika' bölümü kaldırıldı; Fas ve Mısır Dünya rotalarında, en başta
+DUNYA_KART=''.join(TURKART(s_) for s_ in ['fas','misir']+[k for k,_ in DOLU if k not in ('fas','misir')])
 umre_k=''.join(f'<a class="mini-kat" href="turlar/{s_}/"><b>{a_}</b><span data-sayi-kat="{s_}">Turları gör →</span></a>' for s_,a_ in [('ekonomik-umre-turlari','Ekonomik umre'),('yurume-mesafeli-umre-turlari','Yürüme mesafeli umre'),('5-yildizli-umre-turlari','5 yıldızlı umre')])
 # Hikâye durakları (zoom-through parallax, assets/js/derinlik.js): data-durak olan bölüm 3 derinlik katmanı alır.
 # data-arka = arka sahne görseli (veri.js > katmanlar.bolumler.<id>.arka doluysa o kullanılır); data-arka-mobil = telefonda daha hafif sürüm.
@@ -137,13 +138,8 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="turlar/">Önceki dönem programları</a></div></div>
 </div></section>
 {umre_bolum}
-<section class="bolum kum" id="fas" data-tema="kizil"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="fas">Bölüm 4 · Fas ve Kuzey Afrika</span><h2>Fas ve <em>Kuzey Afrika</em></h2></div></div>
-{konus('fas','karakter-ifade-4.png','50% 18%')}
-<div class="izgara g2" style="margin-top:26px">{KATLINK('fas','Fas','fas')}{TURKART('misir')}</div>
-</div></section>
 <section class="bolum kum" id="rota-sesleri" data-tema="mor"{durak(G+'hero-asya.jpg',G+'bolge-asya.jpg')}><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="muzik">Bölüm 5 · Rota sesleri</span><h2>Yolculuk <em>müzikleri</em></h2><p>Her rotanın bir ruh hâli var. Dinlemek için bir parçaya dokunun; ses yalnız siz başlatınca çalar.</p></div></div>
+<div class="bolum-baslik"><div><span class="etiket" data-bolum="muzik">Bölüm 4 · Rota sesleri</span><h2>Yolculuk <em>müzikleri</em></h2><p>Her rotanın bir ruh hâli var. Dinlemek için bir parçaya dokunun; ses yalnız siz başlatınca çalar.</p></div></div>
 {konus('muzik','karakter-ifade-2.png','50% 18%')}
 <div class="muzik-izgara" data-muzik-kartlar></div>
 </div></section>
@@ -171,7 +167,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="yakinda ani-cagri" data-ani-cagri><span class="etiket">Anılarınızı bekliyoruz</span><h3>Fas Tur ile yolculuk ettiniz mi? <em>Anınızı paylaşın</em></h3><p>Fotoğraflı anılar ve yorumlar, misafirimizin izniyle burada yer alacak. Anınızı bize WhatsApp&#039;tan ya da talep formundan iletebilirsiniz; ayrıca Instagram hesabımızda da yolculuk karelerimizi bulabilirsiniz.</p>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Anımı paylaşmak istiyorum</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-hat" href="https://www.instagram.com/fasturtravel/" target="_blank" rel="noopener">Instagram profilimiz</a></div></div>
 </div></section>
-<section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 6 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
+<section class="bolum kum" id="sira-sizde"{durak(G+'hero-fas.jpg',G+'bolge-fas.jpg')}><div class="wrap"><div class="cagri"><div><span class="etiket" data-bolum="sira-sizde">Bölüm 5 · Sıra sizde</span><h2>Hayalinizdeki turu birlikte <em>planlayalım</em></h2>{konus('sira-sizde','karakter-ifade-1.png','50% 18%')}</div>
 <div class="dugmeler"><a class="btn btn-ana" href="talep/">Talep bırak</a><a class="btn btn-wa" data-wa href="https://wa.me/{site['whatsapp']}" target="_blank" rel="noopener">WhatsApp</a></div></div></div></section>'''
 yaz('index.html',ut.kabuk(V,'Fas Tur | '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa ve Asya Turları','Fas Tur: '+('Umre, ' if UMRE else '')+'Fas, Mısır, Avrupa, Orta ve Uzak Asya, Cruise ve yurtiçi turlar. Programları inceleyin, bilgi ve rezervasyon talebi gönderin.','./','',home,sayfa='ana',ek_script='<script src="assets/img/harita/harita-veri.js"></script>\n<script defer src="assets/js/harita.js"></script>\n<script defer src="assets/js/ucus.js"></script>\n',ek_head=f'<script type="application/ld+json">{ld}</script>'))
 
