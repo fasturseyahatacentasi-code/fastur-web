@@ -49,15 +49,15 @@
     var l = satirlar.filter(function (r) { return (!fTur.value || r.t.ad === fTur.value || r.t.slug === fTur.value) && (!fSure.value || String(r.t.gun || 0) === fSure.value) && (!fDurum.value || r.durum === fDurum.value); });
     say.textContent = l.length + ' kalkış';
     if (!l.length) {
-      govde.innerHTML = '<tr><td colspan="7" class="tk-bos">' + (satirlar.length ? 'Bu filtreye uyan kalkış yok. Filtreleri temizleyin.' : 'Yeni dönem tarihleri yakında. Güncel kalkışlar için bize WhatsApp\'tan ya da telefonla ulaşın.') + '</td></tr>';
+      govde.innerHTML = '<tr><td colspan="8" class="tk-bos">' + (satirlar.length ? 'Bu filtreye uyan kalkış yok. Filtreleri temizleyin.' : 'Yeni dönem tarihleri yakında. Güncel kalkışlar için bize WhatsApp\'tan ya da telefonla ulaşın.') + '</td></tr>';
       return;
     }
     var ay = '', h = '';
     l.forEach(function (r) {
       var a = r.gidis.slice(0, 7);
-      if (a !== ay) { ay = a; var d = tarihD(r.gidis); h += '<tr class="tk-ay"><th colspan="7" scope="rowgroup">' + AY[d.getMonth()] + ' ' + d.getFullYear() + '</th></tr>'; }
+      if (a !== ay) { ay = a; var d = tarihD(r.gidis); h += '<tr class="tk-ay"><th colspan="8" scope="rowgroup">' + AY[d.getMonth()] + ' ' + d.getFullYear() + '</th></tr>'; }
       var du = DURUM[r.durum];
-      h += '<tr class="tk-satir"><td data-e="Gidiş">' + tr(r.gidis) + '</td><td data-e="Dönüş">' + (r.donus ? tr(r.donus) : '—') + '</td>' +
+      h += '<tr class="tk-satir"><td class="tk-gorsel"><a href="' + K + 'tur/' + esc(r.t.slug) + '/" tabindex="-1" aria-hidden="true"><img src="' + K + esc(r.t.gorsel || '') + '" alt="" loading="lazy" width="96" height="64"></a></td><td data-e="Gidiş">' + tr(r.gidis) + '</td><td data-e="Dönüş">' + (r.donus ? tr(r.donus) : '—') + '</td>' +
         '<td data-e="Tur" class="tk-ad"><a href="' + K + 'tur/' + esc(r.t.slug) + '/">' + esc(r.t.ad) + '</a></td><td data-e="Süre">' + sure(r.t.gun) + '</td>' +
         '<td data-e="Fiyat" class="tk-fiyat">' + (r.fiyat ? esc(r.fiyat) + '<small>\'dan</small>' : 'Sorunuz') + '</td>' +
         '<td data-e="Durum"><span class="tk-durum ' + du[1] + '">' + du[0] + '</span></td>' +

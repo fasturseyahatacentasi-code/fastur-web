@@ -32,7 +32,7 @@
   /* ---------- alt bilgi ---------- */
   var alt = document.getElementById('alt');
   if (alt) {
-    var tursab = (S.tursab && S.tursab !== '[?]') ? '<div>TÜRSAB belge no: ' + esc(S.tursab) + '</div>' : '';
+    var tursab = (S.tursab && S.tursab !== '[?]') ? '<a class="tursab-rozet" href="https://www.tursab.org.tr/tr/ddsv" target="_blank" rel="noopener" title="TÜRSAB Dijital Doğrulama Sistemi"><b>TÜRSAB</b><span>Belge No: ' + esc(S.tursab) + '</span><small>Doğrulamak için tıklayın</small></a>' : '';   /* 19.11.2026 Hilal Hanım: TÜRSAB 9165, tıklayınca DDSV doğrulama sayfası */
     alt.outerHTML =
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/logo/fastur-logo-koyu.svg" alt="Fas Tur Seyahat Acentesi" width="190" height="55"></span>' +
@@ -44,7 +44,7 @@
       (S.whatsapp2 ? '<a class="ab-satir" href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener"><b>WhatsApp</b><span>' + esc(S.telefon2Goster) + '</span></a>' : '') +
       '<a class="ab-satir" href="mailto:' + esc(S.eposta) + '"><b>E-posta</b><span>' + esc(S.eposta) + '</span></a>' +
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
-      '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / rezervasyon talebi</a></div>' +
+      '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / Rezervasyon Talebi</a></div>' +
       '<div><h4>Sözleşmeler ve KVKK</h4><a href="' + K + 'kisisel-verilerin-korunmasi/">Kişisel verilerin korunması</a><a href="' + K + 'gizlilik-sozlesmesi/">Gizlilik sözleşmesi</a><a href="' + K + 'kullanici-sozlesmesi/">Kullanıcı sözleşmesi</a><a href="' + K + 'tur-ve-otel-satis-sozlesmesi/">Tur ve otel satış sözleşmesi</a></div>' +
       '</div><div class="alt-son"><span>© ' + new Date().getFullYear() + ' Fas Tur · ' + esc(S.unvan) + '</span>' + tursab + '</div></div></footer>' +
       '<a class="asistan" href="' + wa('Merhaba, bilgi almak istiyorum.') + '" target="_blank" rel="noopener" aria-label="WhatsApp ile yazın"><span class="nokta foto"><img src="' + K + 'assets/img/karakter/karakter-ifade-1.png" alt="" width="46" height="46"></span><span><b>' + rehberAd() + '</b><small>' + hk('asistan', 'Sorunuz mu var? Yazın.') + '</small></span></a>';

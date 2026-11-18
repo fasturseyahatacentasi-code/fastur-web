@@ -70,7 +70,7 @@ ORB_FOTO={'fas':'assets/img/turlar/buyuk-fas-safsavan.jpg'}
 def orb_foto(s_): return ORB_FOTO.get(s_) or next((t['gorsel'] for t in V['turlar'] if t['kategori']==s_ and t.get('aktif') and '/turlar/' in t['gorsel'] and not t['gorsel'].split('/')[-1].startswith('tur_')),'')
 uydu=''.join(f'<div class="kol" style="--a:{round(i*360/len(ORB),2)}deg"><div class="uydu"><a href="turlar/{s_}/" style="--r:210px">'+(f'<i class="foto" style="background-image:url({orb_foto(s_)})"></i>' if orb_foto(s_) else f'<i>{ic_}</i>')+f'{ad_}</a></div></div>' for i,(s_,ad_,ic_) in enumerate(ORB))
 uydu=uydu.replace('<div class="uydu"><a','<div class="uydu"><a')
-seritler=''.join(f'<a href="turlar/{s_}/"><span class="ik">{ic_}</span>{ad_}</a>' for s_,ad_,ic_ in ORB)
+seritler=''.join(f'<a href="turlar/{s_}/">'+(f'<span class="ik foto" style="background-image:url({orb_foto(s_)})"></span>' if orb_foto(s_) else f'<span class="ik">{ic_}</span>')+f'{ad_}</a>' for s_,ad_,ic_ in ORB)
 IMG='assets/img/karakter/'
 def konus(i,img,pos='50% 12%',kapat=''):
     h=[x for x in hikaye if x['id']==i][0]
@@ -103,8 +103,8 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div class="slayt" style="background-image:url(assets/img/genel/hero-fas.jpg)"></div><div class="slayt" style="background-image:url(assets/img/genel/hero-asya.jpg)"></div><div class="slayt" style="background-image:url(assets/img/genel/hero-avrupa.jpg)"></div><div class="slayt" style="background-image:url(assets/img/genel/hero-rusya.jpg)"></div></div>
 <div class="wrap"><div>
 <span class="etiket" data-bolum="yola-cikis">Bölüm 1 · Yola çıkış</span>
-<h1>Dünyayı keşfetmenin<em>butik yolu</em></h1>
-<p class="alt" data-i18n="ana.alt">{"Umre • " if UMRE else ""}Fas • Mısır • Balkanlar • Asya</p>
+<h1>Dünyayı Keşfetmenin<em>Butik Yolu</em></h1>
+<p class="alt" data-i18n="ana.alt">{"Umre • " if UMRE else ""}Afrika • Avrupa • Asya • Amerika</p>
 <p class="ic-p" data-i18n="ana.ic">Herkese uygun tatil seçenekleri. Yol arkadaşınız sizi rotaya götürsün.</p>
 <form class="arama" action="turlar/" method="get" role="search">
 <input type="search" name="q" placeholder="Nereye gitmek istersin?" data-i18n-attr="placeholder:ana.arama" aria-label="Tur veya şehir ara">
@@ -123,7 +123,7 @@ home=f'''<section class="kahraman" id="yola-cikis"{durak()}><div class="harita" 
 <div>{konus('yorunge','karakter-ifade-2.png','50% 18%')}<p class="soluk-p">Gezegenlere dokunun; her biri o bölgenin tur listesini açar.</p><a class="btn btn-hat btn-kucuk" href="turlar/">Tüm turlar</a></div></div>
 </div></section>
 <section class="bolum" id="dunya" data-tema="turkuaz"{durak(G+'hero-avrupa.jpg',G+'bolge-avrupa.jpg')}><div class="wrap">
-<div class="bolum-baslik"><div><span class="etiket" data-bolum="dunya">Bölüm 3 · Dünya rotaları</span><h2>Dünya <em>rotaları</em></h2></div></div>
+<div class="bolum-baslik"><div><span class="etiket" data-bolum="dunya">Bölüm 3 · Dünya Rotaları</span><h2>Dünya <em>Rotaları</em></h2></div></div>
 {konus('dunya','karakter-portre-4.png','50% 14%')}
 <div class="izgara g3" style="margin-top:26px">{DUNYA_KART}</div>
 </div></section>
@@ -179,7 +179,7 @@ hk=hk.replace('<h3>Güvenilir ve İnovatif Ortak</h3>','<h2>Vizyonumuz</h2><h3>G
 kurumsal=f'''<h2>Kurumsal bilgiler</h2>
 <ul><li><strong>Şirket unvanı:</strong> {site['unvanTam']}</li><li><strong>Adres:</strong> {site['adres']}</li><li><strong>Telefon:</strong> <a href="tel:{site['telefon']}">{site['telefonGoster']}</a>{(' · <a href="https://wa.me/'+site['whatsapp2']+'?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp: '+site['telefon2Goster']+'</a>') if site.get('whatsapp2') else ''}</li><li><strong>E-posta:</strong> <a href="mailto:{site['eposta']}">{site['eposta']}</a></li><li><strong>Vergi dairesi / no:</strong> Güngören Vergi Dairesi · 6400301337</li><li data-tursab><strong>TÜRSAB belge no:</strong> <span data-tursab-no>[?]</span></li></ul>
 <!-- TÜRSAB belge no: firmadan alınacak, veri.js > site.tursab alanına yazılacak; "[?]" iken sitede gizli kalır (site.js). -->
-<p><a class="btn btn-ana" href="../talep/">Bilgi / rezervasyon talebi</a></p>'''
+<p><a class="btn btn-ana" href="../talep/">Bilgi / Rezervasyon Talebi</a></p>'''
 yaz('hakkimizda/index.html',ut.kabuk(V,'Hakkımızda','Fas Tur, 2016\'dan beri butik hizmet anlayışıyla tur düzenliyor. Vizyonumuz, misyonumuz ve değerlerimiz.','../','hakkimizda/',
  sp('Hakkımızda','Butik hizmet anlayışıyla, her seyahati unutulmaz bir anıya dönüştürüyoruz.',[('Hakkımızda',None)],'../')+f'<div class="dar"><div class="metin">{hk}{kurumsal}</div></div>',sayfa='hakkimizda'))
 
@@ -232,7 +232,7 @@ ilet=f'''<div class="wrap form-duzen" style="grid-template-columns:1fr 1fr">
 {satir('📷','Instagram','<a href="https://www.instagram.com/fasturtravel/" target="_blank" rel="noopener">@fasturtravel</a>')}
 </div>
 <div class="kutu"><h2>Hızlı talep</h2><p style="color:var(--soluk)">Tur, tarih ve kişi sayısını yazdığınız talep formu ile bize ulaşın; ekibimiz size dönüş yapsın. Sitede online ödeme alınmaz.</p>
-<a class="btn btn-ana btn-blok" href="../talep/">Bilgi / rezervasyon talebi</a><div style="height:10px"></div>
+<a class="btn btn-ana btn-blok" href="../talep/">Bilgi / Rezervasyon Talebi</a><div style="height:10px"></div>
 <a class="btn btn-wa btn-blok" data-wa href="https://wa.me/{S['whatsapp']}" target="_blank" rel="noopener">WhatsApp ile yazın</a></div></div>'''
 yaz('iletisim/index.html',ut.kabuk(V,'İletişim','Fas Tur iletişim: telefon, WhatsApp, e-posta ve adres. Bilgi ve rezervasyon talebi için bize ulaşın.','../','iletisim/',
  sp('İletişim','Her türlü görüş, talep ve öneriniz için buradayız.',[('İletişim',None)],'../')+ilet,sayfa='iletisim'))
@@ -240,7 +240,7 @@ yaz('iletisim/index.html',ut.kabuk(V,'İletişim','Fas Tur iletişim: telefon, W
 # ---------------- talep formu
 talep=f'''<div class="wrap form-duzen">
 <form class="kutu" data-talep novalidate>
-<h2 data-i18n="talep.baslik">Bilgi / rezervasyon talebi</h2>
+<h2 data-i18n="talep.baslik">Bilgi / Rezervasyon Talebi</h2>
 <p style="color:var(--soluk)" data-i18n="talep.aciklama">Talebiniz ekibimize ulaşır; size telefon, WhatsApp veya e-posta ile dönüş yapılır. Bu form ödeme almaz; rezervasyon, bilgi verildikten sonra netleşir.</p>
 <div class="alan"><label for="t-tur" data-i18n="talep.tur">İlgilendiğiniz tur</label><select id="t-tur" name="tur"><option value="" data-i18n="talep.tur0">Henüz karar vermedim / genel bilgi</option></select></div>
 <div class="iki"><div class="alan"><label for="t-ad" data-i18n="talep.ad">Ad soyad *</label><input id="t-ad" name="ad" required autocomplete="name"></div>
@@ -260,7 +260,7 @@ talep=f'''<div class="wrap form-duzen">
 <div class="kutu" style="font-size:14px;color:var(--soluk)">Formda yalnız ad, telefon, e-posta, tur, kişi sayısı, tarih ve notunuz istenir. Verileriniz yalnız talebinize dönüş yapmak için kullanılır.</div></aside></div>
 <!-- Form yöntemi: Formsubmit (ajax) -> veri.js site.formEposta; ilk gönderimde Formsubmit bu adrese bir ONAY e-postası yollar, firma onaylamalı. Yedek: WhatsApp düğmesi (sunucu gerektirmez). -->'''
 yaz('talep/index.html',ut.kabuk(V,'Bilgi / Rezervasyon Talebi','Fas Tur bilgi ve rezervasyon talep formu: tur, kişi sayısı ve tarih tercihinizi bırakın, size dönüş yapalım.','../','talep/',
- sp('Bilgi / rezervasyon talebi','Tur, kişi sayısı ve tarih tercihinizi bırakın; size dönüş yapalım.',[('Talep formu',None)],'../').replace('<h1>','<h1 data-i18n="talep.baslik">').replace('<p>Tur, kişi','<p data-i18n="talep.ozet">Tur, kişi')+talep,sayfa='talep'))
+ sp('Bilgi / Rezervasyon Talebi','Tur, kişi sayısı ve tarih tercihinizi bırakın; size dönüş yapalım.',[('Talep formu',None)],'../').replace('<h1>','<h1 data-i18n="talep.baslik">').replace('<p>Tur, kişi','<p data-i18n="talep.ozet">Tur, kişi')+talep,sayfa='talep'))
 
 # ---------------- hukuki sayfalar
 HK='<!-- FİRMA VE HUKUKÇU KONTROLÜ BEKLİYOR: bu metin eski fastur.com.tr sitesinden aynen taşındı (12.11.2026). Yayından önce firma ve hukukçu gözden geçirmelidir. -->\n'

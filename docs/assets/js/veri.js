@@ -38,7 +38,7 @@
    (id: mevcut en büyük id + 1; slug: ad-ascii-id), görseli docs/assets/img/turlar/ içine koyun, üreticiyi çalıştırın.
    ============================================================ */
 window.FT = {
-  "site": {"ad": "Fas Tur", "unvan": "Okyay Turizmcilik Ltd. Şti.", "unvanTam": "OKYAY TURİZMCİLİK LİMİTED ŞİRKETİ", "alanAdi": "https://www.fastur.com.tr/", "telefon": "+905317659969", "telefonGoster": "+90 531 765 99 69", "whatsapp": "905317659969", "umreGoster": false, "telefon2": "+905323566959", "telefon2Goster": "+90 532 356 69 59", "whatsapp2": "905323566959", "eposta": "info@fastur.com.tr", "formEposta": "info@fastur.com.tr", "adres": "Güven Mahallesi İnönü Caddesi No:38/106 Güngören / İstanbul / Türkiye", "calisma": "Hafta içi 09:30 – 19:30", "instagram": "fasturtravel", "tursab": "[?]", "kurulus": "2016"},
+  "site": {"ad": "Fas Tur", "unvan": "Okyay Turizmcilik Ltd. Şti.", "unvanTam": "OKYAY TURİZMCİLİK LİMİTED ŞİRKETİ", "alanAdi": "https://www.fastur.com.tr/", "telefon": "+905317659969", "telefonGoster": "+90 531 765 99 69", "whatsapp": "905317659969", "umreGoster": false, "telefon2": "+905323566959", "telefon2Goster": "+90 532 356 69 59", "whatsapp2": "905323566959", "eposta": "info@fastur.com.tr", "formEposta": "info@fastur.com.tr", "adres": "Güven Mahallesi İnönü Caddesi No:38/106 Güngören / İstanbul / Türkiye", "calisma": "Hafta içi 09:30 – 19:30", "instagram": "fasturtravel", "tursab": "9165", "kurulus": "2016"},
   "kategoriler": [
     {"slug": "fas", "ad": "Fas", "eskiId": 11, "aciklama": "Kazablanka, Marakeş, Fes ve Fas'ın diğer rotaları.", "grup": "Yurtdışı Turları"},
     {"slug": "misir", "ad": "Mısır", "eskiId": 15, "aciklama": "Mısır turları ve Nil gemisi programları.", "grup": "Yurtdışı Turları"},
@@ -104,7 +104,7 @@ window.FT = {
     {"id": "yorunge", "bolum": "Bölüm 2 · Rotanı seç", "cumle": "Bir destinasyona dokunun, o rotanın turları açılsın."},
     {"id": "umre", "bolum": "Bölüm 3 · Umre ve manevi yolculuk", "cumle": "Ekonomik, yürüme mesafeli ve 5 yıldızlı umre programlarına birlikte bakalım."},
     {"id": "fas", "bolum": "Bölüm 4 · Fas ve Kuzey Afrika", "cumle": "Fas turlarıyla yola çıktık: Kazablanka, Marakeş, Fes ve daha fazlası."},
-    {"id": "dunya", "bolum": "Bölüm 3 · Dünya rotaları", "cumle": "Balkanlar'dan Uzak Doğu'ya, Ürdün'den Japonya'ya farklı rotalar sizi bekliyor."},
+    {"id": "dunya", "bolum": "Bölüm 3 · Dünya Rotaları", "cumle": "Balkanlar'dan Uzak Doğu'ya, Ürdün'den Japonya'ya farklı rotalar sizi bekliyor. İsteğinize uygun butik tur planlaması da yapabiliriz."},
     {"id": "muzik", "bolum": "Bölüm 4 · Rota sesleri", "cumle": "Yola çıkmadan önce rotanın havasını dinleyin."},
     {"id": "sira-sizde", "bolum": "Bölüm 5 · Sıra sizde", "cumle": "Formu doldurun ya da WhatsApp'tan yazın; ekibimiz size dönüş yapsın."},
     {"id": "asistan", "bolum": "Asistan rozeti", "cumle": "Sorunuz mu var? Yazın."}

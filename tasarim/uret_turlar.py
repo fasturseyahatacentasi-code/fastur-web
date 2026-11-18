@@ -125,7 +125,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <body data-kok="{kok}" data-sayfa="{e(sayfa)}">
 <a class="atla" href="#icerik">İçeriğe geç</a>
 <div id="ust"></div>
-<noscript><p class="wrap" style="padding:12px 0"><a href="{kok}">Ana sayfa</a> · <a href="{kok}turlar/">Turlar</a> · <a href="{kok}hakkimizda/">Hakkımızda</a> · <a href="{kok}haberler/">Haberler</a> · <a href="{kok}iletisim/">İletişim</a> · <a href="{kok}tur-bul/">Bana uygun turu bul</a>{'' if gizli_kat(V) else ' · <a href="' + kok + 'umre-rehberi/">Umre rehberi</a>'} · <a href="{kok}talep/">Bilgi / Rezervasyon Talebi</a></p></noscript>
+<noscript><p class="wrap" style="padding:12px 0"><a href="{kok}">Ana sayfa</a> · <a href="{kok}turlar/">Turlar</a> · <a href="{kok}hakkimizda/">Hakkımızda</a> · <a href="{kok}haberler/">Haberler</a> · <a href="{kok}iletisim/">İletişim</a> · <a href="{kok}tur-bul/">Bana Uygun Turu Bul</a>{'' if gizli_kat(V) else ' · <a href="' + kok + 'umre-rehberi/">Umre rehberi</a>'} · <a href="{kok}talep/">Bilgi / Rezervasyon Talebi</a></p></noscript>
 <main id="icerik">
 {govde}
 </main>
@@ -158,7 +158,7 @@ TAKVIM_HTML = '''<section class="bolum takvim-bolum"><div class="wrap" data-takv
 <button type="button" class="btn btn-hat" data-takvim-temizle>Filtreleri temizle</button>
 </form>
 <div class="tk-ust"><span data-takvim-say></span><span class="tk-not">Fiyatlar kişi başı başlangıç fiyatıdır; tarih, fiyat ve yer durumu değişebilir. Yer durumu için bize ulaşın.</span></div>
-<div class="tk-tablo-kap"><table class="tk-tablo"><thead><tr><th scope="col">Gidiş</th><th scope="col">Dönüş</th><th scope="col">Tur adı</th><th scope="col">Süre</th><th scope="col">Fiyat</th><th scope="col">Durum</th><th scope="col">Tur detayı</th></tr></thead>
+<div class="tk-tablo-kap"><table class="tk-tablo"><thead><tr><th scope="col" class="tk-gorsel-bas">Görsel</th><th scope="col">Gidiş</th><th scope="col">Dönüş</th><th scope="col">Tur adı</th><th scope="col">Süre</th><th scope="col">Fiyat</th><th scope="col">Durum</th><th scope="col">Tur detayı</th></tr></thead>
 <tbody data-takvim-govde><tr><td colspan="7" class="tk-bos">Takvim yükleniyor…</td></tr></tbody></table></div>
 <noscript><p>Takvimi görmek için tarayıcınızda JavaScript açık olmalı. <a href="../turlar/">Tüm turlar</a></p></noscript>
 </div></section>'''
@@ -380,7 +380,10 @@ def detay_sayfasi(V, t, kats, kok):
     fiyat_baslik = 'Yetişkin fiyatları' if fiyat_guncel else 'Yetişkin fiyatları (önceki dönem, güncel değildir)'
     fiyat_notlar = ''.join(f'<p style="font-size:14px;color:var(--soluk);margin:.3em 0">{e(n)}</p>' for n in (f.get('notlar') or []))
     fiyatlar = ''
-    if f.get('yetiskin') or f.get('cocuk'):
+    if not fiyat_guncel:   # 19.11.2026 Hilal Hanım: önceki dönem turlarında fiyat tablosu gizli
+        fiyatlar = ('<section class="kutu bolum-ic"><h2>Fiyatlar</h2><p style="font-size:15px;color:var(--soluk)">Bu program önceki döneme aittir. '
+                    'Güncel tarih, fiyat ve kontenjan için bize ulaşın; size en uygun seçeneği birlikte planlayalım.</p></section>')
+    elif f.get('yetiskin') or f.get('cocuk'):
         fiyatlar = ('<section class="kutu bolum-ic"><h2>Fiyatlar</h2>'
                     + ('<p style="font-size:15px;color:var(--soluk)">Aşağıdaki fiyatlar önceki dönem içindir. Güncel fiyat, tarih ve kontenjan için bizi arayın.</p>' if not fiyat_guncel else '')
                     + '<div class="izgara g2">' + fiyat_tablosu(fiyat_baslik, f.get('yetiskin')) + fiyat_tablosu('Çocuk fiyatları', f.get('cocuk')) + '</div>' + fiyat_notlar + '</section>')
@@ -407,7 +410,7 @@ def detay_sayfasi(V, t, kats, kok):
     yan = f'''<aside class="yan">
 <div class="kutu"><h3>Bu tur için bilgi alın</h3>
 <p style="font-size:15px;color:var(--soluk)">Güncel tarih, fiyat ve kontenjan için bize ulaşın. Online ödeme yoktur; talebinize size dönüş yapılır.</p>
-<div class="iletisim-dugmeler"><a class="btn btn-ana btn-blok" href="{talep}">Bilgi / rezervasyon talebi</a>
+<div class="iletisim-dugmeler"><a class="btn btn-ana btn-blok" href="{talep}">Bilgi / Rezervasyon Talebi</a>
 <a class="btn btn-wa btn-blok" href="{wa}" target="_blank" rel="noopener">WhatsApp · {e(yerel_tel(S['telefonGoster']))}</a>{tel2_dugme(S, wa_metin)}
 <a class="btn btn-hat btn-blok" href="tel:{e(S['telefon'])}">Ara · {e(yerel_tel(S['telefonGoster']))}</a></div></div>
 <div class="kutu" style="font-size:14px;color:var(--soluk)">Tarih, fiyat ve kontenjan değişebilir. Güncel bilgi için lütfen bizimle iletişime geçin.</div>

@@ -1,4 +1,4 @@
-/* "Bana uygun turu bul" sihirbazı. Veri: ozet.js (window.FT). Sunucu yok, hiçbir cevap saklanmaz (localStorage/çerez yok).
+/* "Bana Uygun Turu Bul" sihirbazı. Veri: ozet.js (window.FT). Sunucu yok, hiçbir cevap saklanmaz (localStorage/çerez yok).
    Tüm yollar GÖRELİDİR (body[data-kok]). Kiminle sorusu YALNIZ mesaj tonunu etkiler; puana girmez. */
 (function () {
   'use strict';
