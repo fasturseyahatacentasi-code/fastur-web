@@ -120,7 +120,7 @@ def kabuk(V, baslik, aciklama, kok, yol_canonical, govde, sayfa='', ek_head='', 
 <meta property="og:description" content="{e(aciklama)}">
 <meta property="og:image" content="{e(og)}">
 <meta name="theme-color" content="#12385a">
-<script>/* tek zemin, hep gece (Hilal Hanım 15.11.2026: gece/gündüz kafa karıştırıyor) */document.documentElement.setAttribute('data-mod','gece');if(!/[?&]zemin=eski/.test(location.search))document.documentElement.setAttribute('data-zemin','tek');try{{localStorage.removeItem('ft_mod');localStorage.removeItem('ft_zemin')}}catch(e){{}}</script>
+<script>/* tek zemin, hep gece (Hilal Hanım 15.11.2026: gece/gündüz kafa karıştırıyor) */document.documentElement.setAttribute('data-mod','gece');if(!/[?&]zemin=eski/.test(location.search)){{document.documentElement.setAttribute('data-zemin','tek');document.documentElement.classList.add('video-zemin')}}try{{localStorage.removeItem('ft_mod');localStorage.removeItem('ft_zemin')}}catch(e){{}}</script>
 <link rel="icon" href="{kok}assets/img/genel/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="{kok}manifest.webmanifest">
 <link rel="apple-touch-icon" href="{kok}assets/img/pwa/apple-touch-180.png">
