@@ -63,7 +63,7 @@ def haber_kart(h,kk):
     return f'<article class="kart"><div class="gorsel"><img src="{kk}{h["gorsel"]}" alt="{html.escape(h["baslik"])}" loading="lazy" width="440" height="275"></div><div class="ic"><div class="meta"><span>{ut.tarih_tr(h["tarih"])}</span></div><h3><a href="{kk}haberler/{h["slug"]}/">{html.escape(h["baslik"])}</a></h3><p style="font-size:15px;color:var(--soluk);margin:0">{html.escape(h["ozet"])}</p><div class="alt"><span class="git">Devamını oku →</span></div></div></article>'
 son_h=sorted(haberler,key=lambda h:h['tarih'],reverse=True)[:3]
 yor_html=''.join(f'<figure class="yorum" style="margin:0"><div class="yildiz" aria-label="5 yıldız">★★★★★</div><h3>{html.escape(y["baslik"])}</h3><p>{html.escape(y["metin"])}</p><div class="kim">{html.escape(y["ad"])} · {html.escape(y["tur"])}</div></figure>' for y in yorumlar)
-ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/fasturtravel/"]},ensure_ascii=False)
+ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/fasturtravel/","https://www.youtube.com/@Fasturtravel"]},ensure_ascii=False)
 ORB=[(s,a,IKON.get(s,'✈️')) for s,a in DOLU]
 # 18.11.2026 Hilal Hanım: çarkın gezegenlerinde bizim ürettiğimiz fotoğraflar (Fas = Şafşavan); fotoğraf yoksa ikon
 ORB_FOTO={'fas':'assets/img/turlar/buyuk-fas-safsavan.jpg'}
@@ -230,6 +230,7 @@ ilet=f'''<div class="wrap form-duzen" style="grid-template-columns:1fr 1fr">
 {satir('📍','Adres',S['adres'])}
 {satir('🕘','Çalışma saatleri',S['calisma']+' arasında yanıtlıyoruz')}
 {satir('📷','Instagram','<a href="https://www.instagram.com/fasturtravel/" target="_blank" rel="noopener">@fasturtravel</a>')}
+{satir('▶️','YouTube','<a href="https://www.youtube.com/@Fasturtravel" target="_blank" rel="noopener">@Fasturtravel</a>')}
 </div>
 <div class="kutu"><h2>Hızlı talep</h2><p style="color:var(--soluk)">Tur, tarih ve kişi sayısını yazdığınız talep formu ile bize ulaşın; ekibimiz size dönüş yapsın. Sitede online ödeme alınmaz.</p>
 <a class="btn btn-ana btn-blok" href="../talep/">Bilgi / Rezervasyon Talebi</a><div style="height:10px"></div>

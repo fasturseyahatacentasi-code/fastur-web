@@ -43,6 +43,8 @@
       '<a class="ab-satir" href="' + wa('') + '" target="_blank" rel="noopener"><b>WhatsApp</b><span>' + esc(S.telefonGoster) + '</span></a>' +
       (S.whatsapp2 ? '<a class="ab-satir" href="https://wa.me/' + esc(S.whatsapp2) + '?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener"><b>WhatsApp</b><span>' + esc(S.telefon2Goster) + '</span></a>' : '') +
       '<a class="ab-satir" href="mailto:' + esc(S.eposta) + '"><b>E-posta</b><span>' + esc(S.eposta) + '</span></a>' +
+      (S.instagram ? '<a class="ab-satir" href="https://www.instagram.com/' + esc(S.instagram) + '/" target="_blank" rel="noopener"><b>Instagram</b><span>@' + esc(S.instagram) + '</span></a>' : '') +
+      (S.youtube ? '<a class="ab-satir" href="' + esc(S.youtube) + '" target="_blank" rel="noopener"><b>YouTube</b><span>@' + esc(S.youtube.split('@')[1] || 'Fasturtravel') + '</span></a>' : '') +
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
       '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / Rezervasyon Talebi</a></div>' +
       '<div><h4>Sözleşmeler ve KVKK</h4><a href="' + K + 'kisisel-verilerin-korunmasi/">Kişisel verilerin korunması</a><a href="' + K + 'gizlilik-sozlesmesi/">Gizlilik sözleşmesi</a><a href="' + K + 'kullanici-sozlesmesi/">Kullanıcı sözleşmesi</a><a href="' + K + 'tur-ve-otel-satis-sozlesmesi/">Tur ve otel satış sözleşmesi</a></div>' +
