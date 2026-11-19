@@ -36,7 +36,7 @@
     alt.outerHTML =
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/logo/fastur-logo-koyu.svg" alt="Fas Tur Seyahat Acentesi" width="190" height="55"></span>' +
-      '<p>' + esc(S.unvanTam) + '</p><p>' + esc(S.adres) + '</p></div>' +
+      '<p>' + esc(S.adres) + '</p></div>' +   /* 19.11.2026 Hilal Hanım: şirket unvanı alt bilgide görünmesin */
       /* 14.11.2026 Hilal Hanım: her satır etiketli ve tek numaralı (telefon ile WhatsApp karışmasın) */
       '<div><h4>Yardıma mı ihtiyacınız var?</h4>' +
       '<a class="ab-satir" href="tel:' + esc(S.telefon) + '"><b>Telefon</b><span>' + esc(S.telefonGoster) + '</span></a>' +
@@ -48,7 +48,7 @@
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
       '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / Rezervasyon Talebi</a></div>' +
       '<div><h4>Sözleşmeler ve KVKK</h4><a href="' + K + 'kisisel-verilerin-korunmasi/">Kişisel verilerin korunması</a><a href="' + K + 'gizlilik-sozlesmesi/">Gizlilik sözleşmesi</a><a href="' + K + 'kullanici-sozlesmesi/">Kullanıcı sözleşmesi</a><a href="' + K + 'tur-ve-otel-satis-sozlesmesi/">Tur ve otel satış sözleşmesi</a></div>' +
-      '</div><div class="alt-son"><span>© ' + new Date().getFullYear() + ' Fas Tur · ' + esc(S.unvan) + '</span>' + tursab + '</div></div></footer>' +
+      '</div><div class="alt-son"><span>© ' + new Date().getFullYear() + ' Fas Tur</span>' + tursab + '</div></div></footer>' +
       '<a class="asistan" href="' + wa('Merhaba, bilgi almak istiyorum.') + '" target="_blank" rel="noopener" aria-label="WhatsApp ile yazın"><span class="nokta foto"><img src="' + K + 'assets/img/karakter/karakter-ifade-1.png" alt="" width="46" height="46"></span><span><b>' + rehberAd() + '</b><small>' + hk('asistan', 'Sorunuz mu var? Yazın.') + '</small></span></a>';
   }
   document.querySelectorAll('[data-rehber-ad]').forEach(function (e) { e.textContent = rehberAd() + ((RH.unvan && RH.unvan !== '[?]') ? ' · ' + RH.unvan : ''); });

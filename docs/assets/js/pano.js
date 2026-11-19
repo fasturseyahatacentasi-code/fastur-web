@@ -20,6 +20,13 @@
   var kayanParca = '<b data-i18n="hud.siradaki">SIRADAKİ KALKIŞ</b> · ' + (sonraki ? esc((sonraki.baslangic ? Number(sonraki.baslangic.slice(8)) + ' ' + AY[Number(sonraki.baslangic.slice(5, 7)) - 1] : BUYUK(sonraki.tekrar || '')) + ' · ' + BUYUK(sonraki.ad)) : '<b data-i18n="hud.yakinda">YAKINDA</b>');
   var kayanHtml = '<span>' + kayanParca + '</span><span>' + kayanParca + '</span>';
 
+  /* YZ Film & Animasyon menüsü (Hilal Hanım 19.11.2026, referans uphbacademy.com.tr): üstüne gelince/tıklayınca küçük görselli liste */
+  var YZ = FT.yzFilm || {}, YZK = YZ.karakterler || [], YZ_AD = YZ.menu || 'YZ Film & Animasyon';
+  var YZ_LISTE = YZK.map(function (k) {
+    return '<a class="yz-mi" href="' + K + 'yz-film/' + esc(k.id) + '/"><img src="' + K + esc(k.gorsel) + '-kucuk.webp" alt="" width="48" height="60"><span><b>' + esc(k.ad) + '</b><small>' + esc(k.alt || '') + '</small></span></a>';
+  }).join('');
+  var YZ_HTML = YZK.length ? '<div class="hud-yz"><a class="hud-yz-btn" href="' + K + 'yz-film/" aria-haspopup="true">' + esc(YZ_AD) + ' <span aria-hidden="true">▾</span></a><div class="hud-yz-liste">' + YZ_LISTE + '<a class="yz-hepsi" href="' + K + 'yz-film/">Hepsini gör →</a></div></div>' : '';
+
   ust.outerHTML =
     '<header class="hud"><div class="wrap hud-bar">' +
     '<a class="marka" href="' + K + '" aria-label="Fas Tur ana sayfa"><img src="' + K + 'assets/img/genel/logo/fastur-logo-hud.svg" alt="Fas Tur" width="169" height="60"></a>' +
@@ -27,6 +34,7 @@
     '<button class="hud-mod" type="button" aria-pressed="false" aria-label="Gündüz / gece modu" title="Gündüz / gece (çift tıklama: otomatik)"><span aria-hidden="true"></span></button>' +
     '<div class="hud-kayan" aria-live="off"><div class="kayan-ic">' + kayanHtml + '</div></div>' +
     '<button class="hud-rota" type="button" aria-expanded="false" aria-controls="pano"><span class="kare" aria-hidden="true"></span>Rotalar</button>' +
+    YZ_HTML +
     '<select class="hud-dil" data-dil-sec aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select>' +
     '<a class="btn btn-ana btn-kucuk hud-talep" href="' + K + 'talep/" data-i18n="hud.talep">Talep Bırakın</a>' +
     '</div></header>';
@@ -76,6 +84,7 @@
     '<div class="pano-arac"><button class="hud-mod pano-mod" type="button" aria-label="Gündüz / gece modu"><span aria-hidden="true"></span></button><select class="hud-dil pano-dil" aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select></div>' +
     '<button class="pano-kapat" type="button" aria-label="Menüyü kapat">Kapat <span aria-hidden="true">✕</span></button></div>' +
     '<div class="mm-hizli">' + hizliHtml + '</div>' +
+    (YZK.length ? '<div class="mm-yz"><span class="mm-etiket">' + esc(YZ_AD) + '</span>' + YZ_LISTE + '</div>' : '') +
     /* 13.11.2026 Hilal Hanım: menüde yalnız bu tek sıra. Ülke grupları (gruplarHtml) ve kurumsal satır (kurumsalHtml) hazır duruyor; geri istenirse buraya eklenir. Kurumsal bağlantılar sitenin alt bilgisinde var. */
     '</div>';
   document.body.appendChild(pano);

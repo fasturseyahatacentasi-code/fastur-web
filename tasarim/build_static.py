@@ -63,7 +63,7 @@ def haber_kart(h,kk):
     return f'<article class="kart"><div class="gorsel"><img src="{kk}{h["gorsel"]}" alt="{html.escape(h["baslik"])}" loading="lazy" width="440" height="275"></div><div class="ic"><div class="meta"><span>{ut.tarih_tr(h["tarih"])}</span></div><h3><a href="{kk}haberler/{h["slug"]}/">{html.escape(h["baslik"])}</a></h3><p style="font-size:15px;color:var(--soluk);margin:0">{html.escape(h["ozet"])}</p><div class="alt"><span class="git">Devamını oku →</span></div></div></article>'
 son_h=sorted(haberler,key=lambda h:h['tarih'],reverse=True)[:3]
 yor_html=''.join(f'<figure class="yorum" style="margin:0"><div class="yildiz" aria-label="5 yıldız">★★★★★</div><h3>{html.escape(y["baslik"])}</h3><p>{html.escape(y["metin"])}</p><div class="kim">{html.escape(y["ad"])} · {html.escape(y["tur"])}</div></figure>' for y in yorumlar)
-ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","legalName":site['unvanTam'],"url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/fasturtravel/","https://www.youtube.com/@Fasturtravel"]},ensure_ascii=False)
+ld=json.dumps({"@context":"https://schema.org","@type":"TravelAgency","name":"Fas Tur","url":site['alanAdi'],"telephone":[x for x in (site['telefonGoster'],site.get('telefon2Goster')) if x],"email":site['eposta'],"address":{"@type":"PostalAddress","streetAddress":"Güven Mahallesi İnönü Caddesi No:38/106","addressLocality":"Güngören","addressRegion":"İstanbul","addressCountry":"TR"},"foundingDate":"2016","sameAs":["https://www.instagram.com/fasturtravel/","https://www.youtube.com/@Fasturtravel"]},ensure_ascii=False)
 ORB=[(s,a,IKON.get(s,'✈️')) for s,a in DOLU]
 # 18.11.2026 Hilal Hanım: çarkın gezegenlerinde bizim ürettiğimiz fotoğraflar (Fas = Şafşavan); fotoğraf yoksa ikon
 ORB_FOTO={'fas':'assets/img/turlar/buyuk-fas-safsavan.jpg'}
@@ -223,7 +223,7 @@ for h in haberler:
 S=site
 def satir(ic,b,x): return f'<div class="iletisim-satir"><div>{ic}</div><div><b>{b}</b>{x}</div></div>'
 ilet=f'''<div class="wrap form-duzen" style="grid-template-columns:1fr 1fr">
-<div class="kutu"><h2>Fas Tur</h2><p style="color:var(--soluk)">{S['unvanTam']}</p>
+<div class="kutu"><h2>Fas Tur</h2>
 {satir('📞','Telefon',f'<a href="tel:{S["telefon"]}">{S["telefonGoster"]}</a>')}
 {satir('💬','WhatsApp',f'<a data-wa href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">{S["telefonGoster"]}</a>'+(f'<br><a href="https://wa.me/{S["whatsapp2"]}?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">{S["telefon2Goster"]}</a>' if S.get('whatsapp2') else ''))}
 {satir('✉️','E-posta',f'<a href="mailto:{S["eposta"]}">{S["eposta"]}</a>')}
@@ -314,6 +314,53 @@ a.g{background:none;border:2px solid #12385a;color:#12385a}
 })();
 </script></body></html>
 '''
+# ---------------- YZ Film & Animasyon (Hilal Hanım 19.11.2026): Hill ve Aşçı Oğuz
+# Videolar YouTube'dan gelir: Hilal Hanım "videoları çek" deyince veri.js > yzFilm.karakterler[].videolar[] {baslik, youtubeId, tarih} doldurulur.
+YZ = V.get('yzFilm') or {}
+YZ_AD = YZ.get('menu', 'YZ Film & Animasyon')
+
+
+def yz_gorsel(k, kk):
+    g = kk + k['gorsel']
+    return (f'<picture><source type="image/webp" srcset="{g}.webp">'
+            f'<img src="{g}.jpg" alt="{ut.e(k["ad"])}" width="720" height="1280" loading="lazy"></picture>')
+
+
+def yz_afis(k, kk, etiket_h='b'):
+    """Kapak (afiş) görünümü: tam boy görsel, üstte küçük etiket, altta büyük ad + alt başlık + Çok yakında."""
+    yakinda = '' if k.get('videolar') else '<span class="yz-yakinda">Çok yakında</span>'
+    return (f'{yz_gorsel(k, kk)}<span class="yz-afis-ust">FAS TUR · YZ DİZİSİ</span>'
+            f'<span class="yz-afis-alt"><{etiket_h} class="yz-afis-ad">{ut.e(k["ad"])}</{etiket_h}><span class="yz-afis-slogan">{ut.e(k.get("alt", ""))}</span>{yakinda}</span>')
+
+
+def yz_video(v):
+    vid = ut.e(v.get('youtubeId', ''))
+    bas = ut.e(v.get('baslik', ''))
+    return (f'<figure class="yz-video"><div class="yz-oran"><iframe src="https://www.youtube-nocookie.com/embed/{vid}?rel=0" title="{bas}" loading="lazy" '
+            f'allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
+            f'<figcaption>{bas}</figcaption></figure>')
+
+
+if YZ.get('karakterler'):
+    kartlar = ''.join(f'<a class="yz-afis" href="{k["id"]}/">{yz_afis(k, "../")}</a>' for k in YZ['karakterler'])
+    yaz('yz-film/index.html', ut.kabuk(V, YZ_AD, YZ.get('aciklama', ''), '../', 'yz-film/',
+        sp(YZ_AD, YZ.get('aciklama', ''), [(YZ_AD, None)], '../') + f'<div class="wrap"><div class="yz-izgara">{kartlar}</div></div><div style="height:56px"></div>',
+        sayfa='yz-film', noindex=True))
+    for k in YZ['karakterler']:
+        vids = k.get('videolar') or []
+        if vids:
+            alt_icerik = '<div class="yz-videolar">' + ''.join(yz_video(v) for v in vids) + '</div>'
+        else:
+            alt_icerik = '<p class="yz-bos-p">İlk bölümler hazırlanıyor. Yayınlandıkça burada izleyebileceksiniz.</p>'
+        govde = (f'<section class="yz-kapak-sayfa"><div class="wrap">'
+                 f'<nav class="kirinti" aria-label="Sayfa yolu"><a href="../../">Ana sayfa</a><span>/</span>'
+                 f'<a href="../">{ut.e(YZ_AD)}</a><span>/</span>{ut.e(k["ad"])}</nav>'
+                 f'<div class="yz-afis yz-afis-buyuk">{yz_afis(k, "../../", "h1")}</div>'
+                 f'<div class="yz-sayfa-alt">{alt_icerik}<p class="yz-not">Bu karakter ve videolar yapay zekâ ile üretilmiştir.</p></div>'
+                 f'</div></section>')
+        yaz(f'yz-film/{k["id"]}/index.html', ut.kabuk(V, k['ad'], k['ad'] + ': ' + k.get('alt', ''), '../../',
+            f'yz-film/{k["id"]}/', govde, sayfa='yz-film', noindex=True))
+
 yaz('404.html',k404)
 yaz('robots.txt',ROBOTS_METNI)   # 🔒 görsel/Okay koruması — Hilal Hanım 13.11.2026; yalnız onun açık talimatıyla gevşetilir
 yaz('.nojekyll','')
