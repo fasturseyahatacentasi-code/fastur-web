@@ -78,7 +78,8 @@
   };
   var ulkeK = null;
   (function () {
-    var m = location.pathname.match(/\/turlar\/([a-z-]+)\/?$/);
+    var yol = location.pathname; try { yol = decodeURIComponent(yol); } catch (e) { }
+    var m = yol.toLowerCase().match(/\/turlar\/([a-z-]+)(\/(index\.html)?)?$/);
     if (m && ULKE[m[1]]) { ulkeK = m[1]; return; }
     [].slice.call(document.querySelectorAll('.kirinti a[href]')).some(function (a) {
       var k = (a.getAttribute('href').match(/turlar\/([a-z-]+)\/?$/) || [])[1];
