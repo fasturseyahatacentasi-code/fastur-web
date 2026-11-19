@@ -20,12 +20,13 @@
   var kayanParca = '<b data-i18n="hud.siradaki">SIRADAKİ KALKIŞ</b> · ' + (sonraki ? esc((sonraki.baslangic ? Number(sonraki.baslangic.slice(8)) + ' ' + AY[Number(sonraki.baslangic.slice(5, 7)) - 1] : BUYUK(sonraki.tekrar || '')) + ' · ' + BUYUK(sonraki.ad)) : '<b data-i18n="hud.yakinda">YAKINDA</b>');
   var kayanHtml = '<span>' + kayanParca + '</span><span>' + kayanParca + '</span>';
 
+  /* GİZLİ (19.11.2026): yanlışlıkla yayına çıktı; hazır olunca veri.js > yzFilm içine "yayinda": true eklenince menü görünür. */
   /* YZ Film & Animasyon menüsü (Hilal Hanım 19.11.2026, referans uphbacademy.com.tr): üstüne gelince/tıklayınca küçük görselli liste */
   var YZ = FT.yzFilm || {}, YZK = YZ.karakterler || [], YZ_AD = YZ.menu || 'YZ Film & Animasyon';
   var YZ_LISTE = YZK.map(function (k) {
     return '<a class="yz-mi" href="' + K + 'yz-film/' + esc(k.id) + '/"><img src="' + K + esc(k.gorsel) + '-kucuk.webp" alt="" width="48" height="60"><span><b>' + esc(k.ad) + '</b><small>' + esc(k.alt || '') + '</small></span></a>';
   }).join('');
-  var YZ_HTML = YZK.length ? '<div class="hud-yz"><a class="hud-yz-btn" href="' + K + 'yz-film/" aria-haspopup="true">' + esc(YZ_AD) + ' <span aria-hidden="true">▾</span></a><div class="hud-yz-liste">' + YZ_LISTE + '<a class="yz-hepsi" href="' + K + 'yz-film/">Hepsini gör →</a></div></div>' : '';
+  var YZ_HTML = (YZK.length && YZ.yayinda === true) ? '<div class="hud-yz"><a class="hud-yz-btn" href="' + K + 'yz-film/" aria-haspopup="true">' + esc(YZ_AD) + ' <span aria-hidden="true">▾</span></a><div class="hud-yz-liste">' + YZ_LISTE + '<a class="yz-hepsi" href="' + K + 'yz-film/">Hepsini gör →</a></div></div>' : '';
 
   ust.outerHTML =
     '<header class="hud"><div class="wrap hud-bar">' +
