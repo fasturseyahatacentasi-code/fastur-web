@@ -44,7 +44,7 @@
   var KURAL = [
     [/^(\d+) gün$/, '$1 days'], [/^(\d+) tur$/, '$1 tours'], [/^(\d+) tur programı →$/, '$1 tour programmes →'], [/^(\d+) kalkış$/i, '$1 departures'],
     [/^(\d+) Gece (\d+) Gün$/, '$1 Nights $2 Days'], [/^(\d+) Gün$/, '$1 Days'], [/^([€$£][\d.,]+)'dan$/, 'from $1'], [/^'dan$/, ''], [/^(\d) ve (\d) Yıldız$/, '$1 and $2 Star'], [/^(\d) veya (\d) Yıldız$/, '$1 or $2 Star'], [/^(\d) Yıldız$/, '$1 Star'],
-    [/^≈ TL tutarlar: Banka satış kuru \(Ziraat Katılım\), güncelleme (.*) · Bilgi amaçlıdır, kesin fiyat için bize ulaşın\.$/, '≈ TL amounts: bank selling rate (Ziraat Katılım), updated $1 · For information only; contact us for exact prices.'],
+    [/^≈ TL tutarlar: Banka satış kuru, güncelleme (.*) · Bilgi amaçlıdır, kesin fiyat için bize ulaşın\.$/, '≈ TL amounts: bank selling rate, updated $1 · For information only; contact us for exact prices.'],
     [/^(\d{1,2}) (Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık) (\d{4})$/, function (m, g, a, y) { return g + ' ' + AYLAR[a] + ' ' + y; }],
     [/^(Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık) (\d{4})$/, function (m, a, y) { return AYLAR[a] + ' ' + y; }]
   ];

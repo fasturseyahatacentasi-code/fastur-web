@@ -52,8 +52,8 @@
      Açık renkli, okunaklı mega menü: üstte hızlı bağlantılar, ortada gruplar (büyük başlık) altında ülkeler ve tur sayısı,
      altta kurumsal bağlantılar. Kategori ve grup listesi veri.js'ten (ozet.js) gelir; gizli kategoriler (Umre) zaten yoktur. */
   var kats = FT.kategoriler || [];
-  var kurumsal = [['Tur takvimi', 'tur-takvimi/', 'TAKVİM', '', ''], ['Tüm turlar', 'turlar/', 'LİSTE', 'pano.tum', 'pano.liste'], ['Bana Uygun Turu Bul', 'tur-bul/', 'ARAÇ', 'nav.turbul', ''], ['Umre hazırlık rehberi', 'umre-rehberi/', 'REHBER', 'nav.umre', 'pano.rehber'], ['Hakkımızda', 'hakkimizda/', 'KURUMSAL', 'nav.hakkimizda', 'pano.kurumsal'], ['Seyahat ipuçları', 'seyahat-ipuclari/', 'REHBER', '', 'pano.rehber'], ['Haberler', 'haberler/', 'YAZILAR', 'nav.haberler', 'pano.yazilar'], ['İletişim', 'iletisim/', 'ULAŞIN', 'nav.iletisim', 'pano.ulasin'], ['Bilgi / Rezervasyon Talebi', 'talep/', 'FORM', 'nav.talep', 'pano.form'],
-    ['Kişisel verilerin korunması', 'kisisel-verilerin-korunmasi/', 'KVKK', '', 'pano.kvkk'], ['Gizlilik sözleşmesi', 'gizlilik-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Kullanıcı sözleşmesi', 'kullanici-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Tur ve otel satış sözleşmesi', 'tur-ve-otel-satis-sozlesmesi/', 'METİN', '', 'pano.metin']];
+  var kurumsal = [['Tur Takvimi', 'tur-takvimi/', 'TAKVİM', '', ''], ['Tüm Turlar', 'turlar/', 'LİSTE', 'pano.tum', 'pano.liste'], ['Bana Uygun Turu Bul', 'tur-bul/', 'ARAÇ', 'nav.turbul', ''], ['Umre Hazırlık Rehberi', 'umre-rehberi/', 'REHBER', 'nav.umre', 'pano.rehber'], ['Hakkımızda', 'hakkimizda/', 'KURUMSAL', 'nav.hakkimizda', 'pano.kurumsal'], ['Seyahat İpuçları', 'seyahat-ipuclari/', 'REHBER', '', 'pano.rehber'], ['Haberler', 'haberler/', 'YAZILAR', 'nav.haberler', 'pano.yazilar'], ['İletişim', 'iletisim/', 'ULAŞIN', 'nav.iletisim', 'pano.ulasin'], ['Bilgi / Rezervasyon Talebi', 'talep/', 'FORM', 'nav.talep', 'pano.form'],
+    ['Kişisel Verilerin Korunması', 'kisisel-verilerin-korunmasi/', 'KVKK', '', 'pano.kvkk'], ['Gizlilik Sözleşmesi', 'gizlilik-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Kullanıcı Sözleşmesi', 'kullanici-sozlesmesi/', 'METİN', '', 'pano.metin'], ['Tur ve Otel Satış Sözleşmesi', 'tur-ve-otel-satis-sozlesmesi/', 'METİN', '', 'pano.metin']];
   if (S.umreGoster === false) kurumsal = kurumsal.filter(function (k) { return k[1] !== 'umre-rehberi/'; });   /* Umre şimdilik gizli */
   var HARF = 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ0123456789 ';
   function tt(k, d) { return k && window.FT_DIL ? window.FT_DIL.t(k, d) : d; }
@@ -64,7 +64,7 @@
     return '<section class="mm-grup"><h3>' + esc(g.ad) + '</h3><ul>' +
       g.k.map(function (k) { return '<li><a href="' + K + 'turlar/' + esc(k.slug) + '/"' + (k.sayi ? '' : ' class="mm-bos"') + '><span>' + esc(k.ad) + '</span></a></li>'; }).join('') + '</ul></section>';
   }).join('');
-  var hizli = [['Tur takvimi', 'tur-takvimi/', '', 'mm-h-takvim'], ['Tüm turlar', 'turlar/', 'pano.tum', ''], ['Bana Uygun Turu Bul', 'tur-bul/', 'nav.turbul', ''], ['Talep Bırakın', 'talep/', 'hud.talep', 'mm-h-talep']];
+  var hizli = [['Tur Takvimi', 'tur-takvimi/', '', 'mm-h-takvim'], ['Tüm Turlar', 'turlar/', 'pano.tum', ''], ['Bana Uygun Turu Bul', 'tur-bul/', 'nav.turbul', ''], ['Talep Bırakın', 'talep/', 'hud.talep', 'mm-h-talep']];
   var hizliHtml = hizli.map(function (h) { return '<a class="mm-hizli-a ' + h[3] + '" href="' + K + h[1] + '">' + esc(tt(h[2], h[0])) + '</a>'; }).join('');
   var kurumsalHtml = kurumsal.filter(function (k) { return ['tur-takvimi/', 'turlar/', 'tur-bul/', 'talep/'].indexOf(k[1]) < 0; })
     .map(function (k) { return '<a href="' + K + k[1] + '">' + esc(tt(k[3], k[0])) + '</a>'; }).join('');

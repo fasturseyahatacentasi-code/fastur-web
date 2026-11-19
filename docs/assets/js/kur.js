@@ -16,7 +16,7 @@
       el.appendChild(s);
     });
     (kok || document).querySelectorAll('[data-kur-not]').forEach(function (el) {
-      el.textContent = '≈ TL tutarlar: Banka satış kuru (Ziraat Katılım), güncelleme ' + saat(KUR.zaman) + ' · Bilgi amaçlıdır, kesin fiyat için bize ulaşın.';
+      el.textContent = '≈ TL tutarlar: Banka satış kuru, güncelleme ' + saat(KUR.zaman) + ' · Bilgi amaçlıdır, kesin fiyat için bize ulaşın.';
       el.hidden = false;
     });
   }
