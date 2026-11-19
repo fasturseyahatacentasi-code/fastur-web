@@ -85,7 +85,7 @@
     '<div class="pano-arac"><button class="hud-mod pano-mod" type="button" aria-label="Gündüz / gece modu"><span aria-hidden="true"></span></button><select class="hud-dil pano-dil" aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select></div>' +
     '<button class="pano-kapat" type="button" aria-label="Menüyü kapat">Kapat <span aria-hidden="true">✕</span></button></div>' +
     '<div class="mm-hizli">' + hizliHtml + '</div>' +
-    (YZK.length ? '<div class="mm-yz"><span class="mm-etiket">' + esc(YZ_AD) + '</span>' + YZ_LISTE + '</div>' : '') +
+    ((YZK.length && YZ.yayinda === true) ? '<div class="mm-yz"><span class="mm-etiket">' + esc(YZ_AD) + '</span>' + YZ_LISTE + '</div>' : '') +
     /* 13.11.2026 Hilal Hanım: menüde yalnız bu tek sıra. Ülke grupları (gruplarHtml) ve kurumsal satır (kurumsalHtml) hazır duruyor; geri istenirse buraya eklenir. Kurumsal bağlantılar sitenin alt bilgisinde var. */
     '</div>';
   document.body.appendChild(pano);
