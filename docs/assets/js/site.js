@@ -180,6 +180,7 @@
   }
 
   /* ---------- talep formu ---------- */
+  var TALEP_ADRESI = S.talepAdresi || '';   /* Google Apps Script web uygulaması adresi (…/exec) */
   var tf = document.querySelector('[data-talep]');
   if (tf) {
     var sel = tf.elements.tur, gor = {}, qs2 = new URLSearchParams(location.search), onceki = qs2.get('tur');
@@ -213,10 +214,14 @@
       var d = alanlar(), btn = tf.querySelector('[data-gonder]');
       btn.disabled = true; btn.textContent = 'Gönderiliyor…';
       var govde = { _subject: 'Fas Tur web talebi: ' + d.tur, _template: 'table', _captcha: 'false', Tur: d.tur, 'Ad soyad': d.ad, Telefon: d.telefon, 'E-posta': d.eposta, Yetişkin: d.yetiskin, Çocuk: d.cocuk, 'Tarih / dönem': d.tarih, Not: d.not, 'KVKK açık rıza': 'verildi' };
-      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(S.formEposta || S.eposta), { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(govde) })
+      /* Talep kutusu (Hilal Hanım 19.11.2026): adres varsa talep e-postaya değil Google Drive'daki talep tablosuna gider, panelde görünür */
+      var istek = TALEP_ADRESI
+        ? fetch(TALEP_ADRESI, { method: 'POST', body: JSON.stringify({ tur: d.tur, ad: d.ad, telefon: d.telefon, eposta: d.eposta, yetiskin: d.yetiskin, cocuk: d.cocuk, tarih: d.tarih, not: d['not'], kvkk: true, sayfa: location.pathname, _honey: tf.elements._honey.value }) })
+        : fetch('https://formsubmit.co/ajax/' + encodeURIComponent(S.formEposta || S.eposta), { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(govde) });
+      istek
         .then(function (r) { return r.json(); })
         .then(function (j) {
-          if (j && (j.success === true || j.success === 'true')) { goster('ok', 'Talebiniz alındı. En kısa sürede size dönüş yapacağız. Teşekkür ederiz.'); tf.reset(); }
+          if (j && (j.ok === true || j.success === true || j.success === 'true')) { goster('ok', 'Talebiniz alındı. En kısa sürede size dönüş yapacağız. Teşekkür ederiz.'); tf.reset(); }
           else throw new Error('gonderilemedi');
         })
         .catch(function () {

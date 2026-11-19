@@ -165,9 +165,9 @@ TAKVIM_HTML = '''<section class="bolum takvim-bolum"><div class="wrap" data-takv
 <label for="tk-durum">Durum<select id="tk-durum"><option value="">Tüm durumlar</option></select></label>
 <button type="button" class="btn btn-hat" data-takvim-temizle>Filtreleri temizle</button>
 </form>
-<div class="tk-ust"><span data-takvim-say></span><span class="kur-not" data-kur-not hidden></span><span class="tk-not">Fiyatlar kişi başı başlangıç fiyatıdır; tarih, fiyat ve yer durumu değişebilir. Yer durumu için bize ulaşın.</span></div>
 <div class="tk-tablo-kap"><table class="tk-tablo"><thead><tr><th scope="col" class="tk-gorsel-bas">Görsel</th><th scope="col">Gidiş</th><th scope="col">Dönüş</th><th scope="col">Tur adı</th><th scope="col">Süre</th><th scope="col">Fiyat</th><th scope="col">Durum</th><th scope="col">Tur detayı</th></tr></thead>
 <tbody data-takvim-govde><tr><td colspan="7" class="tk-bos">Takvim yükleniyor…</td></tr></tbody></table></div>
+<div class="tk-ust" style="margin-top:16px"><span data-takvim-say></span><span class="kur-not" data-kur-not hidden></span><span class="tk-not">Fiyatlar kişi başı başlangıç fiyatıdır; tarih, fiyat ve yer durumu değişebilir. Yer durumu için bize ulaşın.</span></div>
 <noscript><p>Takvimi görmek için tarayıcınızda JavaScript açık olmalı. <a href="../turlar/">Tüm turlar</a></p></noscript>
 </div></section>'''
 
@@ -264,12 +264,12 @@ def liste_govde(V, turlar, kok, kategori=None):
 </form>
 </aside>
 <div>
-<div class="sonuc-bilgi"><strong data-sayi>{len(sirali)} tur</strong><span>Kartlara tıklayarak programı ve fiyat bilgisini görün.</span></div><p class="kur-not" data-kur-not hidden></p>
 <div class="izgara g3" data-kartlar>
 {kartlar}
 </div>
 {bos}
 <p style="text-align:center;margin-top:24px"><button class="btn btn-hat gizli" type="button" data-daha>Daha fazla göster</button></p>
+<div class="sonuc-bilgi" style="margin-top:18px"><strong data-sayi>{len(sirali)} tur</strong><span>Kartlara tıklayarak programı ve fiyat bilgisini görün.</span></div><p class="kur-not" data-kur-not hidden></p>
 </div>
 </div>
 </div>
@@ -523,7 +523,7 @@ def main():
     for t in V['turlar']:
         ozet_t.append({k: t.get(k) for k in ('id', 'slug', 'ad', 'kategori', 'baslangic', 'bitis', 'tekrar', 'takvimDurum', 'takvimTarihDurum', 'gun', 'vize', 'guzergah', 'gorsel', 'aktif')} | {'fiyat': None if t.get('fiyatOnceki') else en_dusuk_fiyat(t), 'fiyatHam': None if t.get('fiyatOnceki') else list(en_dusuk_ham(t))})
     ozet = {'site': S, 'kategoriler': [dict(k, sayi=sayac.get(k['slug'], 0)) for k in gorunur_kat(V)], 'turlar': ozet_t,
-            'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', [])}
+            'rehber': V.get('rehber', {}), 'hikaye': V.get('hikaye', []), 'heroMod': V.get('heroMod', 'harita'), 'haritaRotalari': V.get('haritaRotalari', []), 'muzik': V.get('muzik', []), 'anilar': V.get('anilar', []), 'katmanlar': V.get('katmanlar', {}), 'haberler': V.get('haberler', []), 'yorumlar': V.get('yorumlar', []), 'bolgeler': V.get('bolgeler', []), 'yzFilm': V.get('yzFilm', {})}
     yaz('assets/js/ozet.js', '/* OTOMATİK ÜRETİLDİ (tasarim/uret_turlar.py). Elle değiştirmeyin; veri.js\'i değiştirip üreticiyi çalıştırın. */\nwindow.FT = '
         + json.dumps(ozet, ensure_ascii=False, separators=(',', ':')) + ';\n')
 
