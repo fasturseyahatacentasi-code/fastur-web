@@ -54,8 +54,67 @@
   }
 
   var saat = document.getElementById('hud-saat');
-  function saatYaz() { try { saat.textContent = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Istanbul' }).format(new Date()); } catch (e) { } }
+  /* ---- ülke sayfasında üstte o ülkenin saati + hava durumu (Hilal Hanım 19.11.2026: "Fas'ı tıklayınca Fas hava durumu") ----
+     Kategori: adres turlar/<kat>/ ya da sayfadaki kırıntı bağlantısı. Koordinatlar sehirler.js'ten (uydurma yok).
+     Hava: Open-Meteo (ücretsiz, anahtarsız, çerezsiz); 30 dk tarayıcıda saklanır. Alınamazsa yalnız saat görünür. */
+  var ULKE = {
+    'fas': ['FAS', 'Marakeş', 31.63, -7.98, 'Africa/Casablanca'],
+    'misir': ['MISIR', 'Kahire', 30.04, 31.24, 'Africa/Cairo'],
+    'urdun': ['ÜRDÜN', 'Amman', 31.95, 35.93, 'Asia/Amman'],
+    'dubai': ['DUBAİ', 'Dubai', 25.20, 55.27, 'Asia/Dubai'],
+    'bosna-hersek': ['BOSNA', 'Saraybosna', 43.86, 18.41, 'Europe/Sarajevo'],
+    'ozbekistan': ['ÖZBEKİSTAN', 'Taşkent', 41.30, 69.24, 'Asia/Tashkent'],
+    'hindistan': ['HİNDİSTAN', 'Delhi', 28.61, 77.21, 'Asia/Kolkata'],
+    'japonya': ['JAPONYA', 'Tokyo', 35.68, 139.69, 'Asia/Tokyo'],
+    'guney-kore': ['G. KORE', 'Seul', 37.57, 126.98, 'Asia/Seoul'],
+    'vietnam': ['VİETNAM', 'Hanoi', 21.03, 105.85, 'Asia/Ho_Chi_Minh'],
+    'kambocya': ['KAMBOÇYA', 'Siem Reap', 13.36, 103.86, 'Asia/Phnom_Penh'],
+    'laos': ['LAOS', 'Luang Prabang', 19.89, 102.13, 'Asia/Vientiane'],
+    'tayland': ['TAYLAND', 'Bangkok', 13.76, 100.50, 'Asia/Bangkok'],
+    'malezya': ['MALEZYA', 'Kuala Lumpur', 3.14, 101.69, 'Asia/Kuala_Lumpur'],
+    'bali': ['BALİ', 'Bali', -8.65, 115.22, 'Asia/Makassar'],
+    'rusya': ['RUSYA', 'Moskova', 55.76, 37.62, 'Europe/Moscow'],
+    'ispanya': ['İSPANYA', 'Sevilla', 37.39, -5.98, 'Europe/Madrid']
+  };
+  var ulkeK = null;
+  (function () {
+    var m = location.pathname.match(/\/turlar\/([a-z-]+)\/?$/);
+    if (m && ULKE[m[1]]) { ulkeK = m[1]; return; }
+    [].slice.call(document.querySelectorAll('.kirinti a[href]')).some(function (a) {
+      var k = (a.getAttribute('href').match(/turlar\/([a-z-]+)\/?$/) || [])[1];
+      if (k && ULKE[k]) { ulkeK = k; return true; }
+    });
+  })();
+  var SAAT_TZ = ulkeK ? ULKE[ulkeK][4] : 'Europe/Istanbul';
+  function saatYaz() { try { saat.textContent = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: SAAT_TZ }).format(new Date()); } catch (e) { } }
   saatYaz(); setInterval(saatYaz, 20000);
+  if (ulkeK && saat) {
+    var U = ULKE[ulkeK], kutu = saat.parentNode, etiket = kutu.querySelector('span');
+    if (etiket) etiket.textContent = U[0];
+    kutu.setAttribute('aria-label', U[1] + ' yerel saati ve hava durumu'); kutu.title = U[1] + ' · yerel saat ve hava durumu';
+    var hv = document.createElement('b'); hv.className = 'hud-hava'; hv.style.cssText = 'font-size:14px;font-weight:600;color:#fff;letter-spacing:.02em;white-space:nowrap'; kutu.appendChild(hv);
+    var HAVA = function (c) {
+      return c === 0 ? ['☀', 'Açık'] : c <= 2 ? ['🌤', 'Az bulutlu'] : c === 3 ? ['☁', 'Bulutlu'] : c === 45 || c === 48 ? ['🌫', 'Sisli']
+        : c >= 51 && c <= 57 ? ['🌦', 'Çisenti'] : (c >= 61 && c <= 67) || (c >= 80 && c <= 82) ? ['🌧', 'Yağmurlu'] : (c >= 71 && c <= 77) || c === 85 || c === 86 ? ['🌨', 'Karlı'] : c >= 95 ? ['⛈', 'Fırtına'] : ['', ''];
+    };
+    var havaYaz = function (v) {
+      var h = HAVA(Number(v.k)); hv.textContent = (h[0] ? h[0] + ' ' : '') + Math.round(v.s) + '°';
+      kutu.title = U[1] + ' · yerel saat · ' + (h[1] ? h[1] + ', ' : '') + Math.round(v.s) + '°C';
+    };
+    var AN = 'ft_hava_' + ulkeK, kayit = null;
+    try { kayit = JSON.parse(sessionStorage.getItem(AN) || 'null'); } catch (e) { }
+    if (kayit && Date.now() - kayit.t < 30 * 60 * 1000) havaYaz(kayit);
+    else if (window.fetch) {
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=' + U[2] + '&longitude=' + U[3] + '&current=temperature_2m,weather_code&timezone=auto')
+        .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (j) {
+          var c = j && j.current; if (!c || typeof c.temperature_2m !== 'number') return;
+          var v = { t: Date.now(), s: c.temperature_2m, k: c.weather_code };
+          havaYaz(v); try { sessionStorage.setItem(AN, JSON.stringify(v)); } catch (e) { }
+        })
+        .catch(function () { });
+    }
+  }
 
   /* ---- Rotalar menüsü (13.11.2026, Hilal Hanım: Burak Tur menüsü referans) ----
      Açık renkli, okunaklı mega menü: üstte hızlı bağlantılar, ortada gruplar (büyük başlık) altında ülkeler ve tur sayısı,
