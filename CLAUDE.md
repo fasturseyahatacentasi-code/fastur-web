@@ -169,5 +169,5 @@ Her subagent işini bitirince sana özet döner; öğrenciye sen konuşursun. Do
 ## Komutlar
 `/basla` · `/tur-ekle` · `/video-ekle` · `/yayin-kontrolu`
 
-## Talep formu (Formsubmit)
-Talep formu Formsubmit ile `site.formEposta` adresine (info@fastur.com.tr) gider. **İlk gönderimde o adrese bir onay e-postası gelir; firma onaylamadan form çalışmaz.** 2.–3. haftada öğrenci test gönderimi yapar, firmaya "onay e-postasındaki bağlantıya tıklayın" dedirtir. Ücretli/başka form servisi açma. Form yalnız ad, iletişim, tur, not sorar.
+## Talep formu (Google tablosu + panel, 20.11.2026)
+Hilal Hanım'ın isteğiyle talep e-postaya gitmez: form, `veri.js > site.talepAdresi`'ndeki Google Apps Script adresine gönderir; talep Hilal Hanım'ın Google Drive'ındaki "FAS TUR Web Talepleri" tablosuna satır olarak yazılır ve Yönetim Paneli'nin "Talepler" sekmesinde görünür. Müşteri verisi depoya girmez. `site.talepAdresi` boşsa form eski yol olan Formsubmit'e (`site.formEposta`) düşer (o yol hiç etkinleşmemişti). Ücretli form servisi açma. Form yalnız ad, iletişim, tur, not sorar.
