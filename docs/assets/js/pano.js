@@ -23,10 +23,12 @@
   /* GİZLİ (19.11.2026): yanlışlıkla yayına çıktı; hazır olunca veri.js > yzFilm içine "yayinda": true eklenince menü görünür. */
   /* YZ Film & Animasyon menüsü (Hilal Hanım 19.11.2026, referans uphbacademy.com.tr): üstüne gelince/tıklayınca küçük görselli liste */
   var YZ = FT.yzFilm || {}, YZK = YZ.karakterler || [], YZ_AD = YZ.menu || 'YZ Film & Animasyon';
+  /* yayinda:false iken menü yalnız Hilal Hanım'ın bilgisayarında (localhost) görünür; canlı sitede gizli (21.11.2026) */
+  if (YZ.yayinda === false && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) YZK = [];
   var YZ_LISTE = YZK.map(function (k) {
     return '<a class="yz-mi" href="' + K + 'yz-film/' + esc(k.id) + '/"><img src="' + K + esc(k.gorsel) + '-kucuk.webp" alt="" width="48" height="60"><span><b>' + esc(k.ad) + '</b><small>' + esc(k.alt || '') + '</small></span></a>';
   }).join('');
-  var YZ_HTML = (YZK.length && YZ.yayinda === true) ? '<div class="hud-yz"><a class="hud-yz-btn" href="' + K + 'yz-film/" aria-haspopup="true">' + esc(YZ_AD) + ' <span aria-hidden="true">▾</span></a><div class="hud-yz-liste">' + YZ_LISTE + '<a class="yz-hepsi" href="' + K + 'yz-film/">Hepsini gör →</a></div></div>' : '';
+  var YZ_HTML = YZK.length ? '<div class="hud-yz"><a class="hud-yz-btn" href="' + K + 'yz-film/" aria-haspopup="true">' + esc(YZ_AD) + ' <span aria-hidden="true">▾</span></a><div class="hud-yz-liste">' + YZ_LISTE + '<a class="yz-hepsi" href="' + K + 'yz-film/">Hepsini gör →</a></div></div>' : '';
 
   ust.outerHTML =
     '<header class="hud"><div class="wrap hud-bar">' +
@@ -145,7 +147,7 @@
     '<div class="pano-arac"><button class="hud-mod pano-mod" type="button" aria-label="Gündüz / gece modu"><span aria-hidden="true"></span></button><select class="hud-dil pano-dil" aria-label="Language / Dil"><option value="tr">TR</option><option value="en">EN</option></select></div>' +
     '<button class="pano-kapat" type="button" aria-label="Menüyü kapat">Kapat <span aria-hidden="true">✕</span></button></div>' +
     '<div class="mm-hizli">' + hizliHtml + '</div>' +
-    ((YZK.length && YZ.yayinda === true) ? '<div class="mm-yz"><span class="mm-etiket">' + esc(YZ_AD) + '</span>' + YZ_LISTE + '</div>' : '') +
+    (YZK.length ? '<div class="mm-yz"><span class="mm-etiket">' + esc(YZ_AD) + '</span>' + YZ_LISTE + '</div>' : '') +
     /* 13.11.2026 Hilal Hanım: menüde yalnız bu tek sıra. Ülke grupları (gruplarHtml) ve kurumsal satır (kurumsalHtml) hazır duruyor; geri istenirse buraya eklenir. Kurumsal bağlantılar sitenin alt bilgisinde var. */
     '</div>';
   document.body.appendChild(pano);
