@@ -35,11 +35,12 @@
     /* 21.11.2026 Hilal Hanım: TÜRSAB rozeti görsel olarak (DDS örneğindeki düzen). Bağlantı YOK: tursab.org.tr/tr/ddsv
        fasturtravel.com'dan gelince "kayıt dışı" gösteriyor (DDS'de kayıtlı alan adı eski site). Hilal Hanım gerçek DDS rozet kodunu
        TÜRSAB'dan alınca bu rozet onunla değiştirilecek. */
-    var tursab = (S.tursab && S.tursab !== '[?]') ? '<div class="tursab-uye" style="display:inline-flex;align-items:center;gap:14px;text-align:left">' +
-      '<span style="color:#fff;font-size:13px;font-weight:600;max-width:150px;line-height:1.35">A Grubu TÜRSAB Lisanslı<br>Seyahat Acentesi</span>' +
+    var tursab = (S.tursab && S.tursab !== '[?]') ? '<div class="tursab-uye" style="display:inline-flex;margin-left:clamp(0px,6vw,56px);align-items:center;gap:14px;text-align:left">' +
       '<span role="img" aria-label="A Grubu TÜRSAB lisanslı seyahat acentesi, belge no ' + esc(S.tursab) + '" style="display:inline-block;padding:7px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)">' +
       '<svg width="132" height="84" viewBox="0 0 132 84" style="display:block" aria-hidden="true"><rect width="132" height="84" rx="4" fill="#fff"/><text x="66" y="34" text-anchor="middle" textLength="118" lengthAdjust="spacingAndGlyphs" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="30" fill="#e30a17">TÜRSAB</text><text x="66" y="47" text-anchor="middle" textLength="116" lengthAdjust="spacingAndGlyphs" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="7.4" fill="#111">TÜRKİYE SEYAHAT ACENTALARI BİRLİĞİ</text><text x="66" y="57" text-anchor="middle" textLength="110" lengthAdjust="spacingAndGlyphs" font-family="Arial,Helvetica,sans-serif" font-size="6.4" fill="#333">ASSOCIATION OF TURKISH TRAVEL AGENCIES</text><path d="M0 64h132v16a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z" fill="#e30a17"/><text x="66" y="77.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="10.5" letter-spacing=".6" fill="#fff">BELGE NO: ' + esc(S.tursab) + '</text></svg>' +
-      '</span></div>' : '';
+      '</span>' +
+      '<span style="color:#fff;font-size:13px;font-weight:600;max-width:210px;line-height:1.35">A Grubu TÜRSAB Lisanslı<br>Seyahat Acentesi</span>' +
+      '</div>' : '';
     alt.outerHTML =
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/logo/fastur-logo-koyu.svg" alt="Fas Tur Seyahat Acentesi" width="190" height="55"></span>' +
@@ -55,7 +56,7 @@
       '<div style="padding:3px 0">' + esc(S.calisma) + '</div></div>' +
       '<div><h4>Kurumsal</h4><a href="' + K + 'hakkimizda/">Hakkımızda</a><a href="' + K + 'iletisim/">İletişim</a><a href="' + K + 'haberler/">Haberler</a><a href="' + K + 'seyahat-ipuclari/">Seyahat ipuçları</a><a href="' + K + 'talep/">Bilgi / Rezervasyon Talebi</a></div>' +
       '<div><h4>Sözleşmeler ve KVKK</h4><a href="' + K + 'kisisel-verilerin-korunmasi/">Kişisel verilerin korunması</a><a href="' + K + 'gizlilik-sozlesmesi/">Gizlilik sözleşmesi</a><a href="' + K + 'kullanici-sozlesmesi/">Kullanıcı sözleşmesi</a><a href="' + K + 'tur-ve-otel-satis-sozlesmesi/">Tur ve otel satış sözleşmesi</a></div>' +
-      '</div><div class="alt-son"><span>© ' + new Date().getFullYear() + ' Fas Tur</span>' + tursab + '</div></div></footer>' +
+      '</div><div class="alt-son">' + tursab + '<span>© ' + new Date().getFullYear() + ' Fas Tur</span></div></div></footer>' +   /* 21.11.2026 Hilal Hanım: TÜRSAB logosu solda */
       '<a class="asistan" href="' + wa('Merhaba, bilgi almak istiyorum.') + '" target="_blank" rel="noopener" aria-label="WhatsApp ile yazın"><span class="nokta foto"><img src="' + K + 'assets/img/karakter/karakter-ifade-1.png" alt="" width="46" height="46"></span><span><b>' + rehberAd() + '</b><small>' + hk('asistan', 'Sorunuz mu var? Yazın.') + '</small></span></a>';
   }
   document.querySelectorAll('[data-rehber-ad]').forEach(function (e) { e.textContent = rehberAd() + ((RH.unvan && RH.unvan !== '[?]') ? ' · ' + RH.unvan : ''); });
