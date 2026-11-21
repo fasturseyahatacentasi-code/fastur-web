@@ -32,7 +32,14 @@
   /* ---------- alt bilgi ---------- */
   var alt = document.getElementById('alt');
   if (alt) {
-    var tursab = (S.tursab && S.tursab !== '[?]') ? '<a class="tursab-rozet" href="https://www.tursab.org.tr/tr/ddsv" target="_blank" rel="noopener" title="TÜRSAB Dijital Doğrulama Sistemi"><b>TÜRSAB</b><span>Belge No: ' + esc(S.tursab) + '</span><small>Doğrulamak için tıklayın</small></a>' : '';   /* 19.11.2026 Hilal Hanım: TÜRSAB 9165, tıklayınca DDSV doğrulama sayfası */
+    /* 21.11.2026 Hilal Hanım: TÜRSAB rozeti görsel olarak (DDS örneğindeki düzen). Bağlantı YOK: tursab.org.tr/tr/ddsv
+       fasturtravel.com'dan gelince "kayıt dışı" gösteriyor (DDS'de kayıtlı alan adı eski site). Hilal Hanım gerçek DDS rozet kodunu
+       TÜRSAB'dan alınca bu rozet onunla değiştirilecek. */
+    var tursab = (S.tursab && S.tursab !== '[?]') ? '<div class="tursab-dds" role="img" aria-label="TÜRSAB üyesi seyahat acentesi, belge no ' + esc(S.tursab) + '" style="display:inline-block;width:232px;background:#fff;border:1px solid #c9ced6;border-radius:6px;padding:6px 10px 7px;font-family:Arial,Helvetica,sans-serif;line-height:1.15;box-shadow:0 2px 10px rgba(0,0,0,.25);text-align:left">' +
+      '<div style="text-align:center;color:#e30a17;font-weight:900;font-size:21px;letter-spacing:.06em;font-style:italic">TÜRSAB</div>' +
+      '<div style="text-align:center;color:#1d3a6b;font-weight:700;font-size:9.5px;letter-spacing:.08em;border-top:1px solid #e30a17;border-bottom:1px solid #e30a17;padding:2px 0;margin:2px 0 5px">ÜYESİ SEYAHAT ACENTESİ</div>' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="color:#444;font-size:9.5px;max-width:140px">Fas Tur, TÜRSAB\'a kayıtlı bir seyahat acentesidir.</span>' +
+      '<span style="text-align:right;white-space:nowrap"><small style="display:block;color:#1d3a6b;font-size:9.5px;font-weight:700">Belge No</small><b style="color:#e30a17;font-size:20px;font-weight:900">' + esc(S.tursab) + '</b></span></div></div>' : '';
     alt.outerHTML =
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/logo/fastur-logo-koyu.svg" alt="Fas Tur Seyahat Acentesi" width="190" height="55"></span>' +
