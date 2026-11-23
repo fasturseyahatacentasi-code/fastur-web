@@ -940,3 +940,10 @@ html .tursab-rozet{display:inline-grid;grid-template-columns:auto auto;grid-temp
 /* 23.11.2026 Hilal Hanım: Bölüm 2 çarkı mobilde de çark olsun (sıralı liste yerine). Çark kutusu küçülür, gezegenler küçülür. */
 @media(max-width:900px){#yorunge .sistem{display:block;width:min(360px,90vw);margin:8px auto 18px}#yorunge .seritler{display:none!important}#yorunge .uydu i{width:44px;height:44px}#yorunge .uydu a{font-size:10.5px;gap:3px;text-shadow:0 1px 4px rgba(0,0,0,.8)}#yorunge .merkez.portre{inset:31%}}
 @media(max-width:380px){#yorunge .uydu i{width:38px;height:38px}#yorunge .uydu a{font-size:9.5px}}
+/* 23.11.2026 Hilal Hanım (hocasının önerisi): Bölüm 3 Dünya Rotaları kartları kartpostal gibi — krem kâğıt çerçeve, köşede pul, hafif eğik. */
+#dunya .bolge,.bolgeler .bolge{border:9px solid #fbf6ec;border-radius:6px;box-shadow:0 1px 0 #e4d9c3 inset,0 16px 34px rgba(0,0,0,.5);background:#fbf6ec}
+.bolge:nth-child(3n+1){transform:rotate(-1.3deg)}.bolge:nth-child(3n+2){transform:rotate(.8deg)}.bolge:nth-child(3n){transform:rotate(-.6deg)}
+.bolge:hover{border-color:#fff8ea;transform:rotate(0) translateY(-6px);box-shadow:0 0 0 1px var(--altin),0 22px 44px rgba(0,0,0,.55)}
+.bolge::before{content:'FAS\A TUR';white-space:pre;position:absolute;top:10px;right:10px;width:46px;height:54px;display:grid;place-items:center;text-align:center;font:900 10px/1.15 var(--govde);letter-spacing:.08em;color:#c0392b;background:#fbf6ec;border:2px dashed #c9b48a;outline:3px solid #fbf6ec;transform:rotate(5deg);box-shadow:0 2px 6px rgba(0,0,0,.35);z-index:1;pointer-events:none}
+.bolge .ic{left:16px;right:16px;bottom:12px}
+@media(prefers-reduced-motion:reduce){.bolge,.bolge:hover{transform:none}}
