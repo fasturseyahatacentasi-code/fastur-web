@@ -953,3 +953,125 @@ html .tursab-rozet{display:inline-grid;grid-template-columns:auto auto;grid-temp
 .bolge .pul b{font:700 6.5px/1.2 Georgia,serif;letter-spacing:.08em;color:#5a3d22;text-align:center;white-space:nowrap;max-width:100%;overflow:hidden}
 .bolge .damga{position:absolute;top:44px;right:46px;z-index:2;color:rgba(28,30,48,.62);transform:rotate(-14deg);pointer-events:none;line-height:0;mix-blend-mode:multiply}
 @media(max-width:600px){.bolge .pul{width:56px}.bolge .damga svg{width:88px;height:48px}.bolge .damga{top:36px;right:36px}}
+/* 19.11.2026 Hilal Hanım: YZ Film & Animasyon — menü (referans uphbacademy.com.tr) ve sayfalar */
+.hud-yz{position:relative;flex:none}
+.hud-yz-btn{display:flex;align-items:center;gap:6px;color:#e9eef8;text-decoration:none;border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:9px 14px;font:700 12.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.hud-yz-btn:hover,.hud-yz:focus-within .hud-yz-btn{border-color:var(--altin);color:var(--altin)}
+.hud-yz-liste{position:absolute;right:0;top:calc(100% + 8px);width:300px;padding:8px;border-radius:14px;background:rgba(10,14,40,.97);border:1px solid rgba(255,217,138,.3);box-shadow:0 18px 50px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:4px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:.18s;z-index:60}
+.hud-yz:hover .hud-yz-liste,.hud-yz:focus-within .hud-yz-liste{opacity:1;visibility:visible;transform:none}
+.hud-yz-liste::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
+.yz-mi{display:flex;align-items:center;gap:12px;padding:7px;border-radius:10px;color:#f1f4fb;text-decoration:none}
+.yz-mi:hover{background:rgba(255,217,138,.12)}
+.yz-mi img{width:48px;height:60px;object-fit:cover;border-radius:8px;flex:none}
+.yz-mi b{display:block;font-size:15px}.yz-mi small{display:block;color:#aab8cf;font-size:12.5px}
+.yz-hepsi{color:var(--altin);font-weight:700;font-size:13px;padding:6px 8px;text-decoration:none}
+.mm-yz{margin-top:18px;display:flex;flex-direction:column;gap:4px}
+.mm-yz .yz-mi{color:inherit}.mm-yz .yz-mi small{color:inherit;opacity:.7}
+@media(max-width:900px){.hud-yz{display:none}}
+.yz-izgara{display:grid;grid-template-columns:repeat(2,minmax(0,420px));gap:28px;justify-content:start}
+.yz-kart{position:relative;display:block;border-radius:22px;overflow:hidden;aspect-ratio:4/5;color:#fff;text-decoration:none;box-shadow:0 24px 60px rgba(0,0,0,.45);border:1px solid rgba(255,217,138,.2);transition:transform .25s}
+.yz-kart:hover{transform:translateY(-4px)}
+.yz-kart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.yz-kart::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,11,36,.92) 100%)}
+.yz-kart-ic{position:absolute;left:22px;right:22px;bottom:20px;z-index:1}
+.yz-kart-ic b{display:block;font-family:var(--baslik);font-size:clamp(28px,3.4vw,40px);line-height:1.05}
+.yz-kart-ic small{display:block;color:#d6deec;font-size:15px;margin:4px 0 12px}
+.yz-yakinda{display:inline-block;font:700 12px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.18em;text-transform:uppercase;color:#1a1000;background:var(--altin);border-radius:999px;padding:7px 14px}
+.yz-yakinda.buyuk{font-size:15px;padding:10px 20px}
+@media(max-width:640px){.yz-izgara{grid-template-columns:1fr}}
+.yz-sahne{padding:110px 0 70px}
+.yz-sahne-ic{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:48px;align-items:center}
+.yz-portre{border-radius:24px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 70px rgba(0,0,0,.5);border:1px solid rgba(255,217,138,.25)}
+.yz-portre img{width:100%;height:100%;object-fit:cover;display:block}
+.yz-bilgi h1{font-size:clamp(44px,6vw,80px);margin:6px 0 4px}
+.yz-alt{font:italic 500 clamp(18px,2.2vw,24px) var(--baslik);color:var(--altin);margin:0 0 26px}
+.yz-bos p{color:#c4d4e4;margin:16px 0 0;max-width:30em}
+.yz-not{color:#8fa2bd;font-size:13px;margin-top:34px}
+.yz-videolar{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.yz-video{margin:0}.yz-oran{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+.yz-oran iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yz-video figcaption{margin-top:8px;font-weight:700}
+@media(max-width:820px){.yz-sahne{padding-top:90px}.yz-sahne-ic{grid-template-columns:1fr;gap:24px}.yz-portre{max-width:380px}}
+/* 19.11.2026 Hilal Hanım: karakter kartları kapak (afiş) gibi — tam boy 9:16 görsel, üstte etiket, altta büyük ad */
+.yz-izgara{grid-template-columns:repeat(2,minmax(0,380px));gap:32px}
+.yz-afis{position:relative;display:block;aspect-ratio:9/16;border-radius:18px;overflow:hidden;color:#fff;text-decoration:none;isolation:isolate;background:#0b1030;
+  box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px rgba(255,217,138,.28);transition:transform .3s,box-shadow .3s}
+a.yz-afis:hover{transform:translateY(-6px);box-shadow:0 38px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,217,138,.6)}
+.yz-afis picture,.yz-afis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.yz-afis::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,11,36,.55) 0,rgba(7,11,36,0) 16%,rgba(7,11,36,0) 50%,rgba(7,11,36,.78) 74%,rgba(7,11,36,.96) 100%)}
+.yz-afis::after{content:"";position:absolute;inset:12px;border:1px solid rgba(255,217,138,.45);border-radius:10px;pointer-events:none}
+.yz-afis-ust{position:absolute;top:24px;left:0;right:0;text-align:center;font:700 11px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.32em;color:#ffe7b0}
+.yz-afis-alt{position:absolute;left:24px;right:24px;bottom:30px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.yz-afis-ad{display:block;margin:0;font-family:var(--baslik);font-weight:600;font-size:clamp(40px,5vw,64px);line-height:.95;letter-spacing:.01em;text-shadow:0 6px 30px rgba(0,0,0,.6)}
+.yz-afis-slogan{display:block;font:italic 500 clamp(15px,1.6vw,19px) var(--baslik);color:var(--altin);margin:8px 0 16px}
+.yz-kapak-sayfa{padding:100px 0 64px}
+.yz-afis-buyuk{width:min(100%,calc((100vh - 190px) * 9 / 16),520px);margin:18px auto 0}
+.yz-afis-buyuk .yz-afis-ad{font-size:clamp(48px,7vw,88px)}
+.yz-afis-buyuk .yz-yakinda{font-size:14px;padding:10px 20px}
+.yz-sayfa-alt{text-align:center;max-width:640px;margin:26px auto 0}
+.yz-bos-p{color:#c4d4e4;margin:0}
+.yz-sayfa-alt .yz-videolar{text-align:left;margin-top:10px}
+@media(max-width:640px){.yz-izgara{grid-template-columns:1fr;justify-items:center}.yz-izgara .yz-afis{width:min(100%,360px)}.yz-kapak-sayfa{padding-top:86px}.yz-afis-buyuk{width:min(100%,400px)}}
+/* 21.11.2026 Hilal Hanım: Hill — zamanda yolculuk (saat halkası, zaman şeridi, bölüm kartları, bugün, sıradaki duraklar) */
+.yz-halka{position:absolute;left:50%;top:5%;width:92%;aspect-ratio:1;transform:translateX(-50%);z-index:-1;pointer-events:none;opacity:.55;mix-blend-mode:multiply}
+.yz-halka svg{width:100%;height:100%;animation:yz-don 120s linear infinite}
+.yz-halka circle{fill:none;stroke:#9a6a1c;stroke-width:1.2}.yz-halka circle.ince{stroke-width:.5;stroke-dasharray:2 3}
+.yz-halka line{stroke:#9a6a1c;stroke-width:.8}
+.yz-halka text{font:600 9px Georgia,serif;fill:#8a5a14;text-anchor:middle;letter-spacing:.05em}
+@keyframes yz-don{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.yz-halka svg{animation:none}}
+.yz-tanitim{max-width:720px;margin:44px auto 0;text-align:center}
+.yz-motto{font:italic 600 clamp(26px,3.4vw,40px) var(--baslik);color:var(--altin);margin:0 0 10px}
+.yz-tanitim p:last-child{color:#c9d6e6;font-size:17px;margin:0}
+.yz-zaman{list-style:none;padding:0;margin:40px auto 8px;max-width:900px;display:flex;justify-content:space-between;position:relative}
+.yz-zaman::before{content:"";position:absolute;left:6%;right:6%;top:9px;height:2px;background:linear-gradient(90deg,rgba(255,217,138,.15),var(--altin),rgba(53,224,208,.9))}
+.yz-zaman li{position:relative;flex:1;text-align:center;padding-top:30px}
+.yz-zaman li::before{content:"";position:absolute;left:50%;top:2px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#0b1030;border:2px solid var(--altin);box-shadow:0 0 14px rgba(255,217,138,.5)}
+.yz-zaman li.simdi::before{border-color:var(--turkuaz);background:var(--turkuaz);box-shadow:0 0 18px rgba(53,224,208,.7)}
+.yz-zaman b{display:block;font:700 12px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--altin)}
+.yz-zaman li.simdi b{color:var(--turkuaz)}
+.yz-zaman span{display:block;font-family:var(--baslik);font-size:20px;color:#fff;margin-top:2px}
+.yz-bolumler{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:30px}
+.yz-bolum{border-radius:18px;overflow:hidden;background:rgba(10,14,40,.72);border:1px solid rgba(255,217,138,.22);backdrop-filter:blur(6px);display:flex;flex-direction:column}
+.yz-bolum-g{position:relative;aspect-ratio:3/4;overflow:hidden;background:#efe6da}
+.yz-bolum-g img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;transition:transform .6s}
+.yz-bolum:hover .yz-bolum-g img{transform:scale(1.04)}
+.yz-bolum-g::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(10,14,40,.85))}
+.yz-bolum-no{position:absolute;left:14px;top:14px;z-index:1;font:700 11px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase;background:rgba(10,14,40,.8);color:var(--altin);border:1px solid rgba(255,217,138,.5);border-radius:999px;padding:6px 11px}
+.yz-bolum-ic{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.yz-bolum-cag{font-family:var(--baslik);font-size:22px;color:#fff}
+.yz-bolum-ic p{color:#c9d6e6;font-size:15px;margin:8px 0 0}
+.yz-imza{font-style:italic;color:#ffe7b0!important}
+.yz-bolum-alt{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:14px}
+.yz-bolum-alt a{color:var(--turkuaz);font-weight:700;text-decoration:none;font-size:14px}
+.yz-bugun{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:34px;align-items:center;margin:46px 0 0;padding:26px;border-radius:22px;background:linear-gradient(110deg,rgba(53,224,208,.1),rgba(10,14,40,.75) 55%);border:1px solid rgba(53,224,208,.3)}
+.yz-bugun-g{border-radius:16px;overflow:hidden;aspect-ratio:3/4;background:#efe6da}
+.yz-bugun-g img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+.yz-etiket2{font:700 12px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--turkuaz)}
+.yz-bugun h2{font-size:clamp(32px,4vw,48px);margin:6px 0 10px}
+.yz-bugun p{color:#c9d6e6;font-size:17px;max-width:32em;margin:0 0 20px}
+.yz-duraklar{margin-top:52px}
+.yz-duraklar h2{text-align:center;font-size:clamp(28px,3.4vw,40px);margin:0 0 20px}
+.yz-durak-izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.yz-durak{position:relative;margin:0;border-radius:16px;overflow:hidden;aspect-ratio:9/14}
+.yz-durak img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.75) brightness(.8);transition:filter .4s}
+.yz-durak:hover img{filter:none}
+.yz-durak figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(7,11,36,.9));display:flex;justify-content:space-between;align-items:end}
+.yz-durak b{font-family:var(--baslik);font-size:24px;color:#fff}
+.yz-durak span{font:700 11px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--altin)}
+@media(max-width:820px){.yz-bolumler{grid-template-columns:1fr}.yz-bugun{grid-template-columns:1fr;padding:18px}.yz-bugun-g{max-width:300px}.yz-durak-izgara{grid-template-columns:1fr 1fr 1fr;gap:10px}.yz-durak b{font-size:17px}.yz-durak figcaption{flex-direction:column;align-items:start;padding:30px 10px 10px}.yz-zaman span{font-size:15px}.yz-zaman b{font-size:9.5px;letter-spacing:.06em}}
+/* zaman kapısı: saat halkası afişin arkasında, Hill'in üstüne binmez */
+.yz-afis .yz-halka{display:none}
+.yz-portal{position:relative;isolation:isolate}
+.yz-portal>.yz-halka{display:block;position:absolute;left:50%;top:50%;width:min(140vw,1180px);height:auto;aspect-ratio:1;transform:translate(-50%,-50%);z-index:-1;opacity:.5;mix-blend-mode:screen}
+.yz-portal>.yz-halka circle,.yz-portal>.yz-halka line{stroke:#ffd98a}
+.yz-portal>.yz-halka text{fill:#ffd98a}
+.yz-portal>.yz-halka::after{content:"";position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle,rgba(255,200,110,.18),transparent 65%)}
+.yz-kapak-sayfa{overflow-x:clip}
+/* 23.11.2026 Hilal Hanım: iki karakter yan yana aynı oranda — "yarım kapak" (baştan göğse, 4:5) */
+.yz-afis{aspect-ratio:4/5}
+.yz-izgara{grid-template-columns:repeat(2,minmax(0,440px))}
+.yz-afis-buyuk{width:min(100%,calc((100vh - 190px) * 4 / 5),600px)}
+.yz-afis img{object-position:50% 20%}
+@media(max-width:640px){.yz-izgara{grid-template-columns:1fr;justify-items:center}.yz-izgara .yz-afis{width:min(100%,380px)}}
+.hud-yz-btn{text-transform:none;letter-spacing:.02em;font-family:inherit;font-size:14px}

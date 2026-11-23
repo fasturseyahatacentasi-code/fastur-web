@@ -328,6 +328,9 @@ def yz_gorsel(k, kk):
             f'<img src="{g}.jpg" alt="{ut.e(k["ad"])}" width="720" height="1280" loading="lazy"></picture>')
 
 
+YZ_HALKA = '<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="80" class="ince"/><g class="cizgi"><line x1="100" y1="6" x2="100" y2="16" transform="rotate(0 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(6 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(12 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(18 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(24 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(30 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(36 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(42 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(48 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(54 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(60 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(66 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(72 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(78 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(84 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(90 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(96 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(102 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(108 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(114 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(120 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(126 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(132 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(138 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(144 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(150 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(156 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(162 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(168 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(174 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(180 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(186 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(192 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(198 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(204 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(210 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(216 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(222 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(228 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(234 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(240 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(246 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(252 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(258 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(264 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(270 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(276 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(282 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(288 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(294 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(300 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(306 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(312 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(318 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(324 100 100)"/><line x1="100" y1="6" x2="100" y2="16" transform="rotate(330 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(336 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(342 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(348 100 100)"/><line x1="100" y1="6" x2="100" y2="11" transform="rotate(354 100 100)"/></g><g class="rakam"><text x="100" y="32" transform="rotate(0 100 100)">XII</text><text x="100" y="32" transform="rotate(30 100 100)">I</text><text x="100" y="32" transform="rotate(60 100 100)">II</text><text x="100" y="32" transform="rotate(90 100 100)">III</text><text x="100" y="32" transform="rotate(120 100 100)">IV</text><text x="100" y="32" transform="rotate(150 100 100)">V</text><text x="100" y="32" transform="rotate(180 100 100)">VI</text><text x="100" y="32" transform="rotate(210 100 100)">VII</text><text x="100" y="32" transform="rotate(240 100 100)">VIII</text><text x="100" y="32" transform="rotate(270 100 100)">IX</text><text x="100" y="32" transform="rotate(300 100 100)">X</text><text x="100" y="32" transform="rotate(330 100 100)">XI</text></g></svg>'
+
+
 def yz_afis(k, kk, etiket_h='b'):
     """Kapak (afiş) görünümü: tam boy görsel, üstte küçük etiket, altta büyük ad + alt başlık + Çok yakında."""
     yakinda = '' if k.get('videolar') else '<span class="yz-yakinda">Çok yakında</span>'
@@ -343,6 +346,44 @@ def yz_video(v):
             f'<figcaption>{bas}</figcaption></figure>')
 
 
+def yz_resim(g, kk, alt='', w=540, h=960):
+    return (f'<picture><source type="image/webp" srcset="{kk}{g}.webp">'
+            f'<img src="{kk}{g}.jpg" alt="{ut.e(alt)}" width="{w}" height="{h}" loading="lazy"></picture>')
+
+
+def yz_seri(k, kk):
+    """Zaman yolculuğu bölümleri (Hill, Hilal Hanım 21.11.2026): tanıtım, zaman şeridi, bölüm kartları, bugün, sıradaki duraklar."""
+    if not k.get('bolumler'):
+        return ''
+    h = ''
+    if k.get('motto') or k.get('tanitim'):
+        h += (f'<section class="yz-tanitim"><p class="yz-motto">{ut.e(k.get("motto", ""))}</p>'
+              f'<p>{ut.e(k.get("tanitim", ""))}</p></section>')
+    seri = k['bolumler'] + ([{'sehir': 'Bugün', 'cag': '', 'bugun': True}] if k.get('bugun') else [])
+    h += '<ol class="yz-zaman" aria-label="Zaman rotası">' + ''.join(
+        f'<li class="{"simdi" if b.get("bugun") else ""}"><b>{ut.e(b.get("cag") or "Bugün")}</b><span>{ut.e(b["sehir"] if not b.get("bugun") else "Fas")}</span></li>'
+        for b in seri) + '</ol>'
+    kartlar = ''
+    for b in k['bolumler']:
+        kartlar += (f'<article class="yz-bolum"><div class="yz-bolum-g">{yz_resim(b["gorsel"], kk, k["ad"] + " · " + b["sehir"])}'
+                    f'<span class="yz-bolum-no">Bölüm {b["no"]}</span></div>'
+                    f'<div class="yz-bolum-ic"><span class="yz-bolum-cag">{ut.e(b["sehir"])} · {ut.e(b["cag"])}</span>'
+                    f'<p>{ut.e(b["metin"])}</p><p class="yz-imza">“{ut.e(b["imza"])}”</p>'
+                    f'<div class="yz-bolum-alt"><span class="yz-yakinda">Çok yakında</span>'
+                    f'<a href="{kk}{ut.e(b["link"])}">{ut.e(b["sehir"])} bugün →</a></div></div></article>')
+    h += f'<div class="yz-bolumler">{kartlar}</div>'
+    bg = k.get('bugun')
+    if bg:
+        h += (f'<section class="yz-bugun"><div class="yz-bugun-g">{yz_resim(bg["gorsel"], kk, k["ad"] + " bugün")}</div>'
+              f'<div class="yz-bugun-ic"><span class="yz-etiket2">Geçmişten bugüne</span><h2>{ut.e(bg["baslik"])}</h2>'
+              f'<p>{ut.e(bg["metin"])}</p><a class="btn btn-ana" href="{kk}{ut.e(bg["link"])}">{ut.e(bg["linkAd"])}</a></div></section>')
+    if k.get('duraklar'):
+        h += ('<section class="yz-duraklar"><h2>Sıradaki duraklar</h2><div class="yz-durak-izgara">' + ''.join(
+            f'<figure class="yz-durak">{yz_resim(d["gorsel"], kk, k["ad"] + " · " + d["ad"])}<figcaption><b>{ut.e(d["ad"])}</b><span>Hazırlanıyor</span></figcaption></figure>'
+            for d in k['duraklar']) + '</div></section>')
+    return h
+
+
 if YZ.get('karakterler'):
     kartlar = ''.join(f'<a class="yz-afis" href="{k["id"]}/">{yz_afis(k, "../")}</a>' for k in YZ['karakterler'])
     yaz('yz-film/index.html', ut.kabuk(V, YZ_AD, YZ.get('aciklama', ''), '../', 'yz-film/',
@@ -353,12 +394,13 @@ if YZ.get('karakterler'):
         if vids:
             alt_icerik = '<div class="yz-videolar">' + ''.join(yz_video(v) for v in vids) + '</div>'
         else:
-            alt_icerik = '<p class="yz-bos-p">İlk bölümler hazırlanıyor. Yayınlandıkça burada izleyebileceksiniz.</p>'
+            alt_icerik = '' if k.get('seriSayfada') else '<p class="yz-bos-p">İlk bölümler hazırlanıyor. Yayınlandıkça burada izleyebileceksiniz.</p>'
+        portal = f'<div class="yz-portal"><span class="yz-halka" aria-hidden="true">{YZ_HALKA}</span>' if (k.get('bolumler') or k.get('saat')) else '<div>'
         govde = (f'<section class="yz-kapak-sayfa"><div class="wrap">'
                  f'<nav class="kirinti" aria-label="Sayfa yolu"><a href="../../">Ana sayfa</a><span>/</span>'
                  f'<a href="../">{ut.e(YZ_AD)}</a><span>/</span>{ut.e(k["ad"])}</nav>'
-                 f'<div class="yz-afis yz-afis-buyuk">{yz_afis(k, "../../", "h1")}</div>'
-                 f'<div class="yz-sayfa-alt">{alt_icerik}<p class="yz-not">Bu karakter ve videolar yapay zekâ ile üretilmiştir.</p></div>'
+                 f'{portal}<div class="yz-afis yz-afis-buyuk">{yz_afis(k, "../../", "h1")}</div></div>'
+                 f'{yz_seri(k, "../../") if k.get("seriSayfada") else ""}<div class="yz-sayfa-alt">{alt_icerik}<p class="yz-not">Bu karakter ve videolar yapay zekâ ile üretilmiştir.</p></div>'
                  f'</div></section>')
         yaz(f'yz-film/{k["id"]}/index.html', ut.kabuk(V, k['ad'], k['ad'] + ': ' + k.get('alt', ''), '../../',
             f'yz-film/{k["id"]}/', govde, sayfa='yz-film', noindex=True))
