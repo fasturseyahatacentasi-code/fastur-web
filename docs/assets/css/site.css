@@ -937,3 +937,6 @@ html .tursab-rozet{background:#fff;border:3px solid #e30a17;border-radius:10px;p
 html .takvim-bolum .tk-fiyat small.tl-karsilik{display:block;color:#5b6b80;font-size:11.5px;font-weight:600}
 html .tursab-rozet{display:inline-grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:12px;row-gap:1px;align-items:center}html .tursab-rozet b{grid-column:1;grid-row:1/3}html .tursab-rozet span{grid-column:2;grid-row:1;line-height:1.1}html .tursab-rozet small{grid-column:2;grid-row:2;line-height:1.1;font-size:11px}
 .alt-son{padding-right:230px}@media(max-width:760px){.alt-son{padding-right:0;padding-bottom:70px}}
+/* 23.11.2026 Hilal Hanım: Bölüm 2 çarkı mobilde de çark olsun (sıralı liste yerine). Çark kutusu küçülür, gezegenler küçülür. */
+@media(max-width:900px){#yorunge .sistem{display:block;width:min(360px,90vw);margin:8px auto 18px}#yorunge .seritler{display:none!important}#yorunge .uydu i{width:44px;height:44px}#yorunge .uydu a{font-size:10.5px;gap:3px;text-shadow:0 1px 4px rgba(0,0,0,.8)}#yorunge .merkez.portre{inset:31%}}
+@media(max-width:380px){#yorunge .uydu i{width:38px;height:38px}#yorunge .uydu a{font-size:9.5px}}
