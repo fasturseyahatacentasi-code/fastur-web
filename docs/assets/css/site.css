@@ -944,6 +944,8 @@ html .tursab-rozet{display:inline-grid;grid-template-columns:auto auto;grid-temp
 #dunya .bolge,.bolgeler .bolge{border:9px solid #fbf6ec;border-radius:6px;box-shadow:0 1px 0 #e4d9c3 inset,0 16px 34px rgba(0,0,0,.5);background:#fbf6ec}
 .bolge:nth-child(3n+1){transform:rotate(-1.3deg)}.bolge:nth-child(3n+2){transform:rotate(.8deg)}.bolge:nth-child(3n){transform:rotate(-.6deg)}
 .bolge:hover{border-color:#fff8ea;transform:rotate(0) translateY(-6px);box-shadow:0 0 0 1px var(--altin),0 22px 44px rgba(0,0,0,.55)}
-.bolge::before{content:'FAS\A TUR';white-space:pre;position:absolute;top:10px;right:10px;width:46px;height:54px;display:grid;place-items:center;text-align:center;font:900 10px/1.15 var(--govde);letter-spacing:.08em;color:#c0392b;background:#fbf6ec;border:2px dashed #c9b48a;outline:3px solid #fbf6ec;transform:rotate(5deg);box-shadow:0 2px 6px rgba(0,0,0,.35);z-index:1;pointer-events:none}
+.bolge .pul{position:absolute;top:8px;right:8px;z-index:1;transform:rotate(5deg);filter:drop-shadow(0 2px 4px rgba(0,0,0,.45));line-height:0;-webkit-mask:radial-gradient(circle,#0000 1.6px,#000 1.8px) -2.5px -2.5px/5px 5px,linear-gradient(#000,#000) 3px 3px/calc(100% - 6px) calc(100% - 6px) no-repeat;mask:radial-gradient(circle,#0000 1.6px,#000 1.8px) -2.5px -2.5px/5px 5px,linear-gradient(#000,#000) 3px 3px/calc(100% - 6px) calc(100% - 6px) no-repeat}
+.bolge .simgeler{position:absolute;top:10px;left:10px;z-index:1;display:flex;flex-direction:column;gap:6px}.bolge .simgeler i{width:34px;height:34px;display:grid;place-items:center;font-style:normal;font-size:18px;line-height:1;border-radius:50%;background:rgba(251,246,236,.92);box-shadow:0 2px 6px rgba(0,0,0,.35)}
+@media(max-width:600px){.bolge .simgeler i{width:28px;height:28px;font-size:15px}.bolge .pul svg{width:46px;height:54px}}
 .bolge .ic{left:16px;right:16px;bottom:12px}
 @media(prefers-reduced-motion:reduce){.bolge,.bolge:hover{transform:none}}

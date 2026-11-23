@@ -20,6 +20,8 @@ KAYNAK DOSYALAR
 """
 import json,re,os,sys,html,importlib.util
 from urllib.parse import quote
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kartpostal_pul as KP   # 23.11.2026 Dünya Rotaları pul ve simgeleri
 W=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..'))
 D=os.path.join(W,'docs')
 spec=importlib.util.spec_from_file_location('ut',os.path.join(W,'tasarim','uret_turlar.py')); ut=importlib.util.module_from_spec(spec); spec.loader.exec_module(ut)
@@ -81,7 +83,7 @@ def TURKART(s_):
     ad_=dict(DOLU).get(s_)
     if not ad_: return ''
     g_=next((t['gorsel'] for t in V['turlar'] if t['kategori']==s_ and t.get('aktif')),'')   # Mısır: piramitli Kahire (tur kapağı deniz gemisi)
-    return f'<a class="bolge" href="turlar/{s_}/"><img src="{g_}" alt="" loading="lazy" width="480" height="360"><div class="ic"><h3>{ad_}</h3><span data-sayi-kat="{s_}">Turları gör →</span></div></a>'
+    return f'<a class="bolge" href="turlar/{s_}/"><img src="{g_}" alt="" loading="lazy" width="480" height="360">{KP.pul(s_)}{KP.simgeler(s_)}<div class="ic"><h3>{ad_}</h3><span data-sayi-kat="{s_}">Turları gör →</span></div></a>'   # 23.11.2026: kartpostal pulu + ülke simgeleri (tasarim/kartpostal_pul.py)
 # 18.11.2026 Hilal Hanım: ayrı 'Fas ve Kuzey Afrika' bölümü kaldırıldı; Fas ve Mısır Dünya rotalarında, en başta
 DUNYA_KART=''.join(TURKART(s_) for s_ in ['fas','misir']+[k for k,_ in DOLU if k not in ('fas','misir')])
 umre_k=''.join(f'<a class="mini-kat" href="turlar/{s_}/"><b>{a_}</b><span data-sayi-kat="{s_}">Turları gör →</span></a>' for s_,a_ in [('ekonomik-umre-turlari','Ekonomik umre'),('yurume-mesafeli-umre-turlari','Yürüme mesafeli umre'),('5-yildizli-umre-turlari','5 yıldızlı umre')])
