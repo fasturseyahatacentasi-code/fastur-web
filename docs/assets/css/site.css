@@ -1075,3 +1075,6 @@ a.yz-afis:hover{transform:translateY(-6px);box-shadow:0 38px 80px rgba(0,0,0,.6)
 .yz-afis img{object-position:50% 20%}
 @media(max-width:640px){.yz-izgara{grid-template-columns:1fr;justify-items:center}.yz-izgara .yz-afis{width:min(100%,380px)}}
 .hud-yz-btn{text-transform:none;letter-spacing:.02em;font-family:inherit;font-size:14px}
+/* 23.11.2026 Hilal Hanım: "Hill ve Aşçı Oğuz" başlığı diğer menü düğmeleriyle aynı renkte (Rotalar gibi altın), yazı büyük harf değil */
+.hud-yz-btn{background:rgba(255,217,138,.1);border:1px solid rgba(255,217,138,.55);color:var(--altin);border-radius:8px;padding:9px 15px;font:700 13.5px/1 var(--govde,inherit);letter-spacing:.02em;text-transform:none;transition:.2s}
+.hud-yz-btn:hover,.hud-yz:focus-within .hud-yz-btn{background:var(--altin);color:#1a1000;border-color:var(--altin)}
