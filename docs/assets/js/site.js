@@ -35,12 +35,20 @@
     /* 21.11.2026 Hilal Hanım: TÜRSAB rozeti görsel olarak (DDS örneğindeki düzen). Bağlantı YOK: tursab.org.tr/tr/ddsv
        fasturtravel.com'dan gelince "kayıt dışı" gösteriyor (DDS'de kayıtlı alan adı eski site). Hilal Hanım gerçek DDS rozet kodunu
        TÜRSAB'dan alınca bu rozet onunla değiştirilecek. */
-    var tursab = (S.tursab && S.tursab !== '[?]') ? '<div class="tursab-uye" style="display:inline-flex;margin-left:clamp(0px,6vw,56px);align-items:center;gap:14px;text-align:left">' +
-      '<span role="img" aria-label="A Grubu TÜRSAB lisanslı seyahat acentesi, belge no ' + esc(S.tursab) + '" style="display:inline-block;padding:7px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)">' +
-      '<svg width="132" height="84" viewBox="0 0 132 84" style="display:block" aria-hidden="true"><rect width="132" height="84" rx="4" fill="#fff"/><text x="66" y="34" text-anchor="middle" textLength="118" lengthAdjust="spacingAndGlyphs" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="30" fill="#e30a17">TÜRSAB</text><text x="66" y="47" text-anchor="middle" textLength="116" lengthAdjust="spacingAndGlyphs" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="7.4" fill="#111">TÜRKİYE SEYAHAT ACENTALARI BİRLİĞİ</text><text x="66" y="57" text-anchor="middle" textLength="110" lengthAdjust="spacingAndGlyphs" font-family="Arial,Helvetica,sans-serif" font-size="6.4" fill="#333">ASSOCIATION OF TURKISH TRAVEL AGENCIES</text><path d="M0 64h132v16a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z" fill="#e30a17"/><text x="66" y="77.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="10.5" letter-spacing=".6" fill="#fff">BELGE NO: ' + esc(S.tursab) + '</text></svg>' +
-      '</span>' +
-      '<span style="color:#fff;font-size:13px;font-weight:600;max-width:210px;line-height:1.35">A Grubu TÜRSAB Lisanslı<br>Seyahat Acentesi</span>' +
-      '</div>' : '';
+    /* 23.11.2026 Hilal Hanım: TÜRSAB rozeti DDS rozetinin düzeninde (gri kutu, TÜRSAB logosu, kırmızı şerit yazı, sağda belge no + büyüteç).
+       'Dijital Doğrulama Sistemi' ibaresi KULLANILMAZ: o ad TÜRSAB'ın onaylı hizmetidir; gerçek DDS kodu gelince bu rozet onunla değişir.
+       Tıklayınca TÜRSAB ana sayfası ("Seyahat Acentası Sorgula" kutusu) açılır. */
+    var tursab = (S.tursab && S.tursab !== '[?]') ? '<a class="tursab-dds" href="https://www.tursab.org.tr/" target="_blank" rel="noopener" title="TÜRSAB sitesinde acenta sorgulama" aria-label="A Grubu TÜRSAB belgeli seyahat acentası, belge no ' + esc(S.tursab) + '. TÜRSAB sitesinde sorgulamak için tıklayın" style="display:inline-block;margin-left:clamp(0px,6vw,56px);line-height:0;text-decoration:none;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.35)">' +
+      '<svg width="300" height="178" viewBox="0 0 300 178" aria-hidden="true" style="display:block;max-width:100%;height:auto"><defs><linearGradient id="tdg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe2e6"/></linearGradient></defs>' +
+      '<rect x="1" y="1" width="298" height="176" rx="10" fill="url(#tdg)" stroke="#b9bec6" stroke-width="1.5"/>' +
+      '<text x="138" y="44" text-anchor="middle" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="30" fill="#e30a17" textLength="118" lengthAdjust="spacingAndGlyphs">TÜRSAB</text>' +
+      '<text x="138" y="54" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="6.2" fill="#222" textLength="118" lengthAdjust="spacingAndGlyphs">TÜRKİYE SEYAHAT ACENTALARI BİRLİĞİ</text>' +
+      '<circle cx="262" cy="34" r="13" fill="none" stroke="#8a929c" stroke-width="3"/><path d="M271 44l12 12" stroke="#8a929c" stroke-width="5" stroke-linecap="round"/>' +
+      '<text x="150" y="84" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="17" letter-spacing="2.2" fill="#e30a17" textLength="270" lengthAdjust="spacing">A GRUBU SEYAHAT ACENTASI</text>' +
+      '<path d="M14 94h272" stroke="#c9cdd3"/>' +
+      '<g font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#333"><text x="22" y="120"><tspan font-weight="700">TIKLAYIN</tspan> ve acentamızın</text><text x="22" y="137"><tspan font-weight="700" fill="#e30a17">TÜRSAB</tspan>\'a kayıtlı resmi bir acenta</text><text x="22" y="154">olduğunu sorgulayın...</text></g>' +
+      '<text x="250" y="122" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="13" fill="#333">Belge No</text>' +
+      '<text x="250" y="150" text-anchor="middle" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="24" fill="#e30a17">' + esc(S.tursab) + '</text></svg></a>' : '';
     alt.outerHTML =
       '<footer class="alt-bilgi"><div class="wrap"><div class="izgara">' +
       '<div><span class="logo-b"><img src="' + K + 'assets/img/genel/logo/fastur-logo-koyu.svg" alt="Fas Tur Seyahat Acentesi" width="190" height="55"></span>' +
@@ -271,4 +279,10 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { isaretle(); telif(); }); else { isaretle(); telif(); }
   addEventListener('load', function () { isaretle(); telif(); });
+})();
+
+/* Mevsim efekti ÖRNEĞİ (Hilal Hanım 23.11.2026): yalnız ?mevsim=kis|ilkbahar|yaz|sonbahar ile yüklenir. Onaydan sonra tarihe bağlanacak. */
+(function () {
+  var m = (location.search.match(/[?&]mevsim=(kis|ilkbahar|yaz|sonbahar)(?![a-z])/) || [])[1]; if (!m) return;
+  var s = document.createElement('script'); s.src = (document.body.getAttribute('data-kok') || './') + 'assets/js/mevsim.js?v=beaf6e88'; s.setAttribute('data-mevsim', m); document.body.appendChild(s);
 })();
