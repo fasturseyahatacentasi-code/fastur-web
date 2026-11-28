@@ -384,11 +384,27 @@ def yz_seri(k, kk):
     return h
 
 
+def yz_fragman(f):
+    """yzFilm.fragman {baslik, aciklama, youtubeId, tarih(YYYY-AA-GG), sure(PT22S)} — youtubeId boşsa hiçbir şey basmaz (Hilal Hanım 28.11.2026)."""
+    if not (f and f.get('youtubeId')):
+        return '', ''
+    vid = f['youtubeId']
+    html = (f'<section class="yz-fragman"><h2>{ut.e(f.get("baslik", "Fragman"))}</h2>'
+            f'<p>{ut.e(f.get("aciklama", ""))}</p>{yz_video(f)}</section>')
+    ld = {"@context": "https://schema.org", "@type": "VideoObject", "name": f.get('baslik', ''),
+          "description": f.get('aciklama', ''), "thumbnailUrl": [f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"],
+          "uploadDate": f.get('tarih', ''), "duration": f.get('sure', ''), "inLanguage": "tr",
+          "embedUrl": f"https://www.youtube-nocookie.com/embed/{vid}", "contentUrl": f"https://www.youtube.com/watch?v={vid}",
+          "publisher": {"@type": "Organization", "name": "Fas Tur", "url": V['site']['alanAdi']}}
+    return html, '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>'
+
+
 if YZ.get('karakterler'):
     kartlar = ''.join(f'<a class="yz-afis" href="{k["id"]}/">{yz_afis(k, "../")}</a>' for k in YZ['karakterler'])
+    fr_html, fr_ld = yz_fragman(YZ.get('fragman'))
     yaz('yz-film/index.html', ut.kabuk(V, YZ_AD, YZ.get('aciklama', ''), '../', 'yz-film/',
-        sp(YZ_AD, YZ.get('aciklama', ''), [(YZ_AD, None)], '../') + f'<div class="wrap"><div class="yz-izgara">{kartlar}</div></div><div style="height:56px"></div>',
-        sayfa='yz-film', noindex=True))
+        sp(YZ_AD, YZ.get('aciklama', ''), [(YZ_AD, None)], '../') + f'<div class="wrap">{fr_html}<div class="yz-izgara">{kartlar}</div></div><div style="height:56px"></div>',
+        sayfa='yz-film', noindex=not YZ.get('indeksle'), ek_head=fr_ld))
     for k in YZ['karakterler']:
         vids = k.get('videolar') or []
         if vids:
@@ -403,7 +419,7 @@ if YZ.get('karakterler'):
                  f'{yz_seri(k, "../../") if k.get("seriSayfada") else ""}<div class="yz-sayfa-alt">{alt_icerik}<p class="yz-not">Bu karakter ve videolar yapay zekâ ile üretilmiştir.</p></div>'
                  f'</div></section>')
         yaz(f'yz-film/{k["id"]}/index.html', ut.kabuk(V, k['ad'], k['ad'] + ': ' + k.get('alt', ''), '../../',
-            f'yz-film/{k["id"]}/', govde, sayfa='yz-film', noindex=True))
+            f'yz-film/{k["id"]}/', govde, sayfa='yz-film', noindex=not YZ.get('indeksle')))
 
 yaz('404.html',k404)
 yaz('robots.txt',ROBOTS_METNI)   # 🔒 görsel/Okay koruması — Hilal Hanım 13.11.2026; yalnız onun açık talimatıyla gevşetilir

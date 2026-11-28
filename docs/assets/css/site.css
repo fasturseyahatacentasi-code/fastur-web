@@ -991,6 +991,10 @@ html .tursab-rozet{display:inline-grid;grid-template-columns:auto auto;grid-temp
 .yz-video{margin:0}.yz-oran{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
 .yz-oran iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .yz-video figcaption{margin-top:8px;font-weight:700}
+/* Bölüm fragmanı (dikey Shorts), Hilal Hanım 28.11.2026 */
+.yz-fragman{max-width:420px;margin:8px auto 34px;text-align:center}
+.yz-fragman h2{margin:0 0 6px}.yz-fragman p{margin:0 0 14px;opacity:.85}
+.yz-fragman .yz-oran{aspect-ratio:9/16}
 @media(max-width:820px){.yz-sahne{padding-top:90px}.yz-sahne-ic{grid-template-columns:1fr;gap:24px}.yz-portre{max-width:380px}}
 /* 19.11.2026 Hilal Hanım: karakter kartları kapak (afiş) gibi — tam boy 9:16 görsel, üstte etiket, altta büyük ad */
 .yz-izgara{grid-template-columns:repeat(2,minmax(0,380px));gap:32px}
