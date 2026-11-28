@@ -1,4 +1,4 @@
-# Fas Tur — www.fastur.com.tr
+# Fas Tur — fasturtravel.com
 # Sitedeki metin, görsel ve video içerikleri Okyay Turizmcilik Ltd. Şti.'ye aittir.
 # "Okay" karakteri gerçek bir kişinin izniyle üretilmiş dijital ikizdir; görselleri/videoları
 # kopyalanamaz, çoğaltılamaz, yapay zekâ eğitiminde ya da üretiminde kullanılamaz.
@@ -90,4 +90,4 @@ Disallow: /
 User-agent: img2dataset
 Disallow: /
 
-Sitemap: https://www.fastur.com.tr/sitemap.xml
+Sitemap: https://fasturtravel.com/sitemap.xml
