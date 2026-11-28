@@ -543,6 +543,9 @@ def main():
         sayfa='takvim', ek_script='<script defer src="../assets/js/takvim.js"></script>\n'))
     adresler = ['', 'turlar/', 'tur-takvimi/', 'tur-bul/'] + (['umre-rehberi/'] if not gizli_kat(V) else []) + [f'turlar/{k["slug"]}/' for k in gorunur_kat(V)] + [f'tur/{t["slug"]}/' for t in V['turlar']] \
         + V.get('sabitSayfalar', []) + [f'haberler/{h["slug"]}/' for h in V.get('haberler', [])]
+    YZF = V.get('yzFilm') or {}
+    if YZF.get('yayinda') and YZF.get('indeksle'):   # Hill ve Aşçı Oğuz sayfaları Google'a açık (Hilal Hanım 28.11.2026)
+        adresler += ['yz-film/'] + [f'yz-film/{k["id"]}/' for k in YZF.get('karakterler', [])]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' \
         + ''.join(f'  <url><loc>{e(alan + a)}</loc></url>\n' for a in adresler) + '</urlset>\n'
     yaz('sitemap.xml', xml)
